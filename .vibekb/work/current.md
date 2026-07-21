@@ -4,7 +4,7 @@ type: work
 title: Integrate VibeKB into Stoppr
 summary: Create source-grounded .vibekb model and generate static guide in /docs.
 objective: Integrate VibeKB into the Stoppr repository, create a source-grounded living software model, and generate the public static guide in /docs.
-status: in-progress
+status: completed
 verification_state: verified-from-source
 affected_functionality: []
 expected_files: [.vibekb/**, docs/**, VIBEKB.md, VIBEKB_MAINTENANCE.md]
@@ -17,19 +17,14 @@ updated: 2026-07-21
 
 Integrate the real VibeKB system, model Stoppr from source, and publish a static guide at `/docs/index.html` for GitHub Pages.
 
-## What the software does now
+## Outcome
 
-Stoppr application code is unchanged. Repository now contains `.vibekb/` content and generated `/docs` static site.
+Stoppr application code is unchanged. The repository contains a completed one-shot `.vibekb/` model and static `/docs` guide. PR #1 merged this work to `main`.
 
-## Progress
+## Completed
 
 - Inspected lib/, pubspec.yaml, firestore.rules, README.
 - Created 30 functionality records across 10 areas.
 - Published static HTML guide in `/docs` with client-side search.
 - Added memory records for warnings, decisions, and discoveries.
-
-## Next steps for future sessions
-
-- Re-verify functionality after significant app changes.
-- Update `/docs` HTML if the public guide must change alongside `.vibekb/`.
-- Manually test paywall and Firebase flows to upgrade verification states.
+- Removed non-VibeKB Python regeneration tooling (one-shot snapshot only).
