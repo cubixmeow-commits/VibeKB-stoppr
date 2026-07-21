@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI handoff · Stoppr — VibeKB</title>
+  <meta name="description" content="A living explanation of what Stoppr currently does.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/guide.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app-shell">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">
+        <span class="brand__mark">VibeKB</span>
+        <span class="brand__project">Stoppr</span>
+      </a>
+      <form class="site-search" role="search" action="../search/index.html">
+        <label class="visually-hidden" for="site-search-input">Search guide</label>
+        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+      </form>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+    <nav class="sidebar-nav" aria-label="Guide sections">
+      <p class="sidebar-nav__label">Primary</p>
+      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="../functionality/index.html">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="../current-work/index.html">Current work</a></li></ul>
+      <p class="sidebar-nav__label">Explore</p>
+      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="index.html" aria-current="page">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
+    </nav>
+  </aside>
+  <div class="app-main">
+    <main id="main" class="wrap"><article class="view view-doc">
+<header class="page-head reading-column">
+  <p class="eyebrow">AI handoff</p>
+  <h1>Start here before you change anything</h1>
+  <p class="lede">Everything the next human or AI session needs to avoid reconstructing the project incorrectly.</p>
+</header>
+<section class="doc-section callout callout--work">
+  <div class="badge-row">
+    <span class="badge badge--info">Verification: verified from source</span>
+    <span class="muted">Updated 2026-07-21</span>
+  </div>
+  <div class="prose reading-column"><h3>What was inspected</h3>
+<ul>
+<li><code>lib/main.dart</code> — bootstrap, routing, deep links, Superwall delegate</li>
+<li><code>lib/features/onboarding/</code> — full funnel, OnboardingProgressService</li>
+<li><code>lib/core/subscription/</code> — SubscriptionService, FeatureQuotaService, SuperwallPurchaseController</li>
+<li><code>lib/features/app/presentation/screens/home_screen.dart</code> — home hub</li>
+<li><code>lib/features/community/</code>, <code>lib/features/nutrition/</code>, <code>lib/features/recipes/</code></li>
+<li><code>lib/core/streak/</code>, <code>lib/core/notifications/</code>, <code>lib/core/analytics/</code></li>
+<li><code>firestore.rules</code>, <code>pubspec.yaml</code>, <code>README.md</code></li>
+</ul>
+<h3>What was modeled</h3>
+<ul>
+<li>30 functionality records in 10 groups</li>
+<li>6 system documents (mental model through deployment)</li>
+<li>31 important files in <code>important-files.json</code></li>
+<li>2 decisions, 2 constraints, 1 assumption, 4 warnings, 4 discoveries, 1 change</li>
+</ul>
+<h3>What remains uncertain</h3>
+<ul>
+<li>Whether Superwall paywalls work with configured dashboard (placement IDs are placeholders in source)</li>
+<li>Whether accountability pool matching Cloud Functions are deployed</li>
+<li>Actual Firebase behavior in production (only rules and client code inspected)</li>
+<li>Whether disabled A/B quota bypasses are intentional in current release branch</li>
+</ul>
+<h3>What could not be run</h3>
+<ul>
+<li>Flutter app (no device/simulator in this environment)</li>
+<li><code>flutter test</code> (no tests exist)</li>
+<li>Firebase or payment sandbox transactions</li>
+<li>Groq/OpenAI API calls</li>
+</ul>
+<h3>External services requiring configuration</h3>
+<p>Firebase, RevenueCat, Superwall, Mixpanel, AppsFlyer, Groq, OpenAI, Edamam, Spoonacular, Google OAuth, Crisp — all via <code>.env</code>.</p>
+<h3>Areas deserving direct testing</h3>
+<ol>
+<li>Main paywall purchase flow end-to-end</li>
+<li>Subscription gating on accountability partners and learn videos</li>
+<li>Food scan with real Groq API key</li>
+<li>Push notification delivery and tap → Superwall placement</li>
+<li>Deep links (payment success, share invite, panic)</li>
+</ol>
+<h3>Records most likely needing revision</h3>
+<ul>
+<li><code>main-paywall</code> — when placement IDs are configured</li>
+<li><code>soft-paywalls-quotas</code> — when A/B test concludes</li>
+<li><code>accountability-partners</code> — after Cloud Function verification</li>
+<li><code>daily-check-in-pledge</code> — if check-in on load re-enabled</li>
+</ul>
+<h3>How to update VibeKB after code changes</h3>
+<ol>
+<li>Identify affected functionality records in <code>.vibekb/functionality/records/</code>.</li>
+<li>Update status, verification, and narrative from source evidence.</li>
+<li>Add memory records (warning, discovery, change) for non-obvious findings.</li>
+<li>Update <code>work/current.md</code> during active AI sessions.</li>
+<li>Run <code>python3 .vibekb/tools/generate_docs.py</code>.</li>
+<li>Confirm Reference view shows zero validation errors.</li>
+</ol></div>
+</section>
+<section class="doc-section"><h2>Recent work sessions</h2><ul class="why-list"><li class="why-item">
+  <div class="why-item__head">
+    <h3>Initial VibeKB integration session</h3>
+    <div class="badge-row">
+      <span class="badge badge--ok">Verified from source</span>
+      <span class="muted">2026-07-21</span>
+    </div>
+  </div>
+  <p>Created .vibekb model and static /docs guide from Stoppr source inspection.</p>
+  <p class="why-item__links"><span class="muted">None.</span></p>
+</li></ul></section>
+<nav class="cross-links" aria-label="Related views">
+  <a class="btn" href="../current-work/index.html">Current AI work →</a>
+  <a class="btn" href="../index.html">Overview →</a>
+</nav>
+</article></main>
+    <footer class="site-footer">
+      <div class="wrap site-footer__inner">
+        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="../assets/js/guide.js" defer></script>
+</body>
+</html>

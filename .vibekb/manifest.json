@@ -1,0 +1,19 @@
+{
+  "vibekb_version": "1.0",
+  "content_model": "functionality-first",
+  "updated": "2026-07-21",
+  "project": {
+    "name": "Stoppr",
+    "source_repository": "https://github.com/cubixmeow-commits/VibeKB-stoppr",
+    "platform": "Flutter (iOS, Android)",
+    "version_note": "App version 7.4.2+1 per pubspec.yaml at model creation."
+  },
+  "structure": {
+    "project": "project/ — identity, intent, current state, constraints",
+    "functionality": "functionality/ — index.json + records/ (the primary unit)",
+    "system": "system/ — mental model, components, flows, storage, deployment",
+    "files": "files/important-files.json — curated important files",
+    "memory": "memory/ — decisions, constraints, assumptions, warnings, discoveries, changes",
+    "work": "work/ — current AI work, handoff, sessions"
+  }
+}
