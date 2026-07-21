@@ -167,8 +167,8 @@ tools/community_simulator/node_modules/
 # Attack plans (internal development notes)
 attack-plans/
 
-# Tools directory (internal scripts and utilities)
-tools/
+# Internal Node tool workspaces may live under tools/; VibeKB PHP
+# tools (tools/*.php) are tracked. node_modules remain ignored above.
 
 # Sensitive files documentation (contains information about sensitive file locations)
 SENSITIVE_FILES.md

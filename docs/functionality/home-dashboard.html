@@ -1,106 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home dashboard · Stoppr — VibeKB</title>
-  <meta name="description" content="A living explanation of what Stoppr currently does.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/guide.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home dashboard · Stoppr — VibeKB</title>
+    <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Web fonts are a progressive enhancement only. The stylesheet ships a
+         full system-font fallback stack, so the guide renders correctly with no
+         external CDN — required for offline and locked-down static hosting. -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/guide.css">
 </head>
-<body>
+<body data-mode="static">
 <a class="skip-link" href="#main">Skip to content</a>
+
 <div class="app-shell">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="../index.html">
-        <span class="brand__mark">VibeKB</span>
-        <span class="brand__project">Stoppr</span>
-      </a>
-      <form class="site-search" role="search" action="../search/index.html">
-        <label class="visually-hidden" for="site-search-input">Search guide</label>
-        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
-      </form>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
-    </div>
-  </header>
-  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
-  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
-    <nav class="sidebar-nav" aria-label="Guide sections">
-      <p class="sidebar-nav__label">Primary</p>
-      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="index.html" aria-current="page">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="../diagrams/index.html">Diagrams</a></li><li><a href="../current-work/index.html">Current work</a></li></ul>
-      <p class="sidebar-nav__label">Explore</p>
-      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
-    </nav>
-  </aside>
-  <div class="app-main">
-    <main id="main" class="wrap"><article class="view view-func-detail">
-<p class="breadcrumb"><a href="index.html">← All functionality</a></p>
-<header class="page-head reading-column">
-  <p class="eyebrow">Home Wellness</p>
-  <h1>Home dashboard</h1>
-  <p class="lede">Central hub with streak, widgets, panic button, and navigation to all major features.</p>
-  <div class="badge-row">
-    <span class="badge badge--ok">Implemented</span>
-    <span class="badge badge--ok">Verified from source</span>
-    <span class="badge badge--info">User-facing</span>
-  </div>
-</header>
-<div class="detail-grid">
-  <div class="detail-main">
-    <div class="prose reading-column"><h3>In one sentence</h3>
-<p>Central hub with streak, widgets, panic button, and navigation to all major features.</p>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="../index.html">
+                <span class="brand__mark">VibeKB</span>
+                <span class="brand__project">Stoppr</span>
+            </a>
+            <form class="site-search" role="search" action="../search/index.html">
+                <label class="visually-hidden" for="site-search-input">Search guide</label>
+                <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+            </form>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="guide-sidebar"
+                hidden
+            >Menu</button>
+        </div>
+    </header>
+
+    <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+    <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+        <nav class="sidebar-nav" aria-label="Guide sections">
+            <p class="sidebar-nav__label" id="nav-primary-label">Primary</p>
+            <ul class="sidebar-nav__list" aria-labelledby="nav-primary-label">
+                                                        <li>
+                        <a href="../index.html">
+                            Overview                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../functionality/index.html" aria-current="page">
+                            Functionality                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../how-it-works/index.html">
+                            Architecture                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../diagrams/index.html">
+                            Diagrams                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../current-work/index.html">
+                            Current work                        </a>
+                    </li>
+                            </ul>
+
+                            <p class="sidebar-nav__label" id="nav-explore-label">Explore</p>
+                <ul class="sidebar-nav__list sidebar-nav__list--secondary" aria-labelledby="nav-explore-label">
+                                                                    <li>
+                            <a href="../data/index.html">
+                                Data &amp; storage                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../files/index.html">
+                                Files that matter                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../changes/index.html">
+                                Changes                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../why/index.html">
+                                Decisions &amp; rationale                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../handoff/index.html">
+                                AI handoff                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../reference/index.html">
+                                Reference                            </a>
+                        </li>
+                                    </ul>
+                    </nav>
+    </aside>
+
+    <div class="app-main">
+                    <p class="generated-notice" role="note">
+                Generated output — this is a static snapshot rendered from <code>.vibekb/</code>. The
+                <code>.vibekb/</code> content is the source of truth. See <a href="../reference/index.html">Reference</a> for provenance.
+            </p>
+                
+        <main id="main" class="wrap">
+            <article class="view view-func-detail">
+    <p class="breadcrumb"><a href="../functionality/index.html">← All functionality</a></p>
+
+    <header class="page-head reading-column">
+        <p class="eyebrow">Home wellness</p>
+        <h1>Home dashboard</h1>
+        <p class="lede">Central dashboard orchestrating streak display, check-in widgets, panic entry, banners, and feature shortcuts.</p>
+        <div class="badge-row">
+            <span class="badge badge--ok">Implemented</span>            <span class="badge badge--ok">Verified from source</span>            <span class="badge badge--info">User-facing</span>        </div>
+    </header>
+
+    <div class="detail-grid">
+        <div class="detail-main">
+                            <div class="prose reading-column"><h3>In one sentence</h3>
+<p><code>HomeScreen</code> is the daily hub for wellness actions and subscription banners.</p>
 <h3>Current behavior</h3>
-<p>Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.</p>
+<p>Composes streak UI, pledge/check-in widgets, panic entry, challenge links, and
+Superwall banner triggers for trial/cancel scenarios.</p>
 <h3>Current state</h3>
-<p><strong>Status:</strong> implemented. <strong>Verification:</strong> verified-from-source.</p>
-<h3>Safe to change</h3>
-<p>Presentation and copy with localization.</p>
-<h3>Use caution</h3>
-<p>Data writes and subscription checks.</p></div>
-  </div>
-  <aside class="detail-rail" aria-label="Record metadata">
-    <div class="rail-card metadata-group">
-      <h2>Status</h2>
-      <dl class="rail-dl">
-        <dt>Status</dt><dd><span class="badge badge--ok">Implemented</span></dd>
-        <dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd>
-        <dt>Updated</dt><dd>2026-07-21</dd>
-        <dt>Facing</dt><dd>User-facing</dd>
-      </dl>
+<p>Implemented; verified-from-source.</p></div>
+                    </div>
+
+        <aside class="detail-rail" aria-label="Record metadata">
+            <div class="rail-card metadata-group">
+                <h2>Status</h2>
+                <dl class="rail-dl">
+                    <dt>Status</dt>
+                    <dd><span class="badge badge--ok">Implemented</span></dd>
+                                            <dt>Verification</dt>
+                        <dd><span class="badge badge--ok">Verified from source</span></dd>
+                                        <dt>Updated</dt>
+                    <dd>2026-07-21</dd>
+                    <dt>Facing</dt>
+                    <dd>User-facing</dd>
+                </dl>
+            </div>
+
+                            <div class="rail-card metadata-group">
+                    <h2>Trigger</h2>
+                    <p>User opens the Home tab in MainScaffold.</p>
+                </div>
+            
+            <div class="rail-card metadata-group">
+                <h2>Data read or written</h2>
+                <p><strong>Reads:</strong> <span class="muted">None.</span></p>
+                <p><strong>Writes:</strong> <span class="muted">None.</span></p>
+                            </div>
+
+            <div class="rail-card metadata-group">
+                <h2>Files involved</h2>
+                                    <p><code class="chip chip--file">lib/features/app/presentation/screens/home_screen.dart</code></p>
+                            </div>
+
+            <div class="rail-card metadata-group">
+                <h2>Dependencies</h2>
+                                    <p><strong>Depends on:</strong> <a class="chip" href="../functionality/main-navigation.html">Main navigation</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a></p>
+                                                    <p><strong>Depended on by:</strong> <a class="chip" href="../functionality/daily-check-in-pledge.html">Daily check-in and pledge</a> <a class="chip" href="../functionality/panic-intervention.html">Panic intervention</a> <a class="chip" href="../functionality/twenty-eight-day-challenge.html">Twenty-eight day challenge</a></p>
+                            </div>
+
+            
+            <div class="rail-card metadata-group">
+                <h2>Related rationale</h2>
+                                    <p><span class="muted">None.</span></p>
+                            </div>
+        </aside>
     </div>
-    <div class="rail-card metadata-group"><h2>Trigger</h2><p>User opens Home tab (index 0) in MainScaffold.</p></div>
-    <div class="rail-card metadata-group">
-      <h2>Data read or written</h2>
-      <p><strong>Reads:</strong> <code class="chip chip--file">shared_preferences</code> <code class="chip chip--file">users</code></p>
-      <p><strong>Writes:</strong> <code class="chip chip--file">shared_preferences</code></p>
-      
+</article>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap site-footer__inner">
+                <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+                <p class="muted">
+                    A living explanation generated from repository-owned content in <code>.vibekb/</code>.
+                    <a href="../index.html">About VibeKB</a>
+                </p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+            </div>
+        </footer>
     </div>
-    <div class="rail-card metadata-group"><h2>Files involved</h2><ul class="rail-list"><li><a href="../files/index.html#lib/features/app/presentation/screens/home_screen.dart"><code>lib/features/app/presentation/screens/home_screen.dart</code></a> <span class="badge badge--info">Moderate impact</span></li></ul></div>
-    <div class="rail-card metadata-group">
-      <h2>Dependencies</h2>
-      <p><strong>Depends on:</strong> <a class="chip" href="main-navigation.html">Main tab navigation</a> <a class="chip" href="sugar-streak-tracking.html">Sugar-free streak tracking</a></p>
-      <p><strong>Depended on by:</strong> <a class="chip" href="accountability-partners.html">Accountability partners</a> <a class="chip" href="articles-education.html">Articles and educational content</a> <a class="chip" href="calorie-nutrition-tracking.html">Calorie and nutrition tracking</a> <a class="chip" href="daily-check-in-pledge.html">Daily check-in and pledge</a> <a class="chip" href="meditation-breathing.html">Meditation and breathing</a> <a class="chip" href="panic-intervention.html">Panic button intervention</a> <a class="chip" href="recipe-discovery.html">Recipe discovery</a> <a class="chip" href="sugar-food-scanning.html">Sugar food scanning</a> <a class="chip" href="twenty-eight-day-challenge.html">28-day challenge</a></p>
-    </div>
-    <div class="rail-card metadata-group">
-      <h2>Related rationale</h2>
-      <p><span class="muted">None.</span></p>
-    </div>
-  </aside>
 </div>
-<aside class="related-diagrams"><p><strong>Related diagrams:</strong> <a href="../diagrams/index.html#home-dashboard">Home dashboard diagram</a></p></aside>
-</article></main>
-    <footer class="site-footer">
-      <div class="wrap site-footer__inner">
-        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
-        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
-      </div>
-    </footer>
-  </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <script src="../assets/js/guide.js" defer></script>
 </body>
 </html>

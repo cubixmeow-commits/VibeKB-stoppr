@@ -1,20 +1,16 @@
 ---
 id: onboarding-health-claims
 type: assumption
-title: Onboarding copy contains product health claims
-summary: Analysis and benefit screens present health/behavioral claims as product messaging, not verified medical facts.
+title: Onboarding health copy is marketing, not verified science
+summary: UI claims about sugar/health are not validated by this software model.
 confidence: high
-verification: verified-from-source
-functionality: [onboarding-personalized-analysis]
-invalidated_by: Clinical validation or regulatory review
-next_check: When onboarding copy changes
+verification: not-verified
+functionality: [onboarding-intro, onboarding-personalized-analysis]
+next_check: Product/legal review outside engineering.
 updated: 2026-07-21
 ---
 
 ## Assumption
 
-Screens like `analysis_result_screen.dart` and `stoppr_science_backed_plan.dart` display persuasive health framing. The code does not validate these claims against external medical evidence.
-
-## For guide readers
-
-Document what the app **shows**, not whether claims are scientifically established.
+VibeKB records describe screens and data flow only; they do not assert medical
+correctness of onboarding analysis copy.

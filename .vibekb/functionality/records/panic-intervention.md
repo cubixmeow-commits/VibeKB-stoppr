@@ -1,37 +1,33 @@
 ---
+id: panic-intervention
+type: functionality
+title: Panic intervention
 area: home-wellness
-summary: PanicFlowManager runs randomized coping tricks ending in sugary-treat education and congratulations.
+summary: Guided multi-step panic flow with randomized tricks and breathing/meditation helpers.
 status: implemented
 verification: verified-from-source
 user_facing: true
-trigger: User taps panic button on home or via deep link stoppr://panic.
+trigger: User taps Panic from home, widget deep link, or notification.
 files: [lib/features/app/services/panic_flow_manager.dart, lib/features/app/presentation/screens/panic_button/what_happening_screen.dart]
-reads: [shared_preferences]
-writes: [shared_preferences]
-depends_on: [home-dashboard, soft-paywalls-quotas]
+reads: []
+writes: []
+config: []
+depends_on: [home-dashboard]
 related_memory: []
-id: panic-intervention
-type: functionality
-title: Panic button intervention
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-PanicFlowManager runs randomized coping tricks ending in sugary-treat education and congratulations.
+`PanicFlowManager` sequences intervention screens for craving moments.
 
 ## Current behavior
 
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+Starts at `WhatHappeningScreen` and walks trick/breathing/meditation steps.
+Deep link `stoppr://panic` routes here.
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented; verified-from-source.

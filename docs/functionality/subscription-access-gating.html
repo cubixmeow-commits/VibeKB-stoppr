@@ -1,106 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Subscription access gating · Stoppr — VibeKB</title>
-  <meta name="description" content="A living explanation of what Stoppr currently does.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/guide.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Subscription access gating · Stoppr — VibeKB</title>
+    <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Web fonts are a progressive enhancement only. The stylesheet ships a
+         full system-font fallback stack, so the guide renders correctly with no
+         external CDN — required for offline and locked-down static hosting. -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/guide.css">
 </head>
-<body>
+<body data-mode="static">
 <a class="skip-link" href="#main">Skip to content</a>
+
 <div class="app-shell">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="../index.html">
-        <span class="brand__mark">VibeKB</span>
-        <span class="brand__project">Stoppr</span>
-      </a>
-      <form class="site-search" role="search" action="../search/index.html">
-        <label class="visually-hidden" for="site-search-input">Search guide</label>
-        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
-      </form>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
-    </div>
-  </header>
-  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
-  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
-    <nav class="sidebar-nav" aria-label="Guide sections">
-      <p class="sidebar-nav__label">Primary</p>
-      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="index.html" aria-current="page">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="../diagrams/index.html">Diagrams</a></li><li><a href="../current-work/index.html">Current work</a></li></ul>
-      <p class="sidebar-nav__label">Explore</p>
-      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
-    </nav>
-  </aside>
-  <div class="app-main">
-    <main id="main" class="wrap"><article class="view view-func-detail">
-<p class="breadcrumb"><a href="index.html">← All functionality</a></p>
-<header class="page-head reading-column">
-  <p class="eyebrow">Subscription</p>
-  <h1>Subscription access gating</h1>
-  <p class="lede">SubscriptionService.isPaidSubscriber checks RevenueCat, Superwall, debug bypasses, and reviewer emails.</p>
-  <div class="badge-row">
-    <span class="badge badge--ok">Implemented</span>
-    <span class="badge badge--ok">Verified from source</span>
-    <span class="badge badge--muted">System</span>
-  </div>
-</header>
-<div class="detail-grid">
-  <div class="detail-main">
-    <div class="prose reading-column"><h3>In one sentence</h3>
-<p>SubscriptionService.isPaidSubscriber checks RevenueCat, Superwall, debug bypasses, and reviewer emails.</p>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="../index.html">
+                <span class="brand__mark">VibeKB</span>
+                <span class="brand__project">Stoppr</span>
+            </a>
+            <form class="site-search" role="search" action="../search/index.html">
+                <label class="visually-hidden" for="site-search-input">Search guide</label>
+                <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+            </form>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="guide-sidebar"
+                hidden
+            >Menu</button>
+        </div>
+    </header>
+
+    <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+    <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+        <nav class="sidebar-nav" aria-label="Guide sections">
+            <p class="sidebar-nav__label" id="nav-primary-label">Primary</p>
+            <ul class="sidebar-nav__list" aria-labelledby="nav-primary-label">
+                                                        <li>
+                        <a href="../index.html">
+                            Overview                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../functionality/index.html" aria-current="page">
+                            Functionality                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../how-it-works/index.html">
+                            Architecture                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../diagrams/index.html">
+                            Diagrams                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../current-work/index.html">
+                            Current work                        </a>
+                    </li>
+                            </ul>
+
+                            <p class="sidebar-nav__label" id="nav-explore-label">Explore</p>
+                <ul class="sidebar-nav__list sidebar-nav__list--secondary" aria-labelledby="nav-explore-label">
+                                                                    <li>
+                            <a href="../data/index.html">
+                                Data &amp; storage                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../files/index.html">
+                                Files that matter                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../changes/index.html">
+                                Changes                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../why/index.html">
+                                Decisions &amp; rationale                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../handoff/index.html">
+                                AI handoff                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../reference/index.html">
+                                Reference                            </a>
+                        </li>
+                                    </ul>
+                    </nav>
+    </aside>
+
+    <div class="app-main">
+                    <p class="generated-notice" role="note">
+                Generated output — this is a static snapshot rendered from <code>.vibekb/</code>. The
+                <code>.vibekb/</code> content is the source of truth. See <a href="../reference/index.html">Reference</a> for provenance.
+            </p>
+                
+        <main id="main" class="wrap">
+            <article class="view view-func-detail">
+    <p class="breadcrumb"><a href="../functionality/index.html">← All functionality</a></p>
+
+    <header class="page-head reading-column">
+        <p class="eyebrow">Subscription</p>
+        <h1>Subscription access gating</h1>
+        <p class="lede">Paid access is determined from Superwall subscription status and RevenueCat CustomerInfo, not Firestore alone.</p>
+        <div class="badge-row">
+            <span class="badge badge--ok">Implemented</span>            <span class="badge badge--ok">Verified from source</span>            <span class="badge badge--muted">System</span>        </div>
+    </header>
+
+    <div class="detail-grid">
+        <div class="detail-main">
+                            <div class="prose reading-column"><h3>In one sentence</h3>
+<p>RevenueCat/Superwall decide paid access; Firestore stores mirrors only.</p>
 <h3>Current behavior</h3>
-<p>Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.</p>
+<p><code>SubscriptionService.isPaidSubscriber</code> checks debug/reviewer bypasses, Superwall
+status, then RevenueCat entitlements/subscriptions. <code>AuthCubit</code> emits paid/free
+states. <code>SuperwallPurchaseController</code> maps store purchases through RevenueCat
+and syncs status. Android early Superwall configure omits purchaseController —
+treat Android sync as higher risk.</p>
 <h3>Current state</h3>
-<p><strong>Status:</strong> implemented. <strong>Verification:</strong> verified-from-source.</p>
-<h3>Safe to change</h3>
-<p>Presentation and copy with localization.</p>
-<h3>Use caution</h3>
-<p>Data writes and subscription checks.</p></div>
-  </div>
-  <aside class="detail-rail" aria-label="Record metadata">
-    <div class="rail-card metadata-group">
-      <h2>Status</h2>
-      <dl class="rail-dl">
-        <dt>Status</dt><dd><span class="badge badge--ok">Implemented</span></dd>
-        <dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd>
-        <dt>Updated</dt><dd>2026-07-21</dd>
-        <dt>Facing</dt><dd>System</dd>
-      </dl>
+<p>Implemented with platform caveat; verified-from-source.</p></div>
+                    </div>
+
+        <aside class="detail-rail" aria-label="Record metadata">
+            <div class="rail-card metadata-group">
+                <h2>Status</h2>
+                <dl class="rail-dl">
+                    <dt>Status</dt>
+                    <dd><span class="badge badge--ok">Implemented</span></dd>
+                                            <dt>Verification</dt>
+                        <dd><span class="badge badge--ok">Verified from source</span></dd>
+                                        <dt>Updated</dt>
+                    <dd>2026-07-21</dd>
+                    <dt>Facing</dt>
+                    <dd>System</dd>
+                </dl>
+            </div>
+
+                            <div class="rail-card metadata-group">
+                    <h2>Trigger</h2>
+                    <p>Any check of isPaidSubscriber / AuthCubit paid state / onboarding completion.</p>
+                </div>
+            
+            <div class="rail-card metadata-group">
+                <h2>Data read or written</h2>
+                <p><strong>Reads:</strong> <span class="muted">None.</span></p>
+                <p><strong>Writes:</strong> <span class="muted">None.</span></p>
+                            </div>
+
+            <div class="rail-card metadata-group">
+                <h2>Files involved</h2>
+                                    <p><code class="chip chip--file">lib/core/subscription/subscription_service.dart</code> <code class="chip chip--file">lib/core/auth/cubit/auth_cubit.dart</code> <code class="chip chip--file">lib/core/superwall/superwall_purchase_controller.dart</code></p>
+                            </div>
+
+            <div class="rail-card metadata-group">
+                <h2>Dependencies</h2>
+                                    <p><strong>Depends on:</strong> <a class="chip" href="../functionality/app-startup.html">Application startup</a></p>
+                                                    <p><strong>Depended on by:</strong> <a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a> <a class="chip" href="../functionality/startup-routing.html">Startup routing</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a> <a class="chip" href="../functionality/user-profile-settings.html">User profile and settings</a></p>
+                            </div>
+
+                            <div class="rail-card metadata-group">
+                    <h2>Related diagrams</h2>
+                                            <p>
+                                                            <a class="chip" href="../diagrams/index.html#app-overview">Stoppr application overview</a>
+                                                            <a class="chip" href="../diagrams/index.html#risk-uncertainty-map">Risk and uncertainty map</a>
+                                                            <a class="chip" href="../diagrams/index.html#subscription-paywall-flow">Subscription and paywall flow</a>
+                                                    </p>
+                                                                <p class="rail-note text-soft">Appears as a node in:</p>
+                        <ul class="rail-list">
+                                                            <li><a href="../diagrams/index.html#node-purchases">RevenueCat + Superwall</a> <span class="text-soft">· Stoppr application overview</span></li>
+                                                            <li><a href="../diagrams/index.html#node-android-sw">Android Superwall wiring</a> <span class="text-soft">· Risk and uncertainty map</span></li>
+                                                            <li><a href="../diagrams/index.html#node-purchase-controller">SuperwallPurchaseController</a> <span class="text-soft">· Subscription and paywall flow</span></li>
+                                                            <li><a href="../diagrams/index.html#node-revenuecat">RevenueCat</a> <span class="text-soft">· Subscription and paywall flow</span></li>
+                                                            <li><a href="../diagrams/index.html#node-access-gate">SubscriptionService gate</a> <span class="text-soft">· Subscription and paywall flow</span></li>
+                                                    </ul>
+                                    </div>
+            
+            <div class="rail-card metadata-group">
+                <h2>Related rationale</h2>
+                                    <p><a class="chip" href="../why/decisions/revenuecat-not-firestore-gating.html">RevenueCat/Superwall gate access, not Firestore</a> <a class="chip" href="../why/warnings/android-superwall-purchase-controller.html">Android Superwall purchase controller wiring is incomplete</a></p>
+                            </div>
+        </aside>
     </div>
-    <div class="rail-card metadata-group"><h2>Trigger</h2><p>Any premium feature or routing decision checks subscription.</p></div>
-    <div class="rail-card metadata-group">
-      <h2>Data read or written</h2>
-      <p><strong>Reads:</strong> <span class="muted">None.</span></p>
-      <p><strong>Writes:</strong> <span class="muted">None.</span></p>
-      
+</article>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap site-footer__inner">
+                <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+                <p class="muted">
+                    A living explanation generated from repository-owned content in <code>.vibekb/</code>.
+                    <a href="../index.html">About VibeKB</a>
+                </p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+            </div>
+        </footer>
     </div>
-    <div class="rail-card metadata-group"><h2>Files involved</h2><ul class="rail-list"><li><a href="../files/index.html#lib/core/subscription/subscription_service.dart"><code>lib/core/subscription/subscription_service.dart</code></a> <span class="badge badge--danger">High impact</span></li><li><a href="../files/index.html#lib/core/repositories/user_repository.dart"><code>lib/core/repositories/user_repository.dart</code></a> <span class="badge badge--danger">High impact</span></li></ul></div>
-    <div class="rail-card metadata-group">
-      <h2>Dependencies</h2>
-      <p><strong>Depends on:</strong> <a class="chip" href="app-startup.html">Application startup</a></p>
-      <p><strong>Depended on by:</strong> <a class="chip" href="accountability-partners.html">Accountability partners</a> <a class="chip" href="main-paywall.html">Main subscription paywall</a> <a class="chip" href="notifications.html">Push and local notifications</a> <a class="chip" href="soft-paywalls-quotas.html">Soft paywalls and feature quotas</a> <a class="chip" href="startup-routing.html">Startup screen routing</a></p>
-    </div>
-    <div class="rail-card metadata-group">
-      <h2>Related rationale</h2>
-      <p><a class="chip" href="../why/decisions/revenuecat-not-firestore-gating.html">Subscription gating via RevenueCat not Firestore</a></p>
-    </div>
-  </aside>
 </div>
-<aside class="related-diagrams"><p><strong>Related diagrams:</strong> <a href="../diagrams/index.html#feature-access">Feature access diagram</a></p></aside>
-</article></main>
-    <footer class="site-footer">
-      <div class="wrap site-footer__inner">
-        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
-        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
-      </div>
-    </footer>
-  </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <script src="../assets/js/guide.js" defer></script>
 </body>
 </html>

@@ -1,334 +1,232 @@
-{
-  "files": [
-    {
-      "path": "lib/main.dart",
-      "purpose": "Application entry point: SDK initialization, startup routing, deep links, Superwall delegate, and MaterialApp shell.",
-      "functionality": ["app-startup", "startup-routing", "deep-link-handling"],
-      "runs_when": "Every app launch and for deep link handling while running.",
-      "depended_on_by": ["Entire application"],
-      "depends_on": ["lib/firebase_options.dart", "lib/core/config/env_config.dart", "lib/core/subscription/subscription_service.dart"],
-      "safety": "high-impact",
-      "test_after_change": "Cold start app; verify routing to home, onboarding, and paywall paths.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/subscription/subscription_service.dart",
-      "purpose": "Determines paid subscriber status via RevenueCat, Superwall, and debug/reviewer bypasses.",
-      "functionality": ["subscription-access-gating", "main-paywall", "soft-paywalls-quotas"],
-      "runs_when": "Premium feature access checks and startup routing.",
-      "depended_on_by": ["Home screen features", "Accountability", "Onboarding routing"],
-      "depends_on": ["purchases_flutter", "superwallkit_flutter"],
-      "safety": "high-impact",
-      "test_after_change": "Verify free vs paid access on a real device with sandbox purchase.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/superwall/superwall_purchase_controller.dart",
-      "purpose": "Bridges Superwall paywall events to RevenueCat purchases and Firebase analytics.",
-      "functionality": ["main-paywall"],
-      "runs_when": "User interacts with any Superwall placement.",
-      "depended_on_by": ["PrePaywallScreen", "Home soft paywalls"],
-      "depends_on": ["lib/core/subscription/subscription_service.dart"],
-      "safety": "high-impact",
-      "test_after_change": "Complete a sandbox subscription purchase.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/features/onboarding/data/services/onboarding_progress_service.dart",
-      "purpose": "Tracks and resumes onboarding screen progress in SharedPreferences and Firestore.",
-      "functionality": ["startup-routing", "onboarding-intro", "onboarding-questionnaire"],
-      "runs_when": "Each onboarding screen transition.",
-      "depended_on_by": ["main.dart startup routing"],
-      "depends_on": ["shared_preferences", "cloud_firestore"],
-      "safety": "high-impact",
-      "test_after_change": "Kill app mid-onboarding and verify resume screen.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/features/onboarding/presentation/screens/pre_paywall.dart",
-      "purpose": "Primary subscription paywall with Superwall placement registration and gift flow steps.",
-      "functionality": ["main-paywall"],
-      "runs_when": "Unpaid user completes onboarding.",
-      "depended_on_by": ["Startup routing"],
-      "depends_on": ["superwallkit_flutter", "lib/core/superwall/superwall_purchase_controller.dart"],
-      "safety": "high-impact",
-      "test_after_change": "Reach paywall in onboarding; confirm placement renders with configured IDs.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/auth/auth_service.dart",
-      "purpose": "Firebase Auth wrapper for Google, Apple, and email sign-in with RevenueCat identity sync.",
-      "functionality": ["firebase-auth"],
-      "runs_when": "User initiates sign-in or auth state changes.",
-      "depended_on_by": ["AuthCubit", "Onboarding auth screens"],
-      "depends_on": ["firebase_auth", "google_sign_in", "sign_in_with_apple"],
-      "safety": "high-impact",
-      "test_after_change": "Sign in with each provider on iOS and Android.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/auth/cubit/auth_cubit.dart",
-      "purpose": "Auth state machine emitting authenticated/paid/free/unauthenticated states.",
-      "functionality": ["firebase-auth", "startup-routing"],
-      "runs_when": "Auth state changes or explicit auth checks.",
-      "depended_on_by": ["MaterialApp listeners", "Email auth screen"],
-      "depends_on": ["lib/core/auth/auth_service.dart"],
-      "safety": "high-impact",
-      "test_after_change": "Sign in/out and verify navigation side effects.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/features/app/presentation/screens/main_scaffold.dart",
-      "purpose": "Bottom navigation shell hosting Home, Learn, Rewire Brain, Community, Profile tabs.",
-      "functionality": ["main-navigation"],
-      "runs_when": "Paid or bypassed user reaches main app.",
-      "depended_on_by": ["Deep link home handler"],
-      "depends_on": ["HomeScreen", "LearnVideoListScreen", "CommunityScreen"],
-      "safety": "moderate-impact",
-      "test_after_change": "Switch all five tabs; verify analytics screen names.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/features/app/presentation/screens/home_screen.dart",
-      "purpose": "Main dashboard with streak, check-in, panic button, and feature grid navigation.",
-      "functionality": ["home-dashboard"],
-      "runs_when": "User on Home tab.",
-      "depended_on_by": ["Most feature entry points"],
-      "depends_on": ["StreakService", "SubscriptionService", "NotificationService"],
-      "safety": "moderate-impact",
-      "test_after_change": "Open home; tap major feature cards.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/streak/streak_service.dart",
-      "purpose": "Sugar-free streak timer with SharedPreferences and optional Firestore sync.",
-      "functionality": ["sugar-streak-tracking"],
-      "runs_when": "App running; updates every second on home.",
-      "depended_on_by": ["HomeScreen", "StreakCounterWidget", "iOS widget"],
-      "depends_on": ["shared_preferences", "home_widget"],
-      "safety": "moderate-impact",
-      "test_after_change": "Reset streak; verify timer and widget update.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/features/app/services/panic_flow_manager.dart",
-      "purpose": "Orchestrates randomized panic intervention screen sequence.",
-      "functionality": ["panic-intervention"],
-      "runs_when": "User starts panic flow.",
-      "depended_on_by": ["WhatHappeningScreen", "Home panic button"],
-      "depends_on": ["lib/features/app/presentation/screens/panic_button/"],
-      "safety": "low-impact",
-      "test_after_change": "Complete panic flow from home.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/features/community/data/repositories/community_repository.dart",
-      "purpose": "Firestore CRUD for posts, comments, chat, and blocked users.",
-      "functionality": ["community-forum", "community-chat"],
-      "runs_when": "Community tab interactions.",
-      "depended_on_by": ["CommunityCubit", "ChatCubit"],
-      "depends_on": ["cloud_firestore"],
-      "safety": "moderate-impact",
-      "test_after_change": "Create post, comment, and send chat message.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/accountability/accountability_service.dart",
-      "purpose": "Partner matchmaking, invites, and subscription-gated pool access.",
-      "functionality": ["accountability-partners"],
-      "runs_when": "User manages accountability partnership.",
-      "depended_on_by": ["AccountabilityPartnerScreen"],
-      "depends_on": ["lib/core/streak/sharing_service.dart", "SubscriptionService"],
-      "safety": "moderate-impact",
-      "test_after_change": "Join pool or send invite with subscribed test account.",
-      "provenance": "inferred-from-source"
-    },
-    {
-      "path": "lib/features/learn/presentation/cubit/learn_video_cubit.dart",
-      "purpose": "Hardcoded lesson list with Mux URLs and completion state.",
-      "functionality": ["learn-video-lessons"],
-      "runs_when": "Learn tab opened.",
-      "depended_on_by": ["LearnVideoListScreen"],
-      "depends_on": ["shared_preferences"],
-      "safety": "low-impact",
-      "test_after_change": "Play a lesson; verify subtitle and completion tracking.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/features/app/presentation/screens/food_scan/food_scan_screen.dart",
-      "purpose": "Camera food capture and Groq vision API analysis for sugar content.",
-      "functionality": ["sugar-food-scanning"],
-      "runs_when": "User opens sugar food scan.",
-      "depended_on_by": ["FoodAlternativesScreen"],
-      "depends_on": ["camera", "http", "EnvConfig GROQ_API_KEY"],
-      "safety": "moderate-impact",
-      "test_after_change": "Scan food with valid API key.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/features/nutrition/data/repositories/nutrition_repository.dart",
-      "purpose": "Firestore persistence for food logs, daily summaries, and nutrition profile.",
-      "functionality": ["calorie-nutrition-tracking"],
-      "runs_when": "Calorie tracker meal logging.",
-      "depended_on_by": ["CalorieTrackerDashboard"],
-      "depends_on": ["cloud_firestore", "Edamam API"],
-      "safety": "moderate-impact",
-      "test_after_change": "Log a meal; verify Firestore document.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/features/recipes/data/repositories/recipe_repository.dart",
-      "purpose": "Recipe search via Edamam with Spoonacular fallback.",
-      "functionality": ["recipe-discovery"],
-      "runs_when": "User searches recipes.",
-      "depended_on_by": ["RecipesCubit"],
-      "depends_on": ["http", "EnvConfig"],
-      "safety": "low-impact",
-      "test_after_change": "Search recipes; favorite one.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/notifications/notification_service.dart",
-      "purpose": "FCM and local notification scheduling with subscription-aware types.",
-      "functionality": ["notifications"],
-      "runs_when": "App init, settings changes, scheduled times.",
-      "depended_on_by": ["main.dart", "User settings"],
-      "depends_on": ["firebase_messaging", "flutter_local_notifications"],
-      "safety": "high-impact",
-      "test_after_change": "Toggle notification type; verify schedule updates.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/analytics/mixpanel_service.dart",
-      "purpose": "Primary product analytics: events, page views, user properties.",
-      "functionality": ["analytics-telemetry"],
-      "runs_when": "Tracked user actions throughout app.",
-      "depended_on_by": ["Most screens"],
-      "depends_on": ["mixpanel_flutter", "MIXPANEL_API_KEY"],
-      "safety": "low-impact",
-      "test_after_change": "Trigger event; verify in Mixpanel dashboard.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/config/env_config.dart",
-      "purpose": "Typed accessors for all environment variables and API keys.",
-      "functionality": ["app-startup"],
-      "runs_when": "Any service needing external API configuration.",
-      "depended_on_by": ["All integrated services"],
-      "depends_on": [".env", "flutter_dotenv"],
-      "safety": "high-impact",
-      "test_after_change": "Verify each integration still reads correct key.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/firebase_options.dart",
-      "purpose": "Firebase initialization options from environment variables for iOS/Android.",
-      "functionality": ["app-startup"],
-      "runs_when": "Firebase.initializeApp()",
-      "depended_on_by": ["All Firebase services"],
-      "depends_on": ["EnvConfig"],
-      "safety": "high-impact",
-      "test_after_change": "Firebase init on both platforms.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/repositories/user_repository.dart",
-      "purpose": "Firestore user document CRUD, subscription type enum, leaderboard, anonymous TTL.",
-      "functionality": ["firebase-auth", "guest-anonymous-access", "subscription-access-gating"],
-      "runs_when": "User profile reads/writes.",
-      "depended_on_by": ["Auth flows", "Onboarding", "Home"],
-      "depends_on": ["cloud_firestore"],
-      "safety": "high-impact",
-      "test_after_change": "Create user; verify Firestore document shape.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/subscription/feature_quota_service.dart",
-      "purpose": "Free-tier usage limits for learn, panic, food scan, chatbot, challenge.",
-      "functionality": ["soft-paywalls-quotas"],
-      "runs_when": "Free user accesses gated features.",
-      "depended_on_by": ["Learn", "Food scan", "Chatbot", "Panic flow"],
-      "depends_on": ["shared_preferences", "user_feature_quotas"],
-      "safety": "moderate-impact",
-      "test_after_change": "Exceed quota as free user when enforcement enabled.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "firestore.rules",
-      "purpose": "Security rules for Firestore collections and user subcollections.",
-      "functionality": ["community-forum", "calorie-nutrition-tracking", "accountability-partners"],
-      "runs_when": "Every Firestore read/write in production.",
-      "depended_on_by": ["All Firestore clients"],
-      "depends_on": [],
-      "safety": "high-impact",
-      "test_after_change": "Deploy rules; test authenticated reads/writes.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "pubspec.yaml",
-      "purpose": "Dependencies, assets, fonts, app version 7.4.2+1.",
-      "functionality": ["app-startup"],
-      "runs_when": "Build time.",
-      "depended_on_by": ["Entire Flutter project"],
-      "depends_on": [],
-      "safety": "high-impact",
-      "test_after_change": "flutter pub get && flutter build after dependency changes.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/features/onboarding/presentation/screens/questionnaire_screen.dart",
-      "purpose": "13-question onboarding survey with progress persistence.",
-      "functionality": ["onboarding-questionnaire"],
-      "runs_when": "Early onboarding after intro.",
-      "depended_on_by": ["Onboarding funnel"],
-      "depends_on": ["QuestionnaireRepository", "OnboardingProgressService"],
-      "safety": "moderate-impact",
-      "test_after_change": "Complete questionnaire; verify saved answers.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/features/app/presentation/widgets/daily_check_in_widget.dart",
-      "purpose": "Daily mood check-in overlay with relapse and streak reset coordination.",
-      "functionality": ["daily-check-in-pledge"],
-      "runs_when": "Triggered from home (not on load by default).",
-      "depended_on_by": ["HomeScreen"],
-      "depends_on": ["RelapseService", "StreakService", "PledgeService"],
-      "safety": "moderate-impact",
-      "test_after_change": "Trigger check-in; test relapse path.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/challenge/challenge_service.dart",
-      "purpose": "28-day challenge task tracking with local and Firestore sync.",
-      "functionality": ["twenty-eight-day-challenge"],
-      "runs_when": "Challenge screen interactions.",
-      "depended_on_by": ["Challenge28DaysScreen"],
-      "depends_on": ["shared_preferences", "users/challenges"],
-      "safety": "low-impact",
-      "test_after_change": "Complete a challenge day task.",
-      "provenance": "verified-from-source"
-    },
-    {
-      "path": "lib/core/streak/sharing_service.dart",
-      "purpose": "Share token generation and invite acceptance via Cloud Functions.",
-      "functionality": ["deep-link-handling", "accountability-partners"],
-      "runs_when": "User shares streak or accepts invite link.",
-      "depended_on_by": ["AcceptInvitePage", "Accountability flows"],
-      "depends_on": ["cloud_functions", "app_links"],
-      "safety": "moderate-impact",
-      "test_after_change": "Open share deep link; verify token validation.",
-      "provenance": "inferred-from-source"
-    },
-    {
-      "path": "lib/features/learn/data/services/article_service.dart",
-      "purpose": "Loads bundled markdown articles from assets with progress tracking.",
-      "functionality": ["articles-education"],
-      "runs_when": "Articles list opened.",
-      "depended_on_by": ["ArticlesCubit"],
-      "depends_on": ["assets/articles/"],
-      "safety": "low-impact",
-      "test_after_change": "Open article in multiple languages.",
-      "provenance": "verified-from-source"
-    }
-  ]
-}
+[
+  {
+    "path": "lib/main.dart",
+    "purpose": "Bootstrap, Superwall/RevenueCat init, startup routing, deep links.",
+    "functionality": [
+      "app-startup",
+      "startup-routing",
+      "deep-link-handling",
+      "main-paywall"
+    ],
+    "runs_when": "Every cold start and for deep-link processing.",
+    "depended_on_by": [
+      "almost all features"
+    ],
+    "depends_on": [
+      "lib/core/config/env_config.dart",
+      "lib/firebase_options.dart"
+    ],
+    "safety": "high-impact",
+    "test_after_change": "Cold start routing for anonymous, free, and paid users; deep links.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/core/config/env_config.dart",
+    "purpose": "Typed accessors for environment variable NAMES (never commit values).",
+    "functionality": [
+      "app-startup",
+      "firebase-auth",
+      "analytics-telemetry"
+    ],
+    "runs_when": "Whenever a service reads configuration.",
+    "depended_on_by": [
+      "auth",
+      "purchases",
+      "AI features"
+    ],
+    "depends_on": [],
+    "safety": "high-impact",
+    "test_after_change": "Missing-key behavior; ensure no secrets are logged.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/core/auth/auth_service.dart",
+    "purpose": "Firebase Auth providers and identity side effects.",
+    "functionality": [
+      "firebase-auth",
+      "guest-anonymous-access"
+    ],
+    "runs_when": "Sign-in, sign-out, auth state changes.",
+    "depended_on_by": [
+      "AuthCubit",
+      "onboarding"
+    ],
+    "depends_on": [
+      "lib/core/config/env_config.dart"
+    ],
+    "safety": "high-impact",
+    "test_after_change": "Google/Apple/email sign-in; RevenueCat logIn.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/core/subscription/subscription_service.dart",
+    "purpose": "Paid-access decisions (Superwall + RevenueCat).",
+    "functionality": [
+      "subscription-access-gating",
+      "startup-routing"
+    ],
+    "runs_when": "Gating checks throughout the app.",
+    "depended_on_by": [
+      "startup",
+      "onboarding completion",
+      "accountability"
+    ],
+    "depends_on": [],
+    "safety": "high-impact",
+    "test_after_change": "Free vs paid routing; bypass accounts.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/core/superwall/superwall_purchase_controller.dart",
+    "purpose": "Maps Superwall purchases to RevenueCat and syncs status.",
+    "functionality": [
+      "main-paywall",
+      "subscription-access-gating"
+    ],
+    "runs_when": "Purchase, restore, status sync.",
+    "depended_on_by": [
+      "PrePaywall",
+      "home banners"
+    ],
+    "depends_on": [
+      "purchases_flutter"
+    ],
+    "safety": "high-impact",
+    "test_after_change": "iOS and Android purchase/restore paths.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/features/onboarding/presentation/screens/pre_paywall.dart",
+    "purpose": "Primary paywall UI and Superwall placement registration.",
+    "functionality": [
+      "main-paywall"
+    ],
+    "runs_when": "End of onboarding / unpaid return.",
+    "depended_on_by": [],
+    "depends_on": [
+      "Superwall",
+      "PostPurchaseHandler"
+    ],
+    "safety": "understand-dependencies-first",
+    "test_after_change": "Placement registration; paid skip; purchase success.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/features/onboarding/data/services/onboarding_progress_service.dart",
+    "purpose": "Resume checkpoints and completion flags.",
+    "functionality": [
+      "onboarding-questionnaire",
+      "startup-routing"
+    ],
+    "runs_when": "Each onboarding screen save and startup resume.",
+    "depended_on_by": [
+      "main.dart routing"
+    ],
+    "depends_on": [
+      "SubscriptionService"
+    ],
+    "safety": "moderate-impact",
+    "test_after_change": "Kill-app resume at multiple screens.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/core/streak/streak_service.dart",
+    "purpose": "Streak persistence and widget sync (placeholder app group).",
+    "functionality": [
+      "sugar-streak-tracking",
+      "home-widgets"
+    ],
+    "runs_when": "Streak updates and widget refreshes.",
+    "depended_on_by": [
+      "home",
+      "relapse",
+      "post-purchase"
+    ],
+    "depends_on": [
+      "home_widget"
+    ],
+    "safety": "moderate-impact",
+    "test_after_change": "Streak increment/reset; iOS widget values.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/features/app/presentation/screens/home_screen.dart",
+    "purpose": "Daily hub UI and soft paywall banners.",
+    "functionality": [
+      "home-dashboard",
+      "soft-paywalls-quotas"
+    ],
+    "runs_when": "Home tab visible.",
+    "depended_on_by": [],
+    "depends_on": [
+      "streak",
+      "subscription"
+    ],
+    "safety": "moderate-impact",
+    "test_after_change": "Banner paywalls; navigation to panic/pledge.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/features/nutrition/data/repositories/nutrition_repository.dart",
+    "purpose": "Nutrition Firestore persistence hub.",
+    "functionality": [
+      "calorie-nutrition-tracking"
+    ],
+    "runs_when": "Food log and goal operations.",
+    "depended_on_by": [
+      "scanner",
+      "dashboard"
+    ],
+    "depends_on": [
+      "Firebase Auth"
+    ],
+    "safety": "moderate-impact",
+    "test_after_change": "Log food; load daily summary.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/features/app/presentation/screens/chatbot/chatbot_screen.dart",
+    "purpose": "Melinda AI assistant with rate limits.",
+    "functionality": [
+      "chatbot-assistant"
+    ],
+    "runs_when": "Chatbot opened.",
+    "depended_on_by": [],
+    "depends_on": [
+      "GROQ_API_KEY",
+      "OPENAI_API_KEY"
+    ],
+    "safety": "understand-dependencies-first",
+    "test_after_change": "Rate limit; text and voice paths.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "firestore.rules",
+    "purpose": "Server-side access rules for Firestore.",
+    "functionality": [
+      "community-forum",
+      "calorie-nutrition-tracking"
+    ],
+    "runs_when": "Every Firestore request.",
+    "depended_on_by": [
+      "all cloud data features"
+    ],
+    "depends_on": [],
+    "safety": "high-impact",
+    "test_after_change": "Rules unit tests / emulator for affected paths.",
+    "provenance": "inferred-from-source"
+  },
+  {
+    "path": "pubspec.yaml",
+    "purpose": "Package identity, version, and dependency set.",
+    "functionality": [
+      "app-startup"
+    ],
+    "runs_when": "Build and dependency resolution.",
+    "depended_on_by": [],
+    "depends_on": [],
+    "safety": "high-impact",
+    "test_after_change": "flutter pub get; smoke build.",
+    "provenance": "verified-from-source"
+  }
+]

@@ -1,15 +1,20 @@
 ---
 id: widget-app-group-placeholder
 type: warning
-title: iOS home widget app group ID is a placeholder
-summary: StreakService references group.YOUR_BUNDLE_ID.shared for home widget sync.
+title: iOS widget app group ID is a placeholder
+summary: StreakService uses group.YOUR_BUNDLE_ID.shared for HomeWidget sync.
 severity: medium
 verification: verified-from-source
-functionality: [sugar-streak-tracking]
-files: [lib/core/streak/streak_service.dart]
+functionality: [sugar-streak-tracking, home-widgets]
+files: [lib/core/streak/streak_service.dart, ios/StreakWidgetExtension.entitlements]
 updated: 2026-07-21
 ---
 
 ## What can go wrong
 
-iOS home widget streak display will not sync until the real app group identifier is configured in Xcode and code.
+iOS widgets will not receive streak/accountability updates until the real app
+group is configured in Xcode and code.
+
+## Safe next action
+
+Set the real app group id in Flutter + entitlements; verify widget refresh.

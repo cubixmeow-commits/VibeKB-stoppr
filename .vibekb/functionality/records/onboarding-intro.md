@@ -1,37 +1,33 @@
 ---
-area: onboarding
-summary: Welcome video and intro pages lead to auth or skip path into questionnaire.
-status: implemented
-verification: verified-from-source
-user_facing: true
-trigger: New user after WelcomeVideoScreen.
-files: [lib/features/onboarding/presentation/screens/welcome_video_screen.dart, lib/features/onboarding/presentation/screens/onboarding_page.dart]
-reads: [shared_preferences]
-writes: [shared_preferences, users]
-depends_on: [startup-routing]
-related_memory: []
 id: onboarding-intro
 type: functionality
 title: Onboarding introduction
+area: onboarding
+summary: Welcome video and early onboarding pages introduce the product and present auth or skip options.
+status: implemented
+verification: verified-from-source
+user_facing: true
+trigger: First launch or incomplete onboarding without paid bypass.
+files: [lib/features/onboarding/presentation/screens/welcome_video_screen.dart, lib/features/onboarding/presentation/screens/onboarding_page.dart, lib/features/onboarding/presentation/screens/onboarding_screen2.dart, lib/features/onboarding/presentation/screens/onboarding_screen3.dart]
+reads: []
+writes: []
+config: []
+depends_on: [startup-routing]
+related_memory: []
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-Welcome video and intro pages lead to auth or skip path into questionnaire.
+Welcome video hands off to `OnboardingPage` / early screens before questionnaire.
 
 ## Current behavior
 
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+`WelcomeVideoScreen` plays then navigates to the computed next screen.
+`OnboardingPage` sequences FOMO/stats and auth options (Google/Apple/email/skip).
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented; verified-from-source.

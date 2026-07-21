@@ -1,266 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Architecture · Stoppr — VibeKB</title>
-  <meta name="description" content="A living explanation of what Stoppr currently does.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/guide.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Architecture · Stoppr — VibeKB</title>
+    <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Web fonts are a progressive enhancement only. The stylesheet ships a
+         full system-font fallback stack, so the guide renders correctly with no
+         external CDN — required for offline and locked-down static hosting. -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/guide.css">
 </head>
-<body>
+<body data-mode="static">
 <a class="skip-link" href="#main">Skip to content</a>
+
 <div class="app-shell">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="../index.html">
-        <span class="brand__mark">VibeKB</span>
-        <span class="brand__project">Stoppr</span>
-      </a>
-      <form class="site-search" role="search" action="../search/index.html">
-        <label class="visually-hidden" for="site-search-input">Search guide</label>
-        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
-      </form>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
-    </div>
-  </header>
-  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
-  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
-    <nav class="sidebar-nav" aria-label="Guide sections">
-      <p class="sidebar-nav__label">Primary</p>
-      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="../functionality/index.html">Functionality</a></li><li><a href="index.html" aria-current="page">Architecture</a></li><li><a href="../diagrams/index.html">Diagrams</a></li><li><a href="../current-work/index.html">Current work</a></li></ul>
-      <p class="sidebar-nav__label">Explore</p>
-      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
-    </nav>
-  </aside>
-  <div class="app-main">
-    <main id="main" class="wrap"><article class="view view-doc">
-<header class="page-head reading-column">
-  <p class="eyebrow">Architecture</p>
-  <h1>How the software works</h1>
-  <p class="lede">A paced, system-level explanation — the mental model first, then the parts, lifecycle, and deployment.</p>
-</header>
-<section class="doc-section content-section" aria-labelledby="hiw-mental-model">
-  <header class="section-intro reading-column">
-    <h2 id="hiw-mental-model">Mental model</h2>
-  </header>
-  <div class="prose reading-column"><h3>The simplest mental model</h3>
-<p>Think of Stoppr as three layers:</p>
-<ol>
-<li><strong>Bootstrap layer</strong> (<code>main.dart</code>) — initializes Firebase, purchases, analytics,</li>
-</ol>
-<p>notifications, then decides which screen to show first.</p>
-<ol>
-<li><strong>Session layer</strong> — <code>AuthCubit</code> + <code>SubscriptionService</code> determine whether the</li>
-</ol>
-<p>user sees onboarding, paywall, or the home hub.</p>
-<ol>
-<li><strong>Feature modules</strong> — self-contained areas (community, nutrition, learn) that</li>
-</ol>
-<p>read/write Firestore and SharedPreferences through service singletons.</p>
-<h3>User journey axes</h3>
-<div class="table-wrap"><table>
-<tr>
-<th>Axis</th>
-<th>Mechanism</th>
-</tr>
-<tr>
-<td>New vs returning</td>
-<td><code>OnboardingProgressService</code> + Firestore <code>lastOnboardingScreen</code></td>
-</tr>
-<tr>
-<td>Free vs paid</td>
-<td><code>SubscriptionService.isPaidSubscriber()</code></td>
-</tr>
-<tr>
-<td>Authenticated vs guest</td>
-<td>Firebase anonymous auth in several flows</td>
-</tr>
-</table></div>
-<h3>Navigation model</h3>
-<p>There is no central route table. <code>MainScaffold</code> hosts five tabs; everything
-else is reached via <code>Navigator.push</code> / <code>pushReplacement</code> from <code>HomeScreen</code>
-or onboarding screens.</p>
-<h3>Data model</h3>
-<ul>
-<li><strong>Cloud</strong>: Firestore <code>users/{uid}</code> document + subcollections.</li>
-<li><strong>Local</strong>: SharedPreferences for streak, onboarding progress, quotas, settings.</li>
-<li><strong>Purchases</strong>: RevenueCat + Superwall, not Firestore subscription fields.</li>
-</ul></div>
-</section><section class="doc-section content-section" aria-labelledby="hiw-components">
-  <header class="section-intro reading-column">
-    <h2 id="hiw-components">Major components</h2>
-  </header>
-  <div class="prose reading-column"><h3>Core (<code>lib/core/</code>)</h3>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="../index.html">
+                <span class="brand__mark">VibeKB</span>
+                <span class="brand__project">Stoppr</span>
+            </a>
+            <form class="site-search" role="search" action="../search/index.html">
+                <label class="visually-hidden" for="site-search-input">Search guide</label>
+                <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+            </form>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="guide-sidebar"
+                hidden
+            >Menu</button>
+        </div>
+    </header>
+
+    <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+    <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+        <nav class="sidebar-nav" aria-label="Guide sections">
+            <p class="sidebar-nav__label" id="nav-primary-label">Primary</p>
+            <ul class="sidebar-nav__list" aria-labelledby="nav-primary-label">
+                                                        <li>
+                        <a href="../index.html">
+                            Overview                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../functionality/index.html">
+                            Functionality                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../how-it-works/index.html" aria-current="page">
+                            Architecture                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../diagrams/index.html">
+                            Diagrams                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../current-work/index.html">
+                            Current work                        </a>
+                    </li>
+                            </ul>
+
+                            <p class="sidebar-nav__label" id="nav-explore-label">Explore</p>
+                <ul class="sidebar-nav__list sidebar-nav__list--secondary" aria-labelledby="nav-explore-label">
+                                                                    <li>
+                            <a href="../data/index.html">
+                                Data &amp; storage                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../files/index.html">
+                                Files that matter                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../changes/index.html">
+                                Changes                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../why/index.html">
+                                Decisions &amp; rationale                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../handoff/index.html">
+                                AI handoff                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../reference/index.html">
+                                Reference                            </a>
+                        </li>
+                                    </ul>
+                    </nav>
+    </aside>
+
+    <div class="app-main">
+                    <p class="generated-notice" role="note">
+                Generated output — this is a static snapshot rendered from <code>.vibekb/</code>. The
+                <code>.vibekb/</code> content is the source of truth. See <a href="../reference/index.html">Reference</a> for provenance.
+            </p>
+                
+        <main id="main" class="wrap">
+            <article class="view view-doc">
+    <header class="page-head reading-column">
+        <p class="eyebrow">Architecture</p>
+        <h1>How the software works</h1>
+        <p class="lede">A paced, system-level explanation — the mental model first, then the parts, the request lifecycle, and how it ships.</p>
+    </header>
+
+                    <section class="doc-section content-section" aria-labelledby="hiw-mental-model">
+            <header class="section-intro reading-column">
+                <h2 id="hiw-mental-model">Mental model</h2>
+            </header>
+            <div class="prose reading-column"><h3>Picture this</h3>
+<p>Stoppr is a phone app. On launch it wakes Firebase and purchase SDKs, figures
+out whether you finished onboarding and whether you are paid, then either
+continues onboarding, shows the paywall, or opens the home hub.</p>
+<p>Daily life happens on Home: streak, pledge, panic. Deeper tools (community,
+learn, nutrition, challenge) hang off navigation. Money questions always go
+through Superwall UI and RevenueCat entitlements — Firestore remembers
+subscription fields but does not decide access.</p></div>
+        </section>
+                    <section class="doc-section content-section" aria-labelledby="hiw-components">
+            <header class="section-intro reading-column">
+                <h2 id="hiw-components">Components</h2>
+            </header>
+            <div class="prose reading-column"><h3>Major components</h3>
 <div class="table-wrap"><table>
 <tr>
 <th>Component</th>
 <th>Role</th>
+<th>Primary path</th>
 </tr>
 <tr>
-<td><code>AuthService</code> / <code>AuthCubit</code></td>
-<td>Firebase auth state machine</td>
+<td>Bootstrap</td>
+<td>SDK init + first route</td>
+<td><code>lib/main.dart</code></td>
 </tr>
 <tr>
-<td><code>SubscriptionService</code></td>
-<td>Paid access checks via RevenueCat/Superwall</td>
+<td>Auth</td>
+<td>Firebase identity + AuthCubit</td>
+<td><code>lib/core/auth/</code></td>
 </tr>
 <tr>
-<td><code>SuperwallPurchaseController</code></td>
-<td>Bridges Superwall to RevenueCat</td>
+<td>Onboarding</td>
+<td>Funnel + progress service</td>
+<td><code>lib/features/onboarding/</code></td>
 </tr>
 <tr>
-<td><code>StreakService</code></td>
-<td>Sugar-free streak timer + widget sync</td>
+<td>Subscription</td>
+<td>RevenueCat + Superwall</td>
+<td><code>lib/core/subscription/</code>, <code>lib/core/superwall/</code></td>
 </tr>
 <tr>
-<td><code>NotificationService</code></td>
-<td>FCM + local notifications</td>
+<td>Home / panic / pledge</td>
+<td>Daily loop</td>
+<td><code>lib/features/app/</code></td>
 </tr>
 <tr>
-<td><code>MixpanelService</code></td>
-<td>Event tracking</td>
+<td>Community / accountability</td>
+<td>Social</td>
+<td><code>lib/features/community/</code>, <code>lib/features/accountability/</code></td>
 </tr>
 <tr>
-<td><code>UserRepository</code></td>
-<td>Firestore user CRUD</td>
+<td>Nutrition / recipes</td>
+<td>Food tools</td>
+<td><code>lib/features/nutrition/</code>, <code>lib/features/recipes/</code></td>
 </tr>
 <tr>
-<td><code>EnvConfig</code></td>
-<td>Typed environment variable accessors</td>
-</tr>
-</table></div>
-<h3>Feature modules (<code>lib/features/</code>)</h3>
-<div class="table-wrap"><table>
-<tr>
-<th>Module</th>
-<th>Key screens / services</th>
+<td>Learn</td>
+<td>Videos + articles</td>
+<td><code>lib/features/learn/</code></td>
 </tr>
 <tr>
-<td><code>onboarding/</code></td>
-<td>30+ screens, <code>OnboardingProgressService</code></td>
+<td>Widgets</td>
+<td>iOS/Android home widgets</td>
+<td><code>ios/StreakWidget/</code>, Android providers</td>
 </tr>
 <tr>
-<td><code>app/</code></td>
-<td><code>HomeScreen</code>, <code>MainScaffold</code>, panic, food scan, meditation</td>
+<td>Config</td>
+<td>Env accessors</td>
+<td><code>lib/core/config/env_config.dart</code></td>
 </tr>
-<tr>
-<td><code>community/</code></td>
-<td><code>CommunityRepository</code>, <code>CommunityCubit</code></td>
-</tr>
-<tr>
-<td><code>accountability/</code></td>
-<td><code>AccountabilityService</code>, partner matching</td>
-</tr>
-<tr>
-<td><code>learn/</code></td>
-<td><code>LearnVideoCubit</code>, <code>ArticleService</code></td>
-</tr>
-<tr>
-<td><code>nutrition/</code></td>
-<td><code>NutritionRepository</code>, calorie tracker</td>
-</tr>
-<tr>
-<td><code>recipes/</code></td>
-<td><code>RecipeRepository</code>, Edamam/Spoonacular</td>
-</tr>
-<tr>
-<td><code>auth/</code></td>
-<td><code>EmailAuthScreen</code></td>
-</tr>
-</table></div>
-<h3>State management pattern</h3>
+</table></div></div>
+        </section>
+                    <section class="doc-section content-section" aria-labelledby="hiw-request-flow">
+            <header class="section-intro reading-column">
+                <h2 id="hiw-request-flow">Request and navigation flow</h2>
+            </header>
+            <div class="prose reading-column"><h3>How control moves</h3>
+<p>Stoppr does not use a single declarative router for the whole app. <code>main.dart</code>
+computes an initial widget tree, then screens push/replace via Flutter
+<code>Navigator</code>. Deep links and widget URIs call into <code>_processDeepLink</code> or set
+pending navigation flags.</p>
+<p>Paid checks run at startup, onboarding completion, and feature gates via
+<code>SubscriptionService</code> / <code>AuthCubit</code>.</p></div>
+        </section>
+                    <section class="doc-section content-section" aria-labelledby="hiw-deployment">
+            <header class="section-intro reading-column">
+                <h2 id="hiw-deployment">Deployment</h2>
+            </header>
+            <div class="prose reading-column"><h3>Application</h3>
+<p>Built with Flutter for iOS and Android. Store credentials and Firebase configs
+are supplied outside git via env / ignored platform files; <code>.local</code> templates
+document required keys without secrets.</p>
+<h3>VibeKB documentation</h3>
 <ul>
-<li><strong>Cubit + Freezed</strong> for feature screens (community, learn, recipes).</li>
-<li><strong>Singleton services</strong> for cross-cutting domain logic.</li>
-<li><strong>BlocProvider</strong> at app root for <code>AuthCubit</code>; <code>RepositoryProvider</code> for community.</li>
+<li>Source of truth: <code>.vibekb/</code></li>
+<li>Public site: <code>/docs</code> generated by <code>php tools/generate-static.php</code></li>
+<li>GitHub Pages: Settings → Pages → folder <code>/docs</code></li>
+<li>Entry: <code>docs/index.html</code></li>
+<li>Dynamic <code>guide/</code> is present so the same templates power generation; public</li>
 </ul>
-<h3>Third-party UI</h3>
-<ul>
-<li><code>superwallkit_flutter</code> — paywall presentation.</li>
-<li><code>purchases_flutter</code> — RevenueCat SDK.</li>
-<li><code>flutter_local_notifications</code> — scheduled reminders.</li>
-</ul></div>
-</section><section class="doc-section content-section" aria-labelledby="hiw-request-flow">
-  <header class="section-intro reading-column">
-    <h2 id="hiw-request-flow">Application lifecycle</h2>
-  </header>
-  <div class="prose reading-column"><h3>Cold start sequence</h3>
-<ol>
-<li><code>main()</code> in <code>lib/main.dart</code> runs <code>WidgetsFlutterBinding.ensureInitialized()</code>.</li>
-<li>Load <code>.env</code>, configure RevenueCat early, enumerate cameras.</li>
-<li><code>Firebase.initializeApp()</code>, Crashlytics (prod), NotificationService init.</li>
-<li>Crisp, QuickActions, SharedPreferences, AuthService, Mixpanel, AppsFlyer.</li>
-<li>FCM background handler registration, Superwall early init (Android).</li>
-<li><code>runApp(MyApp)</code> with <code>AuthCubit</code> provider.</li>
-</ol>
-<h3><code>_MyAppState</code> startup routing</h3>
-<p><code>_determineStartScreen()</code> evaluates:</p>
-<ul>
-<li>Is onboarding complete? (<code>OnboardingProgressService</code>)</li>
-<li>Is user authenticated?</li>
-<li>Is user a paid subscriber? (<code>SubscriptionService</code>)</li>
-<li>Last onboarding screen for resume (<code>lastOnboardingScreen</code>)</li>
-</ul>
-<p>Possible destinations:</p>
-<ul>
-<li><code>WelcomeVideoScreen</code> → onboarding entry</li>
-<li>Specific onboarding screen (resume)</li>
-<li><code>PrePaywallScreen</code> (unpaid, onboarding done)</li>
-<li><code>MainScaffold</code> (paid or bypass)</li>
-</ul>
-<h3>In-session navigation</h3>
-<ul>
-<li>Tab changes within <code>MainScaffold</code> (indices 0–4).</li>
-<li>Feature launches from <code>HomeScreen</code> via <code>Navigator.push</code>.</li>
-<li>Deep links handled in <code>_processDeepLink()</code> (payment success, panic, pledge, share invites).</li>
-</ul>
-<h3>Background / resume</h3>
-<ul>
-<li>FCM messages may trigger Superwall placements on tap.</li>
-<li><code>AppOpenStreakService</code> tracks consecutive daily opens.</li>
-<li>Subscription refresh on payment success deep link.</li>
-</ul></div>
-</section><section class="doc-section content-section" aria-labelledby="hiw-deployment">
-  <header class="section-intro reading-column">
-    <h2 id="hiw-deployment">Deployment</h2>
-  </header>
-  <div class="prose reading-column"><h3>Mobile app deployment</h3>
-<ul>
-<li><strong>Build</strong>: <code>flutter build apk</code> / <code>flutter build ios</code> (per <code>CLAUDE.md</code>).</li>
-<li><strong>Config</strong>: Runtime <code>.env</code> for API keys; <code>lib/firebase_options.dart</code> reads env vars.</li>
-<li><strong>Firebase</strong>: <code>firestore.rules</code>, <code>firestore.indexes.json</code>, <code>firebase.json.local</code> in repo.</li>
-<li><strong>Version</strong>: <code>7.4.2+1</code> in <code>pubspec.yaml</code>.</li>
-</ul>
-<h3>Environment requirements</h3>
-<p>Developers need configured keys for: Firebase, RevenueCat, Superwall, Mixpanel,
-OpenAI, Groq, AppsFlyer, Edamam, Spoonacular, Google OAuth, Crisp.</p>
-<p>Placeholder strings exist when env vars are missing — app may fail or degrade.</p>
-<h3>VibeKB guide deployment</h3>
-<p>This repository includes a static guide in <code>/docs</code> built from <code>.vibekb/</code>.
-GitHub Pages can serve it from branch <code>main</code>, folder <code>/docs</code>.
-No build step is required to read the guide.</p>
-<h3>CI / testing</h3>
-<p>No automated test suite present in repository. <code>flutter analyze</code> and manual QA
-are the documented verification paths.</p></div>
-</section>
-<nav class="cross-links" aria-label="Related views">
-  <a class="btn" href="../data/index.html">Data &amp; storage →</a>
-  <a class="btn" href="../files/index.html">Files that matter →</a>
-</nav>
-<aside class="related-diagrams"><p><strong>Related diagrams:</strong> <a href="../diagrams/index.html">Full diagrams collection</a></p></aside>
-</article></main>
-    <footer class="site-footer">
-      <div class="wrap site-footer__inner">
-        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
-        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
-      </div>
-    </footer>
-  </div>
+<p>deployment for this repository remains the static snapshot.</p></div>
+        </section>
+    
+    <nav class="cross-links" aria-label="Related views">
+        <a class="btn" href="../data/index.html">Data &amp; storage →</a>
+        <a class="btn" href="../files/index.html">Files that matter →</a>
+    </nav>
+</article>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap site-footer__inner">
+                <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+                <p class="muted">
+                    A living explanation generated from repository-owned content in <code>.vibekb/</code>.
+                    <a href="../index.html">About VibeKB</a>
+                </p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+            </div>
+        </footer>
+    </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <script src="../assets/js/guide.js" defer></script>
 </body>
 </html>

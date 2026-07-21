@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "placement-placeholders",
+      "title": "Superwall placement placeholders",
+      "purpose": "Many registerPlacement calls still use INSERT_YOUR_* strings instead of real IDs.",
+      "location": "lib/features, lib/core",
+      "functionality": [
+        "main-paywall",
+        "soft-paywalls-quotas"
+      ],
+      "warnings": [
+        "superwall-placement-placeholders"
+      ],
+      "files": [
+        {
+          "path": "lib/features/onboarding/presentation/screens/pre_paywall.dart",
+          "role": "primary implementation",
+          "reason": "Contains primary INSERT_YOUR_* placement registrations."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "android-sw",
+      "title": "Android Superwall wiring",
+      "purpose": "Android configure path does not attach SuperwallPurchaseController like iOS.",
+      "location": "lib/main.dart",
+      "functionality": [
+        "subscription-access-gating"
+      ],
+      "warnings": [
+        "android-superwall-purchase-controller"
+      ],
+      "files": [
+        {
+          "path": "lib/main.dart",
+          "role": "entry point",
+          "reason": "Early Android Superwall.configure omits purchaseController."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": "Runtime purchase impact not executed."
+    },
+    {
+      "id": "oauth-fallbacks",
+      "title": "OAuth / env fallbacks",
+      "purpose": "Missing env values fall back to placeholder OAuth client IDs; main loads .env while repo has .env.local.",
+      "location": "lib/core/auth, lib/core/config",
+      "functionality": [
+        "firebase-auth",
+        "app-startup"
+      ],
+      "warnings": [
+        "google-oauth-placeholders",
+        "env-file-mismatch"
+      ],
+      "files": [
+        {
+          "path": "lib/core/auth/auth_service.dart",
+          "role": "primary implementation",
+          "reason": "Embeds INSERT_YOUR_* Google client ID fallbacks."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "widget-group",
+      "title": "Widget app group placeholder",
+      "purpose": "Home widgets reference group.YOUR_BUNDLE_ID.shared until a real group is configured.",
+      "location": "lib/core/streak, ios entitlements",
+      "functionality": [
+        "home-widgets"
+      ],
+      "warnings": [
+        "widget-app-group-placeholder"
+      ],
+      "files": [
+        {
+          "path": "lib/core/streak/streak_service.dart",
+          "role": "configuration",
+          "reason": "Defines the placeholder app group constant."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "quota-flags",
+      "title": "Disabled quota flags",
+      "purpose": "FeatureQuota soft-paywalls exist but QUOTA_SYSTEM_ENABLED is false on major screens.",
+      "location": "feature screens",
+      "functionality": [
+        "soft-paywalls-quotas"
+      ],
+      "warnings": [],
+      "files": [
+        {
+          "path": "lib/features/learn/presentation/screens/learn_video_list_screen.dart",
+          "role": "primary implementation",
+          "reason": "Hard-codes QUOTA_SYSTEM_ENABLED = false."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "android-configures-purchases",
+      "from": "android-sw",
+      "to": "placement-placeholders",
+      "mechanism": "configures",
+      "label": "purchase path config",
+      "explanation": "Android Superwall configuration controls whether placement-driven purchases can reach SuperwallPurchaseController.",
+      "functionality": [
+        "main-paywall",
+        "subscription-access-gating"
+      ],
+      "files": [
+        {
+          "path": "lib/main.dart",
+          "role": "configuration",
+          "reason": "Platform branch decides whether purchaseController is passed to Superwall.configure."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    },
+    {
+      "id": "quota-configures-soft",
+      "from": "quota-flags",
+      "to": "placement-placeholders",
+      "mechanism": "configures",
+      "label": "soft paywall enablement",
+      "explanation": "QUOTA_SYSTEM_ENABLED flags configure whether feature screens invoke quota checks that lead to soft Superwall placements.",
+      "functionality": [
+        "soft-paywalls-quotas"
+      ],
+      "files": [
+        {
+          "path": "lib/features/app/presentation/screens/chatbot/chatbot_screen.dart",
+          "role": "configuration",
+          "reason": "Local flag disables quota path before placement registration."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    }
+  ]
+}

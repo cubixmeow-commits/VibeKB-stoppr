@@ -2,44 +2,43 @@
 id: project-identity
 type: project
 title: Stoppr
-summary: A Flutter mobile app that helps users reduce sugar consumption through onboarding, habit tracking, education, community support, and premium wellness tools.
-one_liner: A sugar-reduction companion with streak tracking, panic interventions, nutrition tools, and subscription-gated premium features.
-intended_users: People seeking to reduce sugar intake; the app uses addiction-recovery and behavioral-science framing in its copy.
-primary_outcome: Sustained sugar-free streaks, daily engagement, and optional premium access to advanced tools.
-stack_language: Dart / Flutter 3.x
-stack_backend: Firebase (Auth, Firestore, Storage, Messaging, Crashlytics, Analytics)
+summary: A Flutter mobile app that helps users reduce sugar consumption through onboarding, habit tracking, education, community, and subscription-gated wellness tools.
+one_liner: A sugar-reduction companion with streaks, panic interventions, nutrition tools, and premium gating.
+intended_users: People seeking to reduce sugar intake; UI copy uses addiction-recovery framing.
+primary_outcome: Sustained engagement around sugar-free streaks and daily habits, with optional premium access.
+stack_language: Dart / Flutter 3.x (SDK ^3.7.0)
+stack_backend: Firebase Auth, Firestore, Storage, Messaging, Crashlytics, Analytics
 stack_monetization: Superwall paywalls + RevenueCat purchases
-stack_analytics: Mixpanel (primary), AppsFlyer, Facebook App Events
-source_repository: https://github.com/cubixmeow-commits/VibeKB-stoppr
+stack_analytics: Mixpanel, AppsFlyer, Facebook App Events
+source_repository: "https://github.com/cubixmeow-commits/VibeKB-stoppr"
 verification: verified-from-source
 updated: 2026-07-21
 ---
 
 ## What the software is
 
-Stoppr is a cross-platform Flutter application (iOS and Android) focused on
-helping users break sugar habits. The app combines a long onboarding funnel,
-Firebase-backed user data, local persistence via SharedPreferences, and a
-subscription model gating premium features.
+Stoppr (package name `stoppr`, public name **Stoppr**) is a cross-platform
+Flutter application for iOS and Android. Version `7.4.2+1` is declared in
+`pubspec.yaml`. It combines a long onboarding funnel, Firebase-backed user
+data, SharedPreferences local state, native home-screen widgets, and a
+subscription model that gates premium access via Superwall and RevenueCat.
 
-The app presents health and behavioral claims in its UI copy. This guide
-documents **software behavior only** — it does not endorse medical claims.
-
-> Verified from source: `lib/main.dart`, `pubspec.yaml`, `README.md`,
-> `lib/features/onboarding/`, `lib/core/subscription/subscription_service.dart`.
+This guide documents **software behavior only**. It does not endorse medical
+or health claims that appear in app copy.
 
 ## Who uses it
 
-- New users complete onboarding (questionnaire, profile, goals, paywall).
+- New users walking a multi-step onboarding funnel ending at a paywall.
 - Authenticated users (Google, Apple, email) or anonymous/guest users.
-- Subscribers access premium features; free users hit soft paywalls and quotas.
+- Paid subscribers and free/trial users under different access rules.
 
-## Current scope
+## Alternate names
 
-- Full onboarding funnel with resume support.
-- Home hub with streak, check-in, panic button, and feature grid.
-- Community forum, language chat rooms, accountability partners.
-- Educational videos (8 lessons), local articles, recipes, nutrition tracking.
-- Food scanning (sugar analysis via Groq vision API).
-- Meditation, breathing, 28-day challenge, fasting, journaling.
-- Push and local notifications with subscription-aware scheduling.
+Only names supported by the repository itself: **Stoppr**, package `stoppr`,
+and related bundle identifiers under `com.stoppr` / `com.app.stoppr` in
+platform manifests. Do not invent alternate product names.
+
+## Evidence
+
+Traced in `pubspec.yaml`, `lib/main.dart`, `lib/core/config/env_config.dart`,
+and feature directories under `lib/features/`.

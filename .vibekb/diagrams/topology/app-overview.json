@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "mobile-client",
+      "title": "Stoppr mobile client",
+      "purpose": "Flutter iOS/Android app the user installs and opens.",
+      "location": "lib/",
+      "functionality": [
+        "app-startup"
+      ],
+      "files": [
+        {
+          "path": "lib/main.dart",
+          "role": "entry point",
+          "reason": "Cold-start bootstrap and first navigation decisions."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "firebase",
+      "title": "Firebase",
+      "purpose": "Auth identity, Firestore documents, Storage, Messaging, Crashlytics.",
+      "location": "cloud",
+      "functionality": [
+        "firebase-auth",
+        "calorie-nutrition-tracking"
+      ],
+      "files": [
+        {
+          "path": "lib/firebase_options.dart",
+          "role": "configuration",
+          "reason": "Builds FirebaseOptions from EnvConfig key names."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "purchases",
+      "title": "RevenueCat + Superwall",
+      "purpose": "Store purchases and paywall presentation that decide premium access.",
+      "location": "lib/core/subscription, lib/core/superwall",
+      "functionality": [
+        "subscription-access-gating",
+        "main-paywall"
+      ],
+      "files": [
+        {
+          "path": "lib/core/subscription/subscription_service.dart",
+          "role": "primary implementation",
+          "reason": "isPaidSubscriber decides access from Superwall/RevenueCat."
+        },
+        {
+          "path": "lib/core/superwall/superwall_purchase_controller.dart",
+          "role": "integration adapter",
+          "reason": "Maps Superwall purchase requests onto RevenueCat."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "local-state",
+      "title": "Local device state",
+      "purpose": "SharedPreferences, HomeWidget bridge, and local caches for fast daily loops.",
+      "location": "device",
+      "functionality": [
+        "sugar-streak-tracking",
+        "home-widgets"
+      ],
+      "files": [
+        {
+          "path": "lib/core/streak/streak_service.dart",
+          "role": "primary implementation",
+          "reason": "Writes streak values locally and to the widget bridge."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "external-ai",
+      "title": "External AI / food APIs",
+      "purpose": "Groq, OpenAI, Edamam, and Spoonacular called for scanning, chatbot, and recipes.",
+      "location": "external",
+      "functionality": [
+        "sugar-food-scanning",
+        "chatbot-assistant",
+        "recipe-discovery"
+      ],
+      "files": [
+        {
+          "path": "lib/core/config/env_config.dart",
+          "role": "configuration",
+          "reason": "Exposes API key environment variable names used by those features."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "client-to-firebase",
+      "from": "mobile-client",
+      "to": "firebase",
+      "mechanism": "depends-on",
+      "label": "auth & data",
+      "explanation": "The client authenticates users and reads/writes profile, onboarding, community, and nutrition documents through Firebase SDKs.",
+      "functionality": [
+        "firebase-auth"
+      ],
+      "files": [
+        {
+          "path": "lib/core/auth/auth_service.dart",
+          "role": "caller",
+          "reason": "Performs Firebase Auth sign-in and profile side effects."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    },
+    {
+      "id": "client-to-purchases",
+      "from": "mobile-client",
+      "to": "purchases",
+      "mechanism": "depends-on",
+      "label": "entitlements",
+      "explanation": "Startup routing and feature gates call SubscriptionService / Superwall to know whether the user is paid.",
+      "functionality": [
+        "subscription-access-gating"
+      ],
+      "files": [
+        {
+          "path": "lib/core/subscription/subscription_service.dart",
+          "role": "callee",
+          "reason": "Returns paid/free based on Superwall and RevenueCat."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    },
+    {
+      "id": "client-to-local",
+      "from": "mobile-client",
+      "to": "local-state",
+      "mechanism": "stores-in",
+      "label": "prefs & widgets",
+      "explanation": "Daily habit state such as streaks and onboarding progress is stored on-device and mirrored to widgets.",
+      "functionality": [
+        "sugar-streak-tracking",
+        "startup-routing"
+      ],
+      "files": [
+        {
+          "path": "lib/features/onboarding/data/services/onboarding_progress_service.dart",
+          "role": "primary implementation",
+          "reason": "Persists onboarding resume keys in SharedPreferences."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    },
+    {
+      "id": "client-to-ai",
+      "from": "mobile-client",
+      "to": "external-ai",
+      "mechanism": "sends-to",
+      "label": "API calls",
+      "explanation": "Food scan, Rate My Plate, chatbot, and recipe search send requests to configured external APIs.",
+      "functionality": [
+        "sugar-food-scanning",
+        "chatbot-assistant",
+        "recipe-discovery"
+      ],
+      "files": [
+        {
+          "path": "lib/features/app/presentation/screens/chatbot/chatbot_screen.dart",
+          "role": "caller",
+          "reason": "Issues Groq/OpenAI requests for Melinda responses."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    },
+    {
+      "id": "purchases-to-firebase",
+      "from": "purchases",
+      "to": "firebase",
+      "mechanism": "writes",
+      "label": "mirrors status",
+      "explanation": "After purchase sync, subscription mirror fields are written to the user Firestore document for analytics/display.",
+      "functionality": [
+        "main-paywall"
+      ],
+      "files": [
+        {
+          "path": "lib/core/superwall/superwall_purchase_controller.dart",
+          "role": "caller",
+          "reason": "Persists subscription mirror fields after RevenueCat sync."
+        }
+      ],
+      "verification": "inferred-from-source",
+      "basis": "Purchase controller contains Firestore update helpers traced at class level; every write site was not line-enumerated.",
+      "uncertainty": "Exact field set per product type not exhaustively listed."
+    }
+  ]
+}

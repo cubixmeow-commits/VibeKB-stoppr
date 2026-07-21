@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data &amp; storage · Stoppr — VibeKB</title>
+  <meta name="description" content="A living explanation of what Stoppr currently does.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/guide.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app-shell">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">
+        <span class="brand__mark">VibeKB</span>
+        <span class="brand__project">Stoppr</span>
+      </a>
+      <form class="site-search" role="search" action="../search/index.html">
+        <label class="visually-hidden" for="site-search-input">Search guide</label>
+        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+      </form>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+    <nav class="sidebar-nav" aria-label="Guide sections">
+      <p class="sidebar-nav__label">Primary</p>
+      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="../functionality/index.html">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="../diagrams/index.html">Diagrams</a></li><li><a href="../current-work/index.html">Current work</a></li></ul>
+      <p class="sidebar-nav__label">Explore</p>
+      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="index.html" aria-current="page">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
+    </nav>
+  </aside>
+  <div class="app-main">
+    <main id="main" class="wrap"><article class="view view-doc">
+<header class="page-head reading-column">
+  <p class="eyebrow">Data &amp; storage</p>
+  <h1>What the software stores</h1>
+  <p class="lede">Where data comes from, where it goes, and what it means to the application.</p>
+</header>
+<section class="doc-section content-section"><div class="prose reading-column"><h3>Cloud Firestore</h3>
+<h4>Top-level collections</h4>
+<div class="table-wrap"><table>
+<tr>
+<th>Collection</th>
+<th>Purpose</th>
+</tr>
+<tr>
+<td><code>users</code></td>
+<td>User profiles and metadata</td>
+</tr>
+<tr>
+<td><code>community_posts</code></td>
+<td>Forum posts</td>
+</tr>
+<tr>
+<td><code>official_chat</code> / <code>official_chat_{lang}</code></td>
+<td>Language chat rooms</td>
+</tr>
+<tr>
+<td><code>accountability_partnerships</code></td>
+<td>Partner pairs</td>
+</tr>
+<tr>
+<td><code>accountability_pool</code></td>
+<td>Matchmaking queue</td>
+</tr>
+<tr>
+<td><code>sharing_tokens</code></td>
+<td>Streak share invites</td>
+</tr>
+<tr>
+<td><code>user_feature_quotas</code></td>
+<td>Free-tier usage limits</td>
+</tr>
+</table></div>
+<h4><code>users/{uid}</code> subcollections</h4>
+<p><code>onboarding</code>, <code>pledges</code>, <code>challenges/tasks</code>, <code>food_logs</code>, <code>daily_summaries</code>,
+<code>nutrition_profile</code>, <code>body_metrics/weight_entries</code>, <code>workout_logs</code>,
+<code>favorite_recipes</code>, <code>blocked_users</code>.</p>
+<h3>Local storage (SharedPreferences)</h3>
+<p>Key examples: <code>streak_start_timestamp</code>, <code>onboarding_current_screen</code>,
+<code>onboarding_completed</code>, <code>completed_learn_video_lessons</code>, <code>fasting_logs_v1</code>,
+per-notification-type toggles, feature quota counters.</p>
+<h3>Secure storage</h3>
+<p><code>InstallationTrackerService</code> uses iOS Keychain (<code>permanent_install_uuid</code>) for
+redownload detection.</p>
+<h3>Firebase Storage</h3>
+<p>Remote audio files (e.g. NSDR track) via <code>RemoteAudioService</code>.</p>
+<h3>What is NOT stored in Firestore</h3>
+<ul>
+<li>Fasting logs (local only despite rules existing).</li>
+<li>Article content (bundled in <code>assets/articles/</code>).</li>
+<li>Video lesson metadata (hardcoded in <code>LearnVideoCubit</code>).</li>
+</ul></div></section>
+<section class="doc-section content-section"><header class="section-intro reading-column"><h2>Data flow</h2></header><div class="prose reading-column"><h3>Read path (typical)</h3>
+<ol>
+<li>Screen widget builds → reads Cubit state or calls service singleton.</li>
+<li>Service checks SharedPreferences cache first (streak, onboarding, quotas).</li>
+<li>If subscribed/authenticated, service may sync from Firestore <code>users/{uid}</code>.</li>
+<li>Community/nutrition read directly from Firestore collections.</li>
+</ol>
+<h3>Write path (typical)</h3>
+<ol>
+<li>User action triggers service method.</li>
+<li>Service validates auth (may create anonymous user).</li>
+<li>Subscription check for premium features (<code>SubscriptionService</code>).</li>
+<li>Write to Firestore and/or SharedPreferences.</li>
+<li>Mixpanel event fired (English event names).</li>
+</ol>
+<h3>Onboarding data flow</h3>
+<p>``<code>
+QuestionnaireScreen → QuestionnaireRepository → SharedPreferences + Firestore onboarding subcollection
+ProfileInfoScreen → UserRepository → users/{uid}
+OnboardingProgressService → SharedPreferences + users/{uid}.lastOnboardingScreen
+</code>``</p>
+<h3>Purchase data flow</h3>
+<p>``<code>
+Superwall placement → SuperwallPurchaseController → RevenueCat purchase
+→ Firebase users/{uid} subscription fields (analytics)
+→ PostPurchaseHandler → CongratulationsScreen → MainScaffold
+</code>``</p>
+<h3>Offline behavior</h3>
+<ul>
+<li>Streak timer runs locally from SharedPreferences timestamp.</li>
+<li>Many features show errors or empty states without network.</li>
+<li>No explicit offline queue for Firestore writes observed in source.</li>
+</ul></div></section>
+<section class="doc-section content-section wide-section" aria-labelledby="data-use">
+  <header class="section-intro reading-column"><h2 id="data-use">Which functionality touches each store</h2></header>
+  <div class="table-wrap"><table><tr><th>Store</th><th>Written by</th><th>Read by</th></tr><tr><td><code>accountability_partnerships</code></td><td><a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a></td><td><a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a></td></tr><tr><td><code>accountability_pool</code></td><td><a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a></td><td><a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a></td></tr><tr><td><code>community_posts</code></td><td><a class="chip" href="../functionality/community-forum.html">Community forum posts</a></td><td><a class="chip" href="../functionality/community-forum.html">Community forum posts</a></td></tr><tr><td><code>daily_summaries</code></td><td><a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie and nutrition tracking</a></td><td><a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie and nutrition tracking</a></td></tr><tr><td><code>favorite_recipes</code></td><td><a class="chip" href="../functionality/recipe-discovery.html">Recipe discovery</a></td><td><a class="chip" href="../functionality/recipe-discovery.html">Recipe discovery</a></td></tr><tr><td><code>food_logs</code></td><td><a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie and nutrition tracking</a></td><td><a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie and nutrition tracking</a></td></tr><tr><td><code>nutrition_profile</code></td><td><a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie and nutrition tracking</a></td><td><a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie and nutrition tracking</a></td></tr><tr><td><code>official_chat</code></td><td><a class="chip" href="../functionality/community-chat.html">Official and language chat</a></td><td><a class="chip" href="../functionality/community-chat.html">Official and language chat</a></td></tr><tr><td><code>shared_preferences</code></td><td><a class="chip" href="../functionality/articles-education.html">Articles and educational content</a> <a class="chip" href="../functionality/daily-check-in-pledge.html">Daily check-in and pledge</a> <a class="chip" href="../functionality/home-dashboard.html">Home dashboard</a> <a class="chip" href="../functionality/learn-video-lessons.html">Video lesson library</a> <a class="chip" href="../functionality/notifications.html">Push and local notifications</a> <a class="chip" href="../functionality/onboarding-intro.html">Onboarding introduction</a> <a class="chip" href="../functionality/onboarding-personalized-analysis.html">Personalized analysis and commitment</a> <a class="chip" href="../functionality/onboarding-profile-goals.html">Profile, symptoms, and goals</a> <a class="chip" href="../functionality/onboarding-questionnaire.html">Onboarding questionnaire</a> <a class="chip" href="../functionality/panic-intervention.html">Panic button intervention</a> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and feature quotas</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar-free streak tracking</a> <a class="chip" href="../functionality/twenty-eight-day-challenge.html">28-day challenge</a> <a class="chip" href="../functionality/user-profile-settings.html">User profile and settings</a></td><td><a class="chip" href="../functionality/articles-education.html">Articles and educational content</a> <a class="chip" href="../functionality/daily-check-in-pledge.html">Daily check-in and pledge</a> <a class="chip" href="../functionality/home-dashboard.html">Home dashboard</a> <a class="chip" href="../functionality/learn-video-lessons.html">Video lesson library</a> <a class="chip" href="../functionality/notifications.html">Push and local notifications</a> <a class="chip" href="../functionality/onboarding-intro.html">Onboarding introduction</a> <a class="chip" href="../functionality/onboarding-personalized-analysis.html">Personalized analysis and commitment</a> <a class="chip" href="../functionality/onboarding-questionnaire.html">Onboarding questionnaire</a> <a class="chip" href="../functionality/panic-intervention.html">Panic button intervention</a> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and feature quotas</a> <a class="chip" href="../functionality/startup-routing.html">Startup screen routing</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar-free streak tracking</a> <a class="chip" href="../functionality/twenty-eight-day-challenge.html">28-day challenge</a> <a class="chip" href="../functionality/user-profile-settings.html">User profile and settings</a></td></tr><tr><td><code>sharing_tokens</code></td><td><span class="muted">—</span></td><td><a class="chip" href="../functionality/deep-link-handling.html">Deep link handling</a></td></tr><tr><td><code>user_feature_quotas</code></td><td><a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and feature quotas</a> <a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a></td><td><a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and feature quotas</a></td></tr><tr><td><code>users</code></td><td><a class="chip" href="../functionality/app-startup.html">Application startup</a> <a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie and nutrition tracking</a> <a class="chip" href="../functionality/community-forum.html">Community forum posts</a> <a class="chip" href="../functionality/daily-check-in-pledge.html">Daily check-in and pledge</a> <a class="chip" href="../functionality/deep-link-handling.html">Deep link handling</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/guest-anonymous-access.html">Guest and anonymous access</a> <a class="chip" href="../functionality/main-paywall.html">Main subscription paywall</a> <a class="chip" href="../functionality/notifications.html">Push and local notifications</a> <a class="chip" href="../functionality/onboarding-intro.html">Onboarding introduction</a> <a class="chip" href="../functionality/onboarding-personalized-analysis.html">Personalized analysis and commitment</a> <a class="chip" href="../functionality/onboarding-profile-goals.html">Profile, symptoms, and goals</a> <a class="chip" href="../functionality/onboarding-questionnaire.html">Onboarding questionnaire</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar-free streak tracking</a> <a class="chip" href="../functionality/twenty-eight-day-challenge.html">28-day challenge</a> <a class="chip" href="../functionality/user-profile-settings.html">User profile and settings</a></td><td><a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a> <a class="chip" href="../functionality/analytics-telemetry.html">Analytics and telemetry</a> <a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie and nutrition tracking</a> <a class="chip" href="../functionality/community-forum.html">Community forum posts</a> <a class="chip" href="../functionality/daily-check-in-pledge.html">Daily check-in and pledge</a> <a class="chip" href="../functionality/deep-link-handling.html">Deep link handling</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/guest-anonymous-access.html">Guest and anonymous access</a> <a class="chip" href="../functionality/home-dashboard.html">Home dashboard</a> <a class="chip" href="../functionality/notifications.html">Push and local notifications</a> <a class="chip" href="../functionality/onboarding-profile-goals.html">Profile, symptoms, and goals</a> <a class="chip" href="../functionality/startup-routing.html">Startup screen routing</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar-free streak tracking</a> <a class="chip" href="../functionality/twenty-eight-day-challenge.html">28-day challenge</a> <a class="chip" href="../functionality/user-profile-settings.html">User profile and settings</a></td></tr></table></div>
+</section>
+<aside class="related-diagrams"><p><strong>Related diagrams:</strong> <a href="../diagrams/index.html#data-flow">Data flow & storage diagrams</a></p></aside>
+</article></main>
+    <footer class="site-footer">
+      <div class="wrap site-footer__inner">
+        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="../assets/js/guide.js" defer></script>
+</body>
+</html>

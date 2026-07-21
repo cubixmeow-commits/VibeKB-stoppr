@@ -1,28 +1,28 @@
 ---
 id: project-intent
 type: project
-title: Project intent
-summary: Stoppr exists to guide users through sugar reduction with habit tracking, education, community, and monetized premium tools — not as a medical device.
-verification: verified-from-source
+title: Intent
+summary: Help users reduce sugar habits with daily engagement loops and optional premium tools, without turning the app into a generic health tracker.
+verification: inferred-from-source
 updated: 2026-07-21
 ---
 
 ## Why it exists
 
-Stoppr packages sugar-reduction support into a mobile experience: onboarding
-that collects goals and symptoms, daily streak motivation, crisis "panic"
-interventions, educational content, and social accountability.
+The product centers on sugar-habit reduction: onboarding personalization,
+streaks, pledges, panic flows, education, community accountability, and
+nutrition assistance. Monetization is subscription-based.
 
-## What it must not become (product boundaries visible in code)
+## What it must not become (from constraints in source)
 
-- Not a clinician-facing tool — no provider portal or medical records integration.
-- Not offline-first — Firebase and network APIs are required for most flows.
-- Not web-first — `firebase_options.dart` throws for web/desktop targets.
-- Subscription gating is central — many features check `SubscriptionService`.
+- A documentation site or admin console — it is a mobile client.
+- Dependent on Firestore alone for entitlement — access is RevenueCat/Superwall
+  first (`SubscriptionService` comment and logic).
+- A place that ships real secrets in the public repo — env-driven config with
+  `.local` templates is the pattern.
 
-## Design philosophy visible in source
+## Uncertainty
 
-- **Imperative navigation** — no GoRouter; hundreds of `Navigator.push` calls.
-- **Service singletons** — cross-cutting logic (streak, notifications, subscription).
-- **Cubits for feature screens** — community, learn, recipes use Bloc/Cubit.
-- **Env-driven config** — API keys via `.env` and `EnvConfig`, not hardcoded.
+Product roadmap beyond what the code implements is `not-verified`. Intent above
+is inferred from implemented surfaces and README framing, not from a separate
+product brief in-repo.

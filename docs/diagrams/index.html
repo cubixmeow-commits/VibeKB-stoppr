@@ -1,47 +1,1744 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Diagrams · Stoppr — VibeKB</title>
-  <meta name="description" content="Source-grounded SVG diagrams explaining how Stoppr works.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/guide.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diagrams · Stoppr — VibeKB</title>
+    <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Web fonts are a progressive enhancement only. The stylesheet ships a
+         full system-font fallback stack, so the guide renders correctly with no
+         external CDN — required for offline and locked-down static hosting. -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/guide.css">
 </head>
-<body>
+<body data-mode="static">
 <a class="skip-link" href="#main">Skip to content</a>
+
 <div class="app-shell">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="../index.html"><span class="brand__mark">VibeKB</span><span class="brand__project">Stoppr</span></a>
-      <form class="site-search" role="search" action="../search/index.html">
-        <label class="visually-hidden" for="site-search-input">Search guide</label>
-        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
-      </form>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="../index.html">
+                <span class="brand__mark">VibeKB</span>
+                <span class="brand__project">Stoppr</span>
+            </a>
+            <form class="site-search" role="search" action="../search/index.html">
+                <label class="visually-hidden" for="site-search-input">Search guide</label>
+                <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+            </form>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="guide-sidebar"
+                hidden
+            >Menu</button>
+        </div>
+    </header>
+
+    <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+    <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+        <nav class="sidebar-nav" aria-label="Guide sections">
+            <p class="sidebar-nav__label" id="nav-primary-label">Primary</p>
+            <ul class="sidebar-nav__list" aria-labelledby="nav-primary-label">
+                                                        <li>
+                        <a href="../index.html">
+                            Overview                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../functionality/index.html">
+                            Functionality                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../how-it-works/index.html">
+                            Architecture                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../diagrams/index.html" aria-current="page">
+                            Diagrams                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../current-work/index.html">
+                            Current work                        </a>
+                    </li>
+                            </ul>
+
+                            <p class="sidebar-nav__label" id="nav-explore-label">Explore</p>
+                <ul class="sidebar-nav__list sidebar-nav__list--secondary" aria-labelledby="nav-explore-label">
+                                                                    <li>
+                            <a href="../data/index.html">
+                                Data &amp; storage                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../files/index.html">
+                                Files that matter                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../changes/index.html">
+                                Changes                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../why/index.html">
+                                Decisions &amp; rationale                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../handoff/index.html">
+                                AI handoff                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../reference/index.html">
+                                Reference                            </a>
+                        </li>
+                                    </ul>
+                    </nav>
+    </aside>
+
+    <div class="app-main">
+                    <p class="generated-notice" role="note">
+                Generated output — this is a static snapshot rendered from <code>.vibekb/</code>. The
+                <code>.vibekb/</code> content is the source of truth. See <a href="../reference/index.html">Reference</a> for provenance.
+            </p>
+                
+        <main id="main" class="wrap">
+            <article class="view view-doc">
+    <header class="page-head reading-column">
+        <p class="eyebrow">Diagrams</p>
+        <h1>Diagrams</h1>
+        <p class="lede">Source-grounded visual maps of what the software is doing. Each diagram explains what you are seeing, how it was verified, and what remains uncertain — and links back to the functionality and warnings it relates to.</p>
+        <p class="text-soft">Diagrams never claim behaviour that has not been traced to source. Inferred or unverified paths are labelled in the diagram itself.</p>
+    </header>
+
+    
+    <nav class="diagram-toc wide-section" aria-label="Diagram index">
+                                    <a href="#app-overview">
+                    <strong>Stoppr application overview</strong>
+                    <span class="text-soft">How the Flutter client relates to Firebase, purchases, local state, and external AI/food APIs.</span>
+                </a>
+                                                <a href="#onboarding-auth-flow">
+                    <strong>Onboarding and authentication flow</strong>
+                    <span class="text-soft">Welcome to auth to questionnaire/profile to pre-paywall to MainScaffold.</span>
+                </a>
+                            <a href="#subscription-paywall-flow">
+                    <strong>Subscription and paywall flow</strong>
+                    <span class="text-soft">Superwall UI to purchase controller to RevenueCat to access gate, with post-purchase handling.</span>
+                </a>
+                                                <a href="#persistence-storage-map">
+                    <strong>Persistence and storage map</strong>
+                    <span class="text-soft">Feature writers to Firestore, SharedPreferences, HomeWidget, and Firebase Storage.</span>
+                </a>
+                                                <a href="#risk-uncertainty-map">
+                    <strong>Risk and uncertainty map</strong>
+                    <span class="text-soft">Verified configuration landmines that can break auth, paywalls, widgets, or quota soft-gates.</span>
+                </a>
+                        </nav>
+
+            <h2 class="diagram-group-title reading-column">Understand the whole app</h2>
+                    <p class="reading-column text-soft">Fast visual entry points for Stoppr.</p>
+        
+                                <section class="diagram-section wide-section diagram-section--explainable" id="app-overview" aria-labelledby="app-overview-h" data-diagram="app-overview">
+                <h3 id="app-overview-h">Stoppr application overview</h3>
+                <p>How the Flutter client relates to Firebase, purchases, local state, and external AI/food APIs.</p>
+
+                                <figure class="diagram-figure">
+                    <div class="diagram-scroll">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 860 340" role="img" aria-labelledby="ao-title ao-desc">
+  <title id="ao-title">Stoppr application overview</title>
+  <desc id="ao-desc">The Flutter client depends on Firebase for identity and data, on RevenueCat and Superwall for paid access, on local preferences and widgets for daily state, and on external AI or food APIs for scanning, chatbot, and recipes. An inferred edge shows purchase status mirrored into Firestore.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4f5c56"/>
+    </marker>
+    
+    <style>
+      .t { font-family:"Figtree","Segoe UI",sans-serif; fill:#1a2421; }
+      .box { stroke:#b9c6c0; stroke-width:1.5; fill:#e7f4f0; }
+      .gate { fill:#f6ead4; stroke:#7a4210; stroke-width:1.5; }
+      .store { fill:#fffcf7; stroke:#b9c6c0; stroke-width:1.5; }
+      .warn { fill:#f8e4e0; stroke:#8a2f2f; stroke-width:1.5; }
+      .lbl { font-size:12px; font-weight:600; }
+      .sm { font-size:10px; fill:#4f5c56; }
+      .arrow { stroke:#4f5c56; stroke-width:1.6; fill:none; marker-end:url(#arrow); }
+      .arrow-inferred { stroke:#4f5c56; stroke-width:1.6; fill:none; stroke-dasharray:7 5; marker-end:url(#arrow); }
+      .hit { stroke:transparent; stroke-width:16; fill:none; }
+      .title { font-size:18px; font-weight:800; font-family:"Outfit","Figtree",sans-serif; }
+      .elbl { font-size:9px; fill:#4f5c56; }
+    </style>
+  </defs>
+  <rect width="860" height="340" fill="#f4f0e8"/>
+  <text class="t title" x="28" y="36">Stoppr application overview</text>
+  <text class="t sm" x="28" y="54">Solid = verified from source · Dashed = inferred. Select a box or arrow for its explanation.</text>
+
+  <a href="#node-mobile-client" xlink:href="#node-mobile-client" class="dnode" data-vibekb-node="mobile-client">
+    <title>Stoppr mobile client — open explanation</title>
+    <rect class="box" x="320" y="90" width="200" height="64" rx="9"/>
+    <text class="t lbl" x="420" y="116" text-anchor="middle">Stoppr mobile client</text>
+    <text class="t sm" x="420" y="134" text-anchor="middle">Flutter iOS / Android</text>
+  </a>
+
+  <a href="#node-firebase" xlink:href="#node-firebase" class="dnode" data-vibekb-node="firebase">
+    <title>Firebase — open explanation</title>
+    <rect class="store" x="40" y="220" width="160" height="64" rx="9"/>
+    <text class="t lbl" x="120" y="246" text-anchor="middle">Firebase</text>
+    <text class="t sm" x="120" y="264" text-anchor="middle">Auth · Firestore · FCM</text>
+  </a>
+
+  <a href="#node-purchases" xlink:href="#node-purchases" class="dnode" data-vibekb-node="purchases">
+    <title>RevenueCat + Superwall — open explanation</title>
+    <rect class="gate" x="240" y="220" width="180" height="64" rx="9"/>
+    <text class="t lbl" x="330" y="246" text-anchor="middle">RevenueCat + Superwall</text>
+    <text class="t sm" x="330" y="264" text-anchor="middle">Paid access source of truth</text>
+  </a>
+
+  <a href="#node-local-state" xlink:href="#node-local-state" class="dnode" data-vibekb-node="local-state">
+    <title>Local device state — open explanation</title>
+    <rect class="store" x="460" y="220" width="160" height="64" rx="9"/>
+    <text class="t lbl" x="540" y="246" text-anchor="middle">Local device state</text>
+    <text class="t sm" x="540" y="264" text-anchor="middle">Prefs · widgets</text>
+  </a>
+
+  <a href="#node-external-ai" xlink:href="#node-external-ai" class="dnode" data-vibekb-node="external-ai">
+    <title>External AI / food APIs — open explanation</title>
+    <rect class="box" x="660" y="220" width="170" height="64" rx="9"/>
+    <text class="t lbl" x="745" y="246" text-anchor="middle">External AI / food APIs</text>
+    <text class="t sm" x="745" y="264" text-anchor="middle">Groq · OpenAI · recipes</text>
+  </a>
+
+  <a href="#edge-client-to-firebase" xlink:href="#edge-client-to-firebase" class="dedge" data-vibekb-edge="client-to-firebase">
+    <title>depends on Firebase — verified</title>
+    <line class="hit" x1="340" y1="154" x2="150" y2="220"/>
+    <line class="arrow" x1="340" y1="154" x2="150" y2="220"/>
+    <text class="t elbl" x="220" y="178">depends-on</text>
+  </a>
+  <a href="#edge-client-to-purchases" xlink:href="#edge-client-to-purchases" class="dedge" data-vibekb-edge="client-to-purchases">
+    <title>depends on purchases — verified</title>
+    <line class="hit" x1="400" y1="154" x2="330" y2="220"/>
+    <line class="arrow" x1="400" y1="154" x2="330" y2="220"/>
+    <text class="t elbl" x="350" y="180">depends-on</text>
+  </a>
+  <a href="#edge-client-to-local" xlink:href="#edge-client-to-local" class="dedge" data-vibekb-edge="client-to-local">
+    <title>stores in local state — verified</title>
+    <line class="hit" x1="450" y1="154" x2="520" y2="220"/>
+    <line class="arrow" x1="450" y1="154" x2="520" y2="220"/>
+    <text class="t elbl" x="500" y="180">stores-in</text>
+  </a>
+  <a href="#edge-client-to-ai" xlink:href="#edge-client-to-ai" class="dedge" data-vibekb-edge="client-to-ai">
+    <title>sends to external APIs — verified</title>
+    <line class="hit" x1="500" y1="154" x2="720" y2="220"/>
+    <line class="arrow" x1="500" y1="154" x2="720" y2="220"/>
+    <text class="t elbl" x="620" y="178">sends-to</text>
+  </a>
+  <a href="#edge-purchases-to-firebase" xlink:href="#edge-purchases-to-firebase" class="dedge" data-vibekb-edge="purchases-to-firebase">
+    <title>writes mirror fields — inferred</title>
+    <line class="hit" x1="240" y1="252" x2="200" y2="252"/>
+    <line class="arrow-inferred" x1="240" y1="252" x2="200" y2="252"/>
+    <text class="t elbl" x="205" y="244">writes (inferred)</text>
+  </a>
+
+</svg>                                            </div>
+                    <figcaption class="diagram-caption"><strong>What am I looking at?</strong> How the Flutter client relates to Firebase, purchases, local state, and external AI/food APIs.</figcaption>
+                </figure>
+
+                                    <div class="diagram-explain" id="app-overview-explain">
+    <div class="dx-legend" role="note">
+        <span class="dx-legend__title">How to read this</span>
+        <span class="dx-legend__item"><span class="dx-swatch dx-swatch--solid" aria-hidden="true"></span> Solid line &mdash; verified from source</span>
+        <span class="dx-legend__item"><span class="dx-swatch dx-swatch--dashed" aria-hidden="true"></span> Dashed line &mdash; inferred from source</span>
+        <span class="dx-legend__hint text-soft">Select any box or arrow in the diagram to jump to its explanation.</span>
     </div>
-  </header>
-  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
-  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
-    <nav class="sidebar-nav" aria-label="Guide sections">
-      <p class="sidebar-nav__label">Primary</p>
-      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="../functionality/index.html">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="index.html" aria-current="page">Diagrams</a></li><li><a href="../current-work/index.html">Current work</a></li></ul>
-      <p class="sidebar-nav__label">Explore</p>
-      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
-    </nav>
-  </aside>
-  <div class="app-main">
-    <main id="main" class="wrap">
-<nav class="diagram-toc wide-section" aria-label="Diagram index"><a href="#app-overview"><strong>App at a glance</strong><br><span class="text-soft">The easiest entry point. Shows the user, Flutter app groups, Firebase, local storage, subscriptions, and external services.</span></a><a href="#user-journey"><strong>Complete user journey</strong><br><span class="text-soft">End-to-end path from launch through onboarding, paywall, and ongoing use.</span></a><a href="#navigation-map"><strong>Navigation map</strong><br><span class="text-soft">Major screen groups connected by imperative Navigator navigation.</span></a><a href="#app-startup"><strong>Application startup</strong><br><span class="text-soft">What main() initializes and how the first screen is chosen.</span></a><a href="#authentication-flow"><strong>Authentication & identity</strong><br><span class="text-soft">Google, Apple, email, and anonymous users via Firebase Auth.</span></a><a href="#feature-access"><strong>Feature access decisions</strong><br><span class="text-soft">How premium, onboarding, and auth states gate features.</span></a><a href="#paywall-flow"><strong>Subscription & paywall</strong><br><span class="text-soft">Superwall + RevenueCat flow with placeholder-ID risks labeled.</span></a><a href="#onboarding-flow"><strong>Onboarding flow</strong><br><span class="text-soft">Grouped onboarding stages with representative screen names.</span></a><a href="#home-dashboard"><strong>Home dashboard</strong><br><span class="text-soft">How HomeScreen assembles streak, panic, learning, and feature entry points.</span></a><a href="#panic-flow"><strong>Panic / craving support</strong><br><span class="text-soft">PanicFlowManager intervention sequence.</span></a><a href="#community-flow"><strong>Community</strong><br><span class="text-soft">Posts, comments, chat rooms, and Firestore collections.</span></a><a href="#content-flow"><strong>Educational content</strong><br><span class="text-soft">Videos, articles, recipes, meditation, and progress tracking.</span></a><a href="#code-architecture"><strong>Code architecture</strong><br><span class="text-soft">lib/ structure: core services, feature modules, assets.</span></a><a href="#state-management"><strong>State management</strong><br><span class="text-soft">Cubit + Freezed + service singleton pattern.</span></a><a href="#data-flow"><strong>Main data flow</strong><br><span class="text-soft">UI → Cubit/service → Firestore, prefs, or APIs.</span></a><a href="#firebase-architecture"><strong>Firebase architecture</strong><br><span class="text-soft">Auth, Firestore, Storage, FCM, Crashlytics.</span></a><a href="#storage-map"><strong>Storage map</strong><br><span class="text-soft">Firestore collections, local prefs, bundled assets.</span></a><a href="#external-services"><strong>External services</strong><br><span class="text-soft">Third-party dependencies and failure impact.</span></a><a href="#risk-and-uncertainty-map"><strong>Risk & uncertainty</strong><br><span class="text-soft">Placeholders, untested payments, quotas, and health-claim cautions.</span></a></nav>
-<article class="view view-doc"><header class="page-head reading-column"><p class="eyebrow">Diagrams</p><h1>Diagrams</h1><p class="lede">Source-grounded SVG diagrams explaining how Stoppr works — for readers who want a visual map before diving into functionality records.</p><p class="text-soft">Use the table of contents to jump to a topic. Each diagram includes a plain-language explanation, verification status, and links to related VibeKB pages.</p></header><h2 class="diagram-group-title reading-column">Understand the whole app</h2><section class="diagram-section wide-section" id="app-overview"><h3>App at a glance</h3><p>The easiest entry point. Shows the user, Flutter app groups, Firebase, local storage, subscriptions, and external services.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/app-overview.svg" alt="App at a glance — The easiest entry point. Shows the user, Flutter app groups, Firebase, local storage, subscriptions, and external services." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> The easiest entry point. Shows the user, Flutter app groups, Firebase, local storage, subscriptions, and external services.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>lib/main.dart, .vibekb/system/mental-model.md</code></dd><dt>Uncertainty</dt><dd>High-level only; feature details in other diagrams.</dd></dl></section><section class="diagram-section wide-section" id="user-journey"><h3>Complete user journey</h3><p>End-to-end path from launch through onboarding, paywall, and ongoing use.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/user-journey.svg" alt="Complete user journey — End-to-end path from launch through onboarding, paywall, and ongoing use." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> End-to-end path from launch through onboarding, paywall, and ongoing use.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>onboarding_progress_service.dart, main.dart routing</code></dd><dt>Uncertainty</dt><dd>Quota branches marked inferred.</dd></dl></section><section class="diagram-section wide-section" id="navigation-map"><h3>Navigation map</h3><p>Major screen groups connected by imperative Navigator navigation.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/navigation-map.svg" alt="Navigation map — Major screen groups connected by imperative Navigator navigation." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> Major screen groups connected by imperative Navigator navigation.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>main_scaffold.dart, main.dart</code></dd><dt>Uncertainty</dt><dd>Does not list every screen.</dd></dl></section><h2 class="diagram-group-title reading-column">Understand startup and access</h2><section class="diagram-section wide-section" id="app-startup"><h3>Application startup</h3><p>What main() initializes and how the first screen is chosen.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/app-startup.svg" alt="Application startup — What main() initializes and how the first screen is chosen." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> What main() initializes and how the first screen is chosen.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>lib/main.dart</code></dd><dt>Uncertainty</dt><dd>Exact timeout fallbacks not runtime-tested.</dd></dl></section><section class="diagram-section wide-section" id="authentication-flow"><h3>Authentication & identity</h3><p>Google, Apple, email, and anonymous users via Firebase Auth.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/authentication-flow.svg" alt="Authentication & identity — Google, Apple, email, and anonymous users via Firebase Auth." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> Google, Apple, email, and anonymous users via Firebase Auth.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>auth_service.dart, auth_cubit.dart</code></dd><dt>Uncertainty</dt><dd>OAuth requires env client IDs.</dd></dl></section><section class="diagram-section wide-section" id="feature-access"><h3>Feature access decisions</h3><p>How premium, onboarding, and auth states gate features.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/feature-access.svg" alt="Feature access decisions — How premium, onboarding, and auth states gate features." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> How premium, onboarding, and auth states gate features.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>subscription_service.dart, feature_quota_service.dart</code></dd><dt>Uncertainty</dt><dd>Quota enforcement partially disabled.</dd></dl></section><section class="diagram-section wide-section" id="paywall-flow"><h3>Subscription & paywall</h3><p>Superwall + RevenueCat flow with placeholder-ID risks labeled.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/paywall-flow.svg" alt="Subscription & paywall — Superwall + RevenueCat flow with placeholder-ID risks labeled." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> Superwall + RevenueCat flow with placeholder-ID risks labeled.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source + unverified runtime</span></dd><dt>Source evidence</dt><dd><code>subscription_service.dart, pre_paywall.dart</code></dd><dt>Uncertainty</dt><dd>Placeholder Superwall IDs; purchases not tested here.</dd></dl></section><h2 class="diagram-group-title reading-column">Understand major product flows</h2><section class="diagram-section wide-section" id="onboarding-flow"><h3>Onboarding flow</h3><p>Grouped onboarding stages with representative screen names.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/onboarding-flow.svg" alt="Onboarding flow — Grouped onboarding stages with representative screen names." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> Grouped onboarding stages with representative screen names.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>lib/features/onboarding/</code></dd><dt>Uncertainty</dt><dd>Screen order may resume mid-flow.</dd></dl></section><section class="diagram-section wide-section" id="home-dashboard"><h3>Home dashboard</h3><p>How HomeScreen assembles streak, panic, learning, and feature entry points.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/home-dashboard.svg" alt="Home dashboard — How HomeScreen assembles streak, panic, learning, and feature entry points." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> How HomeScreen assembles streak, panic, learning, and feature entry points.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>home_screen.dart</code></dd><dt>Uncertainty</dt><dd>Not every minor widget shown.</dd></dl></section><section class="diagram-section wide-section" id="panic-flow"><h3>Panic / craving support</h3><p>PanicFlowManager intervention sequence.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/panic-flow.svg" alt="Panic / craving support — PanicFlowManager intervention sequence." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> PanicFlowManager intervention sequence.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>panic_flow_manager.dart</code></dd><dt>Uncertainty</dt><dd>Free-step quota inferred.</dd></dl></section><section class="diagram-section wide-section" id="community-flow"><h3>Community</h3><p>Posts, comments, chat rooms, and Firestore collections.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/community-flow.svg" alt="Community — Posts, comments, chat rooms, and Firestore collections." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> Posts, comments, chat rooms, and Firestore collections.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>community_repository.dart</code></dd><dt>Uncertainty</dt><dd>Moderation tooling not diagrammed.</dd></dl></section><section class="diagram-section wide-section" id="content-flow"><h3>Educational content</h3><p>Videos, articles, recipes, meditation, and progress tracking.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/content-flow.svg" alt="Educational content — Videos, articles, recipes, meditation, and progress tracking." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> Videos, articles, recipes, meditation, and progress tracking.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>learn_video_cubit.dart, article_service.dart</code></dd><dt>Uncertainty</dt><dd>Firestore articles collection unused by app.</dd></dl></section><h2 class="diagram-group-title reading-column">Understand the technical system</h2><section class="diagram-section wide-section" id="code-architecture"><h3>Code architecture</h3><p>lib/ structure: core services, feature modules, assets.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/code-architecture.svg" alt="Code architecture — lib/ structure: core services, feature modules, assets." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> lib/ structure: core services, feature modules, assets.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>lib/ tree</code></dd><dt>Uncertainty</dt><dd>Simplified folder view.</dd></dl></section><section class="diagram-section wide-section" id="state-management"><h3>State management</h3><p>Cubit + Freezed + service singleton pattern.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/state-management.svg" alt="State management — Cubit + Freezed + service singleton pattern." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> Cubit + Freezed + service singleton pattern.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>auth_cubit.dart, community_cubit.dart</code></dd><dt>Uncertainty</dt><dd>Not every Cubit listed.</dd></dl></section><section class="diagram-section wide-section" id="data-flow"><h3>Main data flow</h3><p>UI → Cubit/service → Firestore, prefs, or APIs.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/data-flow.svg" alt="Main data flow — UI → Cubit/service → Firestore, prefs, or APIs." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> UI → Cubit/service → Firestore, prefs, or APIs.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>.vibekb/system/data-flow.md</code></dd><dt>Uncertainty</dt><dd>Simplified typical path.</dd></dl></section><section class="diagram-section wide-section" id="firebase-architecture"><h3>Firebase architecture</h3><p>Auth, Firestore, Storage, FCM, Crashlytics.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/firebase-architecture.svg" alt="Firebase architecture — Auth, Firestore, Storage, FCM, Crashlytics." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> Auth, Firestore, Storage, FCM, Crashlytics.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>firebase_options.dart, firestore.rules</code></dd><dt>Uncertainty</dt><dd>Production Firebase project not verified.</dd></dl></section><section class="diagram-section wide-section" id="storage-map"><h3>Storage map</h3><p>Firestore collections, local prefs, bundled assets.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/storage-map.svg" alt="Storage map — Firestore collections, local prefs, bundled assets." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> Firestore collections, local prefs, bundled assets.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>firestore.rules, .vibekb/system/storage.md</code></dd><dt>Uncertainty</dt><dd>Fasting local-only marked inferred.</dd></dl></section><section class="diagram-section wide-section" id="external-services"><h3>External services</h3><p>Third-party dependencies and failure impact.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/external-services.svg" alt="External services — Third-party dependencies and failure impact." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> Third-party dependencies and failure impact.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>env_config.dart, pubspec.yaml</code></dd><dt>Uncertainty</dt><dd>Runtime config completeness unverified.</dd></dl></section><h2 class="diagram-group-title reading-column">Understand uncertainty</h2><section class="diagram-section wide-section" id="risk-and-uncertainty-map"><h3>Risk & uncertainty</h3><p>Placeholders, untested payments, quotas, and health-claim cautions.</p><figure class="diagram-figure"><div class="diagram-scroll"><img class="diagram-svg" src="../assets/diagrams/risk-and-uncertainty-map.svg" alt="Risk & uncertainty — Placeholders, untested payments, quotas, and health-claim cautions." loading="lazy"></div><figcaption class="diagram-caption"><strong>What am I looking at?</strong> Placeholders, untested payments, quotas, and health-claim cautions.</figcaption></figure><dl class="diagram-meta reading-column"><dt>Why it matters</dt><dd>Helps you see how this part of Stoppr fits into the larger app without reading the entire codebase.</dd><dt>Verification</dt><dd><span class="badge badge--ok">verified-from-source</span></dd><dt>Source evidence</dt><dd><code>.vibekb/memory/warnings/</code></dd><dt>Uncertainty</dt><dd>Living map — update when risks change.</dd></dl></section>
-</article>
-    </main>
-    <footer class="site-footer"><div class="wrap site-footer__inner"><p><strong>VibeKB</strong> — Understand what your software is doing.</p><p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p></div></footer>
-  </div>
+
+    <h4 class="dx-heading" id="app-overview-nodes-h">Parts &mdash; what each one is</h4>
+    <p class="dx-heading-note text-soft">Each part explains why it appears, where it lives in the repository, and which files to read.</p>
+    <div class="dx-list" role="list">
+                    <section class="dx-card dx-node" role="listitem" id="node-mobile-client" data-node="mobile-client" tabindex="-1" aria-labelledby="node-mobile-client-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-mobile-client-h">Stoppr mobile client</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Flutter iOS/Android app the user installs and opens.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/app-startup.html">Application startup</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib//</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><code class="loc-file">main.dart</code></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Entry point</span><code class="dx-file__path">lib/main.dart</code></div><p class="dx-file__reason">Cold-start bootstrap and first navigation decisions.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/main.dart" rel="noopener noreferrer">Open entry point <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-firebase" data-node="firebase" tabindex="-1" aria-labelledby="node-firebase-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-firebase-h">Firebase</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Auth identity, Firestore documents, Storage, Messaging, Crashlytics.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie nutrition tracking</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">cloud/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><code class="loc-file">firebase_options.dart</code></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Configuration</span><code class="dx-file__path">lib/firebase_options.dart</code></div><p class="dx-file__reason">Builds FirebaseOptions from EnvConfig key names.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/firebase_options.dart" rel="noopener noreferrer">View configuration <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-purchases" data-node="purchases" tabindex="-1" aria-labelledby="node-purchases-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-purchases-h">RevenueCat + Superwall</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Store purchases and paywall presentation that decide premium access.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/core/subscription, lib/core/superwall/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">core/</span><ul><li><span class="loc-dir">subscription/</span><ul><li><code class="loc-file">subscription_service.dart</code></li></ul></li><li><span class="loc-dir">superwall/</span><ul><li><code class="loc-file">superwall_purchase_controller.dart</code></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/core/subscription/subscription_service.dart</code></div><p class="dx-file__reason">isPaidSubscriber decides access from Superwall/RevenueCat.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/subscription/subscription_service.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Integration adapter</span><code class="dx-file__path">lib/core/superwall/superwall_purchase_controller.dart</code></div><p class="dx-file__reason">Maps Superwall purchase requests onto RevenueCat.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/superwall/superwall_purchase_controller.dart" rel="noopener noreferrer">View source on GitHub <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-local-state" data-node="local-state" tabindex="-1" aria-labelledby="node-local-state-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-local-state-h">Local device state</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">SharedPreferences, HomeWidget bridge, and local caches for fast daily loops.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a> <a class="chip" href="../functionality/home-widgets.html">Home screen widgets</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">device/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">core/</span><ul><li><span class="loc-dir">streak/</span><ul><li><code class="loc-file">streak_service.dart</code></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/core/streak/streak_service.dart</code></div><p class="dx-file__reason">Writes streak values locally and to the widget bridge.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/streak/streak_service.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-external-ai" data-node="external-ai" tabindex="-1" aria-labelledby="node-external-ai-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-external-ai-h">External AI / food APIs</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Groq, OpenAI, Edamam, and Spoonacular called for scanning, chatbot, and recipes.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a> <a class="chip" href="../functionality/chatbot-assistant.html">Melinda chatbot assistant</a> <a class="chip" href="../functionality/recipe-discovery.html">Recipe discovery</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">external/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">core/</span><ul><li><span class="loc-dir">config/</span><ul><li><code class="loc-file">env_config.dart</code></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Configuration</span><code class="dx-file__path">lib/core/config/env_config.dart</code></div><p class="dx-file__reason">Exposes API key environment variable names used by those features.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/config/env_config.dart" rel="noopener noreferrer">View configuration <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+            </div>
+
+    <h4 class="dx-heading" id="app-overview-edges-h">Connections &mdash; why they connect</h4>
+    <p class="dx-heading-note text-soft">Each connection names the concrete mechanism linking its two parts. The mechanism is the proof the relationship passed the explainability gate.</p>
+    <div class="dx-list" role="list">
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-client-to-firebase" data-edge="client-to-firebase" tabindex="-1" aria-labelledby="edge-client-to-firebase-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-client-to-firebase-h">
+                        <a class="dx-edge__endpoint" href="#node-mobile-client">Stoppr mobile client</a>
+                        <span class="dx-mech">depends on <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-firebase">Firebase</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">The client authenticates users and reads/writes profile, onboarding, community, and nutrition documents through Firebase SDKs.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Caller</span><code class="dx-file__path">lib/core/auth/auth_service.dart</code></div><p class="dx-file__reason">Performs Firebase Auth sign-in and profile side effects.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/auth/auth_service.dart" rel="noopener noreferrer">View caller <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-client-to-purchases" data-edge="client-to-purchases" tabindex="-1" aria-labelledby="edge-client-to-purchases-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-client-to-purchases-h">
+                        <a class="dx-edge__endpoint" href="#node-mobile-client">Stoppr mobile client</a>
+                        <span class="dx-mech">depends on <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-purchases">RevenueCat + Superwall</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">Startup routing and feature gates call SubscriptionService / Superwall to know whether the user is paid.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Callee</span><code class="dx-file__path">lib/core/subscription/subscription_service.dart</code></div><p class="dx-file__reason">Returns paid/free based on Superwall and RevenueCat.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/subscription/subscription_service.dart" rel="noopener noreferrer">View callee <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-client-to-local" data-edge="client-to-local" tabindex="-1" aria-labelledby="edge-client-to-local-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-client-to-local-h">
+                        <a class="dx-edge__endpoint" href="#node-mobile-client">Stoppr mobile client</a>
+                        <span class="dx-mech">stores in <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-local-state">Local device state</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">Daily habit state such as streaks and onboarding progress is stored on-device and mirrored to widgets.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a> <a class="chip" href="../functionality/startup-routing.html">Startup routing</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/features/onboarding/data/services/onboarding_progress_service.dart</code></div><p class="dx-file__reason">Persists onboarding resume keys in SharedPreferences.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/onboarding/data/services/onboarding_progress_service.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-client-to-ai" data-edge="client-to-ai" tabindex="-1" aria-labelledby="edge-client-to-ai-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-client-to-ai-h">
+                        <a class="dx-edge__endpoint" href="#node-mobile-client">Stoppr mobile client</a>
+                        <span class="dx-mech">sends to <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-external-ai">External AI / food APIs</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">Food scan, Rate My Plate, chatbot, and recipe search send requests to configured external APIs.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a> <a class="chip" href="../functionality/chatbot-assistant.html">Melinda chatbot assistant</a> <a class="chip" href="../functionality/recipe-discovery.html">Recipe discovery</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Caller</span><code class="dx-file__path">lib/features/app/presentation/screens/chatbot/chatbot_screen.dart</code></div><p class="dx-file__reason">Issues Groq/OpenAI requests for Melinda responses.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/app/presentation/screens/chatbot/chatbot_screen.dart" rel="noopener noreferrer">View caller <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-edge dx-edge--inferred" role="listitem" id="edge-purchases-to-firebase" data-edge="purchases-to-firebase" tabindex="-1" aria-labelledby="edge-purchases-to-firebase-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-purchases-to-firebase-h">
+                        <a class="dx-edge__endpoint" href="#node-purchases">RevenueCat + Superwall</a>
+                        <span class="dx-mech">writes <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-firebase">Firebase</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--info">Inferred from source</span> <span class="badge badge--info">Dashed line</span></span>
+                </div>
+                <p class="dx-card__purpose">After purchase sync, subscription mirror fields are written to the user Firestore document for analytics/display.</p>
+
+                                    <p class="dx-basis"><strong>Basis for the inference:</strong> Purchase controller contains Firestore update helpers traced at class level; every write site was not line-enumerated.</p>
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Caller</span><code class="dx-file__path">lib/core/superwall/superwall_purchase_controller.dart</code></div><p class="dx-file__reason">Persists subscription mirror fields after RevenueCat sync.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/superwall/superwall_purchase_controller.dart" rel="noopener noreferrer">View caller <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                                    <p class="dx-uncertain"><strong>Uncertain:</strong> Exact field set per product type not exhaustively listed.</p>
+                            </section>
+            </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+                
+                <dl class="diagram-meta reading-column">
+                                            <dt>Diagram type</dt>
+                        <dd>Application overview</dd>
+                                        <dt>Verification</dt>
+                    <dd><span class="badge badge--ok">Verified from source</span></dd>
+                                            <dt>Source evidence</dt>
+                        <dd>Traced lib/main.dart, auth, subscription, streak, and env_config against source at analysis commit.</dd>
+                                                                <dt>Last verified against source</dt>
+                        <dd>2026-07-21</dd>
+                                                                <dt>Uncertainty</dt>
+                        <dd>Firestore mirror field completeness after purchase is inferred; store dashboard config not verified.</dd>
+                                    </dl>
+
+                                                    <div class="related-diagrams reading-column">
+                                                    <p><strong>Related functionality:</strong> <a class="chip" href="../functionality/app-startup.html">Application startup</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a> <a class="chip" href="../functionality/chatbot-assistant.html">Melinda chatbot assistant</a></p>
+                                                                            <p><strong>Related warnings:</strong> <a class="chip" href="../why/warnings/placeholder-api-keys.html">Placeholder API keys and OAuth client IDs</a></p>
+                                                                            <p><strong>Related diagrams:</strong>
+                                                            <a class="chip" href="../diagrams/index.html#onboarding-auth-flow">Onboarding and authentication flow</a>                                                            <a class="chip" href="../diagrams/index.html#subscription-paywall-flow">Subscription and paywall flow</a>                                                        </p>
+                                            </div>
+                            </section>
+                    <h2 class="diagram-group-title reading-column">Understand the main product flows</h2>
+                    <p class="reading-column text-soft">Onboarding, auth, and subscription paths.</p>
+        
+                                <section class="diagram-section wide-section diagram-section--explainable" id="onboarding-auth-flow" aria-labelledby="onboarding-auth-flow-h" data-diagram="onboarding-auth-flow">
+                <h3 id="onboarding-auth-flow-h">Onboarding and authentication flow</h3>
+                <p>Welcome to auth to questionnaire/profile to pre-paywall to MainScaffold.</p>
+
+                                <figure class="diagram-figure">
+                    <div class="diagram-scroll">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 870 280" role="img" aria-labelledby="oa-title oa-desc">
+  <title id="oa-title">Onboarding and authentication flow</title>
+  <desc id="oa-desc">Users move from welcome screens through auth providers, questionnaire and profile personalization, the Superwall pre-paywall, and into MainScaffold. One dashed edge marks funnel ordering inferred across Navigator calls.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4f5c56"/>
+    </marker>
+    
+    <style>
+      .t { font-family:"Figtree","Segoe UI",sans-serif; fill:#1a2421; }
+      .box { stroke:#b9c6c0; stroke-width:1.5; fill:#e7f4f0; }
+      .gate { fill:#f6ead4; stroke:#7a4210; stroke-width:1.5; }
+      .store { fill:#fffcf7; stroke:#b9c6c0; stroke-width:1.5; }
+      .warn { fill:#f8e4e0; stroke:#8a2f2f; stroke-width:1.5; }
+      .lbl { font-size:12px; font-weight:600; }
+      .sm { font-size:10px; fill:#4f5c56; }
+      .arrow { stroke:#4f5c56; stroke-width:1.6; fill:none; marker-end:url(#arrow); }
+      .arrow-inferred { stroke:#4f5c56; stroke-width:1.6; fill:none; stroke-dasharray:7 5; marker-end:url(#arrow); }
+      .hit { stroke:transparent; stroke-width:16; fill:none; }
+      .title { font-size:18px; font-weight:800; font-family:"Outfit","Figtree",sans-serif; }
+      .elbl { font-size:9px; fill:#4f5c56; }
+    </style>
+  </defs>
+  <rect width="870" height="280" fill="#f4f0e8"/>
+  <text class="t title" x="28" y="36">Onboarding and authentication flow</text>
+  <text class="t sm" x="28" y="54">Solid = verified · Dashed = inferred funnel ordering. Select any element for details.</text>
+
+  <a href="#node-welcome" xlink:href="#node-welcome" class="dnode" data-vibekb-node="welcome">
+    <title>Welcome + early onboarding — open explanation</title>
+    <rect class="box" x="20" y="140" width="140" height="70" rx="9"/>
+    <text class="t lbl" x="90" y="168" text-anchor="middle">Welcome</text>
+    <text class="t sm" x="90" y="186" text-anchor="middle">intro screens</text>
+  </a>
+  <a href="#node-auth-providers" xlink:href="#node-auth-providers" class="dnode" data-vibekb-node="auth-providers">
+    <title>Auth providers — open explanation</title>
+    <rect class="gate" x="190" y="140" width="140" height="70" rx="9"/>
+    <text class="t lbl" x="260" y="168" text-anchor="middle">Auth providers</text>
+    <text class="t sm" x="260" y="186" text-anchor="middle">Google/Apple/email/anon</text>
+  </a>
+  <a href="#node-questionnaire" xlink:href="#node-questionnaire" class="dnode" data-vibekb-node="questionnaire">
+    <title>Questionnaire + profile — open explanation</title>
+    <rect class="box" x="360" y="140" width="150" height="70" rx="9"/>
+    <text class="t lbl" x="435" y="168" text-anchor="middle">Questionnaire</text>
+    <text class="t sm" x="435" y="186" text-anchor="middle">profile · goals · analysis</text>
+  </a>
+  <a href="#node-pre-paywall" xlink:href="#node-pre-paywall" class="dnode" data-vibekb-node="pre-paywall">
+    <title>Pre-paywall — open explanation</title>
+    <rect class="gate" x="540" y="140" width="140" height="70" rx="9"/>
+    <text class="t lbl" x="610" y="168" text-anchor="middle">Pre-paywall</text>
+    <text class="t sm" x="610" y="186" text-anchor="middle">Superwall gate</text>
+  </a>
+  <a href="#node-main-scaffold" xlink:href="#node-main-scaffold" class="dnode" data-vibekb-node="main-scaffold">
+    <title>MainScaffold — open explanation</title>
+    <rect class="box" x="710" y="140" width="140" height="70" rx="9"/>
+    <text class="t lbl" x="780" y="168" text-anchor="middle">MainScaffold</text>
+    <text class="t sm" x="780" y="186" text-anchor="middle">app shell</text>
+  </a>
+
+  <a href="#edge-welcome-to-auth" xlink:href="#edge-welcome-to-auth" class="dedge" data-vibekb-edge="welcome-to-auth">
+    <title>routes to auth — verified</title>
+    <line class="hit" x1="160" y1="175" x2="190" y2="175"/>
+    <line class="arrow" x1="160" y1="175" x2="190" y2="175"/>
+    <text class="t elbl" x="162" y="166">routes-to</text>
+  </a>
+  <a href="#edge-auth-to-questionnaire" xlink:href="#edge-auth-to-questionnaire" class="dedge" data-vibekb-edge="auth-to-questionnaire">
+    <title>routes to questionnaire — inferred</title>
+    <line class="hit" x1="330" y1="175" x2="360" y2="175"/>
+    <line class="arrow-inferred" x1="330" y1="175" x2="360" y2="175"/>
+    <text class="t elbl" x="318" y="166">routes-to (inferred)</text>
+  </a>
+  <a href="#edge-questionnaire-to-paywall" xlink:href="#edge-questionnaire-to-paywall" class="dedge" data-vibekb-edge="questionnaire-to-paywall">
+    <title>routes to paywall — verified</title>
+    <line class="hit" x1="510" y1="175" x2="540" y2="175"/>
+    <line class="arrow" x1="510" y1="175" x2="540" y2="175"/>
+    <text class="t elbl" x="512" y="166">routes-to</text>
+  </a>
+  <a href="#edge-paywall-to-main" xlink:href="#edge-paywall-to-main" class="dedge" data-vibekb-edge="paywall-to-main">
+    <title>routes to main — verified</title>
+    <line class="hit" x1="680" y1="175" x2="710" y2="175"/>
+    <line class="arrow" x1="680" y1="175" x2="710" y2="175"/>
+    <text class="t elbl" x="682" y="166">routes-to</text>
+  </a>
+
+</svg>                                            </div>
+                    <figcaption class="diagram-caption"><strong>What am I looking at?</strong> Welcome to auth to questionnaire/profile to pre-paywall to MainScaffold.</figcaption>
+                </figure>
+
+                                    <div class="diagram-explain" id="onboarding-auth-flow-explain">
+    <div class="dx-legend" role="note">
+        <span class="dx-legend__title">How to read this</span>
+        <span class="dx-legend__item"><span class="dx-swatch dx-swatch--solid" aria-hidden="true"></span> Solid line &mdash; verified from source</span>
+        <span class="dx-legend__item"><span class="dx-swatch dx-swatch--dashed" aria-hidden="true"></span> Dashed line &mdash; inferred from source</span>
+        <span class="dx-legend__hint text-soft">Select any box or arrow in the diagram to jump to its explanation.</span>
+    </div>
+
+    <h4 class="dx-heading" id="onboarding-auth-flow-nodes-h">Parts &mdash; what each one is</h4>
+    <p class="dx-heading-note text-soft">Each part explains why it appears, where it lives in the repository, and which files to read.</p>
+    <div class="dx-list" role="list">
+                    <section class="dx-card dx-node" role="listitem" id="node-welcome" data-node="welcome" tabindex="-1" aria-labelledby="node-welcome-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-welcome-h">Welcome + early onboarding</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Plays welcome video and early intro screens that offer auth or skip.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/onboarding-intro.html">Onboarding introduction</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/features/onboarding/presentation/screens/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">features/</span><ul><li><span class="loc-dir">onboarding/</span><ul><li><span class="loc-dir">presentation/</span><ul><li><span class="loc-dir">screens/</span><ul><li><code class="loc-file">welcome_video_screen.dart</code></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Entry point</span><code class="dx-file__path">lib/features/onboarding/presentation/screens/welcome_video_screen.dart</code></div><p class="dx-file__reason">First visible onboarding surface after splash routing.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/onboarding/presentation/screens/welcome_video_screen.dart" rel="noopener noreferrer">Open entry point <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-auth-providers" data-node="auth-providers" tabindex="-1" aria-labelledby="node-auth-providers-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-auth-providers-h">Auth providers</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Google, Apple, email, or anonymous Firebase sign-in creating an AppUser.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/guest-anonymous-access.html">Guest anonymous access</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/core/auth/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">core/</span><ul><li><span class="loc-dir">auth/</span><ul><li><code class="loc-file">auth_service.dart</code></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/core/auth/auth_service.dart</code></div><p class="dx-file__reason">Implements provider sign-in methods and auth state listener.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/auth/auth_service.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-questionnaire" data-node="questionnaire" tabindex="-1" aria-labelledby="node-questionnaire-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-questionnaire-h">Questionnaire + profile</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Collects questionnaire answers, profile, symptoms, goals, and nutrition setup with resume checkpoints.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/onboarding-questionnaire.html">Onboarding questionnaire</a> <a class="chip" href="../functionality/onboarding-profile-goals.html">Onboarding profile and goals</a> <a class="chip" href="../functionality/onboarding-personalized-analysis.html">Onboarding personalized analysis</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/features/onboarding/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">features/</span><ul><li><span class="loc-dir">onboarding/</span><ul><li><span class="loc-dir">data/</span><ul><li><span class="loc-dir">services/</span><ul><li><code class="loc-file">onboarding_progress_service.dart</code></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/features/onboarding/data/services/onboarding_progress_service.dart</code></div><p class="dx-file__reason">Persists and restores the current onboarding screen.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/onboarding/data/services/onboarding_progress_service.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-pre-paywall" data-node="pre-paywall" tabindex="-1" aria-labelledby="node-pre-paywall-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-pre-paywall-h">Pre-paywall</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Final commercial gate before MainScaffold for unpaid users.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/features/onboarding/presentation/screens/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">features/</span><ul><li><span class="loc-dir">onboarding/</span><ul><li><span class="loc-dir">presentation/</span><ul><li><span class="loc-dir">screens/</span><ul><li><code class="loc-file">pre_paywall.dart</code></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/features/onboarding/presentation/screens/pre_paywall.dart</code></div><p class="dx-file__reason">Registers Superwall placements and handles purchase success.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/onboarding/presentation/screens/pre_paywall.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-main-scaffold" data-node="main-scaffold" tabindex="-1" aria-labelledby="node-main-scaffold-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-main-scaffold-h">MainScaffold</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Post-onboarding app shell with bottom navigation.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-navigation.html">Main navigation</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/features/app/presentation/screens/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">features/</span><ul><li><span class="loc-dir">app/</span><ul><li><span class="loc-dir">presentation/</span><ul><li><span class="loc-dir">screens/</span><ul><li><code class="loc-file">main_scaffold.dart</code></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/features/app/presentation/screens/main_scaffold.dart</code></div><p class="dx-file__reason">Hosts the signed-in / paid user experience.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/app/presentation/screens/main_scaffold.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+            </div>
+
+    <h4 class="dx-heading" id="onboarding-auth-flow-edges-h">Connections &mdash; why they connect</h4>
+    <p class="dx-heading-note text-soft">Each connection names the concrete mechanism linking its two parts. The mechanism is the proof the relationship passed the explainability gate.</p>
+    <div class="dx-list" role="list">
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-welcome-to-auth" data-edge="welcome-to-auth" tabindex="-1" aria-labelledby="edge-welcome-to-auth-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-welcome-to-auth-h">
+                        <a class="dx-edge__endpoint" href="#node-welcome">Welcome + early onboarding</a>
+                        <span class="dx-mech">routes to <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-auth-providers">Auth providers</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">Early onboarding screens route the user into Google/Apple/email sign-in or allow skipping toward later anonymous creation.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/onboarding-intro.html">Onboarding introduction</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Caller</span><code class="dx-file__path">lib/features/onboarding/presentation/screens/onboarding_page.dart</code></div><p class="dx-file__reason">Invokes AuthCubit Google/Apple sign-in handlers.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/onboarding/presentation/screens/onboarding_page.dart" rel="noopener noreferrer">View caller <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-edge dx-edge--inferred" role="listitem" id="edge-auth-to-questionnaire" data-edge="auth-to-questionnaire" tabindex="-1" aria-labelledby="edge-auth-to-questionnaire-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-auth-to-questionnaire-h">
+                        <a class="dx-edge__endpoint" href="#node-auth-providers">Auth providers</a>
+                        <span class="dx-mech">routes to <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-questionnaire">Questionnaire + profile</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--info">Inferred from source</span> <span class="badge badge--info">Dashed line</span></span>
+                </div>
+                <p class="dx-card__purpose">After identity exists (or skip), navigation continues into questionnaire, profile, and personalization screens.</p>
+
+                                    <p class="dx-basis"><strong>Basis for the inference:</strong> Order derived from Navigator calls across onboarding screens rather than one central route table.</p>
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/onboarding-questionnaire.html">Onboarding questionnaire</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/features/onboarding/presentation/screens/questionnaire_screen.dart</code></div><p class="dx-file__reason">Collects and persists questionnaire answers.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/onboarding/presentation/screens/questionnaire_screen.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                                    <p class="dx-uncertain"><strong>Uncertain:</strong> Exact branch when questionnaire answers are missing uses a shorter path.</p>
+                            </section>
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-questionnaire-to-paywall" data-edge="questionnaire-to-paywall" tabindex="-1" aria-labelledby="edge-questionnaire-to-paywall-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-questionnaire-to-paywall-h">
+                        <a class="dx-edge__endpoint" href="#node-questionnaire">Questionnaire + profile</a>
+                        <span class="dx-mech">routes to <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-pre-paywall">Pre-paywall</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">Completed personalization and benefits screens navigate to PrePaywallScreen.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Callee</span><code class="dx-file__path">lib/features/onboarding/presentation/screens/pre_paywall.dart</code></div><p class="dx-file__reason">Receives users at the commercial gate.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/onboarding/presentation/screens/pre_paywall.dart" rel="noopener noreferrer">View callee <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-paywall-to-main" data-edge="paywall-to-main" tabindex="-1" aria-labelledby="edge-paywall-to-main-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-paywall-to-main-h">
+                        <a class="dx-edge__endpoint" href="#node-pre-paywall">Pre-paywall</a>
+                        <span class="dx-mech">routes to <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-main-scaffold">MainScaffold</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">Successful purchase handling or an already-paid check navigates to MainScaffold.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a> <a class="chip" href="../functionality/main-navigation.html">Main navigation</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Caller</span><code class="dx-file__path">lib/core/subscription/post_purchase_handler.dart</code></div><p class="dx-file__reason">Runs post-purchase updates then navigates onward.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/subscription/post_purchase_handler.dart" rel="noopener noreferrer">View caller <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+            </div>
+</div>
+                
+                <dl class="diagram-meta reading-column">
+                                            <dt>Diagram type</dt>
+                        <dd>Authentication flow</dd>
+                                        <dt>Verification</dt>
+                    <dd><span class="badge badge--info">Inferred from source</span></dd>
+                                            <dt>Source evidence</dt>
+                        <dd>Screens and AuthService traced; multi-file Navigator order partially inferred.</dd>
+                                                                <dt>Last verified against source</dt>
+                        <dd>2026-07-21</dd>
+                                                                <dt>Uncertainty</dt>
+                        <dd>Resume branches and skip paths create alternate orders not fully drawn.</dd>
+                                    </dl>
+
+                                                    <div class="related-diagrams reading-column">
+                                                    <p><strong>Related functionality:</strong> <a class="chip" href="../functionality/onboarding-intro.html">Onboarding introduction</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/onboarding-questionnaire.html">Onboarding questionnaire</a> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a> <a class="chip" href="../functionality/main-navigation.html">Main navigation</a></p>
+                                                                            <p><strong>Related warnings:</strong> <a class="chip" href="../why/warnings/google-oauth-placeholders.html">Google OAuth client ID fallbacks</a></p>
+                                                                            <p><strong>Related diagrams:</strong>
+                                                            <a class="chip" href="../diagrams/index.html#app-overview">Stoppr application overview</a>                                                            <a class="chip" href="../diagrams/index.html#subscription-paywall-flow">Subscription and paywall flow</a>                                                        </p>
+                                            </div>
+                            </section>
+                                <section class="diagram-section wide-section diagram-section--explainable" id="subscription-paywall-flow" aria-labelledby="subscription-paywall-flow-h" data-diagram="subscription-paywall-flow">
+                <h3 id="subscription-paywall-flow-h">Subscription and paywall flow</h3>
+                <p>Superwall UI to purchase controller to RevenueCat to access gate, with post-purchase handling.</p>
+
+                                <figure class="diagram-figure">
+                    <div class="diagram-scroll">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 340" role="img" aria-labelledby="sp-title sp-desc">
+  <title id="sp-title">Subscription and paywall flow</title>
+  <desc id="sp-desc">Superwall UI delegates purchases to SuperwallPurchaseController, which calls RevenueCat. SubscriptionService gates access from CustomerInfo and Superwall status. PostPurchaseHandler runs success side effects. Dashed edges mark Android wiring risk and multi-file success orchestration.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4f5c56"/>
+    </marker>
+    
+    <style>
+      .t { font-family:"Figtree","Segoe UI",sans-serif; fill:#1a2421; }
+      .box { stroke:#b9c6c0; stroke-width:1.5; fill:#e7f4f0; }
+      .gate { fill:#f6ead4; stroke:#7a4210; stroke-width:1.5; }
+      .store { fill:#fffcf7; stroke:#b9c6c0; stroke-width:1.5; }
+      .warn { fill:#f8e4e0; stroke:#8a2f2f; stroke-width:1.5; }
+      .lbl { font-size:12px; font-weight:600; }
+      .sm { font-size:10px; fill:#4f5c56; }
+      .arrow { stroke:#4f5c56; stroke-width:1.6; fill:none; marker-end:url(#arrow); }
+      .arrow-inferred { stroke:#4f5c56; stroke-width:1.6; fill:none; stroke-dasharray:7 5; marker-end:url(#arrow); }
+      .hit { stroke:transparent; stroke-width:16; fill:none; }
+      .title { font-size:18px; font-weight:800; font-family:"Outfit","Figtree",sans-serif; }
+      .elbl { font-size:9px; fill:#4f5c56; }
+    </style>
+  </defs>
+  <rect width="800" height="340" fill="#f4f0e8"/>
+  <text class="t title" x="28" y="36">Subscription and paywall flow</text>
+  <text class="t sm" x="28" y="54">Dashed edges mark platform-dependent or multi-file success orchestration.</text>
+
+  <a href="#node-paywall-ui" xlink:href="#node-paywall-ui" class="dnode" data-vibekb-node="paywall-ui">
+    <title>Superwall paywall UI — open explanation</title>
+    <rect class="gate" x="30" y="130" width="150" height="70" rx="9"/>
+    <text class="t lbl" x="105" y="158" text-anchor="middle">Superwall UI</text>
+    <text class="t sm" x="105" y="176" text-anchor="middle">placements</text>
+  </a>
+  <a href="#node-purchase-controller" xlink:href="#node-purchase-controller" class="dnode" data-vibekb-node="purchase-controller">
+    <title>SuperwallPurchaseController — open explanation</title>
+    <rect class="box" x="220" y="130" width="170" height="70" rx="9"/>
+    <text class="t lbl" x="305" y="158" text-anchor="middle">PurchaseController</text>
+    <text class="t sm" x="305" y="176" text-anchor="middle">RC bridge</text>
+  </a>
+  <a href="#node-revenuecat" xlink:href="#node-revenuecat" class="dnode" data-vibekb-node="revenuecat">
+    <title>RevenueCat — open explanation</title>
+    <rect class="store" x="430" y="130" width="140" height="70" rx="9"/>
+    <text class="t lbl" x="500" y="158" text-anchor="middle">RevenueCat</text>
+    <text class="t sm" x="500" y="176" text-anchor="middle">CustomerInfo</text>
+  </a>
+  <a href="#node-access-gate" xlink:href="#node-access-gate" class="dnode" data-vibekb-node="access-gate">
+    <title>SubscriptionService gate — open explanation</title>
+    <rect class="gate" x="610" y="130" width="160" height="70" rx="9"/>
+    <text class="t lbl" x="690" y="158" text-anchor="middle">Access gate</text>
+    <text class="t sm" x="690" y="176" text-anchor="middle">isPaidSubscriber</text>
+  </a>
+  <a href="#node-post-purchase" xlink:href="#node-post-purchase" class="dnode" data-vibekb-node="post-purchase">
+    <title>PostPurchaseHandler — open explanation</title>
+    <rect class="box" x="220" y="250" width="170" height="60" rx="9"/>
+    <text class="t lbl" x="305" y="275" text-anchor="middle">PostPurchaseHandler</text>
+    <text class="t sm" x="305" y="293" text-anchor="middle">side effects + nav</text>
+  </a>
+
+  <a href="#edge-ui-to-controller" xlink:href="#edge-ui-to-controller" class="dedge" data-vibekb-edge="ui-to-controller">
+    <title>delegates to controller — inferred</title>
+    <line class="hit" x1="180" y1="165" x2="220" y2="165"/>
+    <line class="arrow-inferred" x1="180" y1="165" x2="220" y2="165"/>
+    <text class="t elbl" x="175" y="156">delegates-to (inferred)</text>
+  </a>
+  <a href="#edge-controller-to-rc" xlink:href="#edge-controller-to-rc" class="dedge" data-vibekb-edge="controller-to-rc">
+    <title>calls RevenueCat — verified</title>
+    <line class="hit" x1="390" y1="165" x2="430" y2="165"/>
+    <line class="arrow" x1="390" y1="165" x2="430" y2="165"/>
+    <text class="t elbl" x="395" y="156">calls</text>
+  </a>
+  <a href="#edge-rc-to-gate" xlink:href="#edge-rc-to-gate" class="dedge" data-vibekb-edge="rc-to-gate">
+    <title>returns CustomerInfo — verified</title>
+    <line class="hit" x1="570" y1="165" x2="610" y2="165"/>
+    <line class="arrow" x1="570" y1="165" x2="610" y2="165"/>
+    <text class="t elbl" x="572" y="156">returns-to</text>
+  </a>
+  <a href="#edge-controller-to-post" xlink:href="#edge-controller-to-post" class="dedge" data-vibekb-edge="controller-to-post">
+    <title>emits success path — inferred</title>
+    <line class="hit" x1="305" y1="200" x2="305" y2="250"/>
+    <line class="arrow-inferred" x1="305" y1="200" x2="305" y2="250"/>
+    <text class="t elbl" x="312" y="228">emits (inferred)</text>
+  </a>
+
+</svg>                                            </div>
+                    <figcaption class="diagram-caption"><strong>What am I looking at?</strong> Superwall UI to purchase controller to RevenueCat to access gate, with post-purchase handling.</figcaption>
+                </figure>
+
+                                    <div class="diagram-explain" id="subscription-paywall-flow-explain">
+    <div class="dx-legend" role="note">
+        <span class="dx-legend__title">How to read this</span>
+        <span class="dx-legend__item"><span class="dx-swatch dx-swatch--solid" aria-hidden="true"></span> Solid line &mdash; verified from source</span>
+        <span class="dx-legend__item"><span class="dx-swatch dx-swatch--dashed" aria-hidden="true"></span> Dashed line &mdash; inferred from source</span>
+        <span class="dx-legend__hint text-soft">Select any box or arrow in the diagram to jump to its explanation.</span>
+    </div>
+
+    <h4 class="dx-heading" id="subscription-paywall-flow-nodes-h">Parts &mdash; what each one is</h4>
+    <p class="dx-heading-note text-soft">Each part explains why it appears, where it lives in the repository, and which files to read.</p>
+    <div class="dx-list" role="list">
+                    <section class="dx-card dx-node" role="listitem" id="node-paywall-ui" data-node="paywall-ui" tabindex="-1" aria-labelledby="node-paywall-ui-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-paywall-ui-h">Superwall paywall UI</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Presents campaigns registered by placement IDs from PrePaywall and feature screens.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/features/onboarding, lib/features/app/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">features/</span><ul><li><span class="loc-dir">onboarding/</span><ul><li><span class="loc-dir">presentation/</span><ul><li><span class="loc-dir">screens/</span><ul><li><code class="loc-file">pre_paywall.dart</code></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Caller</span><code class="dx-file__path">lib/features/onboarding/presentation/screens/pre_paywall.dart</code></div><p class="dx-file__reason">Registers primary gift/standard placements (often placeholders).</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/onboarding/presentation/screens/pre_paywall.dart" rel="noopener noreferrer">View caller <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                                    <p class="dx-uncertain"><strong>Uncertain:</strong> Dashboard campaign mapping not verified.</p>
+                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-purchase-controller" data-node="purchase-controller" tabindex="-1" aria-labelledby="node-purchase-controller-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-purchase-controller-h">SuperwallPurchaseController</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Receives Superwall purchase/restore requests and executes them via RevenueCat.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/core/superwall/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">core/</span><ul><li><span class="loc-dir">superwall/</span><ul><li><code class="loc-file">superwall_purchase_controller.dart</code></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/core/superwall/superwall_purchase_controller.dart</code></div><p class="dx-file__reason">Implements PurchaseController purchase/restore and status sync.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/superwall/superwall_purchase_controller.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-revenuecat" data-node="revenuecat" tabindex="-1" aria-labelledby="node-revenuecat-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-revenuecat-h">RevenueCat</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Talks to App Store / Play Billing and exposes CustomerInfo entitlements.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">purchases_flutter/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><code class="loc-file">main.dart</code></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Entry point</span><code class="dx-file__path">lib/main.dart</code></div><p class="dx-file__reason">Early Purchases.configure using platform API key names.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/main.dart" rel="noopener noreferrer">Open entry point <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-access-gate" data-node="access-gate" tabindex="-1" aria-labelledby="node-access-gate-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-access-gate-h">SubscriptionService gate</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Answers isPaidSubscriber for routing and feature checks.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a> <a class="chip" href="../functionality/startup-routing.html">Startup routing</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/core/subscription/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">core/</span><ul><li><span class="loc-dir">subscription/</span><ul><li><code class="loc-file">subscription_service.dart</code></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/core/subscription/subscription_service.dart</code></div><p class="dx-file__reason">Combines Superwall status and RevenueCat CustomerInfo; ignores Firestore for grants.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/subscription/subscription_service.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-post-purchase" data-node="post-purchase" tabindex="-1" aria-labelledby="node-post-purchase-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-post-purchase-h">PostPurchaseHandler</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">After success, updates user state and navigates to congratulations / main.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/core/subscription/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">core/</span><ul><li><span class="loc-dir">subscription/</span><ul><li><code class="loc-file">post_purchase_handler.dart</code></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/core/subscription/post_purchase_handler.dart</code></div><p class="dx-file__reason">Coordinates post-purchase side effects and navigation.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/subscription/post_purchase_handler.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+            </div>
+
+    <h4 class="dx-heading" id="subscription-paywall-flow-edges-h">Connections &mdash; why they connect</h4>
+    <p class="dx-heading-note text-soft">Each connection names the concrete mechanism linking its two parts. The mechanism is the proof the relationship passed the explainability gate.</p>
+    <div class="dx-list" role="list">
+                    <section class="dx-card dx-edge dx-edge--inferred" role="listitem" id="edge-ui-to-controller" data-edge="ui-to-controller" tabindex="-1" aria-labelledby="edge-ui-to-controller-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-ui-to-controller-h">
+                        <a class="dx-edge__endpoint" href="#node-paywall-ui">Superwall paywall UI</a>
+                        <span class="dx-mech">delegates to <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-purchase-controller">SuperwallPurchaseController</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--info">Inferred from source</span> <span class="badge badge--info">Dashed line</span></span>
+                </div>
+                <p class="dx-card__purpose">Superwall UI delegates store purchase and restore actions to SuperwallPurchaseController when configured.</p>
+
+                                    <p class="dx-basis"><strong>Basis for the inference:</strong> iOS configure path passes purchaseController; Android early configure does not, so delegation is platform-dependent.</p>
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Callee</span><code class="dx-file__path">lib/core/superwall/superwall_purchase_controller.dart</code></div><p class="dx-file__reason">Implements the PurchaseController callbacks Superwall invokes.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/superwall/superwall_purchase_controller.dart" rel="noopener noreferrer">View callee <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                                    <p class="dx-uncertain"><strong>Uncertain:</strong> Android path may not attach the controller.</p>
+                            </section>
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-controller-to-rc" data-edge="controller-to-rc" tabindex="-1" aria-labelledby="edge-controller-to-rc-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-controller-to-rc-h">
+                        <a class="dx-edge__endpoint" href="#node-purchase-controller">SuperwallPurchaseController</a>
+                        <span class="dx-mech">calls <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-revenuecat">RevenueCat</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">The controller calls RevenueCat product lookup, purchase, and restore APIs.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Caller</span><code class="dx-file__path">lib/core/superwall/superwall_purchase_controller.dart</code></div><p class="dx-file__reason">Invokes Purchases.purchaseStoreProduct / restorePurchases.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/superwall/superwall_purchase_controller.dart" rel="noopener noreferrer">View caller <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-rc-to-gate" data-edge="rc-to-gate" tabindex="-1" aria-labelledby="edge-rc-to-gate-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-rc-to-gate-h">
+                        <a class="dx-edge__endpoint" href="#node-revenuecat">RevenueCat</a>
+                        <span class="dx-mech">returns to <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-access-gate">SubscriptionService gate</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">SubscriptionService reads CustomerInfo (and Superwall status) to decide paid access.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Callee</span><code class="dx-file__path">lib/core/subscription/subscription_service.dart</code></div><p class="dx-file__reason">isPaidSubscriber inspects entitlements/subscriptions.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/subscription/subscription_service.dart" rel="noopener noreferrer">View callee <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-edge dx-edge--inferred" role="listitem" id="edge-controller-to-post" data-edge="controller-to-post" tabindex="-1" aria-labelledby="edge-controller-to-post-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-controller-to-post-h">
+                        <a class="dx-edge__endpoint" href="#node-purchase-controller">SuperwallPurchaseController</a>
+                        <span class="dx-mech">emits <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-post-purchase">PostPurchaseHandler</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--info">Inferred from source</span> <span class="badge badge--info">Dashed line</span></span>
+                </div>
+                <p class="dx-card__purpose">Paywall success handling invokes PostPurchaseHandler to finalize onboarding-side effects.</p>
+
+                                    <p class="dx-basis"><strong>Basis for the inference:</strong> PrePaywall calls PostPurchaseHandler on success; controller sync also updates status — success orchestration spans both.</p>
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Callee</span><code class="dx-file__path">lib/core/subscription/post_purchase_handler.dart</code></div><p class="dx-file__reason">handlePostPurchase runs after a successful purchase path.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/subscription/post_purchase_handler.dart" rel="noopener noreferrer">View callee <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                                    <p class="dx-uncertain"><strong>Uncertain:</strong> Exact ordering of Firestore writes vs navigation not single-step traced.</p>
+                            </section>
+            </div>
+</div>
+                
+                <dl class="diagram-meta reading-column">
+                                            <dt>Diagram type</dt>
+                        <dd>Feature access</dd>
+                                        <dt>Verification</dt>
+                    <dd><span class="badge badge--info">Inferred from source</span></dd>
+                                            <dt>Source evidence</dt>
+                        <dd>Classes traced; Android configure asymmetry and placement placeholders labeled.</dd>
+                                                                <dt>Last verified against source</dt>
+                        <dd>2026-07-21</dd>
+                                                                <dt>Uncertainty</dt>
+                        <dd>Store products and Superwall dashboard campaigns not executed.</dd>
+                                    </dl>
+
+                                                    <div class="related-diagrams reading-column">
+                                                    <p><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a></p>
+                                                                            <p><strong>Related warnings:</strong> <a class="chip" href="../why/warnings/superwall-placement-placeholders.html">Superwall placement IDs are placeholders</a> <a class="chip" href="../why/warnings/android-superwall-purchase-controller.html">Android Superwall purchase controller wiring is incomplete</a></p>
+                                                                            <p><strong>Related diagrams:</strong>
+                                                            <a class="chip" href="../diagrams/index.html#app-overview">Stoppr application overview</a>                                                            <a class="chip" href="../diagrams/index.html#onboarding-auth-flow">Onboarding and authentication flow</a>                                                        </p>
+                                            </div>
+                            </section>
+                    <h2 class="diagram-group-title reading-column">Understand the technical system</h2>
+                    <p class="reading-column text-soft">Where data and entitlements live.</p>
+        
+                                <section class="diagram-section wide-section diagram-section--explainable" id="persistence-storage-map" aria-labelledby="persistence-storage-map-h" data-diagram="persistence-storage-map">
+                <h3 id="persistence-storage-map-h">Persistence and storage map</h3>
+                <p>Feature writers to Firestore, SharedPreferences, HomeWidget, and Firebase Storage.</p>
+
+                                <figure class="diagram-figure">
+                    <div class="diagram-scroll">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 320" role="img" aria-labelledby="ps-title ps-desc">
+  <title id="ps-title">Persistence and storage map</title>
+  <desc id="ps-desc">Feature repositories write to Firestore and SharedPreferences, push selected values through the HomeWidget bridge, and may upload food images to Firebase Storage. Dashed edges mark inferred native widget delivery and upload branching.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4f5c56"/>
+    </marker>
+    
+    <style>
+      .t { font-family:"Figtree","Segoe UI",sans-serif; fill:#1a2421; }
+      .box { stroke:#b9c6c0; stroke-width:1.5; fill:#e7f4f0; }
+      .gate { fill:#f6ead4; stroke:#7a4210; stroke-width:1.5; }
+      .store { fill:#fffcf7; stroke:#b9c6c0; stroke-width:1.5; }
+      .warn { fill:#f8e4e0; stroke:#8a2f2f; stroke-width:1.5; }
+      .lbl { font-size:12px; font-weight:600; }
+      .sm { font-size:10px; fill:#4f5c56; }
+      .arrow { stroke:#4f5c56; stroke-width:1.6; fill:none; marker-end:url(#arrow); }
+      .arrow-inferred { stroke:#4f5c56; stroke-width:1.6; fill:none; stroke-dasharray:7 5; marker-end:url(#arrow); }
+      .hit { stroke:transparent; stroke-width:16; fill:none; }
+      .title { font-size:18px; font-weight:800; font-family:"Outfit","Figtree",sans-serif; }
+      .elbl { font-size:9px; fill:#4f5c56; }
+    </style>
+  </defs>
+  <rect width="800" height="320" fill="#f4f0e8"/>
+  <text class="t title" x="28" y="36">Persistence and storage map</text>
+  <text class="t sm" x="28" y="54">Where Stoppr keeps state. Dashed = inferred native/widget delivery details.</text>
+
+  <a href="#node-features" xlink:href="#node-features" class="dnode" data-vibekb-node="features">
+    <title>Feature repositories — open explanation</title>
+    <rect class="box" x="320" y="80" width="180" height="64" rx="9"/>
+    <text class="t lbl" x="410" y="106" text-anchor="middle">Feature repositories</text>
+    <text class="t sm" x="410" y="124" text-anchor="middle">domain writers</text>
+  </a>
+  <a href="#node-firestore" xlink:href="#node-firestore" class="dnode" data-vibekb-node="firestore">
+    <title>Cloud Firestore — open explanation</title>
+    <rect class="store" x="40" y="220" width="150" height="64" rx="9"/>
+    <text class="t lbl" x="115" y="246" text-anchor="middle">Cloud Firestore</text>
+    <text class="t sm" x="115" y="264" text-anchor="middle">users · community</text>
+  </a>
+  <a href="#node-prefs" xlink:href="#node-prefs" class="dnode" data-vibekb-node="prefs">
+    <title>SharedPreferences — open explanation</title>
+    <rect class="store" x="230" y="220" width="150" height="64" rx="9"/>
+    <text class="t lbl" x="305" y="246" text-anchor="middle">SharedPreferences</text>
+    <text class="t sm" x="305" y="264" text-anchor="middle">resume · streak · fast</text>
+  </a>
+  <a href="#node-widgets-bridge" xlink:href="#node-widgets-bridge" class="dnode" data-vibekb-node="widgets-bridge">
+    <title>HomeWidget bridge — open explanation</title>
+    <rect class="box" x="420" y="220" width="150" height="64" rx="9"/>
+    <text class="t lbl" x="495" y="246" text-anchor="middle">HomeWidget bridge</text>
+    <text class="t sm" x="495" y="264" text-anchor="middle">iOS / Android widgets</text>
+  </a>
+  <a href="#node-storage-bucket" xlink:href="#node-storage-bucket" class="dnode" data-vibekb-node="storage-bucket">
+    <title>Firebase Storage — open explanation</title>
+    <rect class="store" x="610" y="220" width="150" height="64" rx="9"/>
+    <text class="t lbl" x="685" y="246" text-anchor="middle">Firebase Storage</text>
+    <text class="t sm" x="685" y="264" text-anchor="middle">food images</text>
+  </a>
+
+  <a href="#edge-features-to-firestore" xlink:href="#edge-features-to-firestore" class="dedge" data-vibekb-edge="features-to-firestore">
+    <title>writes Firestore — verified</title>
+    <line class="hit" x1="340" y1="144" x2="140" y2="220"/>
+    <line class="arrow" x1="340" y1="144" x2="140" y2="220"/>
+    <text class="t elbl" x="200" y="170">writes</text>
+  </a>
+  <a href="#edge-features-to-prefs" xlink:href="#edge-features-to-prefs" class="dedge" data-vibekb-edge="features-to-prefs">
+    <title>stores in prefs — verified</title>
+    <line class="hit" x1="390" y1="144" x2="305" y2="220"/>
+    <line class="arrow" x1="390" y1="144" x2="305" y2="220"/>
+    <text class="t elbl" x="320" y="170">stores-in</text>
+  </a>
+  <a href="#edge-prefs-to-widgets" xlink:href="#edge-prefs-to-widgets" class="dedge" data-vibekb-edge="prefs-to-widgets">
+    <title>sends to widgets — inferred</title>
+    <line class="hit" x1="380" y1="252" x2="420" y2="252"/>
+    <line class="arrow-inferred" x1="380" y1="252" x2="420" y2="252"/>
+    <text class="t elbl" x="378" y="244">sends-to (inferred)</text>
+  </a>
+  <a href="#edge-features-to-bucket" xlink:href="#edge-features-to-bucket" class="dedge" data-vibekb-edge="features-to-bucket">
+    <title>writes storage — inferred</title>
+    <line class="hit" x1="480" y1="144" x2="680" y2="220"/>
+    <line class="arrow-inferred" x1="480" y1="144" x2="680" y2="220"/>
+    <text class="t elbl" x="590" y="160">writes (inferred)</text>
+  </a>
+
+</svg>                                            </div>
+                    <figcaption class="diagram-caption"><strong>What am I looking at?</strong> Feature writers to Firestore, SharedPreferences, HomeWidget, and Firebase Storage.</figcaption>
+                </figure>
+
+                                    <div class="diagram-explain" id="persistence-storage-map-explain">
+    <div class="dx-legend" role="note">
+        <span class="dx-legend__title">How to read this</span>
+        <span class="dx-legend__item"><span class="dx-swatch dx-swatch--solid" aria-hidden="true"></span> Solid line &mdash; verified from source</span>
+        <span class="dx-legend__item"><span class="dx-swatch dx-swatch--dashed" aria-hidden="true"></span> Dashed line &mdash; inferred from source</span>
+        <span class="dx-legend__hint text-soft">Select any box or arrow in the diagram to jump to its explanation.</span>
+    </div>
+
+    <h4 class="dx-heading" id="persistence-storage-map-nodes-h">Parts &mdash; what each one is</h4>
+    <p class="dx-heading-note text-soft">Each part explains why it appears, where it lives in the repository, and which files to read.</p>
+    <div class="dx-list" role="list">
+                    <section class="dx-card dx-node" role="listitem" id="node-features" data-node="features" tabindex="-1" aria-labelledby="node-features-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-features-h">Feature repositories</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Domain code that reads and writes user, community, nutrition, and challenge data.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie nutrition tracking</a> <a class="chip" href="../functionality/community-forum.html">Community forum</a> <a class="chip" href="../functionality/twenty-eight-day-challenge.html">Twenty-eight day challenge</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/features, lib/core/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">features/</span><ul><li><span class="loc-dir">nutrition/</span><ul><li><span class="loc-dir">data/</span><ul><li><span class="loc-dir">repositories/</span><ul><li><code class="loc-file">nutrition_repository.dart</code></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/features/nutrition/data/repositories/nutrition_repository.dart</code></div><p class="dx-file__reason">Representative Firestore writer for food logs and goals.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/nutrition/data/repositories/nutrition_repository.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-firestore" data-node="firestore" tabindex="-1" aria-labelledby="node-firestore-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-firestore-h">Cloud Firestore</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Primary shared database for users, community, accountability, and quotas.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/community-forum.html">Community forum</a> <a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">cloud/</code>
+                                                <ul class="loc-tree"><li><code class="loc-file">firestore.rules</code></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Validation</span><code class="dx-file__path">firestore.rules</code></div><p class="dx-file__reason">Server-side rules governing client access to collections.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/firestore.rules" rel="noopener noreferrer">View source on GitHub <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-prefs" data-node="prefs" tabindex="-1" aria-labelledby="node-prefs-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-prefs-h">SharedPreferences</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Fast local keys for onboarding resume, streaks, fasting, and notification prefs.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/startup-routing.html">Startup routing</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a> <a class="chip" href="../functionality/fasting-tracker.html">Fasting tracker</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">device/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">features/</span><ul><li><span class="loc-dir">onboarding/</span><ul><li><span class="loc-dir">data/</span><ul><li><span class="loc-dir">services/</span><ul><li><code class="loc-file">onboarding_progress_service.dart</code></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Storage</span><code class="dx-file__path">lib/features/onboarding/data/services/onboarding_progress_service.dart</code></div><p class="dx-file__reason">Owns onboarding_* preference keys used at startup.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/onboarding/data/services/onboarding_progress_service.dart" rel="noopener noreferrer">View source on GitHub <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-widgets-bridge" data-node="widgets-bridge" tabindex="-1" aria-labelledby="node-widgets-bridge-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-widgets-bridge-h">HomeWidget bridge</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Pushes selected values to iOS/Android home screen widgets.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/home-widgets.html">Home screen widgets</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/core/streak, ios/StreakWidget, android providers/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">core/</span><ul><li><span class="loc-dir">streak/</span><ul><li><code class="loc-file">streak_service.dart</code></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Integration adapter</span><code class="dx-file__path">lib/core/streak/streak_service.dart</code></div><p class="dx-file__reason">Sets app group id and updates widget data.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/streak/streak_service.dart" rel="noopener noreferrer">View source on GitHub <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                                    <p class="dx-uncertain"><strong>Uncertain:</strong> App group placeholder blocks real iOS sync.</p>
+                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-storage-bucket" data-node="storage-bucket" tabindex="-1" aria-labelledby="node-storage-bucket-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-storage-bucket-h">Firebase Storage</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Optional remote store for food images via LocalFoodImageService.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">cloud/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">core/</span><ul><li><span class="loc-dir">services/</span><ul><li><code class="loc-file">local_food_image_service.dart</code></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/core/services/local_food_image_service.dart</code></div><p class="dx-file__reason">Caches images locally and can upload/fallback to Storage.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/services/local_food_image_service.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+            </div>
+
+    <h4 class="dx-heading" id="persistence-storage-map-edges-h">Connections &mdash; why they connect</h4>
+    <p class="dx-heading-note text-soft">Each connection names the concrete mechanism linking its two parts. The mechanism is the proof the relationship passed the explainability gate.</p>
+    <div class="dx-list" role="list">
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-features-to-firestore" data-edge="features-to-firestore" tabindex="-1" aria-labelledby="edge-features-to-firestore-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-features-to-firestore-h">
+                        <a class="dx-edge__endpoint" href="#node-features">Feature repositories</a>
+                        <span class="dx-mech">writes <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-firestore">Cloud Firestore</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">Repositories write user, community, nutrition, and challenge documents to Firestore.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie nutrition tracking</a> <a class="chip" href="../functionality/community-forum.html">Community forum</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Caller</span><code class="dx-file__path">lib/features/community/data/repositories/community_repository.dart</code></div><p class="dx-file__reason">Writes community_posts and comments.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/community/data/repositories/community_repository.dart" rel="noopener noreferrer">View caller <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-features-to-prefs" data-edge="features-to-prefs" tabindex="-1" aria-labelledby="edge-features-to-prefs-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-features-to-prefs-h">
+                        <a class="dx-edge__endpoint" href="#node-features">Feature repositories</a>
+                        <span class="dx-mech">stores in <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-prefs">SharedPreferences</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">Onboarding, streak, fasting, and similar features store resume/fast state in SharedPreferences.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/startup-routing.html">Startup routing</a> <a class="chip" href="../functionality/fasting-tracker.html">Fasting tracker</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Caller</span><code class="dx-file__path">lib/features/fasting/data/repositories/fasting_repository.dart</code></div><p class="dx-file__reason">Persists fasting_logs_v1 locally only.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/fasting/data/repositories/fasting_repository.dart" rel="noopener noreferrer">View caller <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-edge dx-edge--inferred" role="listitem" id="edge-prefs-to-widgets" data-edge="prefs-to-widgets" tabindex="-1" aria-labelledby="edge-prefs-to-widgets-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-prefs-to-widgets-h">
+                        <a class="dx-edge__endpoint" href="#node-prefs">SharedPreferences</a>
+                        <span class="dx-mech">sends to <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-widgets-bridge">HomeWidget bridge</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--info">Inferred from source</span> <span class="badge badge--info">Dashed line</span></span>
+                </div>
+                <p class="dx-card__purpose">Streak and accountability services push values through HomeWidget into native widgets.</p>
+
+                                    <p class="dx-basis"><strong>Basis for the inference:</strong> Flutter update calls verified; native Swift/Kotlin read path inferred from suiteName/providers.</p>
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/home-widgets.html">Home screen widgets</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Caller</span><code class="dx-file__path">lib/core/accountability/accountability_widget_service.dart</code></div><p class="dx-file__reason">Updates accountability widget payloads.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/accountability/accountability_widget_service.dart" rel="noopener noreferrer">View caller <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                                    <p class="dx-uncertain"><strong>Uncertain:</strong> Placeholder app group may prevent iOS delivery.</p>
+                            </section>
+                    <section class="dx-card dx-edge dx-edge--inferred" role="listitem" id="edge-features-to-bucket" data-edge="features-to-bucket" tabindex="-1" aria-labelledby="edge-features-to-bucket-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-features-to-bucket-h">
+                        <a class="dx-edge__endpoint" href="#node-features">Feature repositories</a>
+                        <span class="dx-mech">writes <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-storage-bucket">Firebase Storage</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--info">Inferred from source</span> <span class="badge badge--info">Dashed line</span></span>
+                </div>
+                <p class="dx-card__purpose">LocalFoodImageService can upload cached food images to Firebase Storage as a fallback/remote path.</p>
+
+                                    <p class="dx-basis"><strong>Basis for the inference:</strong> Service responsibilities traced; every upload call site not enumerated.</p>
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Caller</span><code class="dx-file__path">lib/core/services/local_food_image_service.dart</code></div><p class="dx-file__reason">Implements upload/fallback for food images.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/services/local_food_image_service.dart" rel="noopener noreferrer">View caller <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                                    <p class="dx-uncertain"><strong>Uncertain:</strong> When upload vs local-only is chosen may depend on runtime flags.</p>
+                            </section>
+            </div>
+</div>
+                
+                <dl class="diagram-meta reading-column">
+                                            <dt>Diagram type</dt>
+                        <dd>Storage map</dd>
+                                        <dt>Verification</dt>
+                    <dd><span class="badge badge--info">Inferred from source</span></dd>
+                                            <dt>Source evidence</dt>
+                        <dd>Repository write paths verified; widget native delivery inferred.</dd>
+                                                                <dt>Last verified against source</dt>
+                        <dd>2026-07-21</dd>
+                                                                <dt>Uncertainty</dt>
+                        <dd>App group placeholder may prevent iOS widget sync.</dd>
+                                    </dl>
+
+                                                    <div class="related-diagrams reading-column">
+                                                    <p><strong>Related functionality:</strong> <a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie nutrition tracking</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a> <a class="chip" href="../functionality/home-widgets.html">Home screen widgets</a> <a class="chip" href="../functionality/community-forum.html">Community forum</a></p>
+                                                                            <p><strong>Related warnings:</strong> <a class="chip" href="../why/warnings/widget-app-group-placeholder.html">iOS widget app group ID is a placeholder</a></p>
+                                                                            <p><strong>Related diagrams:</strong>
+                                                            <a class="chip" href="../diagrams/index.html#app-overview">Stoppr application overview</a>                                                        </p>
+                                            </div>
+                            </section>
+                    <h2 class="diagram-group-title reading-column">Understand uncertainty</h2>
+                    <p class="reading-column text-soft">Configuration landmines and unverified edges.</p>
+        
+                                <section class="diagram-section wide-section diagram-section--explainable" id="risk-uncertainty-map" aria-labelledby="risk-uncertainty-map-h" data-diagram="risk-uncertainty-map">
+                <h3 id="risk-uncertainty-map-h">Risk and uncertainty map</h3>
+                <p>Verified configuration landmines that can break auth, paywalls, widgets, or quota soft-gates.</p>
+
+                                <figure class="diagram-figure">
+                    <div class="diagram-scroll">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 860 340" role="img" aria-labelledby="ru-title ru-desc">
+  <title id="ru-title">Risk and uncertainty map</title>
+  <desc id="ru-desc">Five verified configuration landmines: Superwall placement placeholders, Android Superwall purchase controller wiring, OAuth and env fallbacks, widget app group placeholder, and disabled quota flags. Two configures edges show how Android wiring and quota flags affect the placement-driven paywall path.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4f5c56"/>
+    </marker>
+    
+    <style>
+      .t { font-family:"Figtree","Segoe UI",sans-serif; fill:#1a2421; }
+      .box { stroke:#b9c6c0; stroke-width:1.5; fill:#e7f4f0; }
+      .gate { fill:#f6ead4; stroke:#7a4210; stroke-width:1.5; }
+      .store { fill:#fffcf7; stroke:#b9c6c0; stroke-width:1.5; }
+      .warn { fill:#f8e4e0; stroke:#8a2f2f; stroke-width:1.5; }
+      .lbl { font-size:12px; font-weight:600; }
+      .sm { font-size:10px; fill:#4f5c56; }
+      .arrow { stroke:#4f5c56; stroke-width:1.6; fill:none; marker-end:url(#arrow); }
+      .arrow-inferred { stroke:#4f5c56; stroke-width:1.6; fill:none; stroke-dasharray:7 5; marker-end:url(#arrow); }
+      .hit { stroke:transparent; stroke-width:16; fill:none; }
+      .title { font-size:18px; font-weight:800; font-family:"Outfit","Figtree",sans-serif; }
+      .elbl { font-size:9px; fill:#4f5c56; }
+    </style>
+  </defs>
+  <rect width="860" height="340" fill="#f4f0e8"/>
+  <text class="t title" x="28" y="36">Risk and uncertainty map</text>
+  <text class="t sm" x="28" y="54">Configuration landmines verified in source. Select a box for the warning and next action.</text>
+
+  <a href="#node-placement-placeholders" xlink:href="#node-placement-placeholders" class="dnode" data-vibekb-node="placement-placeholders">
+    <title>Superwall placement placeholders — open explanation</title>
+    <rect class="warn" x="300" y="100" width="200" height="70" rx="9"/>
+    <text class="t lbl" x="400" y="128" text-anchor="middle">Placement placeholders</text>
+    <text class="t sm" x="400" y="146" text-anchor="middle">INSERT_YOUR_* IDs</text>
+  </a>
+  <a href="#node-android-sw" xlink:href="#node-android-sw" class="dnode" data-vibekb-node="android-sw">
+    <title>Android Superwall wiring — open explanation</title>
+    <rect class="warn" x="40" y="230" width="180" height="70" rx="9"/>
+    <text class="t lbl" x="130" y="258" text-anchor="middle">Android SW wiring</text>
+    <text class="t sm" x="130" y="276" text-anchor="middle">no purchaseController</text>
+  </a>
+  <a href="#node-oauth-fallbacks" xlink:href="#node-oauth-fallbacks" class="dnode" data-vibekb-node="oauth-fallbacks">
+    <title>OAuth / env fallbacks — open explanation</title>
+    <rect class="warn" x="250" y="230" width="170" height="70" rx="9"/>
+    <text class="t lbl" x="335" y="258" text-anchor="middle">OAuth / env fallbacks</text>
+    <text class="t sm" x="335" y="276" text-anchor="middle">.env vs .env.local</text>
+  </a>
+  <a href="#node-widget-group" xlink:href="#node-widget-group" class="dnode" data-vibekb-node="widget-group">
+    <title>Widget app group placeholder — open explanation</title>
+    <rect class="warn" x="450" y="230" width="170" height="70" rx="9"/>
+    <text class="t lbl" x="535" y="258" text-anchor="middle">Widget app group</text>
+    <text class="t sm" x="535" y="276" text-anchor="middle">YOUR_BUNDLE_ID</text>
+  </a>
+  <a href="#node-quota-flags" xlink:href="#node-quota-flags" class="dnode" data-vibekb-node="quota-flags">
+    <title>Disabled quota flags — open explanation</title>
+    <rect class="warn" x="650" y="230" width="170" height="70" rx="9"/>
+    <text class="t lbl" x="735" y="258" text-anchor="middle">Quota flags off</text>
+    <text class="t sm" x="735" y="276" text-anchor="middle">QUOTA_SYSTEM_ENABLED</text>
+  </a>
+
+  <a href="#edge-android-configures-purchases" xlink:href="#edge-android-configures-purchases" class="dedge" data-vibekb-edge="android-configures-purchases">
+    <title>configures purchase path — verified</title>
+    <line class="hit" x1="160" y1="230" x2="340" y2="170"/>
+    <line class="arrow" x1="160" y1="230" x2="340" y2="170"/>
+    <text class="t elbl" x="200" y="190">configures</text>
+  </a>
+  <a href="#edge-quota-configures-soft" xlink:href="#edge-quota-configures-soft" class="dedge" data-vibekb-edge="quota-configures-soft">
+    <title>configures soft paywalls — verified</title>
+    <line class="hit" x1="720" y1="230" x2="480" y2="170"/>
+    <line class="arrow" x1="720" y1="230" x2="480" y2="170"/>
+    <text class="t elbl" x="600" y="190">configures</text>
+  </a>
+
+</svg>                                            </div>
+                    <figcaption class="diagram-caption"><strong>What am I looking at?</strong> Verified configuration landmines that can break auth, paywalls, widgets, or quota soft-gates.</figcaption>
+                </figure>
+
+                                    <div class="diagram-explain" id="risk-uncertainty-map-explain">
+    <div class="dx-legend" role="note">
+        <span class="dx-legend__title">How to read this</span>
+        <span class="dx-legend__item"><span class="dx-swatch dx-swatch--solid" aria-hidden="true"></span> Solid line &mdash; verified from source</span>
+        <span class="dx-legend__item"><span class="dx-swatch dx-swatch--dashed" aria-hidden="true"></span> Dashed line &mdash; inferred from source</span>
+        <span class="dx-legend__hint text-soft">Select any box or arrow in the diagram to jump to its explanation.</span>
+    </div>
+
+    <h4 class="dx-heading" id="risk-uncertainty-map-nodes-h">Parts &mdash; what each one is</h4>
+    <p class="dx-heading-note text-soft">Each part explains why it appears, where it lives in the repository, and which files to read.</p>
+    <div class="dx-list" role="list">
+                    <section class="dx-card dx-node" role="listitem" id="node-placement-placeholders" data-node="placement-placeholders" tabindex="-1" aria-labelledby="node-placement-placeholders-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-placement-placeholders-h">Superwall placement placeholders</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Many registerPlacement calls still use INSERT_YOUR_* strings instead of real IDs.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/features, lib/core/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">features/</span><ul><li><span class="loc-dir">onboarding/</span><ul><li><span class="loc-dir">presentation/</span><ul><li><span class="loc-dir">screens/</span><ul><li><code class="loc-file">pre_paywall.dart</code></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/features/onboarding/presentation/screens/pre_paywall.dart</code></div><p class="dx-file__reason">Contains primary INSERT_YOUR_* placement registrations.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/onboarding/presentation/screens/pre_paywall.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                    <p class="dx-warn"><strong>&#9888; Warnings:</strong> <a class="chip" href="../why/warnings/superwall-placement-placeholders.html">Superwall placement IDs are placeholders</a></p>
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-android-sw" data-node="android-sw" tabindex="-1" aria-labelledby="node-android-sw-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-android-sw-h">Android Superwall wiring</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Android configure path does not attach SuperwallPurchaseController like iOS.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/main.dart/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><code class="loc-file">main.dart</code></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Entry point</span><code class="dx-file__path">lib/main.dart</code></div><p class="dx-file__reason">Early Android Superwall.configure omits purchaseController.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/main.dart" rel="noopener noreferrer">Open entry point <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                    <p class="dx-warn"><strong>&#9888; Warnings:</strong> <a class="chip" href="../why/warnings/android-superwall-purchase-controller.html">Android Superwall purchase controller wiring is incomplete</a></p>
+                                                    <p class="dx-uncertain"><strong>Uncertain:</strong> Runtime purchase impact not executed.</p>
+                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-oauth-fallbacks" data-node="oauth-fallbacks" tabindex="-1" aria-labelledby="node-oauth-fallbacks-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-oauth-fallbacks-h">OAuth / env fallbacks</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Missing env values fall back to placeholder OAuth client IDs; main loads .env while repo has .env.local.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/app-startup.html">Application startup</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/core/auth, lib/core/config/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">core/</span><ul><li><span class="loc-dir">auth/</span><ul><li><code class="loc-file">auth_service.dart</code></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/core/auth/auth_service.dart</code></div><p class="dx-file__reason">Embeds INSERT_YOUR_* Google client ID fallbacks.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/auth/auth_service.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                    <p class="dx-warn"><strong>&#9888; Warnings:</strong> <a class="chip" href="../why/warnings/google-oauth-placeholders.html">Google OAuth client ID fallbacks</a> <a class="chip" href="../why/warnings/env-file-mismatch.html">Repository has .env.local but main loads .env</a></p>
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-widget-group" data-node="widget-group" tabindex="-1" aria-labelledby="node-widget-group-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-widget-group-h">Widget app group placeholder</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">Home widgets reference group.YOUR_BUNDLE_ID.shared until a real group is configured.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/home-widgets.html">Home screen widgets</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">lib/core/streak, ios entitlements/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">core/</span><ul><li><span class="loc-dir">streak/</span><ul><li><code class="loc-file">streak_service.dart</code></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Configuration</span><code class="dx-file__path">lib/core/streak/streak_service.dart</code></div><p class="dx-file__reason">Defines the placeholder app group constant.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/core/streak/streak_service.dart" rel="noopener noreferrer">View configuration <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                    <p class="dx-warn"><strong>&#9888; Warnings:</strong> <a class="chip" href="../why/warnings/widget-app-group-placeholder.html">iOS widget app group ID is a placeholder</a></p>
+                                            </section>
+                    <section class="dx-card dx-node" role="listitem" id="node-quota-flags" data-node="quota-flags" tabindex="-1" aria-labelledby="node-quota-flags-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title" id="node-quota-flags-h">Disabled quota flags</h5>
+                                            <span class="badge badge--ok">Verified from source</span>                                    </div>
+                <p class="dx-card__purpose">FeatureQuota soft-paywalls exist but QUOTA_SYSTEM_ENABLED is false on major screens.</p>
+
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a></p>
+                
+                                                    <div class="dx-where">
+                        <span class="dx-where__label">Where it lives</span>
+                                                    <code class="dx-where__path">feature screens/</code>
+                                                <ul class="loc-tree"><li><span class="loc-dir">lib/</span><ul><li><span class="loc-dir">features/</span><ul><li><span class="loc-dir">learn/</span><ul><li><span class="loc-dir">presentation/</span><ul><li><span class="loc-dir">screens/</span><ul><li><code class="loc-file">learn_video_list_screen.dart</code></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul>                    </div>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files that implement or support it</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Primary implementation</span><code class="dx-file__path">lib/features/learn/presentation/screens/learn_video_list_screen.dart</code></div><p class="dx-file__reason">Hard-codes QUOTA_SYSTEM_ENABLED = false.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/learn/presentation/screens/learn_video_list_screen.dart" rel="noopener noreferrer">Open implementation <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+            </div>
+
+    <h4 class="dx-heading" id="risk-uncertainty-map-edges-h">Connections &mdash; why they connect</h4>
+    <p class="dx-heading-note text-soft">Each connection names the concrete mechanism linking its two parts. The mechanism is the proof the relationship passed the explainability gate.</p>
+    <div class="dx-list" role="list">
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-android-configures-purchases" data-edge="android-configures-purchases" tabindex="-1" aria-labelledby="edge-android-configures-purchases-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-android-configures-purchases-h">
+                        <a class="dx-edge__endpoint" href="#node-android-sw">Android Superwall wiring</a>
+                        <span class="dx-mech">configures <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-placement-placeholders">Superwall placement placeholders</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">Android Superwall configuration controls whether placement-driven purchases can reach SuperwallPurchaseController.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Configuration</span><code class="dx-file__path">lib/main.dart</code></div><p class="dx-file__reason">Platform branch decides whether purchaseController is passed to Superwall.configure.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/main.dart" rel="noopener noreferrer">View configuration <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+                    <section class="dx-card dx-edge dx-edge--verified" role="listitem" id="edge-quota-configures-soft" data-edge="quota-configures-soft" tabindex="-1" aria-labelledby="edge-quota-configures-soft-h">
+                <div class="dx-card__head">
+                    <h5 class="dx-card__title dx-edge__title" id="edge-quota-configures-soft-h">
+                        <a class="dx-edge__endpoint" href="#node-quota-flags">Disabled quota flags</a>
+                        <span class="dx-mech">configures <span aria-hidden="true">&rarr;</span></span>
+                        <a class="dx-edge__endpoint" href="#node-placement-placeholders">Superwall placement placeholders</a>
+                    </h5>
+                    <span class="dx-verif"><span class="badge badge--ok">Verified from source</span> <span class="badge badge--ok">Solid line</span></span>
+                </div>
+                <p class="dx-card__purpose">QUOTA_SYSTEM_ENABLED flags configure whether feature screens invoke quota checks that lead to soft Superwall placements.</p>
+
+                
+                                    <p class="dx-rel"><strong>Related functionality:</strong> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a></p>
+                
+                                    <div class="dx-files">
+                        <span class="dx-files__label">Files behind this connection</span>
+                        <ul class="dx-files__list">
+                                                            <li class="dx-file"><div class="dx-file__head"><span class="dx-file__role">Configuration</span><code class="dx-file__path">lib/features/app/presentation/screens/chatbot/chatbot_screen.dart</code></div><p class="dx-file__reason">Local flag disables quota path before placement registration.</p><p class="dx-file__link"><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr/blob/9f44315/lib/features/app/presentation/screens/chatbot/chatbot_screen.dart" rel="noopener noreferrer">View configuration <span aria-hidden="true">↗</span></a></p></li>                                                    </ul>
+                    </div>
+                
+                                            </section>
+            </div>
+</div>
+                
+                <dl class="diagram-meta reading-column">
+                                            <dt>Diagram type</dt>
+                        <dd>Risk and uncertainty map</dd>
+                                        <dt>Verification</dt>
+                    <dd><span class="badge badge--ok">Verified from source</span></dd>
+                                            <dt>Source evidence</dt>
+                        <dd>Each landmine grepped and file-traced in source.</dd>
+                                                                <dt>Last verified against source</dt>
+                        <dd>2026-07-21</dd>
+                                                                <dt>Uncertainty</dt>
+                        <dd>Runtime severity depends on private env and dashboard config not in git.</dd>
+                                    </dl>
+
+                                                    <div class="related-diagrams reading-column">
+                                                    <p><strong>Related functionality:</strong> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/home-widgets.html">Home screen widgets</a> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a></p>
+                                                                            <p><strong>Related warnings:</strong> <a class="chip" href="../why/warnings/superwall-placement-placeholders.html">Superwall placement IDs are placeholders</a> <a class="chip" href="../why/warnings/android-superwall-purchase-controller.html">Android Superwall purchase controller wiring is incomplete</a> <a class="chip" href="../why/warnings/google-oauth-placeholders.html">Google OAuth client ID fallbacks</a> <a class="chip" href="../why/warnings/widget-app-group-placeholder.html">iOS widget app group ID is a placeholder</a> <a class="chip" href="../why/warnings/env-file-mismatch.html">Repository has .env.local but main loads .env</a></p>
+                                                                            <p><strong>Related diagrams:</strong>
+                                                            <a class="chip" href="../diagrams/index.html#subscription-paywall-flow">Subscription and paywall flow</a>                                                        </p>
+                                            </div>
+                            </section>
+            
+    </article>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap site-footer__inner">
+                <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+                <p class="muted">
+                    A living explanation generated from repository-owned content in <code>.vibekb/</code>.
+                    <a href="../index.html">About VibeKB</a>
+                </p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+            </div>
+        </footer>
+    </div>
+</div>
+
 <script src="../assets/js/guide.js" defer></script>
 </body>
 </html>

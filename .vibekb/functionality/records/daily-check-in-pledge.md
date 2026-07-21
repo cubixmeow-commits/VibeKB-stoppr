@@ -1,37 +1,33 @@
 ---
-area: home-wellness
-summary: DailyCheckInWidget and PledgeService handle mood check-in, relapse flow, and 24-hour pledges.
-status: implemented
-verification: verified-from-source
-user_facing: true
-trigger: Home screen overlay or pledge notification.
-files: [lib/features/app/presentation/widgets/daily_check_in_widget.dart, lib/core/pledge/pledge_service.dart]
-reads: [shared_preferences, users]
-writes: [shared_preferences, users]
-depends_on: [home-dashboard, sugar-streak-tracking]
-related_memory: [discovery:check-in-on-load-disabled]
 id: daily-check-in-pledge
 type: functionality
 title: Daily check-in and pledge
+area: home-wellness
+summary: Daily pledge/check-in records success or failure with feelings/notes and can reset streak on relapse indication.
+status: implemented
+verification: verified-from-source
+user_facing: true
+trigger: User interacts with daily check-in or pledge widgets/screens.
+files: [lib/core/pledges/pledge_service.dart, lib/features/app/presentation/widgets/daily_check_in_widget.dart, lib/features/app/presentation/screens/pledge_screen.dart]
+reads: []
+writes: []
+config: []
+depends_on: [home-dashboard, sugar-streak-tracking]
+related_memory: []
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-DailyCheckInWidget and PledgeService handle mood check-in, relapse flow, and 24-hour pledges.
+Pledges store under `users/{uid}/pledges` and local preferences.
 
 ## Current behavior
 
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+`PledgeService` manages pledge lifecycle; UI widgets collect outcomes. Failure
+paths can trigger relapse-related streak resets.
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented; verified-from-source.

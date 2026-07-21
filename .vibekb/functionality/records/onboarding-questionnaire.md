@@ -1,37 +1,34 @@
 ---
-area: onboarding
-summary: 13-question survey collecting consumption habits; answers saved locally and to Firestore.
-status: implemented
-verification: verified-from-source
-user_facing: true
-trigger: User enters QuestionnaireScreen during onboarding.
-files: [lib/features/onboarding/presentation/screens/questionnaire_screen.dart, lib/features/onboarding/domain/models/question_model.dart]
-reads: [shared_preferences]
-writes: [shared_preferences, users]
-depends_on: [onboarding-intro]
-related_memory: []
 id: onboarding-questionnaire
 type: functionality
 title: Onboarding questionnaire
+area: onboarding
+summary: "Multi-page questionnaire saves answers locally and to users/{uid}/onboarding/questionnaire with resume support."
+status: implemented
+verification: verified-from-source
+user_facing: true
+trigger: User reaches QuestionnaireScreen in the funnel.
+files: [lib/features/onboarding/presentation/screens/questionnaire_screen.dart, lib/features/onboarding/data/repositories/questionnaire_repository.dart, lib/features/onboarding/data/services/onboarding_progress_service.dart]
+reads: []
+writes: []
+config: []
+depends_on: [onboarding-intro]
+related_memory: []
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-13-question survey collecting consumption habits; answers saved locally and to Firestore.
+Questionnaire answers drive later analysis and are persisted for resume.
 
 ## Current behavior
 
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+PageController-driven questions write SharedPreferences progress keys and
+Firestore onboarding docs (questionnaire, consumption, acquisition). iOS may
+request ATT during this flow.
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented; verified-from-source.

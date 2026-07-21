@@ -1,38 +1,33 @@
 ---
-area: nutrition
-summary: Edamam-primary recipe search with Spoonacular fallback and Firestore favorites.
-status: implemented
-verification: verified-from-source
-user_facing: true
-trigger: User opens Recipes from home.
-files: [lib/features/recipes/data/repositories/recipe_repository.dart, lib/features/recipes/presentation/screens/recipes_list_screen.dart]
-reads: [favorite_recipes]
-writes: [favorite_recipes]
-config: [EDAMAM_APP_ID, SPOONACULAR_API_KEY]
-depends_on: [home-dashboard]
-related_memory: []
 id: recipe-discovery
 type: functionality
 title: Recipe discovery
+area: nutrition
+summary: "Searches Edamam first with Spoonacular fallback; favorites stored under users/{uid}/favorite_recipes."
+status: implemented
+verification: verified-from-source
+user_facing: true
+trigger: User browses or favorites recipes.
+files: [lib/features/recipes/data/repositories/recipe_repository.dart, lib/features/recipes/presentation/screens/recipes_list_screen.dart]
+reads: []
+writes: []
+config: []
+depends_on: []
+related_memory: []
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-Edamam-primary recipe search with Spoonacular fallback and Firestore favorites.
+External recipe APIs back the recipes feature with local favorite sync.
 
 ## Current behavior
 
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+Uses `EDAMAM_API_KEY` / `EDAMAM_APP_ID` and `SPOONACULAR_API_KEY` config names.
+Favorites persist in Firestore.
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented; verified-from-source.

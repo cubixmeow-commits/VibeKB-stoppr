@@ -1,49 +1,17 @@
 ---
-id: storage
+id: system-storage
 type: system
 title: Storage
-summary: Stoppr uses Firestore for cloud user/community/nutrition data, SharedPreferences for local state, and FlutterSecureStorage for install tracking.
-verification: verified-from-source
+summary: Firestore collections for shared data; SharedPreferences for fast local state; Firebase Storage for food images; HomeWidget suite for widgets.
 updated: 2026-07-21
 ---
 
-## Cloud Firestore
+## Stores
 
-### Top-level collections
-
-| Collection | Purpose |
-|------------|---------|
-| `users` | User profiles and metadata |
-| `community_posts` | Forum posts |
-| `official_chat` / `official_chat_{lang}` | Language chat rooms |
-| `accountability_partnerships` | Partner pairs |
-| `accountability_pool` | Matchmaking queue |
-| `sharing_tokens` | Streak share invites |
-| `user_feature_quotas` | Free-tier usage limits |
-
-### `users/{uid}` subcollections
-
-`onboarding`, `pledges`, `challenges/tasks`, `food_logs`, `daily_summaries`,
-`nutrition_profile`, `body_metrics/weight_entries`, `workout_logs`,
-`favorite_recipes`, `blocked_users`.
-
-## Local storage (SharedPreferences)
-
-Key examples: `streak_start_timestamp`, `onboarding_current_screen`,
-`onboarding_completed`, `completed_learn_video_lessons`, `fasting_logs_v1`,
-per-notification-type toggles, feature quota counters.
-
-## Secure storage
-
-`InstallationTrackerService` uses iOS Keychain (`permanent_install_uuid`) for
-redownload detection.
-
-## Firebase Storage
-
-Remote audio files (e.g. NSDR track) via `RemoteAudioService`.
-
-## What is NOT stored in Firestore
-
-- Fasting logs (local only despite rules existing).
-- Article content (bundled in `assets/articles/`).
-- Video lesson metadata (hardcoded in `LearnVideoCubit`).
+- **Firestore:** `users`, `community_posts`, `official_chat*`,
+  `accountability_*`, `user_feature_quotas`, feedback collections.
+- **SharedPreferences:** onboarding, streaks, fasting, quotas fallback,
+  notification prefs, video/article progress.
+- **Firebase Storage:** food image upload/fallback.
+- **HomeWidget / App Group:** widget snapshots (app group placeholder risk).
+- **Secure storage:** installation tracking (dependency present).

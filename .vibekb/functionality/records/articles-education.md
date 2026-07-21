@@ -1,37 +1,28 @@
 ---
+id: articles-education
+type: functionality
+title: Articles education
 area: education
-summary: Bundled markdown articles in assets/ with progress tracking; Firestore articles collection unused by app.
+summary: Loads article content from assets and syncs reading progress to SharedPreferences and Firestore.
 status: implemented
 verification: verified-from-source
 user_facing: true
-trigger: User opens Articles from home.
+trigger: User opens Articles list/detail.
 files: [lib/features/learn/data/services/article_service.dart, lib/features/learn/presentation/screens/articles_list_screen.dart]
-reads: [shared_preferences]
-writes: [shared_preferences]
-depends_on: [home-dashboard]
+reads: []
+writes: []
+config: []
+depends_on: []
 related_memory: []
-id: articles-education
-type: functionality
-title: Articles and educational content
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-Bundled markdown articles in assets/ with progress tracking; Firestore articles collection unused by app.
-
-## Current behavior
-
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+Article progress syncs to `users/{uid}/progress/articles` when authenticated.
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented; verified-from-source.

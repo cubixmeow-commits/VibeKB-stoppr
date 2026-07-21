@@ -1,28 +1,28 @@
 ---
 id: revenuecat-not-firestore-gating
 type: decision
-title: Subscription gating via RevenueCat not Firestore
-summary: isPaidSubscriber checks RevenueCat and Superwall; Firebase subscription fields are analytics-only.
+title: RevenueCat/Superwall gate access, not Firestore
+summary: Paid access ignores Firestore subscription fields for granting entitlements.
 status: active
 verification: verified-from-source
-functionality: [subscription-access-gating, main-paywall]
+functionality: [subscription-access-gating, startup-routing]
 files: [lib/core/subscription/subscription_service.dart]
+alternatives: [Trust Firestore subscriptionStatus]
 updated: 2026-07-21
 ---
 
 ## Context
 
-User documents store subscription metadata in Firestore for analytics.
+Subscription fields are written to `users/{uid}` for analytics/display.
 
 ## Decision
 
-`SubscriptionService.isPaidSubscriber()` never reads Firestore subscription fields for gating. It checks debug mode, TestFlight, reviewer emails, Superwall status, then RevenueCat entitlements.
-
-## Reason
-
-Purchase truth should come from the payment SDK, not potentially stale Firestore copies.
+`isPaidSubscriber` consults Superwall and RevenueCat only (plus explicit
+bypasses). Comment in source: Firebase data is no longer consulted for granting
+access.
 
 ## Consequences
 
-Firestore subscription fields can drift from actual entitlement state.
-Premium access works offline if RevenueCat cache is warm.
+Tampering with Firestore subscription fields must not unlock premium. Promo
+access that only sets Firestore fields may fail unless Superwall status is also
+synced.

@@ -4,16 +4,31 @@
   "updated": "2026-07-21",
   "project": {
     "name": "Stoppr",
+    "public_name": "Stoppr",
+    "package_name": "stoppr",
     "source_repository": "https://github.com/cubixmeow-commits/VibeKB-stoppr",
     "platform": "Flutter (iOS, Android)",
-    "version_note": "App version 7.4.2+1 per pubspec.yaml at model creation."
+    "version_note": "App version 7.4.2+1 per pubspec.yaml at analysis."
+  },
+  "provenance": {
+    "name": "Stoppr",
+    "source_repository": "https://github.com/cubixmeow-commits/VibeKB-stoppr",
+    "source_subpath": "",
+    "source_branch": "main",
+    "source_commit": "9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9)",
+    "analyzed": "2026-07-21",
+    "verification_scope": "Source-traced across lib/ for startup, auth, onboarding, subscription/Superwall/RevenueCat, home/streak/panic, community, nutrition, learn, widgets, and platform config. Runtime behavior and store/dashboard configs are not executed; many Superwall placements remain placeholder strings in source.",
+    "last_verified": "2026-07-21",
+    "updates_automatically": false,
+    "freshness_note": "Static snapshot of Stoppr at the commit above. Does not update itself. Re-verify against source before changing claims."
   },
   "structure": {
-    "project": "project/ — identity, intent, current state, constraints",
-    "functionality": "functionality/ — index.json + records/ (the primary unit)",
-    "system": "system/ — mental model, components, flows, storage, deployment",
-    "files": "files/important-files.json — curated important files",
-    "memory": "memory/ — decisions, constraints, assumptions, warnings, discoveries, changes",
-    "work": "work/ — current AI work, handoff, sessions"
+    "project": "project/ \u2014 identity, intent, current state, constraints",
+    "functionality": "functionality/ \u2014 index.json + records/ (the primary unit)",
+    "system": "system/ \u2014 mental model, components, flows, storage, deployment",
+    "files": "files/important-files.json \u2014 curated important files",
+    "diagrams": "diagrams/ \u2014 index.json + records/ + assets/ + topology/",
+    "memory": "memory/ \u2014 decisions, constraints, assumptions, warnings, discoveries, changes",
+    "work": "work/ \u2014 current AI work, handoff, sessions"
   }
 }

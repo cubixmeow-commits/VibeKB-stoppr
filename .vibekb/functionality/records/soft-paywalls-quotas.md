@@ -1,37 +1,36 @@
 ---
+id: soft-paywalls-quotas
+type: functionality
+title: Soft paywalls and quotas
 area: subscription
-summary: FeatureQuotaService limits free-tier usage; soft paywalls on learn, food scan, chatbot, panic — partially disabled for A/B.
+summary: FeatureQuotaService and contextual Superwall placements exist, but QUOTA_SYSTEM_ENABLED is false on major feature screens.
 status: partial
 verification: verified-from-source
 user_facing: true
-trigger: Free user hits quota threshold on a gated feature.
-files: [lib/core/subscription/feature_quota_service.dart, lib/features/learn/presentation/screens/learn_video_list_screen.dart]
-reads: [user_feature_quotas, shared_preferences]
-writes: [user_feature_quotas, shared_preferences]
-depends_on: [subscription-access-gating]
-related_memory: [discovery:quotas-disabled-ab-test]
-id: soft-paywalls-quotas
-type: functionality
-title: Soft paywalls and feature quotas
+trigger: User opens gated features or ratings/redownload/quick-action offers.
+files: [lib/core/usage/feature_quota_service.dart, lib/features/learn/presentation/screens/learn_video_list_screen.dart, lib/features/app/presentation/screens/chatbot/chatbot_screen.dart, lib/features/onboarding/presentation/screens/give_us_ratings_screen.dart]
+reads: []
+writes: []
+config: []
+depends_on: [main-paywall]
+related_memory: [discovery:quotas-disabled-ab-test, warning:superwall-placement-placeholders]
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-FeatureQuotaService limits free-tier usage; soft paywalls on learn, food scan, chatbot, panic — partially disabled for A/B.
+Quota soft-paywalls are coded but currently disabled by local feature flags.
 
 ## Current behavior
 
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+`FeatureQuotaService` tracks limits in `user_feature_quotas` with
+SharedPreferences fallback. Learn, food scan, Rate My Plate, and chatbot set
+`QUOTA_SYSTEM_ENABLED = false`. Contextual placements (ratings, redownload,
+quick actions, home banners) still call Superwall with placeholder or concrete
+IDs. Chatbot separately enforces `ApiRateLimitService` (20/day).
 
 ## Current state
 
-**Status:** partial. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Partial; verified-from-source.

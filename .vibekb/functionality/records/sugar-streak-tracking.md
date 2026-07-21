@@ -1,37 +1,34 @@
 ---
+id: sugar-streak-tracking
+type: functionality
+title: Sugar streak tracking
 area: home-wellness
-summary: StreakService maintains a live sugar-free timer synced to SharedPreferences and Firestore for subscribers.
+summary: Persists streak counters in SharedPreferences and Firestore and syncs values to home widgets.
 status: implemented
 verification: verified-from-source
 user_facing: true
-trigger: App launch and home screen display.
-files: [lib/core/streak/streak_service.dart, lib/features/app/presentation/widgets/streak_counter_widget.dart]
-reads: [shared_preferences, users]
-writes: [shared_preferences, users]
-depends_on: [app-startup]
+trigger: App open, check-in success/failure, relapse, or post-purchase init.
+files: [lib/core/streak/streak_service.dart, lib/core/streak/app_open_streak_service.dart, lib/core/streak/achievements_service.dart]
+reads: []
+writes: []
+config: []
+depends_on: [subscription-access-gating]
 related_memory: [warning:widget-app-group-placeholder]
-id: sugar-streak-tracking
-type: functionality
-title: Sugar-free streak tracking
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-StreakService maintains a live sugar-free timer synced to SharedPreferences and Firestore for subscribers.
+StreakService owns streak persistence and widget updates.
 
 ## Current behavior
 
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+Reads/writes user streak fields locally and on `users/{uid}`, updates
+`HomeWidget` data, and participates in relapse resets and post-purchase init.
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented; widget sync partial due to app group placeholder.
+Verified-from-source.

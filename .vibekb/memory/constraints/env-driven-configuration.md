@@ -1,21 +1,20 @@
 ---
 id: env-driven-configuration
 type: constraint
-title: Environment-driven API configuration
-summary: API keys and Firebase config load from .env at runtime via EnvConfig; not bundled as assets.
+title: Environment-driven secrets
+summary: API keys and OAuth clients come from dotenv / platform templates; values must not be committed or documented.
 status: active
-verification: verified-from-source
-functionality: [app-startup]
-files: [lib/core/config/env_config.dart, lib/firebase_options.dart]
+functionality: [app-startup, firebase-auth]
+files: [lib/core/config/env_config.dart, .gitignore]
 updated: 2026-07-21
 ---
 
 ## Source
 
-`main.dart` loads `.env` with flutter_dotenv. Production builds expect build-time or secure config.
+`.gitignore` excludes `.env` and live Firebase/Google plist/json files while
+allowing `.local` templates.
 
 ## Consequences
 
-- Repository clones without `.env` will have missing integrations.
-- VibeKB and docs must never expose actual key values.
-- Placeholder fallbacks exist for some OAuth client IDs.
+Documentation may name variables (e.g. `SUPERWALL_IOS_API_KEY`) but never
+values.

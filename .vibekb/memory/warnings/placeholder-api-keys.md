@@ -2,7 +2,7 @@
 id: placeholder-api-keys
 type: warning
 title: Placeholder API keys and OAuth client IDs
-summary: Several integrations use placeholder fallback strings when env vars are missing.
+summary: Integrations fall back to INSERT_YOUR_* strings when env vars are missing.
 severity: high
 verification: verified-from-source
 functionality: [app-startup, firebase-auth, sugar-food-scanning]
@@ -12,8 +12,10 @@ updated: 2026-07-21
 
 ## What can go wrong
 
-Google OAuth, Superwall placements, and widget app group IDs may use placeholder values, causing auth failures or broken widgets.
+Auth, AI, or purchase SDKs fail or mis-configure if `.env` is absent. Do not
+copy placeholder strings into docs as working values.
 
-## Do not
+## Safe next action
 
-Copy placeholder values from source into documentation as working configuration.
+Ensure CI/local builds provide real env files privately; keep placeholders out
+of generated docs.
