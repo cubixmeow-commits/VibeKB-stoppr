@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 360" role="img" aria-labelledby="title desc">
+  <title id="title">Complete user journey</title>
+  <desc id="desc">Major journey from launch through onboarding, paywall, and ongoing use with conditional branches.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4B5A55"/>
+    </marker>
+    <style>
+      .t { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1A2421; }
+      .sub { font-size: 13px; fill: #5C6B66; }
+      .lbl { font-size: 14px; font-weight: 600; }
+      .sm { font-size: 11px; fill: #5C6B66; }
+      .box { stroke: #C9D5D0; stroke-width: 1.5; }
+      .user { fill: #2F6F5E; stroke: #2F6F5E; }
+      .user-t { fill: #fff; font-weight: 700; }
+      .flutter { fill: #2B5F8A; stroke: #2B5F8A; }
+      .flutter-t { fill: #fff; font-weight: 700; }
+      .screen { fill: #E8F2EF; }
+      .service { fill: #EDE8F7; }
+      .local { fill: #F3EBDD; }
+      .firebase { fill: #FFF3D6; }
+      .external { fill: #E8E4F4; }
+      .premium { fill: #FCE8E4; }
+      .warn { fill: #FEF3C7; stroke: #D97706; stroke-dasharray: 4 3; }
+      .inferred { fill: #F3F4F6; stroke: #5C6B66; stroke-dasharray: 6 4; }
+      .group { fill: #fff; stroke: #C9D5D0; stroke-width: 1.2; }
+      .arrow { stroke: #4B5A55; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+      .title { font-size: 20px; font-weight: 700; }
+      .badge { font-size: 10px; font-weight: 700; fill: #5C6B66; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#FAF8F4"/>
+
+  <text class="t title" x="24" y="34">Complete user journey</text>
+  <text class="t sub" x="24" y="54">Launch → onboarding → access decision → main app → ongoing support</text>
+<rect class="box screen" x="20" y="120" width="95" height="52" rx="10"/>
+<text class="t lbl" x="67.5" y="142" text-anchor="middle">Launch</text>
+<text class="t sm" x="67.5" y="158" text-anchor="middle">main.dart</text>
+<rect class="box screen" x="125" y="120" width="95" height="52" rx="10"/>
+<text class="t lbl" x="172.5" y="142" text-anchor="middle">Welcome</text>
+<text class="t sm" x="172.5" y="158" text-anchor="middle">video intro</text>
+<rect class="box screen" x="230" y="120" width="95" height="52" rx="10"/>
+<text class="t lbl" x="277.5" y="142" text-anchor="middle">Auth or skip</text>
+<text class="t sm" x="277.5" y="158" text-anchor="middle">guest OK</text>
+<rect class="box screen" x="335" y="120" width="95" height="52" rx="10"/>
+<text class="t lbl" x="382.5" y="142" text-anchor="middle">Questionnaire</text>
+<text class="t sm" x="382.5" y="158" text-anchor="middle">13 questions</text>
+<rect class="box screen" x="440" y="120" width="95" height="52" rx="10"/>
+<text class="t lbl" x="487.5" y="142" text-anchor="middle">Profile &amp; goals</text>
+<text class="t sm" x="487.5" y="158" text-anchor="middle">symptoms</text>
+<rect class="box screen" x="545" y="120" width="95" height="52" rx="10"/>
+<text class="t lbl" x="592.5" y="142" text-anchor="middle">Analysis</text>
+<text class="t sm" x="592.5" y="158" text-anchor="middle">product copy</text>
+<rect class="box screen" x="650" y="120" width="95" height="52" rx="10"/>
+<text class="t lbl" x="697.5" y="142" text-anchor="middle">Commitment</text>
+<text class="t sm" x="697.5" y="158" text-anchor="middle">vow · letter</text>
+<rect class="box screen" x="755" y="120" width="95" height="52" rx="10"/>
+<text class="t lbl" x="802.5" y="142" text-anchor="middle">Ratings</text>
+<text class="t sm" x="802.5" y="158" text-anchor="middle">soft paywall?</text>
+<rect class="box premium" x="860" y="120" width="95" height="52" rx="10"/>
+<text class="t lbl" x="907.5" y="142" text-anchor="middle">Paywall</text>
+<text class="t sm" x="907.5" y="158" text-anchor="middle">Superwall</text>
+<rect class="box screen" x="965" y="120" width="95" height="52" rx="10"/>
+<text class="t lbl" x="1012.5" y="142" text-anchor="middle">Main app</text>
+<text class="t sm" x="1012.5" y="158" text-anchor="middle">MainScaffold</text>
+<rect class="box screen" x="1070" y="120" width="95" height="52" rx="10"/>
+<text class="t lbl" x="1117.5" y="142" text-anchor="middle">Ongoing</text>
+<text class="t sm" x="1117.5" y="158" text-anchor="middle">streak · learn</text>
+<line class="arrow" x1="115" y1="146" x2="125" y2="146"/>
+<line class="arrow" x1="220" y1="146" x2="230" y2="146"/>
+<line class="arrow" x1="325" y1="146" x2="335" y2="146"/>
+<line class="arrow" x1="430" y1="146" x2="440" y2="146"/>
+<line class="arrow" x1="535" y1="146" x2="545" y2="146"/>
+<line class="arrow" x1="640" y1="146" x2="650" y2="146"/>
+<line class="arrow" x1="745" y1="146" x2="755" y2="146"/>
+<line class="arrow" x1="850" y1="146" x2="860" y2="146"/>
+<line class="arrow" x1="955" y1="146" x2="965" y2="146"/>
+<line class="arrow" x1="1060" y1="146" x2="1070" y2="146"/>
+  <text class="t sm" x="360" y="210">Premium path if unpaid</text>
+  <text class="t sm" x="150" y="210">Optional: resume saved screen</text>
+  <rect class="box inferred" x="880" y="118" width="190" height="58" rx="10"/>
+  <text class="t sm" x="975" y="142" text-anchor="middle">Some quota gates</text>
+  <text class="t sm" x="975" y="158" text-anchor="middle">disabled for A/B test</text>
+  <text class="t badge" x="975" y="172" text-anchor="middle">INFERRED</text>
+</svg>

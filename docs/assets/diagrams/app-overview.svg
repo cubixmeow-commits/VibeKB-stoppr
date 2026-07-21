@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">Stoppr app at a glance</title>
+  <desc id="desc">High-level map of the Flutter app, Firebase, local storage, subscriptions, and external services.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4B5A55"/>
+    </marker>
+    <style>
+      .t { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1A2421; }
+      .sub { font-size: 13px; fill: #5C6B66; }
+      .lbl { font-size: 14px; font-weight: 600; }
+      .sm { font-size: 11px; fill: #5C6B66; }
+      .box { stroke: #C9D5D0; stroke-width: 1.5; }
+      .user { fill: #2F6F5E; stroke: #2F6F5E; }
+      .user-t { fill: #fff; font-weight: 700; }
+      .flutter { fill: #2B5F8A; stroke: #2B5F8A; }
+      .flutter-t { fill: #fff; font-weight: 700; }
+      .screen { fill: #E8F2EF; }
+      .service { fill: #EDE8F7; }
+      .local { fill: #F3EBDD; }
+      .firebase { fill: #FFF3D6; }
+      .external { fill: #E8E4F4; }
+      .premium { fill: #FCE8E4; }
+      .warn { fill: #FEF3C7; stroke: #D97706; stroke-dasharray: 4 3; }
+      .inferred { fill: #F3F4F6; stroke: #5C6B66; stroke-dasharray: 6 4; }
+      .group { fill: #fff; stroke: #C9D5D0; stroke-width: 1.2; }
+      .arrow { stroke: #4B5A55; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+      .title { font-size: 20px; font-weight: 700; }
+      .badge { font-size: 10px; font-weight: 700; fill: #5C6B66; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#FAF8F4"/>
+
+  <text class="t title" x="24" y="34">Stoppr at a glance</text>
+  <text class="t sub" x="24" y="54">A sugar-reduction mobile app with onboarding, tracking, community, and premium tools</text>
+  <rect class="box user user" x="30" y="210" width="110" height="56" rx="10"/>
+<text class="t lbl" x="85.0" y="232" text-anchor="middle">User</text>
+<text class="t sm" x="85.0" y="248" text-anchor="middle">iOS / Android</text>
+  <line class="arrow" x1="140" y1="238" x2="175" y2="238"/>
+  <g>
+  <rect class="group" x="180" y="90" width="420" height="300" rx="12"/>
+  <text class="t lbl" x="194" y="112">Flutter mobile app (lib/)</text>
+  
+</g>
+  <rect class="box screen" x="200" y="130" width="170" height="50" rx="10"/>
+<text class="t lbl" x="285.0" y="152" text-anchor="middle">Onboarding</text>
+<text class="t sm" x="285.0" y="168" text-anchor="middle">questionnaire</text>
+<text class="t sm" x="285.0" y="182" text-anchor="middle">paywall</text>
+  <rect class="box screen" x="390" y="130" width="170" height="50" rx="10"/>
+<text class="t lbl" x="475.0" y="152" text-anchor="middle">Home hub</text>
+<text class="t sm" x="475.0" y="168" text-anchor="middle">streak</text>
+<text class="t sm" x="475.0" y="182" text-anchor="middle">panic</text>
+<text class="t sm" x="475.0" y="196" text-anchor="middle">features</text>
+  <rect class="box screen" x="200" y="200" width="170" height="50" rx="10"/>
+<text class="t lbl" x="285.0" y="222" text-anchor="middle">Community</text>
+<text class="t sm" x="285.0" y="238" text-anchor="middle">posts</text>
+<text class="t sm" x="285.0" y="252" text-anchor="middle">chat</text>
+  <rect class="box screen" x="390" y="200" width="170" height="50" rx="10"/>
+<text class="t lbl" x="475.0" y="222" text-anchor="middle">Learn &amp; wellness</text>
+<text class="t sm" x="475.0" y="238" text-anchor="middle">videos</text>
+<text class="t sm" x="475.0" y="252" text-anchor="middle">meditation</text>
+  <rect class="box service" x="295" y="270" width="170" height="50" rx="10"/>
+<text class="t lbl" x="380.0" y="292" text-anchor="middle">Core services</text>
+<text class="t sm" x="380.0" y="308" text-anchor="middle">Auth</text>
+<text class="t sm" x="380.0" y="322" text-anchor="middle">Streak</text>
+<text class="t sm" x="380.0" y="336" text-anchor="middle">Notifications</text>
+  <rect class="box premium" x="295" y="330" width="170" height="44" rx="10"/>
+<text class="t lbl" x="380.0" y="352" text-anchor="middle">Premium gates</text>
+<text class="t sm" x="380.0" y="368" text-anchor="middle">SubscriptionService</text>
+  <line class="arrow" x1="600" y1="180" x2="635" y2="180"/>
+  <g>
+  <rect class="group" x="640" y="90" width="250" height="300" rx="12"/>
+  <text class="t lbl" x="654" y="112">Cloud &amp; integrations</text>
+  
+</g>
+  <rect class="box firebase" x="660" y="130" width="210" height="44" rx="10"/>
+<text class="t lbl" x="765.0" y="152" text-anchor="middle">Firebase</text>
+<text class="t sm" x="765.0" y="168" text-anchor="middle">Auth · Firestore · FCM</text>
+  <rect class="box local" x="660" y="190" width="210" height="44" rx="10"/>
+<text class="t lbl" x="765.0" y="212" text-anchor="middle">Local storage</text>
+<text class="t sm" x="765.0" y="228" text-anchor="middle">SharedPreferences</text>
+  <rect class="box external" x="660" y="250" width="210" height="44" rx="10"/>
+<text class="t lbl" x="765.0" y="272" text-anchor="middle">RevenueCat + Superwall</text>
+<text class="t sm" x="765.0" y="288" text-anchor="middle">subscriptions</text>
+  <rect class="box external" x="660" y="310" width="210" height="44" rx="10"/>
+<text class="t lbl" x="765.0" y="332" text-anchor="middle">Analytics &amp; APIs</text>
+<text class="t sm" x="765.0" y="348" text-anchor="middle">Mixpanel · Groq · Edamam</text>
+  <rect class="box screen" x="760" y="400" width="120" height="44" rx="10"/>
+<text class="t lbl" x="820.0" y="422" text-anchor="middle">VibeKB guide</text>
+<text class="t sm" x="820.0" y="438" text-anchor="middle">/docs</text>
+  <text class="t lbl" x="24" y="380">Legend</text>
+<rect class="box user" x="24" y="392" width="14" height="14" rx="3"/>
+<text class="t sm" x="46" y="404">User</text>
+<rect class="box screen" x="24" y="412" width="14" height="14" rx="3"/>
+<text class="t sm" x="46" y="424">App screen/group</text>
+<rect class="box firebase" x="24" y="432" width="14" height="14" rx="3"/>
+<text class="t sm" x="46" y="444">Firebase</text>
+<rect class="box local" x="24" y="452" width="14" height="14" rx="3"/>
+<text class="t sm" x="46" y="464">Local</text>
+<rect class="box external" x="24" y="472" width="14" height="14" rx="3"/>
+<text class="t sm" x="46" y="484">External</text>
+<rect class="box premium" x="24" y="492" width="14" height="14" rx="3"/>
+<text class="t sm" x="46" y="504">Premium gate</text>
+</svg>

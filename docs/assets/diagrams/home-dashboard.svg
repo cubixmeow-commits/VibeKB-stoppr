@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img" aria-labelledby="title desc">
+  <title id="title">Home dashboard composition</title>
+  <desc id="desc">Major HomeScreen widgets and feature entry points.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4B5A55"/>
+    </marker>
+    <style>
+      .t { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1A2421; }
+      .sub { font-size: 13px; fill: #5C6B66; }
+      .lbl { font-size: 14px; font-weight: 600; }
+      .sm { font-size: 11px; fill: #5C6B66; }
+      .box { stroke: #C9D5D0; stroke-width: 1.5; }
+      .user { fill: #2F6F5E; stroke: #2F6F5E; }
+      .user-t { fill: #fff; font-weight: 700; }
+      .flutter { fill: #2B5F8A; stroke: #2B5F8A; }
+      .flutter-t { fill: #fff; font-weight: 700; }
+      .screen { fill: #E8F2EF; }
+      .service { fill: #EDE8F7; }
+      .local { fill: #F3EBDD; }
+      .firebase { fill: #FFF3D6; }
+      .external { fill: #E8E4F4; }
+      .premium { fill: #FCE8E4; }
+      .warn { fill: #FEF3C7; stroke: #D97706; stroke-dasharray: 4 3; }
+      .inferred { fill: #F3F4F6; stroke: #5C6B66; stroke-dasharray: 6 4; }
+      .group { fill: #fff; stroke: #C9D5D0; stroke-width: 1.2; }
+      .arrow { stroke: #4B5A55; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+      .title { font-size: 20px; font-weight: 700; }
+      .badge { font-size: 10px; font-weight: 700; fill: #5C6B66; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#FAF8F4"/>
+
+  <text class="t title" x="24" y="34">Home dashboard</text>
+  <text class="t sub" x="24" y="54">HomeScreen hub — lib/features/app/presentation/screens/home_screen.dart</text>
+  <rect class="box screen" x="350" y="80" width="200" height="50" rx="10"/>
+<text class="t lbl" x="450.0" y="102" text-anchor="middle">HomeScreen</text>
+<text class="t sm" x="450.0" y="118" text-anchor="middle">tab index 0</text>
+  <rect class="box screen" x="80" y="160" width="150" height="48" rx="10"/>
+<text class="t lbl" x="155.0" y="182" text-anchor="middle">Streak counter</text>
+<text class="t sm" x="155.0" y="198" text-anchor="middle">reads/writes prefs+Firestore</text>
+  <rect class="box screen" x="250" y="160" width="150" height="48" rx="10"/>
+<text class="t lbl" x="325.0" y="182" text-anchor="middle">Daily check-in</text>
+<text class="t sm" x="325.0" y="198" text-anchor="middle">mood · relapse</text>
+  <rect class="box screen" x="420" y="160" width="150" height="48" rx="10"/>
+<text class="t lbl" x="495.0" y="182" text-anchor="middle">Panic button</text>
+<text class="t sm" x="495.0" y="198" text-anchor="middle">WhatHappeningScreen</text>
+  <rect class="box screen" x="590" y="160" width="150" height="48" rx="10"/>
+<text class="t lbl" x="665.0" y="182" text-anchor="middle">Challenge</text>
+<text class="t sm" x="665.0" y="198" text-anchor="middle">28-day</text>
+  <rect class="box screen" x="80" y="230" width="150" height="48" rx="10"/>
+<text class="t lbl" x="155.0" y="252" text-anchor="middle">Food scan</text>
+<text class="t sm" x="155.0" y="268" text-anchor="middle">Groq vision</text>
+  <rect class="box screen" x="250" y="230" width="150" height="48" rx="10"/>
+<text class="t lbl" x="325.0" y="252" text-anchor="middle">Calorie tracker</text>
+<text class="t sm" x="325.0" y="268" text-anchor="middle">nutrition module</text>
+  <rect class="box screen" x="420" y="230" width="150" height="48" rx="10"/>
+<text class="t lbl" x="495.0" y="252" text-anchor="middle">Recipes</text>
+<text class="t sm" x="495.0" y="268" text-anchor="middle">Edamam API</text>
+  <rect class="box screen" x="590" y="230" width="150" height="48" rx="10"/>
+<text class="t lbl" x="665.0" y="252" text-anchor="middle">Community</text>
+<text class="t sm" x="665.0" y="268" text-anchor="middle">navigate out</text>
+  <rect class="box screen" x="80" y="300" width="150" height="48" rx="10"/>
+<text class="t lbl" x="155.0" y="322" text-anchor="middle">Meditation</text>
+<text class="t sm" x="155.0" y="338" text-anchor="middle">local audio</text>
+  <rect class="box screen" x="250" y="300" width="150" height="48" rx="10"/>
+<text class="t lbl" x="325.0" y="322" text-anchor="middle">Learn / articles</text>
+<text class="t sm" x="325.0" y="338" text-anchor="middle">assets + Mux</text>
+  <rect class="box screen" x="420" y="300" width="150" height="48" rx="10"/>
+<text class="t lbl" x="495.0" y="322" text-anchor="middle">Accountability</text>
+<text class="t sm" x="495.0" y="338" text-anchor="middle">premium gate</text>
+  <rect class="box screen" x="590" y="300" width="150" height="48" rx="10"/>
+<text class="t lbl" x="665.0" y="322" text-anchor="middle">Chatbot</text>
+<text class="t sm" x="665.0" y="338" text-anchor="middle">Groq + OpenAI</text>
+  <line class="arrow" x1="450" y1="130" x2="155" y2="160"/><line class="arrow" x1="450" y1="130" x2="325" y2="160"/><line class="arrow" x1="450" y1="130" x2="495" y2="160"/>
+</svg>

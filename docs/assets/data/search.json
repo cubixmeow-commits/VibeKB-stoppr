@@ -553,6 +553,20 @@
     "body": "## Evidence\n\nComments in `food_scan_screen.dart` and `chatbot_screen.dart` indicate quota enforcement disabled for A/B test. FeatureQuotaService logic still exists but may not be invoked.\n\n## Impact\n\nFree users may have unlimited access to gated features until A/B concludes and code is re-enabled."
   },
   {
+    "title": "Added Diagrams section to VibeKB guide",
+    "summary": "New /docs/diagrams/ page with 19 source-grounded SVG diagrams and navigation integration.",
+    "type": "change",
+    "url": "why/changes/diagrams-section.html",
+    "body": "## Before\n\nThe VibeKB guide explained Stoppr through text records only. No visual architecture or flow diagrams existed in `/docs`.\n\n## After\n\n- `/docs/diagrams/index.html` with grouped diagram index and plain-language explanations.\n- 19 SVG files under `/docs/assets/diagrams/`.\n- **Diagrams** added to primary navigation across the guide.\n- Cross-links from key functionality, data, files, architecture, and warnings pages.\n\n## Impact\n\nReaders can understand product and technical flows visually. Uncertain areas are labeled **Inferred** or **Unverified** on the risk and paywall diagrams."
+  },
+  {
+    "title": "Diagrams",
+    "summary": "Source-grounded SVG diagrams explaining how Stoppr works — product flows, architecture, Firebase, paywalls, and uncertainty.",
+    "type": "guide",
+    "url": "diagrams/index.html",
+    "body": "## In one sentence\n\nVisual maps of Stoppr product flows and technical architecture, grounded in repository source.\n\n## Diagram collection\n\napp-overview, user-journey, app-startup, onboarding-flow, authentication-flow, paywall-flow, home-dashboard, data-flow, firebase-architecture, feature-access, community-flow, panic-flow, content-flow, storage-map, code-architecture, state-management, navigation-map, external-services, risk-and-uncertainty-map.\n\n## Verification\n\nDiagrams are source-grounded. Inferred and unverified areas are labeled on paywall, quota, and risk diagrams."
+  },
+  {
     "title": "VibeKB integrated into Stoppr repository",
     "summary": "Added .vibekb knowledge model and static /docs guide without modifying application code.",
     "type": "change",

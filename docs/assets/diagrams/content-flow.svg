@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" role="img" aria-labelledby="title desc">
+  <title id="title">Educational and content flow</title>
+  <desc id="desc">How learn videos, articles, recipes, and wellness audio are loaded.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4B5A55"/>
+    </marker>
+    <style>
+      .t { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1A2421; }
+      .sub { font-size: 13px; fill: #5C6B66; }
+      .lbl { font-size: 14px; font-weight: 600; }
+      .sm { font-size: 11px; fill: #5C6B66; }
+      .box { stroke: #C9D5D0; stroke-width: 1.5; }
+      .user { fill: #2F6F5E; stroke: #2F6F5E; }
+      .user-t { fill: #fff; font-weight: 700; }
+      .flutter { fill: #2B5F8A; stroke: #2B5F8A; }
+      .flutter-t { fill: #fff; font-weight: 700; }
+      .screen { fill: #E8F2EF; }
+      .service { fill: #EDE8F7; }
+      .local { fill: #F3EBDD; }
+      .firebase { fill: #FFF3D6; }
+      .external { fill: #E8E4F4; }
+      .premium { fill: #FCE8E4; }
+      .warn { fill: #FEF3C7; stroke: #D97706; stroke-dasharray: 4 3; }
+      .inferred { fill: #F3F4F6; stroke: #5C6B66; stroke-dasharray: 6 4; }
+      .group { fill: #fff; stroke: #C9D5D0; stroke-width: 1.2; }
+      .arrow { stroke: #4B5A55; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+      .title { font-size: 20px; font-weight: 700; }
+      .badge { font-size: 10px; font-weight: 700; fill: #5C6B66; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#FAF8F4"/>
+
+  <text class="t title" x="24" y="34">Educational &amp; content flow</text>
+  <text class="t sub" x="24" y="54">Mix of bundled assets, hardcoded URLs, and remote APIs</text>
+  <rect class="box screen" x="60" y="120" width="140" height="50" rx="10"/>
+<text class="t lbl" x="130.0" y="142" text-anchor="middle">Learn tab</text>
+<text class="t sm" x="130.0" y="158" text-anchor="middle">8 Mux HLS lessons</text>
+  <rect class="box screen" x="230" y="120" width="140" height="50" rx="10"/>
+<text class="t lbl" x="300.0" y="142" text-anchor="middle">Articles</text>
+<text class="t sm" x="300.0" y="158" text-anchor="middle">assets/articles/</text>
+  <rect class="box screen" x="400" y="120" width="140" height="50" rx="10"/>
+<text class="t lbl" x="470.0" y="142" text-anchor="middle">Recipes</text>
+<text class="t sm" x="470.0" y="158" text-anchor="middle">Edamam / Spoonacular</text>
+  <rect class="box screen" x="570" y="120" width="140" height="50" rx="10"/>
+<text class="t lbl" x="640.0" y="142" text-anchor="middle">Meditation</text>
+<text class="t sm" x="640.0" y="158" text-anchor="middle">local mp3</text>
+  <rect class="box screen" x="740" y="120" width="140" height="50" rx="10"/>
+<text class="t lbl" x="810.0" y="142" text-anchor="middle">Breathing</text>
+<text class="t sm" x="810.0" y="158" text-anchor="middle">animated UI</text>
+  <rect class="box local" x="145" y="230" width="180" height="50" rx="10"/>
+<text class="t lbl" x="235.0" y="252" text-anchor="middle">Progress prefs</text>
+<text class="t sm" x="235.0" y="268" text-anchor="middle">completed lessons</text>
+  <rect class="box external" x="400" y="230" width="180" height="50" rx="10"/>
+<text class="t lbl" x="490.0" y="252" text-anchor="middle">Remote media</text>
+<text class="t sm" x="490.0" y="268" text-anchor="middle">Mux · Firebase Storage</text>
+  <rect class="box premium" x="620" y="230" width="180" height="50" rx="10"/>
+<text class="t lbl" x="710.0" y="252" text-anchor="middle">Learn paywall</text>
+<text class="t sm" x="710.0" y="268" text-anchor="middle">1 free video quota</text>
+</svg>
