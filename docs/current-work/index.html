@@ -30,7 +30,7 @@
   <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
     <nav class="sidebar-nav" aria-label="Guide sections">
       <p class="sidebar-nav__label">Primary</p>
-      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="../functionality/index.html">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="index.html" aria-current="page">Current work</a></li></ul>
+      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="../functionality/index.html">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="../diagrams/index.html">Diagrams</a></li><li><a href="index.html" aria-current="page">Current work</a></li></ul>
       <p class="sidebar-nav__label">Explore</p>
       <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
     </nav>
@@ -43,30 +43,31 @@
   <p class="lede">The active development objective, its impact, and how far along it is.</p>
 </header>
 <section class="work-summary callout callout--work">
-  <h2>Integrate VibeKB into Stoppr</h2>
+  <h2>VibeKB diagrams section</h2>
   <div class="badge-row">
     <span class="badge badge--ok">completed</span>
     <span class="badge badge--ok">Verified from source</span>
   </div>
   <dl class="rail-dl work-meta">
-    <dt>Objective</dt><dd>Integrate VibeKB into the Stoppr repository, create a source-grounded living software model, and generate the public static guide in /docs.</dd>
+    <dt>Objective</dt><dd>Add a thorough Diagrams page at /docs/diagrams/index.html with repository-owned SVG assets and navigation integration.</dd>
     
-    <dt>Expected files</dt><dd><code class="chip chip--file">.vibekb/**</code> <code class="chip chip--file">docs/**</code> <code class="chip chip--file">VIBEKB.md</code> <code class="chip chip--file">VIBEKB_MAINTENANCE.md</code></dd>
+    <dt>Expected files</dt><dd><code class="chip chip--file">docs/diagrams/index.html</code> <code class="chip chip--file">docs/assets/diagrams/*.svg</code> <code class="chip chip--file">docs/assets/css/guide.css</code></dd>
     <dt>Data impact</dt><dd>None — documentation only; no application data changes.</dd>
   </dl>
 </section>
 <section class="doc-section content-section"><div class="prose reading-column"><h3>What was asked</h3>
-<p>Integrate the real VibeKB system, model Stoppr from source, and publish a static guide at <code>/docs/index.html</code> for GitHub Pages.</p>
+<p>Add a Diagrams section to the existing VibeKB guide without rebuilding or changing Stoppr application code.</p>
 <h3>Outcome</h3>
-<p>Stoppr application code is unchanged. The repository contains a completed one-shot <code>.vibekb/</code> model and static <code>/docs</code> guide. PR #1 merged this work to <code>main</code>.</p>
+<p>Stoppr application code is unchanged. The guide now includes 19 source-grounded SVG diagrams with plain-language explanations and cross-links from key pages.</p>
 <h3>Completed</h3>
 <ul>
-<li>Inspected lib/, pubspec.yaml, firestore.rules, README.</li>
-<li>Created 30 functionality records across 10 areas.</li>
-<li>Published static HTML guide in <code>/docs</code> with client-side search.</li>
-<li>Added memory records for warnings, decisions, and discoveries.</li>
-<li>Removed non-VibeKB Python regeneration tooling (one-shot snapshot only).</li>
-</ul></div></section>
+<li>Created 19 SVG diagrams under <code>/docs/assets/diagrams/</code>.</li>
+<li>Published <code>/docs/diagrams/index.html</code> with TOC, explanations, and verification notes.</li>
+<li>Added Diagrams to primary navigation and cross-links from key pages.</li>
+<li>Re-inspected source and <code>.vibekb/</code> records for diagram accuracy.</li>
+<li>Labeled inferred and unverified areas on paywall, quota, and risk diagrams.</li>
+</ul>
+<p>See the <a href="../diagrams/index.html">Diagrams</a> page for the full collection.</p></div></section>
 <nav class="cross-links" aria-label="Related views">
   <a class="btn" href="../handoff/index.html">AI handoff →</a>
   <a class="btn" href="../changes/index.html">Completed changes →</a>

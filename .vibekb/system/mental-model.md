@@ -37,3 +37,7 @@ or onboarding screens.
 - **Cloud**: Firestore `users/{uid}` document + subcollections.
 - **Local**: SharedPreferences for streak, onboarding progress, quotas, settings.
 - **Purchases**: RevenueCat + Superwall, not Firestore subscription fields.
+
+## Visual guide
+
+For SVG flow and architecture diagrams, see the [Diagrams guide](/docs/diagrams/index.html).

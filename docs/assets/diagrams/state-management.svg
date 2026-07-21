@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" role="img" aria-labelledby="title desc">
+  <title id="title">State management flow</title>
+  <desc id="desc">flutter_bloc Cubits for features; singleton services for cross-cutting logic.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4B5A55"/>
+    </marker>
+    <style>
+      .t { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1A2421; }
+      .sub { font-size: 13px; fill: #5C6B66; }
+      .lbl { font-size: 14px; font-weight: 600; }
+      .sm { font-size: 11px; fill: #5C6B66; }
+      .box { stroke: #C9D5D0; stroke-width: 1.5; }
+      .user { fill: #2F6F5E; stroke: #2F6F5E; }
+      .user-t { fill: #fff; font-weight: 700; }
+      .flutter { fill: #2B5F8A; stroke: #2B5F8A; }
+      .flutter-t { fill: #fff; font-weight: 700; }
+      .screen { fill: #E8F2EF; }
+      .service { fill: #EDE8F7; }
+      .local { fill: #F3EBDD; }
+      .firebase { fill: #FFF3D6; }
+      .external { fill: #E8E4F4; }
+      .premium { fill: #FCE8E4; }
+      .warn { fill: #FEF3C7; stroke: #D97706; stroke-dasharray: 4 3; }
+      .inferred { fill: #F3F4F6; stroke: #5C6B66; stroke-dasharray: 6 4; }
+      .group { fill: #fff; stroke: #C9D5D0; stroke-width: 1.2; }
+      .arrow { stroke: #4B5A55; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+      .title { font-size: 20px; font-weight: 700; }
+      .badge { font-size: 10px; font-weight: 700; fill: #5C6B66; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#FAF8F4"/>
+
+  <text class="t title" x="24" y="34">State management</text>
+  <text class="t sub" x="24" y="54">Hybrid: Cubit + Freezed states + service singletons (verified from source)</text>
+  <rect class="box screen" x="40" y="130" width="110" height="50" rx="10"/>
+<text class="t lbl" x="95.0" y="152" text-anchor="middle">UI event</text>
+<text class="t sm" x="95.0" y="168" text-anchor="middle">tap · submit</text>
+  <line class="arrow" x1="150" y1="155" x2="190" y2="155"/>
+  <rect class="box service" x="195" y="130" width="120" height="50" rx="10"/>
+<text class="t lbl" x="255.0" y="152" text-anchor="middle">Cubit</text>
+<text class="t sm" x="255.0" y="168" text-anchor="middle">e.g. AuthCubit</text>
+  <line class="arrow" x1="315" y1="155" x2="355" y2="155"/>
+  <rect class="box service" x="360" y="130" width="120" height="50" rx="10"/>
+<text class="t lbl" x="420.0" y="152" text-anchor="middle">Service / Repo</text>
+<text class="t sm" x="420.0" y="168" text-anchor="middle">domain logic</text>
+  <line class="arrow" x1="480" y1="155" x2="520" y2="155"/>
+  <rect class="box firebase" x="525" y="120" width="130" height="80" rx="10"/>
+<text class="t lbl" x="590.0" y="142" text-anchor="middle">Data layer</text>
+<text class="t sm" x="590.0" y="158" text-anchor="middle">Firestore · prefs</text>
+<text class="t sm" x="590.0" y="172" text-anchor="middle">HTTP APIs</text>
+  <line class="arrow" x1="360" y1="180" x2="360" y2="220"/>
+  <line class="arrow" x1="360" y1="220" x2="195" y2="220"/>
+  <rect class="box service" x="195" y="220" width="120" height="50" rx="10"/>
+<text class="t lbl" x="255.0" y="242" text-anchor="middle">emit state</text>
+<text class="t sm" x="255.0" y="258" text-anchor="middle">Freezed union</text>
+  <line class="arrow" x1="195" y1="245" x2="150" y2="200"/>
+  <rect class="box screen" x="40" y="220" width="110" height="50" rx="10"/>
+<text class="t lbl" x="95.0" y="242" text-anchor="middle">Widget rebuild</text>
+<text class="t sm" x="95.0" y="258" text-anchor="middle">BlocBuilder</text>
+</svg>

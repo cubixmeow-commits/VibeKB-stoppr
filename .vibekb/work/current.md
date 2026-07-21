@@ -1,30 +1,30 @@
 ---
 id: current-work
 type: work
-title: Integrate VibeKB into Stoppr
-summary: Create source-grounded .vibekb model and generate static guide in /docs.
-objective: Integrate VibeKB into the Stoppr repository, create a source-grounded living software model, and generate the public static guide in /docs.
+title: VibeKB diagrams section
+summary: Add source-grounded SVG diagrams page to the existing VibeKB guide.
+objective: Add a thorough Diagrams page at /docs/diagrams/index.html with repository-owned SVG assets and navigation integration.
 status: completed
 verification_state: verified-from-source
 affected_functionality: []
-expected_files: [.vibekb/**, docs/**, VIBEKB.md, VIBEKB_MAINTENANCE.md]
-data_impact: None — documentation only; no application data changes.
-risks: [Model drift if app changes without VibeKB updates, Placeholder paywall IDs may cause incorrect partial status assumptions]
+expected_files: [docs/diagrams/index.html, docs/assets/diagrams/*.svg, docs/assets/css/guide.css]
+data_impact: None — documentation only.
 updated: 2026-07-21
 ---
 
 ## What was asked
 
-Integrate the real VibeKB system, model Stoppr from source, and publish a static guide at `/docs/index.html` for GitHub Pages.
+Add a Diagrams section to the existing VibeKB guide without rebuilding or changing Stoppr application code.
 
 ## Outcome
 
-Stoppr application code is unchanged. The repository contains a completed one-shot `.vibekb/` model and static `/docs` guide. PR #1 merged this work to `main`.
+- Created 19 SVG diagrams under `/docs/assets/diagrams/`.
+- Published `/docs/diagrams/index.html` with TOC, explanations, and verification notes.
+- Added Diagrams to primary navigation and cross-links from key pages.
 
 ## Completed
 
-- Inspected lib/, pubspec.yaml, firestore.rules, README.
-- Created 30 functionality records across 10 areas.
-- Published static HTML guide in `/docs` with client-side search.
-- Added memory records for warnings, decisions, and discoveries.
-- Removed non-VibeKB Python regeneration tooling (one-shot snapshot only).
+- Re-inspected source and `.vibekb/` records for diagram accuracy.
+- Labeled inferred and unverified areas on paywall, quota, and risk diagrams.
+- Validated all SVG files as well-formed XML with title and desc.
+
