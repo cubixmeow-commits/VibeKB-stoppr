@@ -1,118 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Application startup · Stoppr — VibeKB</title>
-  <meta name="description" content="A living explanation of what Stoppr currently does.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/guide.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Application startup · Stoppr — VibeKB</title>
+    <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Web fonts are a progressive enhancement only. The stylesheet ships a
+         full system-font fallback stack, so the guide renders correctly with no
+         external CDN — required for offline and locked-down static hosting. -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/guide.css">
 </head>
-<body>
+<body data-mode="static">
 <a class="skip-link" href="#main">Skip to content</a>
+
 <div class="app-shell">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="../index.html">
-        <span class="brand__mark">VibeKB</span>
-        <span class="brand__project">Stoppr</span>
-      </a>
-      <form class="site-search" role="search" action="../search/index.html">
-        <label class="visually-hidden" for="site-search-input">Search guide</label>
-        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
-      </form>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
-    </div>
-  </header>
-  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
-  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
-    <nav class="sidebar-nav" aria-label="Guide sections">
-      <p class="sidebar-nav__label">Primary</p>
-      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="index.html" aria-current="page">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="../diagrams/index.html">Diagrams</a></li><li><a href="../current-work/index.html">Current work</a></li></ul>
-      <p class="sidebar-nav__label">Explore</p>
-      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
-    </nav>
-  </aside>
-  <div class="app-main">
-    <main id="main" class="wrap"><article class="view view-func-detail">
-<p class="breadcrumb"><a href="index.html">← All functionality</a></p>
-<header class="page-head reading-column">
-  <p class="eyebrow">App Core</p>
-  <h1>Application startup</h1>
-  <p class="lede">Initializes Flutter, Firebase, RevenueCat, analytics, notifications, and third-party SDKs before runApp.</p>
-  <div class="badge-row">
-    <span class="badge badge--ok">Implemented</span>
-    <span class="badge badge--ok">Verified from source</span>
-    <span class="badge badge--muted">System</span>
-  </div>
-</header>
-<div class="detail-grid">
-  <div class="detail-main">
-    <div class="prose reading-column"><h3>In one sentence</h3>
-<p>Cold start wires every SDK before the first frame.</p>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="../index.html">
+                <span class="brand__mark">VibeKB</span>
+                <span class="brand__project">Stoppr</span>
+            </a>
+            <form class="site-search" role="search" action="../search/index.html">
+                <label class="visually-hidden" for="site-search-input">Search guide</label>
+                <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+            </form>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="guide-sidebar"
+                hidden
+            >Menu</button>
+        </div>
+    </header>
+
+    <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+    <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+        <nav class="sidebar-nav" aria-label="Guide sections">
+            <p class="sidebar-nav__label" id="nav-primary-label">Primary</p>
+            <ul class="sidebar-nav__list" aria-labelledby="nav-primary-label">
+                                                        <li>
+                        <a href="../index.html">
+                            Overview                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../functionality/index.html" aria-current="page">
+                            Functionality                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../how-it-works/index.html">
+                            Architecture                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../diagrams/index.html">
+                            Diagrams                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../current-work/index.html">
+                            Current work                        </a>
+                    </li>
+                            </ul>
+
+                            <p class="sidebar-nav__label" id="nav-explore-label">Explore</p>
+                <ul class="sidebar-nav__list sidebar-nav__list--secondary" aria-labelledby="nav-explore-label">
+                                                                    <li>
+                            <a href="../data/index.html">
+                                Data &amp; storage                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../files/index.html">
+                                Files that matter                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../changes/index.html">
+                                Changes                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../why/index.html">
+                                Decisions &amp; rationale                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../handoff/index.html">
+                                AI handoff                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../reference/index.html">
+                                Reference                            </a>
+                        </li>
+                                    </ul>
+                    </nav>
+    </aside>
+
+    <div class="app-main">
+                    <p class="generated-notice" role="note">
+                Generated output — this is a static snapshot rendered from <code>.vibekb/</code>. The
+                <code>.vibekb/</code> content is the source of truth. See <a href="../reference/index.html">Reference</a> for provenance.
+            </p>
+                
+        <main id="main" class="wrap">
+            <article class="view view-func-detail">
+    <p class="breadcrumb"><a href="../functionality/index.html">← All functionality</a></p>
+
+    <header class="page-head reading-column">
+        <p class="eyebrow">App core</p>
+        <h1>Application startup</h1>
+        <p class="lede">Initializes Flutter bindings, env, RevenueCat, Firebase, analytics, notifications, and platform SDKs before runApp.</p>
+        <div class="badge-row">
+            <span class="badge badge--ok">Implemented</span>            <span class="badge badge--ok">Verified from source</span>            <span class="badge badge--muted">System</span>        </div>
+    </header>
+
+    <div class="detail-grid">
+        <div class="detail-main">
+                            <div class="prose reading-column"><h3>In one sentence</h3>
+<p>Cold start wires SDKs, then shows a loading scaffold until routing resolves.</p>
 <h3>Current behavior</h3>
-<p><code>main()</code> loads <code>.env</code>, configures RevenueCat early, initializes Firebase, Crashlytics (prod), NotificationService, Crisp, QuickActions, Mixpanel, AppsFlyer, FCM, and Superwall (Android). Camera list is fetched globally.</p>
+<p><code>main()</code> in <code>lib/main.dart</code> calls <code>WidgetsFlutterBinding.ensureInitialized()</code>,
+loads <code>.env</code> via flutter_dotenv (non-fatal on failure), configures RevenueCat
+early from <code>EnvConfig</code>, sets OpenAI key if present, initializes Firebase with
+<code>DefaultFirebaseOptions</code>, Crashlytics, NotificationService, Crisp, Quick
+Actions, Mixpanel, AppsFlyer, FCM, and platform Superwall setup, then
+<code>runApp(MyApp)</code>.</p>
 <h3>Step-by-step flow</h3>
 <ol>
-<li><code>WidgetsFlutterBinding.ensureInitialized()</code></li>
-<li>Load <code>.env</code> via flutter_dotenv (non-fatal on failure)</li>
-<li>Early <code>Purchases.configure()</code> from EnvConfig</li>
-<li><code>Firebase.initializeApp()</code> with DefaultFirebaseOptions</li>
-<li>Initialize notifications, analytics, messaging</li>
-<li><code>runApp(MyApp)</code> with AuthCubit</li>
+<li>Ensure Flutter binding.</li>
+<li>Load dotenv <code>.env</code>.</li>
+<li>Early <code>Purchases.configure</code> using platform RevenueCat key names.</li>
+<li><code>Firebase.initializeApp</code> via <code>firebase_options.dart</code> (non-null env getters).</li>
+<li>Initialize notifications, analytics, messaging, and related services.</li>
+<li>Construct <code>MyApp</code> with <code>AuthCubit</code> / shared preferences and run.</li>
 </ol>
 <h3>Failure cases</h3>
 <ul>
-<li>Missing <code>.env</code> keys log warnings; some services skip init.</li>
-<li>Firebase init failure prevents normal operation.</li>
+<li>Missing Firebase env values can throw due to <code>!</code> in <code>firebase_options.dart</code>.</li>
+<li>Missing optional keys log warnings; some services skip init.</li>
 </ul>
-<h3>Safe to change</h3>
-<p>Debug flags, non-critical service init order.</p>
+<h3>Current state</h3>
+<p>Implemented. Verification: verified-from-source (<code>main()</code> traced).</p>
 <h3>Use caution</h3>
-<p>RevenueCat early init order — NotificationService depends on readiness flag.</p></div>
-  </div>
-  <aside class="detail-rail" aria-label="Record metadata">
-    <div class="rail-card metadata-group">
-      <h2>Status</h2>
-      <dl class="rail-dl">
-        <dt>Status</dt><dd><span class="badge badge--ok">Implemented</span></dd>
-        <dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd>
-        <dt>Updated</dt><dd>2026-07-21</dd>
-        <dt>Facing</dt><dd>System</dd>
-      </dl>
+<p>Do not reorder RevenueCat readiness flags without checking NotificationService
+and Superwall purchase controller assumptions.</p></div>
+                    </div>
+
+        <aside class="detail-rail" aria-label="Record metadata">
+            <div class="rail-card metadata-group">
+                <h2>Status</h2>
+                <dl class="rail-dl">
+                    <dt>Status</dt>
+                    <dd><span class="badge badge--ok">Implemented</span></dd>
+                                            <dt>Verification</dt>
+                        <dd><span class="badge badge--ok">Verified from source</span></dd>
+                                        <dt>Updated</dt>
+                    <dd>2026-07-21</dd>
+                    <dt>Facing</dt>
+                    <dd>System</dd>
+                </dl>
+            </div>
+
+                            <div class="rail-card metadata-group">
+                    <h2>Trigger</h2>
+                    <p>User launches the app.</p>
+                </div>
+            
+            <div class="rail-card metadata-group">
+                <h2>Data read or written</h2>
+                <p><strong>Reads:</strong> <span class="muted">None.</span></p>
+                <p><strong>Writes:</strong> <span class="muted">None.</span></p>
+                            </div>
+
+            <div class="rail-card metadata-group">
+                <h2>Files involved</h2>
+                                    <p><code class="chip chip--file">lib/main.dart</code> <code class="chip chip--file">lib/firebase_options.dart</code> <code class="chip chip--file">lib/core/config/env_config.dart</code></p>
+                            </div>
+
+            <div class="rail-card metadata-group">
+                <h2>Dependencies</h2>
+                                    <p><strong>Depends on:</strong> <span class="muted">None.</span></p>
+                                                    <p><strong>Depended on by:</strong> <a class="chip" href="../functionality/analytics-telemetry.html">Analytics and telemetry</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/notifications.html">Notifications</a> <a class="chip" href="../functionality/startup-routing.html">Startup routing</a> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a></p>
+                            </div>
+
+                            <div class="rail-card metadata-group">
+                    <h2>Related diagrams</h2>
+                                            <p>
+                                                            <a class="chip" href="../diagrams/index.html#app-overview">Stoppr application overview</a>
+                                                    </p>
+                                                                <p class="rail-note text-soft">Appears as a node in:</p>
+                        <ul class="rail-list">
+                                                            <li><a href="../diagrams/index.html#node-mobile-client">Stoppr mobile client</a> <span class="text-soft">· Stoppr application overview</span></li>
+                                                            <li><a href="../diagrams/index.html#node-oauth-fallbacks">OAuth / env fallbacks</a> <span class="text-soft">· Risk and uncertainty map</span></li>
+                                                    </ul>
+                                    </div>
+            
+            <div class="rail-card metadata-group">
+                <h2>Related rationale</h2>
+                                    <p><a class="chip" href="../why/warnings/placeholder-api-keys.html">Placeholder API keys and OAuth client IDs</a> <a class="chip" href="../why/warnings/env-file-mismatch.html">Repository has .env.local but main loads .env</a></p>
+                            </div>
+        </aside>
     </div>
-    <div class="rail-card metadata-group"><h2>Trigger</h2><p>User launches the app.</p></div>
-    <div class="rail-card metadata-group">
-      <h2>Data read or written</h2>
-      <p><strong>Reads:</strong> <span class="muted">None.</span></p>
-      <p><strong>Writes:</strong> <code class="chip chip--file">users</code></p>
-      <p><strong>Config:</strong> <code class="chip chip--file">.env</code> <code class="chip chip--file">MIXPANEL_API_KEY</code> <code class="chip chip--file">REVENUECAT_IOS_API_KEY</code> <code class="chip chip--file">REVENUECAT_ANDROID_API_KEY</code></p>
+</article>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap site-footer__inner">
+                <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+                <p class="muted">
+                    A living explanation generated from repository-owned content in <code>.vibekb/</code>.
+                    <a href="../index.html">About VibeKB</a>
+                </p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+            </div>
+        </footer>
     </div>
-    <div class="rail-card metadata-group"><h2>Files involved</h2><ul class="rail-list"><li><a href="../files/index.html#lib/main.dart"><code>lib/main.dart</code></a> <span class="badge badge--danger">High impact</span></li><li><a href="../files/index.html#lib/core/config/env_config.dart"><code>lib/core/config/env_config.dart</code></a> <span class="badge badge--danger">High impact</span></li><li><a href="../files/index.html#lib/firebase_options.dart"><code>lib/firebase_options.dart</code></a> <span class="badge badge--danger">High impact</span></li><li><a href="../files/index.html#pubspec.yaml"><code>pubspec.yaml</code></a> <span class="badge badge--danger">High impact</span></li></ul></div>
-    <div class="rail-card metadata-group">
-      <h2>Dependencies</h2>
-      <p><strong>Depends on:</strong> <span class="muted">None.</span></p>
-      <p><strong>Depended on by:</strong> <a class="chip" href="analytics-telemetry.html">Analytics and telemetry</a> <a class="chip" href="deep-link-handling.html">Deep link handling</a> <a class="chip" href="firebase-auth.html">Firebase authentication</a> <a class="chip" href="notifications.html">Push and local notifications</a> <a class="chip" href="startup-routing.html">Startup screen routing</a> <a class="chip" href="subscription-access-gating.html">Subscription access gating</a> <a class="chip" href="sugar-streak-tracking.html">Sugar-free streak tracking</a></p>
-    </div>
-    <div class="rail-card metadata-group">
-      <h2>Related rationale</h2>
-      <p><a class="chip" href="../why/warnings/placeholder-api-keys.html">Placeholder API keys and OAuth client IDs</a></p>
-    </div>
-  </aside>
 </div>
-<aside class="related-diagrams"><p><strong>Related diagrams:</strong> <a href="../diagrams/index.html#app-startup">Application startup diagram</a></p></aside>
-</article></main>
-    <footer class="site-footer">
-      <div class="wrap site-footer__inner">
-        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
-        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
-      </div>
-    </footer>
-  </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <script src="../assets/js/guide.js" defer></script>
 </body>
 </html>

@@ -2,31 +2,39 @@
 id: project-current-state
 type: project
 title: Current state
-summary: Stoppr v7.4.2+1 is a feature-rich Flutter app with implemented onboarding, home hub, community, nutrition, and subscription infrastructure — but placeholder Superwall placement IDs and no automated tests.
+summary: A large Flutter client with full onboarding, auth, subscription gating, home wellness loops, community, nutrition AI tools, widgets, and several high-severity configuration placeholders.
 verification: verified-from-source
 updated: 2026-07-21
 ---
 
-## What works in source (not runtime-verified here)
+## What it currently does
 
-| Area | State | Evidence |
-|------|-------|----------|
-| App bootstrap | Implemented | `lib/main.dart` — Firebase, RevenueCat, Mixpanel, notifications |
-| Onboarding | Implemented | 30+ screens, `OnboardingProgressService` |
-| Auth | Implemented | Google, Apple, email, anonymous users |
-| Paywall UI | Partial | Superwall integrated; placement IDs are placeholders |
-| Home hub | Implemented | `home_screen.dart` (~3800 lines) |
-| Streak / check-in | Implemented | `StreakService`, `DailyCheckInWidget`, `PledgeService` |
-| Panic flow | Implemented | `PanicFlowManager`, 18+ intervention screens |
-| Community | Implemented | Firestore `community_posts`, chat rooms |
-| Nutrition | Implemented | Firestore `food_logs`, Edamam API |
-| Food scan | Implemented | Groq vision API; quota checks disabled for A/B |
-| Notifications | Implemented | `NotificationService` (~3900 lines) |
-| Tests | Missing | No `test/` directory or `*_test.dart` files |
+Implemented surfaces (source-traced):
 
-## Known gaps
+- Cold-start SDK bootstrap and auth-aware routing in `lib/main.dart`.
+- Google / Apple / email / anonymous authentication.
+- Long onboarding with resume via `OnboardingProgressService`.
+- Superwall + RevenueCat subscription gating; Firestore does not grant access.
+- Home dashboard with streak, pledge/check-in, panic, challenge entry points.
+- Community posts/comments, language chat rooms, accountability partners.
+- Learn videos (Mux HLS) and local article assets with progress.
+- Food scan / Rate My Plate / recipes via Groq, OpenAI, Edamam, Spoonacular.
+- Melinda chatbot with daily API rate limit.
+- Fasting tracker (local SharedPreferences).
+- Local + push notifications; Mixpanel / AppsFlyer analytics.
+- iOS WidgetKit and Android AppWidget providers bridged via `home_widget`.
 
-- Superwall placement strings like `INSERT_YOUR_STANDARD_PAYWALL_PLACEMENT_ID_HERE`.
-- iOS home widget app group: `group.YOUR_BUNDLE_ID.shared`.
-- Feature quotas commented out in food scan and chatbot for A/B testing.
-- Fasting uses local SharedPreferences despite Firestore rules for `fasts`.
+## Partial / risky
+
+- Most Superwall `registerPlacement` calls still use `INSERT_YOUR_*` IDs.
+- Feature quota soft-paywalls exist but `QUOTA_SYSTEM_ENABLED = false`.
+- Android Superwall configure path does not attach `SuperwallPurchaseController`
+  the same way as iOS.
+- Widget app group id is still `group.YOUR_BUNDLE_ID.shared`.
+- Google OAuth fallbacks are placeholder client IDs when env is missing.
+- Only `.env.local` is present in the tree; `main()` loads `.env`.
+
+## Not verified at runtime
+
+Store products, Superwall dashboard campaigns, and end-to-end purchase flows
+were not executed in this analysis.

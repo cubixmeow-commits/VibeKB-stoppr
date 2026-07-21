@@ -1,38 +1,33 @@
 ---
-area: nutrition
-summary: Camera capture analyzed via Groq vision API with multi-slide alternatives presentation.
-status: implemented
-verification: verified-from-source
-user_facing: true
-trigger: User opens Food Scan from home.
-files: [lib/features/app/presentation/screens/food_scan/food_scan_screen.dart, lib/features/app/presentation/screens/food_scan/food_alternatives_screen.dart]
-reads: []
-writes: [user_feature_quotas]
-config: [GROQ_API_KEY]
-depends_on: [home-dashboard, soft-paywalls-quotas]
-related_memory: [discovery:quotas-disabled-ab-test]
 id: sugar-food-scanning
 type: functionality
 title: Sugar food scanning
+area: nutrition
+summary: Vision analysis via Groq-compatible endpoint with local image cache and optional Firebase Storage fallback.
+status: implemented
+verification: verified-from-source
+user_facing: true
+trigger: User opens food scanner and captures or selects an image.
+files: [lib/features/nutrition/presentation/screens/food_scanner_screen.dart, lib/core/services/local_food_image_service.dart]
+reads: []
+writes: []
+config: []
+depends_on: [calorie-nutrition-tracking]
+related_memory: [warning:placeholder-api-keys]
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-Camera capture analyzed via Groq vision API with multi-slide alternatives presentation.
+Camera/gallery images are analyzed for nutrition estimates then logged.
 
 ## Current behavior
 
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+Uses `GROQ_API_KEY`. Quota soft-paywall code present but disabled. Images cached
+locally via `LocalFoodImageService`.
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented; verified-from-source. Runtime accuracy of model output not verified.

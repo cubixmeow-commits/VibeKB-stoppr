@@ -1,37 +1,28 @@
 ---
-area: wellness-tools
-summary: Local meditation audio and animated breathing exercises accessible from home and deep links.
-status: implemented
-verification: verified-from-source
-user_facing: true
-trigger: User opens Meditation or Breathing from home.
-files: [lib/features/app/presentation/screens/meditation_screen.dart, lib/features/app/presentation/screens/breathing_exercise_screen.dart]
-reads: []
-writes: []
-depends_on: [home-dashboard]
-related_memory: []
 id: meditation-breathing
 type: functionality
 title: Meditation and breathing
+area: wellness-tools
+summary: "In-app meditation and breathing exercise UIs, also reachable via stoppr://meditation."
+status: implemented
+verification: verified-from-source
+user_facing: true
+trigger: User opens meditation/breathing screens or widget deep link.
+files: [lib/features/app/presentation/screens/meditation_screen.dart, lib/features/app/presentation/screens/breathing_exercise_screen.dart]
+reads: []
+writes: []
+config: []
+depends_on: []
+related_memory: []
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-Local meditation audio and animated breathing exercises accessible from home and deep links.
-
-## Current behavior
-
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+Guided audio/visual exercises for craving and daily practice.
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented; verified-from-source.

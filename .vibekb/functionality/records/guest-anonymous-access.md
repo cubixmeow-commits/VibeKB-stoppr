@@ -1,37 +1,34 @@
 ---
+id: guest-anonymous-access
+type: functionality
+title: Guest anonymous access
 area: authentication
-summary: Anonymous Firebase users created during onboarding, promos, and some feature flows with 90-day TTL.
+summary: Anonymous Firebase accounts are created from several entry points when no user exists, with TTL fields for guest profiles.
 status: implemented
 verification: verified-from-source
 user_facing: true
-trigger: User skips auth, accepts promo, or feature requires uid without sign-in.
-files: [lib/core/repositories/user_repository.dart, lib/features/onboarding/presentation/screens/profile_info_screen.dart]
-reads: [users]
-writes: [users]
+trigger: User skips auth during onboarding or a service needs a Firebase uid.
+files: [lib/features/onboarding/presentation/screens/profile_info_screen.dart, lib/features/nutrition/data/repositories/nutrition_repository.dart, lib/core/usage/feature_quota_service.dart]
+reads: []
+writes: []
+config: []
 depends_on: [firebase-auth]
-related_memory: []
-id: guest-anonymous-access
-type: functionality
-title: Guest and anonymous access
+related_memory: [discovery:anonymous-auth-spread]
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-Anonymous Firebase users created during onboarding, promos, and some feature flows with 90-day TTL.
+`signInAnonymously()` is used from profile completion and some repositories.
 
 ## Current behavior
 
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+`ProfileInfoScreen` creates an anonymous user if needed before writing profile
+fields. Nutrition and quota services can also ensure auth. Anonymous TTL is
+refreshed via `UserRepository`.
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented but multi-entry (not centralized). Verified-from-source.

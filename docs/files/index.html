@@ -1,509 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Files that matter · Stoppr — VibeKB</title>
-  <meta name="description" content="A living explanation of what Stoppr currently does.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/guide.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Files that matter · Stoppr — VibeKB</title>
+    <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Web fonts are a progressive enhancement only. The stylesheet ships a
+         full system-font fallback stack, so the guide renders correctly with no
+         external CDN — required for offline and locked-down static hosting. -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/guide.css">
 </head>
-<body>
+<body data-mode="static">
 <a class="skip-link" href="#main">Skip to content</a>
+
 <div class="app-shell">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="../index.html">
-        <span class="brand__mark">VibeKB</span>
-        <span class="brand__project">Stoppr</span>
-      </a>
-      <form class="site-search" role="search" action="../search/index.html">
-        <label class="visually-hidden" for="site-search-input">Search guide</label>
-        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
-      </form>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="../index.html">
+                <span class="brand__mark">VibeKB</span>
+                <span class="brand__project">Stoppr</span>
+            </a>
+            <form class="site-search" role="search" action="../search/index.html">
+                <label class="visually-hidden" for="site-search-input">Search guide</label>
+                <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+            </form>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="guide-sidebar"
+                hidden
+            >Menu</button>
+        </div>
+    </header>
+
+    <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+    <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+        <nav class="sidebar-nav" aria-label="Guide sections">
+            <p class="sidebar-nav__label" id="nav-primary-label">Primary</p>
+            <ul class="sidebar-nav__list" aria-labelledby="nav-primary-label">
+                                                        <li>
+                        <a href="../index.html">
+                            Overview                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../functionality/index.html">
+                            Functionality                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../how-it-works/index.html">
+                            Architecture                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../diagrams/index.html">
+                            Diagrams                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../current-work/index.html">
+                            Current work                        </a>
+                    </li>
+                            </ul>
+
+                            <p class="sidebar-nav__label" id="nav-explore-label">Explore</p>
+                <ul class="sidebar-nav__list sidebar-nav__list--secondary" aria-labelledby="nav-explore-label">
+                                                                    <li>
+                            <a href="../data/index.html">
+                                Data &amp; storage                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../files/index.html" aria-current="page">
+                                Files that matter                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../changes/index.html">
+                                Changes                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../why/index.html">
+                                Decisions &amp; rationale                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../handoff/index.html">
+                                AI handoff                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../reference/index.html">
+                                Reference                            </a>
+                        </li>
+                                    </ul>
+                    </nav>
+    </aside>
+
+    <div class="app-main">
+                    <p class="generated-notice" role="note">
+                Generated output — this is a static snapshot rendered from <code>.vibekb/</code>. The
+                <code>.vibekb/</code> content is the source of truth. See <a href="../reference/index.html">Reference</a> for provenance.
+            </p>
+                
+        <main id="main" class="wrap">
+            <article class="view view-files">
+    <header class="page-head reading-column">
+        <p class="eyebrow">Files that matter</p>
+        <h1>The files worth understanding</h1>
+        <p class="lede">A curated list — not the whole repository. Each file says what it does, when it runs, and how safe it is to change.</p>
+    </header>
+
+            <p class="empty-state">No important files recorded.</p>
+    </article>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap site-footer__inner">
+                <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+                <p class="muted">
+                    A living explanation generated from repository-owned content in <code>.vibekb/</code>.
+                    <a href="../index.html">About VibeKB</a>
+                </p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+            </div>
+        </footer>
     </div>
-  </header>
-  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
-  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
-    <nav class="sidebar-nav" aria-label="Guide sections">
-      <p class="sidebar-nav__label">Primary</p>
-      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="../functionality/index.html">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="../diagrams/index.html">Diagrams</a></li><li><a href="../current-work/index.html">Current work</a></li></ul>
-      <p class="sidebar-nav__label">Explore</p>
-      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="index.html" aria-current="page">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
-    </nav>
-  </aside>
-  <div class="app-main">
-    <main id="main" class="wrap"><article class="view view-files">
-<header class="page-head reading-column">
-  <p class="eyebrow">Files that matter</p>
-  <h1>The files worth understanding</h1>
-  <p class="lede">A curated list — not the whole repository. Each file says what it does, when it runs, and how safe it is to change.</p>
-</header>
-<div class="file-list"><section class="file-card" id="lib/main.dart">
-  <div class="file-card__head">
-    <h2><code>lib/main.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Application entry point: SDK initialization, startup routing, deep links, Superwall delegate, and MaterialApp shell.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Every app launch and for deep link handling while running.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/app-startup.html">Application startup</a><a class="chip" href="../functionality/startup-routing.html">Startup screen routing</a><a class="chip" href="../functionality/deep-link-handling.html">Deep link handling</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/firebase_options.dart</code> <code class="chip chip--file">lib/core/config/env_config.dart</code> <code class="chip chip--file">lib/core/subscription/subscription_service.dart</code></dd></div>
-    <div><dt>Test after change</dt><dd>Cold start app; verify routing to home, onboarding, and paywall paths.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/subscription/subscription_service.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/subscription/subscription_service.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Determines paid subscriber status via RevenueCat, Superwall, and debug/reviewer bypasses.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Premium feature access checks and startup routing.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a><a class="chip" href="../functionality/main-paywall.html">Main subscription paywall</a><a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and feature quotas</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">purchases_flutter</code> <code class="chip chip--file">superwallkit_flutter</code></dd></div>
-    <div><dt>Test after change</dt><dd>Verify free vs paid access on a real device with sandbox purchase.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/superwall/superwall_purchase_controller.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/superwall/superwall_purchase_controller.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Bridges Superwall paywall events to RevenueCat purchases and Firebase analytics.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>User interacts with any Superwall placement.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/main-paywall.html">Main subscription paywall</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/core/subscription/subscription_service.dart</code></dd></div>
-    <div><dt>Test after change</dt><dd>Complete a sandbox subscription purchase.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/onboarding/data/services/onboarding_progress_service.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/onboarding/data/services/onboarding_progress_service.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Tracks and resumes onboarding screen progress in SharedPreferences and Firestore.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Each onboarding screen transition.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/startup-routing.html">Startup screen routing</a><a class="chip" href="../functionality/onboarding-intro.html">Onboarding introduction</a><a class="chip" href="../functionality/onboarding-questionnaire.html">Onboarding questionnaire</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">shared_preferences</code> <code class="chip chip--file">cloud_firestore</code></dd></div>
-    <div><dt>Test after change</dt><dd>Kill app mid-onboarding and verify resume screen.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/onboarding/presentation/screens/pre_paywall.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/onboarding/presentation/screens/pre_paywall.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Primary subscription paywall with Superwall placement registration and gift flow steps.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Unpaid user completes onboarding.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/main-paywall.html">Main subscription paywall</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">superwallkit_flutter</code> <code class="chip chip--file">lib/core/superwall/superwall_purchase_controller.dart</code></dd></div>
-    <div><dt>Test after change</dt><dd>Reach paywall in onboarding; confirm placement renders with configured IDs.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/auth/auth_service.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/auth/auth_service.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Firebase Auth wrapper for Google, Apple, and email sign-in with RevenueCat identity sync.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>User initiates sign-in or auth state changes.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">firebase_auth</code> <code class="chip chip--file">google_sign_in</code> <code class="chip chip--file">sign_in_with_apple</code></dd></div>
-    <div><dt>Test after change</dt><dd>Sign in with each provider on iOS and Android.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/auth/cubit/auth_cubit.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/auth/cubit/auth_cubit.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Auth state machine emitting authenticated/paid/free/unauthenticated states.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Auth state changes or explicit auth checks.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a><a class="chip" href="../functionality/startup-routing.html">Startup screen routing</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/core/auth/auth_service.dart</code></dd></div>
-    <div><dt>Test after change</dt><dd>Sign in/out and verify navigation side effects.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/app/presentation/screens/main_scaffold.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/app/presentation/screens/main_scaffold.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--info">Moderate impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Bottom navigation shell hosting Home, Learn, Rewire Brain, Community, Profile tabs.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Paid or bypassed user reaches main app.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/main-navigation.html">Main tab navigation</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">HomeScreen</code> <code class="chip chip--file">LearnVideoListScreen</code> <code class="chip chip--file">CommunityScreen</code></dd></div>
-    <div><dt>Test after change</dt><dd>Switch all five tabs; verify analytics screen names.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/app/presentation/screens/home_screen.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/app/presentation/screens/home_screen.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--info">Moderate impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Main dashboard with streak, check-in, panic button, and feature grid navigation.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>User on Home tab.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/home-dashboard.html">Home dashboard</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">StreakService</code> <code class="chip chip--file">SubscriptionService</code> <code class="chip chip--file">NotificationService</code></dd></div>
-    <div><dt>Test after change</dt><dd>Open home; tap major feature cards.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/streak/streak_service.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/streak/streak_service.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--info">Moderate impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Sugar-free streak timer with SharedPreferences and optional Firestore sync.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>App running; updates every second on home.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar-free streak tracking</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">shared_preferences</code> <code class="chip chip--file">home_widget</code></dd></div>
-    <div><dt>Test after change</dt><dd>Reset streak; verify timer and widget update.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/app/services/panic_flow_manager.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/app/services/panic_flow_manager.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--ok">Low impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Orchestrates randomized panic intervention screen sequence.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>User starts panic flow.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/panic-intervention.html">Panic button intervention</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/features/app/presentation/screens/panic_button/</code></dd></div>
-    <div><dt>Test after change</dt><dd>Complete panic flow from home.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/community/data/repositories/community_repository.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/community/data/repositories/community_repository.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--info">Moderate impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Firestore CRUD for posts, comments, chat, and blocked users.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Community tab interactions.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/community-forum.html">Community forum posts</a><a class="chip" href="../functionality/community-chat.html">Official and language chat</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">cloud_firestore</code></dd></div>
-    <div><dt>Test after change</dt><dd>Create post, comment, and send chat message.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/accountability/accountability_service.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/accountability/accountability_service.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--info">Moderate impact</span>
-      <span class="badge badge--info">Inferred from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Partner matchmaking, invites, and subscription-gated pool access.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>User manages accountability partnership.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/core/streak/sharing_service.dart</code> <code class="chip chip--file">SubscriptionService</code></dd></div>
-    <div><dt>Test after change</dt><dd>Join pool or send invite with subscribed test account.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/learn/presentation/cubit/learn_video_cubit.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/learn/presentation/cubit/learn_video_cubit.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--ok">Low impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Hardcoded lesson list with Mux URLs and completion state.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Learn tab opened.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/learn-video-lessons.html">Video lesson library</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">shared_preferences</code></dd></div>
-    <div><dt>Test after change</dt><dd>Play a lesson; verify subtitle and completion tracking.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/app/presentation/screens/food_scan/food_scan_screen.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/app/presentation/screens/food_scan/food_scan_screen.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--info">Moderate impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Camera food capture and Groq vision API analysis for sugar content.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>User opens sugar food scan.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">camera</code> <code class="chip chip--file">http</code> <code class="chip chip--file">EnvConfig GROQ_API_KEY</code></dd></div>
-    <div><dt>Test after change</dt><dd>Scan food with valid API key.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/nutrition/data/repositories/nutrition_repository.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/nutrition/data/repositories/nutrition_repository.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--info">Moderate impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Firestore persistence for food logs, daily summaries, and nutrition profile.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Calorie tracker meal logging.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie and nutrition tracking</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">cloud_firestore</code> <code class="chip chip--file">Edamam API</code></dd></div>
-    <div><dt>Test after change</dt><dd>Log a meal; verify Firestore document.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/recipes/data/repositories/recipe_repository.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/recipes/data/repositories/recipe_repository.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--ok">Low impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Recipe search via Edamam with Spoonacular fallback.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>User searches recipes.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/recipe-discovery.html">Recipe discovery</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">http</code> <code class="chip chip--file">EnvConfig</code></dd></div>
-    <div><dt>Test after change</dt><dd>Search recipes; favorite one.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/notifications/notification_service.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/notifications/notification_service.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">FCM and local notification scheduling with subscription-aware types.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>App init, settings changes, scheduled times.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/notifications.html">Push and local notifications</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">firebase_messaging</code> <code class="chip chip--file">flutter_local_notifications</code></dd></div>
-    <div><dt>Test after change</dt><dd>Toggle notification type; verify schedule updates.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/analytics/mixpanel_service.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/analytics/mixpanel_service.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--ok">Low impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Primary product analytics: events, page views, user properties.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Tracked user actions throughout app.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/analytics-telemetry.html">Analytics and telemetry</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">mixpanel_flutter</code> <code class="chip chip--file">MIXPANEL_API_KEY</code></dd></div>
-    <div><dt>Test after change</dt><dd>Trigger event; verify in Mixpanel dashboard.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/config/env_config.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/config/env_config.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Typed accessors for all environment variables and API keys.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Any service needing external API configuration.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/app-startup.html">Application startup</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">.env</code> <code class="chip chip--file">flutter_dotenv</code></dd></div>
-    <div><dt>Test after change</dt><dd>Verify each integration still reads correct key.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/firebase_options.dart">
-  <div class="file-card__head">
-    <h2><code>lib/firebase_options.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Firebase initialization options from environment variables for iOS/Android.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Firebase.initializeApp()</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/app-startup.html">Application startup</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">EnvConfig</code></dd></div>
-    <div><dt>Test after change</dt><dd>Firebase init on both platforms.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/repositories/user_repository.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/repositories/user_repository.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Firestore user document CRUD, subscription type enum, leaderboard, anonymous TTL.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>User profile reads/writes.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a><a class="chip" href="../functionality/guest-anonymous-access.html">Guest and anonymous access</a><a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">cloud_firestore</code></dd></div>
-    <div><dt>Test after change</dt><dd>Create user; verify Firestore document shape.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/subscription/feature_quota_service.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/subscription/feature_quota_service.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--info">Moderate impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Free-tier usage limits for learn, panic, food scan, chatbot, challenge.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Free user accesses gated features.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and feature quotas</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">shared_preferences</code> <code class="chip chip--file">user_feature_quotas</code></dd></div>
-    <div><dt>Test after change</dt><dd>Exceed quota as free user when enforcement enabled.</dd></div>
-  </dl>
-</section><section class="file-card" id="firestore.rules">
-  <div class="file-card__head">
-    <h2><code>firestore.rules</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Security rules for Firestore collections and user subcollections.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Every Firestore read/write in production.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/community-forum.html">Community forum posts</a><a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie and nutrition tracking</a><a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a></dd></div>
-    
-    <div><dt>Test after change</dt><dd>Deploy rules; test authenticated reads/writes.</dd></div>
-  </dl>
-</section><section class="file-card" id="pubspec.yaml">
-  <div class="file-card__head">
-    <h2><code>pubspec.yaml</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--danger">High impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Dependencies, assets, fonts, app version 7.4.2+1.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Build time.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/app-startup.html">Application startup</a></dd></div>
-    
-    <div><dt>Test after change</dt><dd>flutter pub get &amp;&amp; flutter build after dependency changes.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/onboarding/presentation/screens/questionnaire_screen.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/onboarding/presentation/screens/questionnaire_screen.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--info">Moderate impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">13-question onboarding survey with progress persistence.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Early onboarding after intro.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/onboarding-questionnaire.html">Onboarding questionnaire</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">QuestionnaireRepository</code> <code class="chip chip--file">OnboardingProgressService</code></dd></div>
-    <div><dt>Test after change</dt><dd>Complete questionnaire; verify saved answers.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/app/presentation/widgets/daily_check_in_widget.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/app/presentation/widgets/daily_check_in_widget.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--info">Moderate impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Daily mood check-in overlay with relapse and streak reset coordination.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Triggered from home (not on load by default).</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/daily-check-in-pledge.html">Daily check-in and pledge</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">RelapseService</code> <code class="chip chip--file">StreakService</code> <code class="chip chip--file">PledgeService</code></dd></div>
-    <div><dt>Test after change</dt><dd>Trigger check-in; test relapse path.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/challenge/challenge_service.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/challenge/challenge_service.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--ok">Low impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">28-day challenge task tracking with local and Firestore sync.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Challenge screen interactions.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/twenty-eight-day-challenge.html">28-day challenge</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">shared_preferences</code> <code class="chip chip--file">users/challenges</code></dd></div>
-    <div><dt>Test after change</dt><dd>Complete a challenge day task.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/core/streak/sharing_service.dart">
-  <div class="file-card__head">
-    <h2><code>lib/core/streak/sharing_service.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--info">Moderate impact</span>
-      <span class="badge badge--info">Inferred from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Share token generation and invite acceptance via Cloud Functions.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>User shares streak or accepts invite link.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/deep-link-handling.html">Deep link handling</a><a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">cloud_functions</code> <code class="chip chip--file">app_links</code></dd></div>
-    <div><dt>Test after change</dt><dd>Open share deep link; verify token validation.</dd></div>
-  </dl>
-</section><section class="file-card" id="lib/features/learn/data/services/article_service.dart">
-  <div class="file-card__head">
-    <h2><code>lib/features/learn/data/services/article_service.dart</code></h2>
-    <div class="file-card__badges">
-      <span class="badge badge--ok">Low impact</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p class="file-card__purpose">Loads bundled markdown articles from assets with progress tracking.</p>
-  <dl class="file-card__meta">
-    <div><dt>Runs when</dt><dd>Articles list opened.</dd></div>
-    <div><dt>Implements</dt><dd><a class="chip" href="../functionality/articles-education.html">Articles and educational content</a></dd></div>
-    <div><dt>Depends on</dt><dd><code class="chip chip--file">assets/articles/</code></dd></div>
-    <div><dt>Test after change</dt><dd>Open article in multiple languages.</dd></div>
-  </dl>
-</section></div>
-<aside class="related-diagrams"><p><strong>Related diagrams:</strong> <a href="../diagrams/index.html#code-architecture">Code architecture diagram</a></p></aside>
-</article></main>
-    <footer class="site-footer">
-      <div class="wrap site-footer__inner">
-        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
-        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
-      </div>
-    </footer>
-  </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <script src="../assets/js/guide.js" defer></script>
 </body>
 </html>

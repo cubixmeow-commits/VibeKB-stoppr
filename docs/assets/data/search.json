@@ -1,576 +1,828 @@
 [
-  {
-    "title": "Accountability partners",
-    "summary": "Matchmaking pool, invite links, and partnership management for subscribed users.",
-    "type": "functionality",
-    "url": "functionality/accountability-partners.html",
-    "body": "## In one sentence\n\nMatchmaking pool, invite links, and partnership management for subscribed users.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** inferred-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Analytics and telemetry",
-    "summary": "Mixpanel primary events, AppsFlyer attribution, Facebook purchase events, Crashlytics, screenshot tracking.",
-    "type": "functionality",
-    "url": "functionality/analytics-telemetry.html",
-    "body": "## In one sentence\n\nMixpanel primary events, AppsFlyer attribution, Facebook purchase events, Crashlytics, screenshot tracking.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Application startup",
-    "summary": "Initializes Flutter, Firebase, RevenueCat, analytics, notifications, and third-party SDKs before runApp.",
-    "type": "functionality",
-    "url": "functionality/app-startup.html",
-    "body": "## In one sentence\n\nCold start wires every SDK before the first frame.\n\n## Current behavior\n\n`main()` loads `.env`, configures RevenueCat early, initializes Firebase, Crashlytics (prod), NotificationService, Crisp, QuickActions, Mixpanel, AppsFlyer, FCM, and Superwall (Android). Camera list is fetched globally.\n\n## Step-by-step flow\n\n1. `WidgetsFlutterBinding.ensureInitialized()`\n2. Load `.env` via flutter_dotenv (non-fatal on failure)\n3. Early `Purchases.configure()` from EnvConfig\n4. `Firebase.initializeApp()` with DefaultFirebaseOptions\n5. Initialize notifications, analytics, messaging\n6. `runApp(MyApp)` with AuthCubit\n\n## Failure cases\n\n- Missing `.env` keys log warnings; some services skip init.\n- Firebase init failure prevents normal operation.\n\n## Safe to change\n\nDebug flags, non-critical service init order.\n\n## Use caution\n\nRevenueCat early init order \u2014 NotificationService depends on readiness flag."
-  },
-  {
-    "title": "Articles and educational content",
-    "summary": "Bundled markdown articles in assets/ with progress tracking; Firestore articles collection unused by app.",
-    "type": "functionality",
-    "url": "functionality/articles-education.html",
-    "body": "## In one sentence\n\nBundled markdown articles in assets/ with progress tracking; Firestore articles collection unused by app.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Calorie and nutrition tracking",
-    "summary": "Separate nutrition module logs meals to Firestore with Edamam API and onboarding sub-flow.",
-    "type": "functionality",
-    "url": "functionality/calorie-nutrition-tracking.html",
-    "body": "## In one sentence\n\nSeparate nutrition module logs meals to Firestore with Edamam API and onboarding sub-flow.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Official and language chat",
-    "summary": "Per-language chat rooms (en, es, de, zh, ru, fr, sk, cs, it, pl) with real-time messages.",
-    "type": "functionality",
-    "url": "functionality/community-chat.html",
-    "body": "## In one sentence\n\nPer-language chat rooms (en, es, de, zh, ru, fr, sk, cs, it, pl) with real-time messages.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Community forum posts",
-    "summary": "Users browse, create, upvote posts and comment via CommunityRepository and Cubits.",
-    "type": "functionality",
-    "url": "functionality/community-forum.html",
-    "body": "## In one sentence\n\nUsers browse, create, upvote posts and comment via CommunityRepository and Cubits.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Daily check-in and pledge",
-    "summary": "DailyCheckInWidget and PledgeService handle mood check-in, relapse flow, and 24-hour pledges.",
-    "type": "functionality",
-    "url": "functionality/daily-check-in-pledge.html",
-    "body": "## In one sentence\n\nDailyCheckInWidget and PledgeService handle mood check-in, relapse flow, and 24-hour pledges.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Deep link handling",
-    "summary": "Routes payment success, panic, pledge, meditation, and share-invite URIs to the correct screens.",
-    "type": "functionality",
-    "url": "functionality/deep-link-handling.html",
-    "body": "## In one sentence\n\nRoutes payment success, panic, pledge, meditation, and share-invite URIs to the correct screens.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Firebase authentication",
-    "summary": "Google, Apple, and email/password sign-in with AuthCubit state machine and RevenueCat identity sync.",
-    "type": "functionality",
-    "url": "functionality/firebase-auth.html",
-    "body": "## In one sentence\n\nGoogle, Apple, and email/password sign-in with AuthCubit state machine and RevenueCat identity sync.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Guest and anonymous access",
-    "summary": "Anonymous Firebase users created during onboarding, promos, and some feature flows with 90-day TTL.",
-    "type": "functionality",
-    "url": "functionality/guest-anonymous-access.html",
-    "body": "## In one sentence\n\nAnonymous Firebase users created during onboarding, promos, and some feature flows with 90-day TTL.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Home dashboard",
-    "summary": "Central hub with streak, widgets, panic button, and navigation to all major features.",
-    "type": "functionality",
-    "url": "functionality/home-dashboard.html",
-    "body": "## In one sentence\n\nCentral hub with streak, widgets, panic button, and navigation to all major features.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Video lesson library",
-    "summary": "Eight hardcoded Mux HLS lessons with multilingual subtitles and completion tracking.",
-    "type": "functionality",
-    "url": "functionality/learn-video-lessons.html",
-    "body": "## In one sentence\n\nEight hardcoded Mux HLS lessons with multilingual subtitles and completion tracking.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Main tab navigation",
-    "summary": "MainScaffold hosts five tabs: Home, Learn, Rewire Brain, Community, Profile.",
-    "type": "functionality",
-    "url": "functionality/main-navigation.html",
-    "body": "## In one sentence\n\nMainScaffold hosts five tabs: Home, Learn, Rewire Brain, Community, Profile.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Main subscription paywall",
-    "summary": "PrePaywallScreen presents Superwall placements for standard subscription purchase.",
-    "type": "functionality",
-    "url": "functionality/main-paywall.html",
-    "body": "## In one sentence\n\nThe primary Superwall paywall blocks unpaid users after onboarding.\n\n## Current behavior\n\n`PrePaywallScreen` (~2600 lines) registers Superwall placements for gift steps, standard paywall, and X-tap dismiss variants. Placement IDs in source are placeholders (`INSERT_YOUR_*`).\n\n## Step-by-step flow\n\n1. User reaches end of onboarding funnel.\n2. Screen registers Superwall placement.\n3. On purchase \u2192 PostPurchaseHandler \u2192 Congratulations screens.\n4. On dismiss \u2192 may show alternate placements.\n\n## Failure cases\n\n- Placeholder placement IDs will not show real paywalls without dashboard config.\n- Anonymous user may be auto-created on purchase.\n\n## Current state\n\n**Status:** partial \u2014 UI and controller implemented; placement config external.\n\n## Use caution\n\nPayment flow touches RevenueCat, Superwall, Firebase, and Facebook events."
-  },
-  {
-    "title": "Meditation and breathing",
-    "summary": "Local meditation audio and animated breathing exercises accessible from home and deep links.",
-    "type": "functionality",
-    "url": "functionality/meditation-breathing.html",
-    "body": "## In one sentence\n\nLocal meditation audio and animated breathing exercises accessible from home and deep links.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Push and local notifications",
-    "summary": "NotificationService schedules FCM and local reminders with subscription-aware types and daily caps.",
-    "type": "functionality",
-    "url": "functionality/notifications.html",
-    "body": "## In one sentence\n\nNotificationService schedules FCM and local reminders with subscription-aware types and daily caps.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Onboarding introduction",
-    "summary": "Welcome video and intro pages lead to auth or skip path into questionnaire.",
-    "type": "functionality",
-    "url": "functionality/onboarding-intro.html",
-    "body": "## In one sentence\n\nWelcome video and intro pages lead to auth or skip path into questionnaire.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Personalized analysis and commitment",
-    "summary": "Shows analysis results, future-self letter, vow, ratings screen, and science-backed plan before paywall.",
-    "type": "functionality",
-    "url": "functionality/onboarding-personalized-analysis.html",
-    "body": "## In one sentence\n\nShows analysis results, future-self letter, vow, ratings screen, and science-backed plan before paywall.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Profile, symptoms, and goals",
-    "summary": "Collects demographics, symptoms, sugar pain points, and goals; creates anonymous user if needed.",
-    "type": "functionality",
-    "url": "functionality/onboarding-profile-goals.html",
-    "body": "## In one sentence\n\nCollects demographics, symptoms, sugar pain points, and goals; creates anonymous user if needed.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Onboarding questionnaire",
-    "summary": "13-question survey collecting consumption habits; answers saved locally and to Firestore.",
-    "type": "functionality",
-    "url": "functionality/onboarding-questionnaire.html",
-    "body": "## In one sentence\n\n13-question survey collecting consumption habits; answers saved locally and to Firestore.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Panic button intervention",
-    "summary": "PanicFlowManager runs randomized coping tricks ending in sugary-treat education and congratulations.",
-    "type": "functionality",
-    "url": "functionality/panic-intervention.html",
-    "body": "## In one sentence\n\nPanicFlowManager runs randomized coping tricks ending in sugary-treat education and congratulations.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Recipe discovery",
-    "summary": "Edamam-primary recipe search with Spoonacular fallback and Firestore favorites.",
-    "type": "functionality",
-    "url": "functionality/recipe-discovery.html",
-    "body": "## In one sentence\n\nEdamam-primary recipe search with Spoonacular fallback and Firestore favorites.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Soft paywalls and feature quotas",
-    "summary": "FeatureQuotaService limits free-tier usage; soft paywalls on learn, food scan, chatbot, panic \u2014 partially disabled for A/B.",
-    "type": "functionality",
-    "url": "functionality/soft-paywalls-quotas.html",
-    "body": "## In one sentence\n\nFeatureQuotaService limits free-tier usage; soft paywalls on learn, food scan, chatbot, panic \u2014 partially disabled for A/B.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** partial. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Startup screen routing",
-    "summary": "Decides whether to show welcome video, resume onboarding, paywall, or home based on progress and subscription.",
-    "type": "functionality",
-    "url": "functionality/startup-routing.html",
-    "body": "## In one sentence\n\nAfter init, the app picks welcome, resume, paywall, or home.\n\n## Current behavior\n\n`_determineStartScreen()` and `_getTargetScreenFromProgress()` in `main.dart` read onboarding completion, auth state, subscription status, and `lastOnboardingScreen` to choose the initial widget.\n\n## Step-by-step flow\n\n1. Show loading spinner while determining target.\n2. If onboarding incomplete \u2192 resume at saved screen or welcome video.\n3. If complete but unpaid \u2192 PrePaywallScreen.\n4. If paid or bypass \u2192 MainScaffold.\n\n## Failure cases\n\n- Subscription check timeout falls back per surrounding try/catch.\n- Missing progress defaults to onboarding start.\n\n## Safe to change\n\nLoading UI, transition animations.\n\n## Use caution\n\nRouting logic affects every user entry path."
-  },
-  {
-    "title": "Subscription access gating",
-    "summary": "SubscriptionService.isPaidSubscriber checks RevenueCat, Superwall, debug bypasses, and reviewer emails.",
-    "type": "functionality",
-    "url": "functionality/subscription-access-gating.html",
-    "body": "## In one sentence\n\nSubscriptionService.isPaidSubscriber checks RevenueCat, Superwall, debug bypasses, and reviewer emails.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Sugar food scanning",
-    "summary": "Camera capture analyzed via Groq vision API with multi-slide alternatives presentation.",
-    "type": "functionality",
-    "url": "functionality/sugar-food-scanning.html",
-    "body": "## In one sentence\n\nCamera capture analyzed via Groq vision API with multi-slide alternatives presentation.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "Sugar-free streak tracking",
-    "summary": "StreakService maintains a live sugar-free timer synced to SharedPreferences and Firestore for subscribers.",
-    "type": "functionality",
-    "url": "functionality/sugar-streak-tracking.html",
-    "body": "## In one sentence\n\nStreakService maintains a live sugar-free timer synced to SharedPreferences and Firestore for subscribers.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "28-day challenge",
-    "summary": "ChallengeService tracks daily tasks with local and Firestore sync; includes panic button footer.",
-    "type": "functionality",
-    "url": "functionality/twenty-eight-day-challenge.html",
-    "body": "## In one sentence\n\nChallengeService tracks daily tasks with local and Firestore sync; includes panic button footer.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** verified-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "User profile and settings",
-    "summary": "Profile tab for account management, notification prefs, language, sign-out, and account deletion.",
-    "type": "functionality",
-    "url": "functionality/user-profile-settings.html",
-    "body": "## In one sentence\n\nProfile tab for account management, notification prefs, language, sign-out, and account deletion.\n\n## Current behavior\n\nImplemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.\n\n## Current state\n\n**Status:** implemented. **Verification:** inferred-from-source.\n\n## Safe to change\n\nPresentation and copy with localization.\n\n## Use caution\n\nData writes and subscription checks."
-  },
-  {
-    "title": "lib/main.dart",
-    "summary": "Application entry point: SDK initialization, startup routing, deep links, Superwall delegate, and MaterialApp shell.",
-    "type": "file",
-    "url": "files/index.html#lib/main.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/subscription/subscription_service.dart",
-    "summary": "Determines paid subscriber status via RevenueCat, Superwall, and debug/reviewer bypasses.",
-    "type": "file",
-    "url": "files/index.html#lib/core/subscription/subscription_service.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/superwall/superwall_purchase_controller.dart",
-    "summary": "Bridges Superwall paywall events to RevenueCat purchases and Firebase analytics.",
-    "type": "file",
-    "url": "files/index.html#lib/core/superwall/superwall_purchase_controller.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/onboarding/data/services/onboarding_progress_service.dart",
-    "summary": "Tracks and resumes onboarding screen progress in SharedPreferences and Firestore.",
-    "type": "file",
-    "url": "files/index.html#lib/features/onboarding/data/services/onboarding_progress_service.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/onboarding/presentation/screens/pre_paywall.dart",
-    "summary": "Primary subscription paywall with Superwall placement registration and gift flow steps.",
-    "type": "file",
-    "url": "files/index.html#lib/features/onboarding/presentation/screens/pre_paywall.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/auth/auth_service.dart",
-    "summary": "Firebase Auth wrapper for Google, Apple, and email sign-in with RevenueCat identity sync.",
-    "type": "file",
-    "url": "files/index.html#lib/core/auth/auth_service.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/auth/cubit/auth_cubit.dart",
-    "summary": "Auth state machine emitting authenticated/paid/free/unauthenticated states.",
-    "type": "file",
-    "url": "files/index.html#lib/core/auth/cubit/auth_cubit.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/app/presentation/screens/main_scaffold.dart",
-    "summary": "Bottom navigation shell hosting Home, Learn, Rewire Brain, Community, Profile tabs.",
-    "type": "file",
-    "url": "files/index.html#lib/features/app/presentation/screens/main_scaffold.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/app/presentation/screens/home_screen.dart",
-    "summary": "Main dashboard with streak, check-in, panic button, and feature grid navigation.",
-    "type": "file",
-    "url": "files/index.html#lib/features/app/presentation/screens/home_screen.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/streak/streak_service.dart",
-    "summary": "Sugar-free streak timer with SharedPreferences and optional Firestore sync.",
-    "type": "file",
-    "url": "files/index.html#lib/core/streak/streak_service.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/app/services/panic_flow_manager.dart",
-    "summary": "Orchestrates randomized panic intervention screen sequence.",
-    "type": "file",
-    "url": "files/index.html#lib/features/app/services/panic_flow_manager.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/community/data/repositories/community_repository.dart",
-    "summary": "Firestore CRUD for posts, comments, chat, and blocked users.",
-    "type": "file",
-    "url": "files/index.html#lib/features/community/data/repositories/community_repository.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/accountability/accountability_service.dart",
-    "summary": "Partner matchmaking, invites, and subscription-gated pool access.",
-    "type": "file",
-    "url": "files/index.html#lib/core/accountability/accountability_service.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/learn/presentation/cubit/learn_video_cubit.dart",
-    "summary": "Hardcoded lesson list with Mux URLs and completion state.",
-    "type": "file",
-    "url": "files/index.html#lib/features/learn/presentation/cubit/learn_video_cubit.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/app/presentation/screens/food_scan/food_scan_screen.dart",
-    "summary": "Camera food capture and Groq vision API analysis for sugar content.",
-    "type": "file",
-    "url": "files/index.html#lib/features/app/presentation/screens/food_scan/food_scan_screen.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/nutrition/data/repositories/nutrition_repository.dart",
-    "summary": "Firestore persistence for food logs, daily summaries, and nutrition profile.",
-    "type": "file",
-    "url": "files/index.html#lib/features/nutrition/data/repositories/nutrition_repository.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/recipes/data/repositories/recipe_repository.dart",
-    "summary": "Recipe search via Edamam with Spoonacular fallback.",
-    "type": "file",
-    "url": "files/index.html#lib/features/recipes/data/repositories/recipe_repository.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/notifications/notification_service.dart",
-    "summary": "FCM and local notification scheduling with subscription-aware types.",
-    "type": "file",
-    "url": "files/index.html#lib/core/notifications/notification_service.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/analytics/mixpanel_service.dart",
-    "summary": "Primary product analytics: events, page views, user properties.",
-    "type": "file",
-    "url": "files/index.html#lib/core/analytics/mixpanel_service.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/config/env_config.dart",
-    "summary": "Typed accessors for all environment variables and API keys.",
-    "type": "file",
-    "url": "files/index.html#lib/core/config/env_config.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/firebase_options.dart",
-    "summary": "Firebase initialization options from environment variables for iOS/Android.",
-    "type": "file",
-    "url": "files/index.html#lib/firebase_options.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/repositories/user_repository.dart",
-    "summary": "Firestore user document CRUD, subscription type enum, leaderboard, anonymous TTL.",
-    "type": "file",
-    "url": "files/index.html#lib/core/repositories/user_repository.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/subscription/feature_quota_service.dart",
-    "summary": "Free-tier usage limits for learn, panic, food scan, chatbot, challenge.",
-    "type": "file",
-    "url": "files/index.html#lib/core/subscription/feature_quota_service.dart",
-    "body": ""
-  },
-  {
-    "title": "firestore.rules",
-    "summary": "Security rules for Firestore collections and user subcollections.",
-    "type": "file",
-    "url": "files/index.html#firestore.rules",
-    "body": ""
-  },
-  {
-    "title": "pubspec.yaml",
-    "summary": "Dependencies, assets, fonts, app version 7.4.2+1.",
-    "type": "file",
-    "url": "files/index.html#pubspec.yaml",
-    "body": ""
-  },
-  {
-    "title": "lib/features/onboarding/presentation/screens/questionnaire_screen.dart",
-    "summary": "13-question onboarding survey with progress persistence.",
-    "type": "file",
-    "url": "files/index.html#lib/features/onboarding/presentation/screens/questionnaire_screen.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/app/presentation/widgets/daily_check_in_widget.dart",
-    "summary": "Daily mood check-in overlay with relapse and streak reset coordination.",
-    "type": "file",
-    "url": "files/index.html#lib/features/app/presentation/widgets/daily_check_in_widget.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/challenge/challenge_service.dart",
-    "summary": "28-day challenge task tracking with local and Firestore sync.",
-    "type": "file",
-    "url": "files/index.html#lib/core/challenge/challenge_service.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/core/streak/sharing_service.dart",
-    "summary": "Share token generation and invite acceptance via Cloud Functions.",
-    "type": "file",
-    "url": "files/index.html#lib/core/streak/sharing_service.dart",
-    "body": ""
-  },
-  {
-    "title": "lib/features/learn/data/services/article_service.dart",
-    "summary": "Loads bundled markdown articles from assets with progress tracking.",
-    "type": "file",
-    "url": "files/index.html#lib/features/learn/data/services/article_service.dart",
-    "body": ""
-  },
-  {
-    "title": "Mental model",
-    "summary": "Stoppr is a Flutter shell around Firebase user state, local preferences, and subscription-gated feature modules reached through imperative navigation.",
-    "type": "component",
-    "url": "how-it-works/index.html",
-    "body": "## The simplest mental model\n\nThink of Stoppr as three layers:\n\n1. **Bootstrap layer** (`main.dart`) \u2014 initializes Firebase, purchases, analytics,\n   notifications, then decides which screen to show first.\n2. **Session layer** \u2014 `AuthCubit` + `SubscriptionService` determine whether the\n   user sees onboarding, paywall, or the home hub.\n3. **Feature modules** \u2014 self-contained areas (community, nutrition, learn) that\n   read/write Firestore and SharedPreferences through service singletons.\n\n## User journey axes\n\n| Axis | Mechanism |\n|------|-----------|\n| New vs returning | `OnboardingProgressService` + Firestore `lastOnboardingScreen` |\n| Free vs paid | `SubscriptionService.isPaidSubscriber()` |\n| Authenticated vs guest | Firebase anonymous auth in several flows |\n\n## Navigation model\n\nThere is no central route table. `MainScaffold` hosts five tabs; everything\nelse is reached via `Navigator.push` / `pushReplacement` from `HomeScreen`\nor onboarding screens.\n\n## Data model\n\n- **Cloud**: Firestore `users/{uid}` document + subcollections.\n- **Local**: SharedPreferences for streak, onboarding progress, quotas, settings.\n- **Purchases**: RevenueCat + Superwall, not Firestore subscription fields."
-  },
-  {
-    "title": "Major components",
-    "summary": "Stoppr is organized into core services, feature modules under lib/features/, and presentation screens with Cubits for stateful UI.",
-    "type": "component",
-    "url": "how-it-works/index.html",
-    "body": "## Core (`lib/core/`)\n\n| Component | Role |\n|-----------|------|\n| `AuthService` / `AuthCubit` | Firebase auth state machine |\n| `SubscriptionService` | Paid access checks via RevenueCat/Superwall |\n| `SuperwallPurchaseController` | Bridges Superwall to RevenueCat |\n| `StreakService` | Sugar-free streak timer + widget sync |\n| `NotificationService` | FCM + local notifications |\n| `MixpanelService` | Event tracking |\n| `UserRepository` | Firestore user CRUD |\n| `EnvConfig` | Typed environment variable accessors |\n\n## Feature modules (`lib/features/`)\n\n| Module | Key screens / services |\n|--------|------------------------|\n| `onboarding/` | 30+ screens, `OnboardingProgressService` |\n| `app/` | `HomeScreen`, `MainScaffold`, panic, food scan, meditation |\n| `community/` | `CommunityRepository`, `CommunityCubit` |\n| `accountability/` | `AccountabilityService`, partner matching |\n| `learn/` | `LearnVideoCubit`, `ArticleService` |\n| `nutrition/` | `NutritionRepository`, calorie tracker |\n| `recipes/` | `RecipeRepository`, Edamam/Spoonacular |\n| `auth/` | `EmailAuthScreen` |\n\n## State management pattern\n\n- **Cubit + Freezed** for feature screens (community, learn, recipes).\n- **Singleton services** for cross-cutting domain logic.\n- **BlocProvider** at app root for `AuthCubit`; `RepositoryProvider` for community.\n\n## Third-party UI\n\n- `superwallkit_flutter` \u2014 paywall presentation.\n- `purchases_flutter` \u2014 RevenueCat SDK.\n- `flutter_local_notifications` \u2014 scheduled reminders."
-  },
-  {
-    "title": "Application lifecycle",
-    "summary": "Every app launch runs main() initialization, resolves locale and auth, then routes to welcome video, onboarding resume, paywall, or MainScaffold home.",
-    "type": "component",
-    "url": "how-it-works/index.html",
-    "body": "## Cold start sequence\n\n1. `main()` in `lib/main.dart` runs `WidgetsFlutterBinding.ensureInitialized()`.\n2. Load `.env`, configure RevenueCat early, enumerate cameras.\n3. `Firebase.initializeApp()`, Crashlytics (prod), NotificationService init.\n4. Crisp, QuickActions, SharedPreferences, AuthService, Mixpanel, AppsFlyer.\n5. FCM background handler registration, Superwall early init (Android).\n6. `runApp(MyApp)` with `AuthCubit` provider.\n\n## `_MyAppState` startup routing\n\n`_determineStartScreen()` evaluates:\n\n- Is onboarding complete? (`OnboardingProgressService`)\n- Is user authenticated?\n- Is user a paid subscriber? (`SubscriptionService`)\n- Last onboarding screen for resume (`lastOnboardingScreen`)\n\nPossible destinations:\n\n- `WelcomeVideoScreen` \u2192 onboarding entry\n- Specific onboarding screen (resume)\n- `PrePaywallScreen` (unpaid, onboarding done)\n- `MainScaffold` (paid or bypass)\n\n## In-session navigation\n\n- Tab changes within `MainScaffold` (indices 0\u20134).\n- Feature launches from `HomeScreen` via `Navigator.push`.\n- Deep links handled in `_processDeepLink()` (payment success, panic, pledge, share invites).\n\n## Background / resume\n\n- FCM messages may trigger Superwall placements on tap.\n- `AppOpenStreakService` tracks consecutive daily opens.\n- Subscription refresh on payment success deep link."
-  },
-  {
-    "title": "Data flow",
-    "summary": "User actions flow from Flutter UI through services to Firestore or SharedPreferences, with subscription checks before premium writes.",
-    "type": "component",
-    "url": "how-it-works/index.html",
-    "body": "## Read path (typical)\n\n1. Screen widget builds \u2192 reads Cubit state or calls service singleton.\n2. Service checks SharedPreferences cache first (streak, onboarding, quotas).\n3. If subscribed/authenticated, service may sync from Firestore `users/{uid}`.\n4. Community/nutrition read directly from Firestore collections.\n\n## Write path (typical)\n\n1. User action triggers service method.\n2. Service validates auth (may create anonymous user).\n3. Subscription check for premium features (`SubscriptionService`).\n4. Write to Firestore and/or SharedPreferences.\n5. Mixpanel event fired (English event names).\n\n## Onboarding data flow\n\n```\nQuestionnaireScreen \u2192 QuestionnaireRepository \u2192 SharedPreferences + Firestore onboarding subcollection\nProfileInfoScreen \u2192 UserRepository \u2192 users/{uid}\nOnboardingProgressService \u2192 SharedPreferences + users/{uid}.lastOnboardingScreen\n```\n\n## Purchase data flow\n\n```\nSuperwall placement \u2192 SuperwallPurchaseController \u2192 RevenueCat purchase\n\u2192 Firebase users/{uid} subscription fields (analytics)\n\u2192 PostPurchaseHandler \u2192 CongratulationsScreen \u2192 MainScaffold\n```\n\n## Offline behavior\n\n- Streak timer runs locally from SharedPreferences timestamp.\n- Many features show errors or empty states without network.\n- No explicit offline queue for Firestore writes observed in source."
-  },
-  {
-    "title": "Storage",
-    "summary": "Stoppr uses Firestore for cloud user/community/nutrition data, SharedPreferences for local state, and FlutterSecureStorage for install tracking.",
-    "type": "component",
-    "url": "how-it-works/index.html",
-    "body": "## Cloud Firestore\n\n### Top-level collections\n\n| Collection | Purpose |\n|------------|---------|\n| `users` | User profiles and metadata |\n| `community_posts` | Forum posts |\n| `official_chat` / `official_chat_{lang}` | Language chat rooms |\n| `accountability_partnerships` | Partner pairs |\n| `accountability_pool` | Matchmaking queue |\n| `sharing_tokens` | Streak share invites |\n| `user_feature_quotas` | Free-tier usage limits |\n\n### `users/{uid}` subcollections\n\n`onboarding`, `pledges`, `challenges/tasks`, `food_logs`, `daily_summaries`,\n`nutrition_profile`, `body_metrics/weight_entries`, `workout_logs`,\n`favorite_recipes`, `blocked_users`.\n\n## Local storage (SharedPreferences)\n\nKey examples: `streak_start_timestamp`, `onboarding_current_screen`,\n`onboarding_completed`, `completed_learn_video_lessons`, `fasting_logs_v1`,\nper-notification-type toggles, feature quota counters.\n\n## Secure storage\n\n`InstallationTrackerService` uses iOS Keychain (`permanent_install_uuid`) for\nredownload detection.\n\n## Firebase Storage\n\nRemote audio files (e.g. NSDR track) via `RemoteAudioService`.\n\n## What is NOT stored in Firestore\n\n- Fasting logs (local only despite rules existing).\n- Article content (bundled in `assets/articles/`).\n- Video lesson metadata (hardcoded in `LearnVideoCubit`)."
-  },
-  {
-    "title": "Deployment",
-    "summary": "Stoppr ships as iOS and Android Flutter builds with env-configured API keys; Firebase rules and indexes live in repo root; VibeKB guide hosts statically from /docs.",
-    "type": "component",
-    "url": "how-it-works/index.html",
-    "body": "## Mobile app deployment\n\n- **Build**: `flutter build apk` / `flutter build ios` (per `CLAUDE.md`).\n- **Config**: Runtime `.env` for API keys; `lib/firebase_options.dart` reads env vars.\n- **Firebase**: `firestore.rules`, `firestore.indexes.json`, `firebase.json.local` in repo.\n- **Version**: `7.4.2+1` in `pubspec.yaml`.\n\n## Environment requirements\n\nDevelopers need configured keys for: Firebase, RevenueCat, Superwall, Mixpanel,\nOpenAI, Groq, AppsFlyer, Edamam, Spoonacular, Google OAuth, Crisp.\n\nPlaceholder strings exist when env vars are missing \u2014 app may fail or degrade.\n\n## VibeKB guide deployment\n\nThis repository includes a static guide in `/docs` built from `.vibekb/`.\nGitHub Pages can serve it from branch `main`, folder `/docs`.\nNo build step is required to read the guide.\n\n## CI / testing\n\nNo automated test suite present in repository. `flutter analyze` and manual QA\nare the documented verification paths."
-  },
-  {
-    "title": "Imperative navigation instead of GoRouter",
-    "summary": "Stoppr uses Navigator.push/pushReplacement throughout rather than a declarative route table.",
-    "type": "decision",
-    "url": "why/decisions/imperative-navigation.html",
-    "body": "## Context\n\nFlutter apps commonly use GoRouter or auto_route for deep linking and route tables.\n\n## Decision\n\nStoppr uses imperative navigation. `AppRouter` only provides `createFadeRoute()`.\nHundreds of screens use `Navigator.push` with `RouteSettings` names for analytics.\n\n## Reason\n\nHistorical codebase choice; deep links handled manually in `main.dart`.\n\n## Consequences\n\n- No single route map to consult \u2014 must trace Navigator calls.\n- Deep link coverage is manual per URI pattern.\n- Safe refactors require grep for screen class names."
-  },
-  {
-    "title": "Subscription gating via RevenueCat not Firestore",
-    "summary": "isPaidSubscriber checks RevenueCat and Superwall; Firebase subscription fields are analytics-only.",
-    "type": "decision",
-    "url": "why/decisions/revenuecat-not-firestore-gating.html",
-    "body": "## Context\n\nUser documents store subscription metadata in Firestore for analytics.\n\n## Decision\n\n`SubscriptionService.isPaidSubscriber()` never reads Firestore subscription fields for gating. It checks debug mode, TestFlight, reviewer emails, Superwall status, then RevenueCat entitlements.\n\n## Reason\n\nPurchase truth should come from the payment SDK, not potentially stale Firestore copies.\n\n## Consequences\n\nFirestore subscription fields can drift from actual entitlement state.\nPremium access works offline if RevenueCat cache is warm."
-  },
-  {
-    "title": "Environment-driven API configuration",
-    "summary": "API keys and Firebase config load from .env at runtime via EnvConfig; not bundled as assets.",
-    "type": "constraint",
-    "url": "why/constraints/env-driven-configuration.html",
-    "body": "## Source\n\n`main.dart` loads `.env` with flutter_dotenv. Production builds expect build-time or secure config.\n\n## Consequences\n\n- Repository clones without `.env` will have missing integrations.\n- VibeKB and docs must never expose actual key values.\n- Placeholder fallbacks exist for some OAuth client IDs."
-  },
-  {
-    "title": "Mobile-only platform support",
-    "summary": "firebase_options.dart throws for web, macOS, Windows, and Linux targets.",
-    "type": "constraint",
-    "url": "why/constraints/mobile-only-platform.html",
-    "body": "## Source\n\nPlatform switch in `DefaultFirebaseOptions.currentPlatform` only implements Android and iOS.\n\n## Consequences\n\nVibeKB guide targets mobile behavior only. Desktop/web builds are out of scope."
-  },
-  {
-    "title": "Onboarding copy contains product health claims",
-    "summary": "Analysis and benefit screens present health/behavioral claims as product messaging, not verified medical facts.",
-    "type": "assumption",
-    "url": "why/assumptions/onboarding-health-claims.html",
-    "body": "## Assumption\n\nScreens like `analysis_result_screen.dart` and `stoppr_science_backed_plan.dart` display persuasive health framing. The code does not validate these claims against external medical evidence.\n\n## For guide readers\n\nDocument what the app **shows**, not whether claims are scientifically established."
-  },
-  {
-    "title": "Google OAuth client ID fallbacks",
-    "summary": "auth_service.dart contains placeholder OAuth client ID strings when env config is missing.",
-    "type": "warning",
-    "url": "why/warnings/google-oauth-placeholders.html",
-    "body": "## What can go wrong\n\nGoogle Sign-In will fail on devices if real OAuth client IDs are not provided via environment configuration."
-  },
-  {
-    "title": "Placeholder API keys and OAuth client IDs",
-    "summary": "Several integrations use placeholder fallback strings when env vars are missing.",
-    "type": "warning",
-    "url": "why/warnings/placeholder-api-keys.html",
-    "body": "## What can go wrong\n\nGoogle OAuth, Superwall placements, and widget app group IDs may use placeholder values, causing auth failures or broken widgets.\n\n## Do not\n\nCopy placeholder values from source into documentation as working configuration."
-  },
-  {
-    "title": "Superwall placement IDs are placeholders in source",
-    "summary": "Paywall registration uses INSERT_YOUR_* placeholder strings requiring Superwall dashboard configuration.",
-    "type": "warning",
-    "url": "why/warnings/superwall-placement-placeholders.html",
-    "body": "## What can go wrong\n\nWithout replacing placeholders in code or Superwall dashboard, paywalls may not appear or may fail silently in production.\n\n## Affected areas\n\nPrePaywallScreen, home_screen soft paywalls, food scan, chatbot, learn videos, quick actions, redownload feedback.\n\n## Evidence\n\nGrep for `INSERT_YOUR_` across `lib/`."
-  },
-  {
-    "title": "iOS home widget app group ID is a placeholder",
-    "summary": "StreakService references group.YOUR_BUNDLE_ID.shared for home widget sync.",
-    "type": "warning",
-    "url": "why/warnings/widget-app-group-placeholder.html",
-    "body": "## What can go wrong\n\niOS home widget streak display will not sync until the real app group identifier is configured in Xcode and code."
-  },
-  {
-    "title": "Daily check-in on home load is disabled",
-    "summary": "MainScaffold passes showCheckInOnLoad false with debug comment.",
-    "type": "discoverie",
-    "url": "why/discoveries/check-in-on-load-disabled.html",
-    "body": "## Evidence\n\n`main_scaffold.dart` sets `showCheckInOnLoad: false` with comment \"Disabled check-in on load for debug testing\".\n\n## Impact\n\nUsers may not see automatic daily check-in overlay on app open despite widget existing."
-  },
-  {
-    "title": "Some notification types explicitly removed",
-    "summary": "App update and breakfast reminder notifications are disabled in NotificationService.",
-    "type": "discoverie",
-    "url": "why/discoveries/disabled-notification-types.html",
-    "body": "## Evidence\n\nComments: \"removed per request\" for app update notifications; breakfast reminder keys commented out.\n\n## Impact\n\nUsers cannot enable these notification categories even if UI remnants exist."
-  },
-  {
-    "title": "No automated test suite in repository",
-    "summary": "flutter_test is a dev dependency but no test/ directory or *_test.dart files exist.",
-    "type": "discoverie",
-    "url": "why/discoveries/no-automated-tests.html",
-    "body": "## Evidence\n\nGlob search finds zero `*_test.dart` files. README documents `flutter test` but nothing to run.\n\n## Impact\n\nAll VibeKB verification states are source-based, not test-verified."
-  },
-  {
-    "title": "Feature quotas disabled for A/B testing",
-    "summary": "Food scan 50% gate, chatbot quota, and related checks are commented out or bypassed in source.",
-    "type": "discoverie",
-    "url": "why/discoveries/quotas-disabled-ab-test.html",
-    "body": "## Evidence\n\nComments in `food_scan_screen.dart` and `chatbot_screen.dart` indicate quota enforcement disabled for A/B test. FeatureQuotaService logic still exists but may not be invoked.\n\n## Impact\n\nFree users may have unlimited access to gated features until A/B concludes and code is re-enabled."
-  },
-  {
-    "title": "Added Diagrams section to VibeKB guide",
-    "summary": "New /docs/diagrams/ page with 19 source-grounded SVG diagrams and navigation integration.",
-    "type": "change",
-    "url": "why/changes/diagrams-section.html",
-    "body": "## Before\n\nThe VibeKB guide explained Stoppr through text records only. No visual architecture or flow diagrams existed in `/docs`.\n\n## After\n\n- `/docs/diagrams/index.html` with grouped diagram index and plain-language explanations.\n- 19 SVG files under `/docs/assets/diagrams/`.\n- **Diagrams** added to primary navigation across the guide.\n- Cross-links from key functionality, data, files, architecture, and warnings pages.\n\n## Impact\n\nReaders can understand product and technical flows visually. Uncertain areas are labeled **Inferred** or **Unverified** on the risk and paywall diagrams."
-  },
-  {
-    "title": "Diagrams",
-    "summary": "Source-grounded SVG diagrams explaining how Stoppr works — product flows, architecture, Firebase, paywalls, and uncertainty.",
-    "type": "guide",
-    "url": "diagrams/index.html",
-    "body": "## In one sentence\n\nVisual maps of Stoppr product flows and technical architecture, grounded in repository source.\n\n## Diagram collection\n\napp-overview, user-journey, app-startup, onboarding-flow, authentication-flow, paywall-flow, home-dashboard, data-flow, firebase-architecture, feature-access, community-flow, panic-flow, content-flow, storage-map, code-architecture, state-management, navigation-map, external-services, risk-and-uncertainty-map.\n\n## Verification\n\nDiagrams are source-grounded. Inferred and unverified areas are labeled on paywall, quota, and risk diagrams."
-  },
-  {
-    "title": "VibeKB integrated into Stoppr repository",
-    "summary": "Added .vibekb knowledge model and static /docs guide without modifying application code.",
-    "type": "change",
-    "url": "why/changes/vibekb-integration.html",
-    "body": "## Before\n\nNo living software model or static guide in the repository.\n\n## After\n\n- `.vibekb/` with 30 functionality records, system docs, memory, and work files.\n- `/docs` static HTML guide generated for GitHub Pages.\n- `VIBEKB.md` maintenance instructions.\n\n## Impact\n\nFuture agents can update `.vibekb/` and regenerate `/docs` after code changes."
-  }
+    {
+        "title": "Accountability partners",
+        "summary": "Partnerships and matching pool in Firestore; joining the pool requires an active subscription.",
+        "type": "functionality",
+        "url": "../functionality/accountability-partners.html",
+        "body": "In one sentence Accountability matching is subscription gated and widget synced. Current behavior Repositories manage accountability partnerships and accountability pool . joinPool checks SubscriptionService . Widget service pushes partner status to home widgets. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Analytics and telemetry",
+        "summary": "Mixpanel primary product analytics, AppsFlyer attribution, Crashlytics error reporting, Firebase Analytics purchase events.",
+        "type": "functionality",
+        "url": "../functionality/analytics-telemetry.html",
+        "body": "In one sentence Telemetry SDKs initialize at startup and receive identity sync from AuthService. Current behavior Uses config names MIXPANEL API KEY , APPSFLYER . Crashlytics filters wrap reporting. Do not document secret values. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Application startup",
+        "summary": "Initializes Flutter bindings, env, RevenueCat, Firebase, analytics, notifications, and platform SDKs before runApp.",
+        "type": "functionality",
+        "url": "../functionality/app-startup.html",
+        "body": "In one sentence Cold start wires SDKs, then shows a loading scaffold until routing resolves. Current behavior main in lib/main.dart calls WidgetsFlutterBinding.ensureInitialized , loads .env via flutter dotenv non fatal on failure , configures RevenueCat early from EnvConfig , sets OpenAI key if present, initializes Firebase with DefaultFirebaseOptions , Crashlytics, NotificationService, Crisp, Quick Actions, Mixpanel, AppsFlyer, FCM, and platform Superwall setup, then runApp MyApp . Step by step flow 1. Ensure Flutter binding. 2. Load dotenv .env . 3. Early Purchases.configure using platform RevenueCat key names. 4. Firebase.initializeApp via firebase options.dart non null env getters . 5. Initialize notifications, analytics, messaging, and related services. 6. Construct MyApp with AuthCu"
+    },
+    {
+        "title": "Articles education",
+        "summary": "Loads article content from assets and syncs reading progress to SharedPreferences and Firestore.",
+        "type": "functionality",
+        "url": "../functionality/articles-education.html",
+        "body": "In one sentence Article progress syncs to users/{uid}/progress/articles when authenticated. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Calorie nutrition tracking",
+        "summary": "Firestore food_logs, daily_summaries, nutrition goals, body metrics, and workout logs under the user document.",
+        "type": "functionality",
+        "url": "../functionality/calorie-nutrition-tracking.html",
+        "body": "In one sentence NutritionRepository is the persistence hub for calorie tracking. Current behavior CRUD for food logs and summaries; goals and body metrics documents; may ensure anonymous auth. Manual entry screens can call OpenAI/Groq for text estimates. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Melinda chatbot assistant",
+        "summary": "CBT-oriented AI assistant using Groq chat/transcription and OpenAI speech, limited to 20 API interactions per day.",
+        "type": "functionality",
+        "url": "../functionality/chatbot-assistant.html",
+        "body": "In one sentence Melinda personalizes prompts from streak/onboarding data and calls Groq/OpenAI. Current behavior Builds context from user state, enforces ApiRateLimitService 20/day, not subscription aware , optional FeatureQuota disabled . Uses config names GROQ API KEY and OPENAI API KEY only — values must not be documented. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Community chat",
+        "summary": "Realtime chat collections official_chat and official_chat_{lang}; Crisp provides separate support chat.",
+        "type": "functionality",
+        "url": "../functionality/community-chat.html",
+        "body": "In one sentence In app chat is Firestore streams; Crisp is customer support chat. Current behavior ChatRepository reads/writes chat collections, may ensure anonymous auth, and tracks last seen timestamps in SharedPreferences. Crisp uses CRISP WEBSITE ID . Current state Implemented; verified from source."
+    },
+    {
+        "title": "Community forum",
+        "summary": "Firestore-backed posts and nested comments with blocked-user filtering.",
+        "type": "functionality",
+        "url": "../functionality/community-forum.html",
+        "body": "In one sentence Forum content lives in community posts + comments subcollection . Current behavior Create/list/like/comment flows via CommunityRepository . Blocked users filtered from views. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Daily check-in and pledge",
+        "summary": "Daily pledge/check-in records success or failure with feelings/notes and can reset streak on relapse indication.",
+        "type": "functionality",
+        "url": "../functionality/daily-check-in-pledge.html",
+        "body": "In one sentence Pledges store under users/{uid}/pledges and local preferences. Current behavior PledgeService manages pledge lifecycle; UI widgets collect outcomes. Failure paths can trigger relapse related streak resets. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Deep link handling",
+        "summary": "Processes payment success, home/pledge/panic/meditation schemes, share invites, and promo deep links; some declared routes lack handlers.",
+        "type": "functionality",
+        "url": "../functionality/deep-link-handling.html",
+        "body": "In one sentence processDeepLink routes known URIs; platform manifests declare additional paths that the Dart handler does not fully cover. Current behavior Handled in source: https://stoppr.app/payment/success , stoppr://home , stoppr://pledge , stoppr://panic , stoppr://meditation , share tokens via SharingService , and AppsFlyer promo application. Gaps Android declares stoppr://payment/success and /winback without matching Dart handlers winback noted removed . Widget URI stoppr://accountability is emitted by iOS widgets but not handled in processDeepLink . Current state Partial. Verification: verified from source."
+    },
+    {
+        "title": "Fasting tracker",
+        "summary": "Local-only fasting logs in SharedPreferences with scheduled reminder notifications.",
+        "type": "functionality",
+        "url": "../functionality/fasting-tracker.html",
+        "body": "In one sentence Fasting state is not Firestore backed in the repository reviewed. Current behavior fasting logs v1 preference key; NotificationService schedules/cancels reminders. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Firebase authentication",
+        "summary": "AuthService signs in with Google, Apple, or email via Firebase Auth, syncs RevenueCat/Mixpanel, and writes users/{uid} profiles.",
+        "type": "functionality",
+        "url": "../functionality/firebase-auth.html",
+        "body": "In one sentence Firebase Auth is the identity provider; AuthCubit exposes paid/free user states. Current behavior Google: GoogleSignIn + credential to Firebase; iOS/Android client ids from EnvConfig with INSERT YOUR fallbacks. Apple: AppleAuthProvider via signInWithProvider . Email: signInWithEmailAndPassword / createUserWithEmailAndPassword . On success: RevenueCat logIn , Mixpanel sync, Firestore profile save. Failure cases Missing OAuth client configuration causes Google sign in failure. Current state Implemented with config risk; verified from source."
+    },
+    {
+        "title": "Guest anonymous access",
+        "summary": "Anonymous Firebase accounts are created from several entry points when no user exists, with TTL fields for guest profiles.",
+        "type": "functionality",
+        "url": "../functionality/guest-anonymous-access.html",
+        "body": "In one sentence signInAnonymously is used from profile completion and some repositories. Current behavior ProfileInfoScreen creates an anonymous user if needed before writing profile fields. Nutrition and quota services can also ensure auth. Anonymous TTL is refreshed via UserRepository . Current state Implemented but multi entry not centralized . Verified from source."
+    },
+    {
+        "title": "Home dashboard",
+        "summary": "Central dashboard orchestrating streak display, check-in widgets, panic entry, banners, and feature shortcuts.",
+        "type": "functionality",
+        "url": "../functionality/home-dashboard.html",
+        "body": "In one sentence HomeScreen is the daily hub for wellness actions and subscription banners. Current behavior Composes streak UI, pledge/check in widgets, panic entry, challenge links, and Superwall banner triggers for trial/cancel scenarios. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Home screen widgets",
+        "summary": "Flutter home_widget bridge syncs streak and accountability data to iOS WidgetKit and Android AppWidgets; app group id is still a placeholder.",
+        "type": "functionality",
+        "url": "../functionality/home-widgets.html",
+        "body": "In one sentence Widgets read shared defaults written by Flutter, but the iOS app group id is still group.YOUR BUNDLE ID.shared . Current behavior StreakService and AccountabilityWidgetService call HomeWidget.setAppGroupId and update widget data. iOS Swift widgets and Android Kotlin providers are present and registered. Current state Partial implementation exists; shared group placeholder blocks real iOS sync until configured . Verification: verified from source."
+    },
+    {
+        "title": "Learn video lessons",
+        "summary": "Hardcoded Mux HLS lesson catalog with local subtitle assets and completion tracked in SharedPreferences.",
+        "type": "functionality",
+        "url": "../functionality/learn-video-lessons.html",
+        "body": "In one sentence Lessons stream from Mux URLs; quota gating is currently disabled. Current behavior LearnVideoCubit holds the lesson list. Player uses video player with SRT assets and Mux subtitle fallback. Soft paywall placement still referenced for when quotas are re enabled. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Main navigation",
+        "summary": "Bottom-tab MainScaffold hosts home and primary feature surfaces with an initialIndex deep-link entry.",
+        "type": "functionality",
+        "url": "../functionality/main-navigation.html",
+        "body": "In one sentence MainScaffold is the post paywall shell with indexed tabs and optional bar hiding. Current behavior Stateful scaffold with initialIndex , bottom navigation when enabled, and lifecycle observers. Marks onboarding complete for authenticated users when appropriate. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Main paywall",
+        "summary": "PrePaywall registers Superwall placements and handles purchase success, but placement IDs are mostly INSERT_YOUR_* placeholders.",
+        "type": "functionality",
+        "url": "../functionality/main-paywall.html",
+        "body": "In one sentence The main commercial gate is Superwall driven from PrePaywallScreen . Current behavior Checks subscription, restore purchases, registers gift/standard placements, and on success runs PostPurchaseHandler Firestore update, streak init, congratulations navigation . Existing paid users skip to MainScaffold . Current state Partial — code path implemented; dashboard placement IDs largely placeholders. Verified from source."
+    },
+    {
+        "title": "Meditation and breathing",
+        "summary": "In-app meditation and breathing exercise UIs, also reachable via stoppr://meditation.",
+        "type": "functionality",
+        "url": "../functionality/meditation-breathing.html",
+        "body": "In one sentence Guided audio/visual exercises for craving and daily practice. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Notifications",
+        "summary": "Local notifications and FCM with preference storage; some payloads map to placeholder Superwall placements.",
+        "type": "functionality",
+        "url": "../functionality/notifications.html",
+        "body": "In one sentence NotificationService owns channels, scheduling, and preference keys. Current behavior Covers streak, motivation, meals, fasting, relapse challenge, trial, chat, and more. Platform branches for iOS vs Android. Some notification payloads still reference INSERT YOUR Superwall placements. Current state Implemented with placement config risk; verified from source."
+    },
+    {
+        "title": "Onboarding introduction",
+        "summary": "Welcome video and early onboarding pages introduce the product and present auth or skip options.",
+        "type": "functionality",
+        "url": "../functionality/onboarding-intro.html",
+        "body": "In one sentence Welcome video hands off to OnboardingPage / early screens before questionnaire. Current behavior WelcomeVideoScreen plays then navigates to the computed next screen. OnboardingPage sequences FOMO/stats and auth options Google/Apple/email/skip . Current state Implemented; verified from source."
+    },
+    {
+        "title": "Onboarding personalized analysis",
+        "summary": "Animated analysis screens plus nutrition onboarding compute calorie goals before benefits and paywall.",
+        "type": "functionality",
+        "url": "../functionality/onboarding-personalized-analysis.html",
+        "body": "In one sentence Calculating/analysis UI precedes nutrition goal setup and benefits pages. Current behavior CalculatingScreen → AnalysisResultScreen → symptoms continuation; nutrition onboarding screens compute and store daily goals under users/{uid}/nutrition profile/daily goals and body metrics. Current state Implemented; verified from source. Medical accuracy of copy is out of scope."
+    },
+    {
+        "title": "Onboarding profile and goals",
+        "summary": "Collects name/age/gender, symptoms, and goals into Firestore onboarding subdocuments.",
+        "type": "functionality",
+        "url": "../functionality/onboarding-profile-goals.html",
+        "body": "In one sentence ProfileInfoScreen may create anonymous auth, then symptoms and goals are saved. Current behavior Writes users/{uid} profile fields and onboarding/symptoms , onboarding/goals . Clears earlier progress after profile save, then continues the funnel. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Onboarding questionnaire",
+        "summary": "Multi-page questionnaire saves answers locally and to users/{uid}/onboarding/questionnaire with resume support.",
+        "type": "functionality",
+        "url": "../functionality/onboarding-questionnaire.html",
+        "body": "In one sentence Questionnaire answers drive later analysis and are persisted for resume. Current behavior PageController driven questions write SharedPreferences progress keys and Firestore onboarding docs questionnaire, consumption, acquisition . iOS may request ATT during this flow. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Panic intervention",
+        "summary": "Guided multi-step panic flow with randomized tricks and breathing/meditation helpers.",
+        "type": "functionality",
+        "url": "../functionality/panic-intervention.html",
+        "body": "In one sentence PanicFlowManager sequences intervention screens for craving moments. Current behavior Starts at WhatHappeningScreen and walks trick/breathing/meditation steps. Deep link stoppr://panic routes here. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Rate My Plate",
+        "summary": "Plate photo scoring via Groq vision and OpenAI results; quota gate present but disabled.",
+        "type": "functionality",
+        "url": "../functionality/rate-my-plate.html",
+        "body": "In one sentence Scan screen analyzes a plate image; results screen elaborates scoring. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Recipe discovery",
+        "summary": "Searches Edamam first with Spoonacular fallback; favorites stored under users/{uid}/favorite_recipes.",
+        "type": "functionality",
+        "url": "../functionality/recipe-discovery.html",
+        "body": "In one sentence External recipe APIs back the recipes feature with local favorite sync. Current behavior Uses EDAMAM API KEY / EDAMAM APP ID and SPOONACULAR API KEY config names. Favorites persist in Firestore. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Relapse recovery flow",
+        "summary": "Captures relapse reasons and targets, resets streak, and schedules relapse-challenge notifications.",
+        "type": "functionality",
+        "url": "../functionality/relapse-recovery.html",
+        "body": "In one sentence Relapse flow reframes a setback and resets streak state. Current behavior Screens collect why/help/target/signature; RelapseService persists locally; notifications may be scheduled for a recovery challenge. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Soft paywalls and quotas",
+        "summary": "FeatureQuotaService and contextual Superwall placements exist, but QUOTA_SYSTEM_ENABLED is false on major feature screens.",
+        "type": "functionality",
+        "url": "../functionality/soft-paywalls-quotas.html",
+        "body": "In one sentence Quota soft paywalls are coded but currently disabled by local feature flags. Current behavior FeatureQuotaService tracks limits in user feature quotas with SharedPreferences fallback. Learn, food scan, Rate My Plate, and chatbot set QUOTA SYSTEM ENABLED = false . Contextual placements ratings, redownload, quick actions, home banners still call Superwall with placeholder or concrete IDs. Chatbot separately enforces ApiRateLimitService 20/day . Current state Partial; verified from source."
+    },
+    {
+        "title": "Startup routing",
+        "summary": "Chooses WelcomeVideo, onboarding resume, PrePaywall, or MainScaffold from auth, onboarding completion, and paid status.",
+        "type": "functionality",
+        "url": "../functionality/startup-routing.html",
+        "body": "In one sentence checkOnboardingProgress picks the first real screen after splash loading. Current behavior While isLoading is true, a spinner scaffold shows. Then routing considers local onboarding completed , Firebase user restoration, Firestore onboardingCompleted , and SubscriptionService.isPaidSubscriber . Paid users with incomplete onboarding are forced into MainScaffold and marked complete. Unpaid completed users land on PrePaywallScreen . Incomplete unpaid users resume via OnboardingProgressService . Failure cases Auth restoration timing waits up to ~3s can still race on slow devices. Debug/TestFlight bypasses can skip paywall paths. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Subscription access gating",
+        "summary": "Paid access is determined from Superwall subscription status and RevenueCat CustomerInfo, not Firestore alone.",
+        "type": "functionality",
+        "url": "../functionality/subscription-access-gating.html",
+        "body": "In one sentence RevenueCat/Superwall decide paid access; Firestore stores mirrors only. Current behavior SubscriptionService.isPaidSubscriber checks debug/reviewer bypasses, Superwall status, then RevenueCat entitlements/subscriptions. AuthCubit emits paid/free states. SuperwallPurchaseController maps store purchases through RevenueCat and syncs status. Android early Superwall configure omits purchaseController — treat Android sync as higher risk. Current state Implemented with platform caveat; verified from source."
+    },
+    {
+        "title": "Sugar food scanning",
+        "summary": "Vision analysis via Groq-compatible endpoint with local image cache and optional Firebase Storage fallback.",
+        "type": "functionality",
+        "url": "../functionality/sugar-food-scanning.html",
+        "body": "In one sentence Camera/gallery images are analyzed for nutrition estimates then logged. Current behavior Uses GROQ API KEY . Quota soft paywall code present but disabled. Images cached locally via LocalFoodImageService . Current state Implemented; verified from source. Runtime accuracy of model output not verified."
+    },
+    {
+        "title": "Sugar streak tracking",
+        "summary": "Persists streak counters in SharedPreferences and Firestore and syncs values to home widgets.",
+        "type": "functionality",
+        "url": "../functionality/sugar-streak-tracking.html",
+        "body": "In one sentence StreakService owns streak persistence and widget updates. Current behavior Reads/writes user streak fields locally and on users/{uid} , updates HomeWidget data, and participates in relapse resets and post purchase init. Current state Implemented; widget sync partial due to app group placeholder. Verified from source."
+    },
+    {
+        "title": "Twenty-eight day challenge",
+        "summary": "Day/task progression stored in SharedPreferences and users/{uid}/challenges with varied task types.",
+        "type": "functionality",
+        "url": "../functionality/twenty-eight-day-challenge.html",
+        "body": "In one sentence ChallengeService distributes daily tasks across wellness features. Current behavior Tracks day status locally and in Firestore challenge/task docs. Task types include journal, breathing, pledge, meditation, articles, food scan, chatbot, community, and more. Current state Implemented; verified from source."
+    },
+    {
+        "title": "User profile and settings",
+        "summary": "Profile editing, notification preferences, and RevenueCat Customer Center for subscription management.",
+        "type": "functionality",
+        "url": "../functionality/user-profile-settings.html",
+        "body": "In one sentence Active cancel/manage path uses RevenueCatUI Customer Center. Current behavior user profile details.dart presents Customer Center. Instruction only CancelSubscriptionScreen and legacy UnsubscribeScreen exist; callers for legacy paths were not found. Theme/notification prefs use SharedPreferences. Current state Implemented; verified from source."
+    },
+    {
+        "title": "Application core",
+        "summary": "Startup, routing, navigation, deep links, widgets.",
+        "type": "functional area",
+        "url": "../functionality/index.html#grp-app-core",
+        "body": ""
+    },
+    {
+        "title": "Authentication",
+        "summary": "Sign-in providers and guest access.",
+        "type": "functional area",
+        "url": "../functionality/index.html#grp-authentication",
+        "body": ""
+    },
+    {
+        "title": "Onboarding",
+        "summary": "New-user funnel from welcome through paywall.",
+        "type": "functional area",
+        "url": "../functionality/index.html#grp-onboarding",
+        "body": ""
+    },
+    {
+        "title": "Subscription & paywalls",
+        "summary": "Superwall, RevenueCat, quotas, gating.",
+        "type": "functional area",
+        "url": "../functionality/index.html#grp-subscription",
+        "body": ""
+    },
+    {
+        "title": "Home & daily wellness",
+        "summary": "Dashboard, streak, check-in, pledge, panic, relapse.",
+        "type": "functional area",
+        "url": "../functionality/index.html#grp-home-wellness",
+        "body": ""
+    },
+    {
+        "title": "Community & accountability",
+        "summary": "Forum, chat, partners.",
+        "type": "functional area",
+        "url": "../functionality/index.html#grp-community",
+        "body": ""
+    },
+    {
+        "title": "Education & content",
+        "summary": "Videos, articles, chatbot.",
+        "type": "functional area",
+        "url": "../functionality/index.html#grp-education",
+        "body": ""
+    },
+    {
+        "title": "Nutrition & food",
+        "summary": "Scanning, calories, recipes, Rate My Plate.",
+        "type": "functional area",
+        "url": "../functionality/index.html#grp-nutrition",
+        "body": ""
+    },
+    {
+        "title": "Wellness tools",
+        "summary": "Meditation, breathing, challenge, fasting.",
+        "type": "functional area",
+        "url": "../functionality/index.html#grp-wellness-tools",
+        "body": ""
+    },
+    {
+        "title": "Platform services",
+        "summary": "Notifications, analytics, settings.",
+        "type": "functional area",
+        "url": "../functionality/index.html#grp-platform",
+        "body": ""
+    },
+    {
+        "title": "Stoppr application overview",
+        "summary": "How the Flutter client relates to Firebase, purchases, local state, and external AI/food APIs.",
+        "type": "diagram",
+        "url": "../diagrams/index.html#app-overview",
+        "body": "What am I looking at? The Stoppr mobile client sits at the center. It depends on Firebase for identity and documents, on RevenueCat/Superwall for entitlements, on device local state for streaks/onboarding/widgets, and on external AI/food APIs for nutrition and chat features. Why it matters It is the fastest honest map of what the software is doing before reading individual functionality records. What is uncertain Purchase→Firestore mirroring is inferred from source dashed . External API runtime success depends on private env values not present in git."
+    },
+    {
+        "title": "Stoppr mobile client",
+        "summary": "Flutter iOS/Android app the user installs and opens.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-mobile-client",
+        "body": "lib/main.dart Cold-start bootstrap and first navigation decisions."
+    },
+    {
+        "title": "Firebase",
+        "summary": "Auth identity, Firestore documents, Storage, Messaging, Crashlytics.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-firebase",
+        "body": "lib/firebase_options.dart Builds FirebaseOptions from EnvConfig key names."
+    },
+    {
+        "title": "RevenueCat + Superwall",
+        "summary": "Store purchases and paywall presentation that decide premium access.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-purchases",
+        "body": "lib/core/subscription/subscription_service.dart isPaidSubscriber decides access from Superwall/RevenueCat. · lib/core/superwall/superwall_purchase_controller.dart Maps Superwall purchase requests onto RevenueCat."
+    },
+    {
+        "title": "Local device state",
+        "summary": "SharedPreferences, HomeWidget bridge, and local caches for fast daily loops.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-local-state",
+        "body": "lib/core/streak/streak_service.dart Writes streak values locally and to the widget bridge."
+    },
+    {
+        "title": "External AI / food APIs",
+        "summary": "Groq, OpenAI, Edamam, and Spoonacular called for scanning, chatbot, and recipes.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-external-ai",
+        "body": "lib/core/config/env_config.dart Exposes API key environment variable names used by those features."
+    },
+    {
+        "title": "Stoppr mobile client → Firebase (auth & data)",
+        "summary": "The client authenticates users and reads/writes profile, onboarding, community, and nutrition documents through Firebase SDKs.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-client-to-firebase",
+        "body": "lib/core/auth/auth_service.dart Performs Firebase Auth sign-in and profile side effects."
+    },
+    {
+        "title": "Stoppr mobile client → RevenueCat + Superwall (entitlements)",
+        "summary": "Startup routing and feature gates call SubscriptionService / Superwall to know whether the user is paid.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-client-to-purchases",
+        "body": "lib/core/subscription/subscription_service.dart Returns paid/free based on Superwall and RevenueCat."
+    },
+    {
+        "title": "Stoppr mobile client → Local device state (prefs & widgets)",
+        "summary": "Daily habit state such as streaks and onboarding progress is stored on-device and mirrored to widgets.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-client-to-local",
+        "body": "lib/features/onboarding/data/services/onboarding_progress_service.dart Persists onboarding resume keys in SharedPreferences."
+    },
+    {
+        "title": "Stoppr mobile client → External AI / food APIs (API calls)",
+        "summary": "Food scan, Rate My Plate, chatbot, and recipe search send requests to configured external APIs.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-client-to-ai",
+        "body": "lib/features/app/presentation/screens/chatbot/chatbot_screen.dart Issues Groq/OpenAI requests for Melinda responses."
+    },
+    {
+        "title": "RevenueCat + Superwall → Firebase (mirrors status)",
+        "summary": "After purchase sync, subscription mirror fields are written to the user Firestore document for analytics/display.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-purchases-to-firebase",
+        "body": "Purchase controller contains Firestore update helpers traced at class level; every write site was not line-enumerated. lib/core/superwall/superwall_purchase_controller.dart Persists subscription mirror fields after RevenueCat sync."
+    },
+    {
+        "title": "Onboarding and authentication flow",
+        "summary": "Welcome to auth to questionnaire/profile to pre-paywall to MainScaffold.",
+        "type": "diagram",
+        "url": "../diagrams/index.html#onboarding-auth-flow",
+        "body": "What am I looking at? The happy path onboarding sequence ending at Superwall, then the main app shell. Why it matters Most new user understanding starts here; auth placeholders and paywall IDs are the highest risk config along this path. What is uncertain Dashed edge: questionnaire ordering after auth/skip is inferred from navigation calls across files."
+    },
+    {
+        "title": "Welcome + early onboarding",
+        "summary": "Plays welcome video and early intro screens that offer auth or skip.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-welcome",
+        "body": "lib/features/onboarding/presentation/screens/welcome_video_screen.dart First visible onboarding surface after splash routing."
+    },
+    {
+        "title": "Auth providers",
+        "summary": "Google, Apple, email, or anonymous Firebase sign-in creating an AppUser.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-auth-providers",
+        "body": "lib/core/auth/auth_service.dart Implements provider sign-in methods and auth state listener."
+    },
+    {
+        "title": "Questionnaire + profile",
+        "summary": "Collects questionnaire answers, profile, symptoms, goals, and nutrition setup with resume checkpoints.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-questionnaire",
+        "body": "lib/features/onboarding/data/services/onboarding_progress_service.dart Persists and restores the current onboarding screen."
+    },
+    {
+        "title": "Pre-paywall",
+        "summary": "Final commercial gate before MainScaffold for unpaid users.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-pre-paywall",
+        "body": "lib/features/onboarding/presentation/screens/pre_paywall.dart Registers Superwall placements and handles purchase success."
+    },
+    {
+        "title": "MainScaffold",
+        "summary": "Post-onboarding app shell with bottom navigation.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-main-scaffold",
+        "body": "lib/features/app/presentation/screens/main_scaffold.dart Hosts the signed-in / paid user experience."
+    },
+    {
+        "title": "Welcome + early onboarding → Auth providers (auth or skip)",
+        "summary": "Early onboarding screens route the user into Google/Apple/email sign-in or allow skipping toward later anonymous creation.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-welcome-to-auth",
+        "body": "lib/features/onboarding/presentation/screens/onboarding_page.dart Invokes AuthCubit Google/Apple sign-in handlers."
+    },
+    {
+        "title": "Auth providers → Questionnaire + profile (continue funnel)",
+        "summary": "After identity exists (or skip), navigation continues into questionnaire, profile, and personalization screens.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-auth-to-questionnaire",
+        "body": "Order derived from Navigator calls across onboarding screens rather than one central route table. lib/features/onboarding/presentation/screens/questionnaire_screen.dart Collects and persists questionnaire answers."
+    },
+    {
+        "title": "Questionnaire + profile → Pre-paywall (funnel end)",
+        "summary": "Completed personalization and benefits screens navigate to PrePaywallScreen.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-questionnaire-to-paywall",
+        "body": "lib/features/onboarding/presentation/screens/pre_paywall.dart Receives users at the commercial gate."
+    },
+    {
+        "title": "Pre-paywall → MainScaffold (after purchase/skip-paid)",
+        "summary": "Successful purchase handling or an already-paid check navigates to MainScaffold.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-paywall-to-main",
+        "body": "lib/core/subscription/post_purchase_handler.dart Runs post-purchase updates then navigates onward."
+    },
+    {
+        "title": "Persistence and storage map",
+        "summary": "Feature writers to Firestore, SharedPreferences, HomeWidget, and Firebase Storage.",
+        "type": "diagram",
+        "url": "../diagrams/index.html#persistence-storage-map",
+        "body": "What am I looking at? Where Stoppr persists state across cloud, device, widgets, and image storage. Why it matters Prevents confusing Firestore entitlement mirrors with local habit state. What is uncertain Dashed widget/storage edges and the placeholder app group warning."
+    },
+    {
+        "title": "Feature repositories",
+        "summary": "Domain code that reads and writes user, community, nutrition, and challenge data.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-features",
+        "body": "lib/features/nutrition/data/repositories/nutrition_repository.dart Representative Firestore writer for food logs and goals."
+    },
+    {
+        "title": "Cloud Firestore",
+        "summary": "Primary shared database for users, community, accountability, and quotas.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-firestore",
+        "body": "firestore.rules Server-side rules governing client access to collections."
+    },
+    {
+        "title": "SharedPreferences",
+        "summary": "Fast local keys for onboarding resume, streaks, fasting, and notification prefs.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-prefs",
+        "body": "lib/features/onboarding/data/services/onboarding_progress_service.dart Owns onboarding_* preference keys used at startup."
+    },
+    {
+        "title": "HomeWidget bridge",
+        "summary": "Pushes selected values to iOS/Android home screen widgets.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-widgets-bridge",
+        "body": "lib/core/streak/streak_service.dart Sets app group id and updates widget data."
+    },
+    {
+        "title": "Firebase Storage",
+        "summary": "Optional remote store for food images via LocalFoodImageService.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-storage-bucket",
+        "body": "lib/core/services/local_food_image_service.dart Caches images locally and can upload/fallback to Storage."
+    },
+    {
+        "title": "Feature repositories → Cloud Firestore (documents)",
+        "summary": "Repositories write user, community, nutrition, and challenge documents to Firestore.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-features-to-firestore",
+        "body": "lib/features/community/data/repositories/community_repository.dart Writes community_posts and comments."
+    },
+    {
+        "title": "Feature repositories → SharedPreferences (local keys)",
+        "summary": "Onboarding, streak, fasting, and similar features store resume/fast state in SharedPreferences.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-features-to-prefs",
+        "body": "lib/features/fasting/data/repositories/fasting_repository.dart Persists fasting_logs_v1 locally only."
+    },
+    {
+        "title": "SharedPreferences → HomeWidget bridge (widget update)",
+        "summary": "Streak and accountability services push values through HomeWidget into native widgets.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-prefs-to-widgets",
+        "body": "Flutter update calls verified; native Swift/Kotlin read path inferred from suiteName/providers. lib/core/accountability/accountability_widget_service.dart Updates accountability widget payloads."
+    },
+    {
+        "title": "Feature repositories → Firebase Storage (food images)",
+        "summary": "LocalFoodImageService can upload cached food images to Firebase Storage as a fallback/remote path.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-features-to-bucket",
+        "body": "Service responsibilities traced; every upload call site not enumerated. lib/core/services/local_food_image_service.dart Implements upload/fallback for food images."
+    },
+    {
+        "title": "Risk and uncertainty map",
+        "summary": "Verified configuration landmines that can break auth, paywalls, widgets, or quota soft-gates.",
+        "type": "diagram",
+        "url": "../diagrams/index.html#risk-uncertainty-map",
+        "body": "What am I looking at? The active configuration landmines an agent should check before changing monetization, auth, or widgets. Why it matters These are the warnings most likely to waste a vibe coder's time if ignored. What is uncertain How badly each fails in production depends on secrets and Superwall dashboard state outside this repository."
+    },
+    {
+        "title": "Superwall placement placeholders",
+        "summary": "Many registerPlacement calls still use INSERT_YOUR_* strings instead of real IDs.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-placement-placeholders",
+        "body": "lib/features/onboarding/presentation/screens/pre_paywall.dart Contains primary INSERT_YOUR_* placement registrations."
+    },
+    {
+        "title": "Android Superwall wiring",
+        "summary": "Android configure path does not attach SuperwallPurchaseController like iOS.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-android-sw",
+        "body": "lib/main.dart Early Android Superwall.configure omits purchaseController."
+    },
+    {
+        "title": "OAuth / env fallbacks",
+        "summary": "Missing env values fall back to placeholder OAuth client IDs; main loads .env while repo has .env.local.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-oauth-fallbacks",
+        "body": "lib/core/auth/auth_service.dart Embeds INSERT_YOUR_* Google client ID fallbacks."
+    },
+    {
+        "title": "Widget app group placeholder",
+        "summary": "Home widgets reference group.YOUR_BUNDLE_ID.shared until a real group is configured.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-widget-group",
+        "body": "lib/core/streak/streak_service.dart Defines the placeholder app group constant."
+    },
+    {
+        "title": "Disabled quota flags",
+        "summary": "FeatureQuota soft-paywalls exist but QUOTA_SYSTEM_ENABLED is false on major screens.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-quota-flags",
+        "body": "lib/features/learn/presentation/screens/learn_video_list_screen.dart Hard-codes QUOTA_SYSTEM_ENABLED = false."
+    },
+    {
+        "title": "Android Superwall wiring → Superwall placement placeholders (purchase path config)",
+        "summary": "Android Superwall configuration controls whether placement-driven purchases can reach SuperwallPurchaseController.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-android-configures-purchases",
+        "body": "lib/main.dart Platform branch decides whether purchaseController is passed to Superwall.configure."
+    },
+    {
+        "title": "Disabled quota flags → Superwall placement placeholders (soft paywall enablement)",
+        "summary": "QUOTA_SYSTEM_ENABLED flags configure whether feature screens invoke quota checks that lead to soft Superwall placements.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-quota-configures-soft",
+        "body": "lib/features/app/presentation/screens/chatbot/chatbot_screen.dart Local flag disables quota path before placement registration."
+    },
+    {
+        "title": "Subscription and paywall flow",
+        "summary": "Superwall UI to purchase controller to RevenueCat to access gate, with post-purchase handling.",
+        "type": "diagram",
+        "url": "../diagrams/index.html#subscription-paywall-flow",
+        "body": "What am I looking at? How money and entitlements move: UI → controller → RevenueCat → access checks, plus post purchase handling. Why it matters This is the highest commercial risk path and contains known placeholder placements and Android wiring uncertainty. What is uncertain Dashed edges: Android purchaseController attachment and post purchase orchestration across files."
+    },
+    {
+        "title": "Superwall paywall UI",
+        "summary": "Presents campaigns registered by placement IDs from PrePaywall and feature screens.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-paywall-ui",
+        "body": "lib/features/onboarding/presentation/screens/pre_paywall.dart Registers primary gift/standard placements (often placeholders)."
+    },
+    {
+        "title": "SuperwallPurchaseController",
+        "summary": "Receives Superwall purchase/restore requests and executes them via RevenueCat.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-purchase-controller",
+        "body": "lib/core/superwall/superwall_purchase_controller.dart Implements PurchaseController purchase/restore and status sync."
+    },
+    {
+        "title": "RevenueCat",
+        "summary": "Talks to App Store / Play Billing and exposes CustomerInfo entitlements.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-revenuecat",
+        "body": "lib/main.dart Early Purchases.configure using platform API key names."
+    },
+    {
+        "title": "SubscriptionService gate",
+        "summary": "Answers isPaidSubscriber for routing and feature checks.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-access-gate",
+        "body": "lib/core/subscription/subscription_service.dart Combines Superwall status and RevenueCat CustomerInfo; ignores Firestore for grants."
+    },
+    {
+        "title": "PostPurchaseHandler",
+        "summary": "After success, updates user state and navigates to congratulations / main.",
+        "type": "diagram node",
+        "url": "../diagrams/index.html#node-post-purchase",
+        "body": "lib/core/subscription/post_purchase_handler.dart Coordinates post-purchase side effects and navigation."
+    },
+    {
+        "title": "Superwall paywall UI → SuperwallPurchaseController (purchase request)",
+        "summary": "Superwall UI delegates store purchase and restore actions to SuperwallPurchaseController when configured.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-ui-to-controller",
+        "body": "iOS configure path passes purchaseController; Android early configure does not, so delegation is platform-dependent. lib/core/superwall/superwall_purchase_controller.dart Implements the PurchaseController callbacks Superwall invokes."
+    },
+    {
+        "title": "SuperwallPurchaseController → RevenueCat (Purchases.*)",
+        "summary": "The controller calls RevenueCat product lookup, purchase, and restore APIs.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-controller-to-rc",
+        "body": "lib/core/superwall/superwall_purchase_controller.dart Invokes Purchases.purchaseStoreProduct / restorePurchases."
+    },
+    {
+        "title": "RevenueCat → SubscriptionService gate (CustomerInfo)",
+        "summary": "SubscriptionService reads CustomerInfo (and Superwall status) to decide paid access.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-rc-to-gate",
+        "body": "lib/core/subscription/subscription_service.dart isPaidSubscriber inspects entitlements/subscriptions."
+    },
+    {
+        "title": "SuperwallPurchaseController → PostPurchaseHandler (success path)",
+        "summary": "Paywall success handling invokes PostPurchaseHandler to finalize onboarding-side effects.",
+        "type": "diagram connection",
+        "url": "../diagrams/index.html#edge-controller-to-post",
+        "body": "PrePaywall calls PostPurchaseHandler on success; controller sync also updates status — success orchestration spans both. lib/core/subscription/post_purchase_handler.dart handlePostPurchase runs after a successful purchase path."
+    },
+    {
+        "title": "Imperative Navigator routing",
+        "summary": "Primary navigation uses Navigator push/replace rather than a single declarative router graph.",
+        "type": "decision",
+        "url": "../why/decisions/imperative-navigation.html",
+        "body": "Decision Startup selects a root widget; subsequent flows push screens imperatively. Deep links mutate navigation from main.dart handlers."
+    },
+    {
+        "title": "RevenueCat/Superwall gate access, not Firestore",
+        "summary": "Paid access ignores Firestore subscription fields for granting entitlements.",
+        "type": "decision",
+        "url": "../why/decisions/revenuecat-not-firestore-gating.html",
+        "body": "Context Subscription fields are written to users/{uid} for analytics/display. Decision isPaidSubscriber consults Superwall and RevenueCat only plus explicit bypasses . Comment in source: Firebase data is no longer consulted for granting access. Consequences Tampering with Firestore subscription fields must not unlock premium. Promo access that only sets Firestore fields may fail unless Superwall status is also synced."
+    },
+    {
+        "title": "Environment-driven secrets",
+        "summary": "API keys and OAuth clients come from dotenv / platform templates; values must not be committed or documented.",
+        "type": "constraint",
+        "url": "../why/constraints/env-driven-configuration.html",
+        "body": "Source .gitignore excludes .env and live Firebase/Google plist/json files while allowing .local templates. Consequences Documentation may name variables e.g. SUPERWALL IOS API KEY but never values."
+    },
+    {
+        "title": "Mobile Flutter client",
+        "summary": "Stoppr ships as iOS/Android Flutter; VibeKB docs are static HTML, not part of the app binary.",
+        "type": "constraint",
+        "url": "../why/constraints/mobile-only-platform.html",
+        "body": "Consequences Do not assume browser APIs. Widget and purchase behavior are platform specific."
+    },
+    {
+        "title": "Onboarding health copy is marketing, not verified science",
+        "summary": "UI claims about sugar/health are not validated by this software model.",
+        "type": "assumption",
+        "url": "../why/assumptions/onboarding-health-claims.html",
+        "body": "Assumption VibeKB records describe screens and data flow only; they do not assert medical correctness of onboarding analysis copy."
+    },
+    {
+        "title": "Android Superwall purchase controller wiring is incomplete",
+        "summary": "Android early Superwall.configure does not pass SuperwallPurchaseController; later path returns early on Android.",
+        "type": "warning",
+        "url": "../why/warnings/android-superwall-purchase-controller.html",
+        "body": "What can go wrong Android purchases or Superwall status sync may diverge from iOS behavior. Safe next action Trace and align Android configure + configureAndSyncSubscriptionStatus with the iOS path; verify with a sandbox purchase."
+    },
+    {
+        "title": "Repository has .env.local but main loads .env",
+        "summary": "Only .env.local is present in the tree while main.dart loads dotenv .env.",
+        "type": "warning",
+        "url": "../why/warnings/env-file-mismatch.html",
+        "body": "What can go wrong Local/CI checkouts may boot without keys unless .env is created privately. Safe next action Document the expected local file name for developers without committing secrets."
+    },
+    {
+        "title": "Google OAuth client ID fallbacks",
+        "summary": "auth_service.dart embeds placeholder OAuth client ID strings when EnvConfig is null.",
+        "type": "warning",
+        "url": "../why/warnings/google-oauth-placeholders.html",
+        "body": "What can go wrong Google Sign In fails on device without real client IDs. Safe next action Supply GOOGLE OAUTH CLIENT ID IOS / GOOGLE OAUTH SERVER CLIENT ID ANDROID via env; remove need for fallbacks when ready."
+    },
+    {
+        "title": "Placeholder API keys and OAuth client IDs",
+        "summary": "Integrations fall back to INSERT_YOUR_* strings when env vars are missing.",
+        "type": "warning",
+        "url": "../why/warnings/placeholder-api-keys.html",
+        "body": "What can go wrong Auth, AI, or purchase SDKs fail or mis configure if .env is absent. Do not copy placeholder strings into docs as working values. Safe next action Ensure CI/local builds provide real env files privately; keep placeholders out of generated docs."
+    },
+    {
+        "title": "Superwall placement IDs are placeholders",
+        "summary": "Many registerPlacement calls still use INSERT_YOUR_* placement id strings.",
+        "type": "warning",
+        "url": "../why/warnings/superwall-placement-placeholders.html",
+        "body": "What can go wrong Paywalls may not show or may no op depending on Superwall dashboard mapping. Evidence Grep INSERT YOUR under lib/ . Safe next action Replace placement IDs in source or map them in Superwall; then re verify purchases on both platforms."
+    },
+    {
+        "title": "iOS widget app group ID is a placeholder",
+        "summary": "StreakService uses group.YOUR_BUNDLE_ID.shared for HomeWidget sync.",
+        "type": "warning",
+        "url": "../why/warnings/widget-app-group-placeholder.html",
+        "body": "What can go wrong iOS widgets will not receive streak/accountability updates until the real app group is configured in Xcode and code. Safe next action Set the real app group id in Flutter + entitlements; verify widget refresh."
+    },
+    {
+        "title": "Anonymous auth created from multiple call sites",
+        "summary": "signInAnonymously appears in onboarding and several repositories, not one gateway.",
+        "type": "discovery",
+        "url": "../why/discoveries/anonymous-auth-spread.html",
+        "body": "Impact Guest identity behavior can differ by entry feature; nutrition may write hasCompletedOnboarding while onboarding uses onboardingCompleted ."
+    },
+    {
+        "title": "Manifest deep links without Dart handlers",
+        "summary": "Some Android/iOS declared URIs are not handled in _processDeepLink.",
+        "type": "discovery",
+        "url": "../why/discoveries/deep-link-handler-gaps.html",
+        "body": "Evidence /winback declared but handler removed; stoppr://accountability used by widgets without Dart case; scheme mismatch for payment success variants."
+    },
+    {
+        "title": "No meaningful automated test suite found",
+        "summary": "Analysis did not rely on an executable regression suite for app behavior.",
+        "type": "discovery",
+        "url": "../why/discoveries/no-automated-tests.html",
+        "body": "Impact Verification states stay at verified from source / inferred from source rather than verified by test."
+    },
+    {
+        "title": "Feature quotas disabled via local flags",
+        "summary": "QUOTA_SYSTEM_ENABLED is hard-coded false on major premium feature screens.",
+        "type": "discovery",
+        "url": "../why/discoveries/quotas-disabled-ab-test.html",
+        "body": "Evidence Local const bool QUOTA SYSTEM ENABLED = false in learn, food scan, Rate My Plate, and chatbot screens. FeatureQuotaService still exists. Impact on model Soft quota paywalls are partial , not fully active behavior."
+    },
+    {
+        "title": "VibeKB rebootstrap with Explainable Diagrams",
+        "summary": "Rebuilt .vibekb from Stoppr source using current VibeKB main tooling and static generator.",
+        "type": "change",
+        "url": "../why/changes/vibekb-rebootstrap.html",
+        "body": "Before Older .vibekb/ and hand oriented /docs without current topology/explainable diagram contract; backed up under VibeKBbackup/ . After Fresh model + guide/ + tools/ from VibeKB commit used for rebootstrap; static /docs regenerated. Impact Documentation accuracy depends on this analysis commit; app code unchanged."
+    },
+    {
+        "title": "Mental model",
+        "summary": "A Flutter client where Firebase holds user data, RevenueCat/Superwall gate premium, and local preferences plus widgets keep daily habits fast.",
+        "type": "architecture",
+        "url": "../how-it-works/index.html",
+        "body": "Picture this Stoppr is a phone app. On launch it wakes Firebase and purchase SDKs, figures out whether you finished onboarding and whether you are paid, then either continues onboarding, shows the paywall, or opens the home hub. Daily life happens on Home: streak, pledge, panic. Deeper tools community, learn, nutrition, challenge hang off navigation. Money questions always go through Superwall UI and RevenueCat entitlements — Firestore remembers subscription fields but does not decide access."
+    },
+    {
+        "title": "Components",
+        "summary": "Major modules: main bootstrap, auth, onboarding, subscription, features, and native widgets.",
+        "type": "architecture",
+        "url": "../how-it-works/index.html",
+        "body": "Major components Component Role Primary path Bootstrap SDK init + first route lib/main.dart Auth Firebase identity + AuthCubit lib/core/auth/ Onboarding Funnel + progress service lib/features/onboarding/ Subscription RevenueCat + Superwall lib/core/subscription/ , lib/core/superwall/ Home / panic / pledge Daily loop lib/features/app/ Community / accountability Social lib/features/community/ , lib/features/accountability/ Nutrition / recipes Food tools lib/features/nutrition/ , lib/features/recipes/ Learn Videos + articles lib/features/learn/ Widgets iOS/Android home widgets ios/StreakWidget/ , Android providers Config Env accessors lib/core/config/env config.dart"
+    },
+    {
+        "title": "Request and navigation flow",
+        "summary": "Imperative Navigator flows from main bootstrap; deep links inject target screens.",
+        "type": "architecture",
+        "url": "../how-it-works/index.html",
+        "body": "How control moves Stoppr does not use a single declarative router for the whole app. main.dart computes an initial widget tree, then screens push/replace via Flutter Navigator . Deep links and widget URIs call into processDeepLink or set pending navigation flags. Paid checks run at startup, onboarding completion, and feature gates via SubscriptionService / AuthCubit ."
+    },
+    {
+        "title": "Data flow",
+        "summary": "User actions update SharedPreferences and Firestore; purchases update RevenueCat then mirror fields to Firestore.",
+        "type": "data & storage",
+        "url": "../data/index.html",
+        "body": "Paths 1. Auth → Firebase Auth → profile doc users/{uid} → RevenueCat logIn. 2. Onboarding → local progress keys ↔ Firestore onboarding subdocs. 3. Purchase → Superwall UI → RevenueCat purchase → Superwall status sync → Firestore subscription mirror fields → congratulations / MainScaffold. 4. Daily habits → local prefs + Firestore user/pledge/challenge docs → HomeWidget bridge. 5. AI features → device → Groq/OpenAI/Edamam/Spoonacular API key names only → results stored in nutrition/chat UIs."
+    },
+    {
+        "title": "Storage",
+        "summary": "Firestore collections for shared data; SharedPreferences for fast local state; Firebase Storage for food images; HomeWidget suite for widgets.",
+        "type": "data & storage",
+        "url": "../data/index.html",
+        "body": "Stores Firestore: users , community posts , official chat , accountability , user feature quotas , feedback collections. SharedPreferences: onboarding, streaks, fasting, quotas fallback, notification prefs, video/article progress. Firebase Storage: food image upload/fallback. HomeWidget / App Group: widget snapshots app group placeholder risk . Secure storage: installation tracking dependency present ."
+    },
+    {
+        "title": "Deployment",
+        "summary": "Mobile app distributed via stores; VibeKB static guide published from /docs on GitHub Pages.",
+        "type": "architecture",
+        "url": "../how-it-works/index.html",
+        "body": "Application Built with Flutter for iOS and Android. Store credentials and Firebase configs are supplied outside git via env / ignored platform files; .local templates document required keys without secrets. VibeKB documentation Source of truth: .vibekb/ Public site: /docs generated by php tools/generate static.php GitHub Pages: Settings → Pages → folder /docs Entry: docs/index.html Dynamic guide/ is present so the same templates power generation; public deployment for this repository remains the static snapshot."
+    },
+    {
+        "title": "Current AI work",
+        "summary": "",
+        "type": "current work",
+        "url": "../current-work/index.html",
+        "body": "Requested outcome Backup existing model/docs, rebuild .vibekb/ from current Stoppr source using current VibeKB instructions, generate /docs , validate. Verification plan php tools/validate.php php tools/test topology.php adapted to Stoppr topologies Secret scan of /docs Confirm no application source diffs"
+    },
+    {
+        "title": "Handoff",
+        "summary": "",
+        "type": "handoff",
+        "url": "../handoff/index.html",
+        "body": "Current functionality state Stoppr at commit 9f44315 is a Flutter sugar habit app with full onboarding, Firebase auth, Superwall/RevenueCat gating, home wellness loops, community, nutrition AI tools, learn content, widgets, and platform services. Completed this session Backed up prior .vibekb/ and docs/ into VibeKBbackup/ . Installed current VibeKB guide/ + tools/ + authoring docs. Rebuilt living software model and Explainable Diagrams from source. Regenerated static /docs . Still open / landmines Superwall INSERT YOUR placements. Widget app group placeholder. Android Superwall purchase controller asymmetry. .env vs .env.local naming mismatch. Quota system disabled flags. Exact next recommended action Replace Superwall placeholder placement IDs or confirm dashboard aliases and re verify a "
+    }
 ]

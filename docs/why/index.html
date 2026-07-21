@@ -1,209 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Decisions &amp; rationale · Stoppr — VibeKB</title>
-  <meta name="description" content="A living explanation of what Stoppr currently does.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/guide.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Decisions &amp; rationale · Stoppr — VibeKB</title>
+    <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Web fonts are a progressive enhancement only. The stylesheet ships a
+         full system-font fallback stack, so the guide renders correctly with no
+         external CDN — required for offline and locked-down static hosting. -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/guide.css">
 </head>
-<body>
+<body data-mode="static">
 <a class="skip-link" href="#main">Skip to content</a>
+
 <div class="app-shell">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="../index.html">
-        <span class="brand__mark">VibeKB</span>
-        <span class="brand__project">Stoppr</span>
-      </a>
-      <form class="site-search" role="search" action="../search/index.html">
-        <label class="visually-hidden" for="site-search-input">Search guide</label>
-        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
-      </form>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="../index.html">
+                <span class="brand__mark">VibeKB</span>
+                <span class="brand__project">Stoppr</span>
+            </a>
+            <form class="site-search" role="search" action="../search/index.html">
+                <label class="visually-hidden" for="site-search-input">Search guide</label>
+                <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+            </form>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="guide-sidebar"
+                hidden
+            >Menu</button>
+        </div>
+    </header>
+
+    <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+    <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+        <nav class="sidebar-nav" aria-label="Guide sections">
+            <p class="sidebar-nav__label" id="nav-primary-label">Primary</p>
+            <ul class="sidebar-nav__list" aria-labelledby="nav-primary-label">
+                                                        <li>
+                        <a href="../index.html">
+                            Overview                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../functionality/index.html">
+                            Functionality                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../how-it-works/index.html">
+                            Architecture                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../diagrams/index.html">
+                            Diagrams                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../current-work/index.html">
+                            Current work                        </a>
+                    </li>
+                            </ul>
+
+                            <p class="sidebar-nav__label" id="nav-explore-label">Explore</p>
+                <ul class="sidebar-nav__list sidebar-nav__list--secondary" aria-labelledby="nav-explore-label">
+                                                                    <li>
+                            <a href="../data/index.html">
+                                Data &amp; storage                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../files/index.html">
+                                Files that matter                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../changes/index.html">
+                                Changes                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../why/index.html" aria-current="page">
+                                Decisions &amp; rationale                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../handoff/index.html">
+                                AI handoff                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../reference/index.html">
+                                Reference                            </a>
+                        </li>
+                                    </ul>
+                    </nav>
+    </aside>
+
+    <div class="app-main">
+                    <p class="generated-notice" role="note">
+                Generated output — this is a static snapshot rendered from <code>.vibekb/</code>. The
+                <code>.vibekb/</code> content is the source of truth. See <a href="../reference/index.html">Reference</a> for provenance.
+            </p>
+                
+        <main id="main" class="wrap">
+            <article class="view view-why">
+    <header class="page-head reading-column">
+        <p class="eyebrow">Decisions &amp; rationale</p>
+        <h1>The reasoning behind the software</h1>
+        <p class="lede">Decisions, constraints, assumptions, warnings, and discoveries — each connected to the functionality it explains. Repository memory supports the software model; it does not replace it.</p>
+    </header>
+
+                    <section class="why-group" aria-labelledby="why-decisions">
+            <h2 id="why-decisions">Decisions</h2>
+            <ul class="why-list">
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/decisions/imperative-navigation.html">Imperative Navigator routing</a></h3>
+                            <div class="badge-row">
+                                                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>Primary navigation uses Navigator push/replace rather than a single declarative router graph.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/startup-routing.html">Startup routing</a> <a class="chip" href="../functionality/main-navigation.html">Main navigation</a> <a class="chip" href="../functionality/deep-link-handling.html">Deep link handling</a></p>
+                                            </li>
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/decisions/revenuecat-not-firestore-gating.html">RevenueCat/Superwall gate access, not Firestore</a></h3>
+                            <div class="badge-row">
+                                                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>Paid access ignores Firestore subscription fields for granting entitlements.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a> <a class="chip" href="../functionality/startup-routing.html">Startup routing</a></p>
+                                            </li>
+                            </ul>
+        </section>
+                    <section class="why-group" aria-labelledby="why-constraints">
+            <h2 id="why-constraints">Constraints</h2>
+            <ul class="why-list">
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/constraints/env-driven-configuration.html">Environment-driven secrets</a></h3>
+                            <div class="badge-row">
+                                                                                            </div>
+                        </div>
+                        <p>API keys and OAuth clients come from dotenv / platform templates; values must not be committed or documented.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/app-startup.html">Application startup</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a></p>
+                                            </li>
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/constraints/mobile-only-platform.html">Mobile Flutter client</a></h3>
+                            <div class="badge-row">
+                                                                                            </div>
+                        </div>
+                        <p>Stoppr ships as iOS/Android Flutter; VibeKB docs are static HTML, not part of the app binary.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/app-startup.html">Application startup</a></p>
+                                            </li>
+                            </ul>
+        </section>
+                    <section class="why-group" aria-labelledby="why-assumptions">
+            <h2 id="why-assumptions">Assumptions</h2>
+            <ul class="why-list">
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/assumptions/onboarding-health-claims.html">Onboarding health copy is marketing, not verified science</a></h3>
+                            <div class="badge-row">
+                                                                <span class="badge badge--warn">Not verified</span>                            </div>
+                        </div>
+                        <p>UI claims about sugar/health are not validated by this software model.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/onboarding-intro.html">Onboarding introduction</a> <a class="chip" href="../functionality/onboarding-personalized-analysis.html">Onboarding personalized analysis</a></p>
+                                            </li>
+                            </ul>
+        </section>
+                    <section class="why-group" aria-labelledby="why-warnings">
+            <h2 id="why-warnings">Warnings</h2>
+            <ul class="why-list">
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/warnings/android-superwall-purchase-controller.html">Android Superwall purchase controller wiring is incomplete</a></h3>
+                            <div class="badge-row">
+                                <span class="badge badge--danger">high</span>                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>Android early Superwall.configure does not pass SuperwallPurchaseController; later path returns early on Android.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a></p>
+                                            </li>
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/warnings/env-file-mismatch.html">Repository has .env.local but main loads .env</a></h3>
+                            <div class="badge-row">
+                                <span class="badge badge--warn">medium</span>                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>Only .env.local is present in the tree while main.dart loads dotenv .env.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/app-startup.html">Application startup</a></p>
+                                            </li>
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/warnings/google-oauth-placeholders.html">Google OAuth client ID fallbacks</a></h3>
+                            <div class="badge-row">
+                                <span class="badge badge--warn">medium</span>                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>auth_service.dart embeds placeholder OAuth client ID strings when EnvConfig is null.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a></p>
+                                            </li>
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/warnings/placeholder-api-keys.html">Placeholder API keys and OAuth client IDs</a></h3>
+                            <div class="badge-row">
+                                <span class="badge badge--danger">high</span>                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>Integrations fall back to INSERT_YOUR_* strings when env vars are missing.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/app-startup.html">Application startup</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a></p>
+                                            </li>
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/warnings/superwall-placement-placeholders.html">Superwall placement IDs are placeholders</a></h3>
+                            <div class="badge-row">
+                                <span class="badge badge--danger">high</span>                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>Many registerPlacement calls still use INSERT_YOUR_* placement id strings.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/main-paywall.html">Main paywall</a> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a> <a class="chip" href="../functionality/notifications.html">Notifications</a></p>
+                                            </li>
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/warnings/widget-app-group-placeholder.html">iOS widget app group ID is a placeholder</a></h3>
+                            <div class="badge-row">
+                                <span class="badge badge--warn">medium</span>                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>StreakService uses group.YOUR_BUNDLE_ID.shared for HomeWidget sync.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a> <a class="chip" href="../functionality/home-widgets.html">Home screen widgets</a></p>
+                                            </li>
+                            </ul>
+        </section>
+                    <section class="why-group" aria-labelledby="why-discoveries">
+            <h2 id="why-discoveries">Discoveries</h2>
+            <ul class="why-list">
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/discoveries/anonymous-auth-spread.html">Anonymous auth created from multiple call sites</a></h3>
+                            <div class="badge-row">
+                                                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>signInAnonymously appears in onboarding and several repositories, not one gateway.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/guest-anonymous-access.html">Guest anonymous access</a></p>
+                                            </li>
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/discoveries/deep-link-handler-gaps.html">Manifest deep links without Dart handlers</a></h3>
+                            <div class="badge-row">
+                                                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>Some Android/iOS declared URIs are not handled in _processDeepLink.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/deep-link-handling.html">Deep link handling</a></p>
+                                            </li>
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/discoveries/no-automated-tests.html">No meaningful automated test suite found</a></h3>
+                            <div class="badge-row">
+                                                                <span class="badge badge--info">Inferred from source</span>                            </div>
+                        </div>
+                        <p>Analysis did not rely on an executable regression suite for app behavior.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/app-startup.html">Application startup</a></p>
+                                            </li>
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/discoveries/quotas-disabled-ab-test.html">Feature quotas disabled via local flags</a></h3>
+                            <div class="badge-row">
+                                                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>QUOTA_SYSTEM_ENABLED is hard-coded false on major premium feature screens.</p>
+                                                    <p class="why-item__links"><a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a> <a class="chip" href="../functionality/learn-video-lessons.html">Learn video lessons</a> <a class="chip" href="../functionality/chatbot-assistant.html">Melinda chatbot assistant</a></p>
+                                            </li>
+                            </ul>
+        </section>
+                    <section class="why-group" aria-labelledby="why-changes">
+            <h2 id="why-changes">Changes</h2>
+            <ul class="why-list">
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3><a href="../why/changes/vibekb-rebootstrap.html">VibeKB rebootstrap with Explainable Diagrams</a></h3>
+                            <div class="badge-row">
+                                                                <span class="badge badge--ok">Verified from source</span>                            </div>
+                        </div>
+                        <p>Rebuilt .vibekb from Stoppr source using current VibeKB main tooling and static generator.</p>
+                                            </li>
+                            </ul>
+        </section>
+    </article>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap site-footer__inner">
+                <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+                <p class="muted">
+                    A living explanation generated from repository-owned content in <code>.vibekb/</code>.
+                    <a href="../index.html">About VibeKB</a>
+                </p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+            </div>
+        </footer>
     </div>
-  </header>
-  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
-  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
-    <nav class="sidebar-nav" aria-label="Guide sections">
-      <p class="sidebar-nav__label">Primary</p>
-      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="../functionality/index.html">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="../diagrams/index.html">Diagrams</a></li><li><a href="../current-work/index.html">Current work</a></li></ul>
-      <p class="sidebar-nav__label">Explore</p>
-      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="index.html" aria-current="page">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
-    </nav>
-  </aside>
-  <div class="app-main">
-    <main id="main" class="wrap"><article class="view view-why">
-<header class="page-head reading-column">
-  <p class="eyebrow">Decisions &amp; rationale</p>
-  <h1>The reasoning behind the software</h1>
-  <p class="lede">Decisions, constraints, assumptions, warnings, and discoveries — each connected to the functionality it explains.</p>
-</header>
-<section class="why-group" aria-labelledby="why-decisions"><h2 id="why-decisions">Decisions</h2><ul class="why-list"><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="decisions/imperative-navigation.html">Imperative navigation instead of GoRouter</a></h3>
-    <div class="badge-row">
-      
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>Stoppr uses Navigator.push/pushReplacement throughout rather than a declarative route table.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/main-navigation.html">Main tab navigation</a> <a class="chip" href="../functionality/startup-routing.html">Startup screen routing</a></p>
-</li><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="decisions/revenuecat-not-firestore-gating.html">Subscription gating via RevenueCat not Firestore</a></h3>
-    <div class="badge-row">
-      
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>isPaidSubscriber checks RevenueCat and Superwall; Firebase subscription fields are analytics-only.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a> <a class="chip" href="../functionality/main-paywall.html">Main subscription paywall</a></p>
-</li></ul></section><section class="why-group" aria-labelledby="why-constraints"><h2 id="why-constraints">Constraints</h2><ul class="why-list"><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="constraints/env-driven-configuration.html">Environment-driven API configuration</a></h3>
-    <div class="badge-row">
-      
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>API keys and Firebase config load from .env at runtime via EnvConfig; not bundled as assets.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/app-startup.html">Application startup</a></p>
-</li><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="constraints/mobile-only-platform.html">Mobile-only platform support</a></h3>
-    <div class="badge-row">
-      
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>firebase_options.dart throws for web, macOS, Windows, and Linux targets.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/app-startup.html">Application startup</a></p>
-</li></ul></section><section class="why-group" aria-labelledby="why-assumptions"><h2 id="why-assumptions">Assumptions</h2><ul class="why-list"><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="assumptions/onboarding-health-claims.html">Onboarding copy contains product health claims</a></h3>
-    <div class="badge-row">
-      
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>Analysis and benefit screens present health/behavioral claims as product messaging, not verified medical facts.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/onboarding-personalized-analysis.html">Personalized analysis and commitment</a></p>
-</li></ul></section><section class="why-group" aria-labelledby="why-warnings"><h2 id="why-warnings">Warnings</h2><ul class="why-list"><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="warnings/google-oauth-placeholders.html">Google OAuth client ID fallbacks</a></h3>
-    <div class="badge-row">
-      <span class="badge badge--warn">medium</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>auth_service.dart contains placeholder OAuth client ID strings when env config is missing.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a></p>
-</li><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="warnings/placeholder-api-keys.html">Placeholder API keys and OAuth client IDs</a></h3>
-    <div class="badge-row">
-      <span class="badge badge--danger">high</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>Several integrations use placeholder fallback strings when env vars are missing.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/app-startup.html">Application startup</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a></p>
-</li><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="warnings/superwall-placement-placeholders.html">Superwall placement IDs are placeholders in source</a></h3>
-    <div class="badge-row">
-      <span class="badge badge--danger">high</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>Paywall registration uses INSERT_YOUR_* placeholder strings requiring Superwall dashboard configuration.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/main-paywall.html">Main subscription paywall</a> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and feature quotas</a></p>
-</li><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="warnings/widget-app-group-placeholder.html">iOS home widget app group ID is a placeholder</a></h3>
-    <div class="badge-row">
-      <span class="badge badge--warn">medium</span>
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>StreakService references group.YOUR_BUNDLE_ID.shared for home widget sync.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar-free streak tracking</a></p>
-</li></ul></section><section class="why-group" aria-labelledby="why-discoveries"><h2 id="why-discoveries">Discoveries</h2><ul class="why-list"><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="discoveries/check-in-on-load-disabled.html">Daily check-in on home load is disabled</a></h3>
-    <div class="badge-row">
-      
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>MainScaffold passes showCheckInOnLoad false with debug comment.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/daily-check-in-pledge.html">Daily check-in and pledge</a> <a class="chip" href="../functionality/home-dashboard.html">Home dashboard</a></p>
-</li><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="discoveries/disabled-notification-types.html">Some notification types explicitly removed</a></h3>
-    <div class="badge-row">
-      
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>App update and breakfast reminder notifications are disabled in NotificationService.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/notifications.html">Push and local notifications</a></p>
-</li><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="discoveries/no-automated-tests.html">No automated test suite in repository</a></h3>
-    <div class="badge-row">
-      
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>flutter_test is a dev dependency but no test/ directory or *_test.dart files exist.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/app-startup.html">Application startup</a></p>
-</li><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="discoveries/quotas-disabled-ab-test.html">Feature quotas disabled for A/B testing</a></h3>
-    <div class="badge-row">
-      
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>Food scan 50% gate, chatbot quota, and related checks are commented out or bypassed in source.</p>
-  <p class="why-item__links"><a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and feature quotas</a> <a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a></p>
-</li></ul></section><section class="why-group" aria-labelledby="why-changes"><h2 id="why-changes">Changes</h2><ul class="why-list"><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="changes/diagrams-section.html">Added Diagrams section to VibeKB guide</a></h3>
-    <div class="badge-row">
-      
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>New /docs/diagrams/ page with 19 source-grounded SVG diagrams and navigation integration.</p>
-  <p class="why-item__links"><a class="chip" href="../diagrams/index.html">Diagrams</a></p>
-</li><li class="why-item">
-  <div class="why-item__head">
-    <h3><a href="changes/vibekb-integration.html">VibeKB integrated into Stoppr repository</a></h3>
-    <div class="badge-row">
-      
-      <span class="badge badge--ok">Verified from source</span>
-    </div>
-  </div>
-  <p>Added .vibekb knowledge model and static /docs guide without modifying application code.</p>
-  <p class="why-item__links"><span class="muted">None.</span></p>
-</li></ul></section>
-<aside class="related-diagrams"><p><strong>Related diagrams:</strong> <a href="../diagrams/index.html#risk-and-uncertainty-map">Risk & uncertainty diagram</a></p></aside>
-</article></main>
-    <footer class="site-footer">
-      <div class="wrap site-footer__inner">
-        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
-        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
-      </div>
-    </footer>
-  </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <script src="../assets/js/guide.js" defer></script>
 </body>
 </html>

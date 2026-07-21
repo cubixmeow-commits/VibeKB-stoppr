@@ -1,37 +1,34 @@
 ---
+id: onboarding-personalized-analysis
+type: functionality
+title: Onboarding personalized analysis
 area: onboarding
-summary: Shows analysis results, future-self letter, vow, ratings screen, and science-backed plan before paywall.
+summary: Animated analysis screens plus nutrition onboarding compute calorie goals before benefits and paywall.
 status: implemented
 verification: verified-from-source
 user_facing: true
-trigger: User progresses through post-questionnaire benefit and analysis screens.
-files: [lib/features/onboarding/presentation/screens/analysis_result_screen.dart, lib/features/onboarding/presentation/screens/letter_from_future_screen.dart, lib/features/onboarding/presentation/screens/read_the_vow_screen.dart]
-reads: [shared_preferences]
-writes: [shared_preferences, users]
+trigger: Profile completion when questionnaire answers exist, then nutrition onboarding.
+files: [lib/features/onboarding/presentation/screens/calculating_screen.dart, lib/features/onboarding/presentation/screens/analysis_result_screen.dart, lib/features/nutrition/presentation/onboarding/screens/results_calories_onboarding_screen.dart]
+reads: []
+writes: []
+config: []
 depends_on: [onboarding-profile-goals]
-related_memory: [assumption:onboarding-health-claims]
-id: onboarding-personalized-analysis
-type: functionality
-title: Personalized analysis and commitment
+related_memory: []
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-Shows analysis results, future-self letter, vow, ratings screen, and science-backed plan before paywall.
+Calculating/analysis UI precedes nutrition goal setup and benefits pages.
 
 ## Current behavior
 
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+`CalculatingScreen` → `AnalysisResultScreen` → symptoms continuation; nutrition
+onboarding screens compute and store daily goals under
+`users/{uid}/nutrition_profile/daily_goals` and body metrics.
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented; verified-from-source. Medical accuracy of copy is out of scope.

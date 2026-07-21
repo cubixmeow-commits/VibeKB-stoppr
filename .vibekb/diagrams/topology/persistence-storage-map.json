@@ -1,0 +1,190 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "features",
+      "title": "Feature repositories",
+      "purpose": "Domain code that reads and writes user, community, nutrition, and challenge data.",
+      "location": "lib/features, lib/core",
+      "functionality": [
+        "calorie-nutrition-tracking",
+        "community-forum",
+        "twenty-eight-day-challenge"
+      ],
+      "files": [
+        {
+          "path": "lib/features/nutrition/data/repositories/nutrition_repository.dart",
+          "role": "primary implementation",
+          "reason": "Representative Firestore writer for food logs and goals."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "firestore",
+      "title": "Cloud Firestore",
+      "purpose": "Primary shared database for users, community, accountability, and quotas.",
+      "location": "cloud",
+      "functionality": [
+        "firebase-auth",
+        "community-forum",
+        "accountability-partners"
+      ],
+      "files": [
+        {
+          "path": "firestore.rules",
+          "role": "validation",
+          "reason": "Server-side rules governing client access to collections."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "prefs",
+      "title": "SharedPreferences",
+      "purpose": "Fast local keys for onboarding resume, streaks, fasting, and notification prefs.",
+      "location": "device",
+      "functionality": [
+        "startup-routing",
+        "sugar-streak-tracking",
+        "fasting-tracker"
+      ],
+      "files": [
+        {
+          "path": "lib/features/onboarding/data/services/onboarding_progress_service.dart",
+          "role": "storage",
+          "reason": "Owns onboarding_* preference keys used at startup."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "widgets-bridge",
+      "title": "HomeWidget bridge",
+      "purpose": "Pushes selected values to iOS/Android home screen widgets.",
+      "location": "lib/core/streak, ios/StreakWidget, android providers",
+      "functionality": [
+        "home-widgets"
+      ],
+      "files": [
+        {
+          "path": "lib/core/streak/streak_service.dart",
+          "role": "integration adapter",
+          "reason": "Sets app group id and updates widget data."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": "App group placeholder blocks real iOS sync."
+    },
+    {
+      "id": "storage-bucket",
+      "title": "Firebase Storage",
+      "purpose": "Optional remote store for food images via LocalFoodImageService.",
+      "location": "cloud",
+      "functionality": [
+        "sugar-food-scanning"
+      ],
+      "files": [
+        {
+          "path": "lib/core/services/local_food_image_service.dart",
+          "role": "primary implementation",
+          "reason": "Caches images locally and can upload/fallback to Storage."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "features-to-firestore",
+      "from": "features",
+      "to": "firestore",
+      "mechanism": "writes",
+      "label": "documents",
+      "explanation": "Repositories write user, community, nutrition, and challenge documents to Firestore.",
+      "functionality": [
+        "calorie-nutrition-tracking",
+        "community-forum"
+      ],
+      "files": [
+        {
+          "path": "lib/features/community/data/repositories/community_repository.dart",
+          "role": "caller",
+          "reason": "Writes community_posts and comments."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    },
+    {
+      "id": "features-to-prefs",
+      "from": "features",
+      "to": "prefs",
+      "mechanism": "stores-in",
+      "label": "local keys",
+      "explanation": "Onboarding, streak, fasting, and similar features store resume/fast state in SharedPreferences.",
+      "functionality": [
+        "startup-routing",
+        "fasting-tracker"
+      ],
+      "files": [
+        {
+          "path": "lib/features/fasting/data/repositories/fasting_repository.dart",
+          "role": "caller",
+          "reason": "Persists fasting_logs_v1 locally only."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    },
+    {
+      "id": "prefs-to-widgets",
+      "from": "prefs",
+      "to": "widgets-bridge",
+      "mechanism": "sends-to",
+      "label": "widget update",
+      "explanation": "Streak and accountability services push values through HomeWidget into native widgets.",
+      "functionality": [
+        "home-widgets",
+        "sugar-streak-tracking"
+      ],
+      "files": [
+        {
+          "path": "lib/core/accountability/accountability_widget_service.dart",
+          "role": "caller",
+          "reason": "Updates accountability widget payloads."
+        }
+      ],
+      "verification": "inferred-from-source",
+      "basis": "Flutter update calls verified; native Swift/Kotlin read path inferred from suiteName/providers.",
+      "uncertainty": "Placeholder app group may prevent iOS delivery."
+    },
+    {
+      "id": "features-to-bucket",
+      "from": "features",
+      "to": "storage-bucket",
+      "mechanism": "writes",
+      "label": "food images",
+      "explanation": "LocalFoodImageService can upload cached food images to Firebase Storage as a fallback/remote path.",
+      "functionality": [
+        "sugar-food-scanning"
+      ],
+      "files": [
+        {
+          "path": "lib/core/services/local_food_image_service.dart",
+          "role": "caller",
+          "reason": "Implements upload/fallback for food images."
+        }
+      ],
+      "verification": "inferred-from-source",
+      "basis": "Service responsibilities traced; every upload call site not enumerated.",
+      "uncertainty": "When upload vs local-only is chosen may depend on runtime flags."
+    }
+  ]
+}

@@ -1,37 +1,33 @@
 ---
+id: community-forum
+type: functionality
+title: Community forum
 area: community
-summary: Users browse, create, upvote posts and comment via CommunityRepository and Cubits.
+summary: Firestore-backed posts and nested comments with blocked-user filtering.
 status: implemented
 verification: verified-from-source
 user_facing: true
-trigger: User opens Community tab.
+trigger: User opens Community and browses or posts.
 files: [lib/features/community/data/repositories/community_repository.dart, lib/features/community/presentation/screens/community_screen.dart]
-reads: [community_posts, users]
-writes: [community_posts, users]
-depends_on: [main-navigation, firebase-auth]
+reads: []
+writes: []
+config: []
+depends_on: [firebase-auth]
 related_memory: []
-id: community-forum
-type: functionality
-title: Community forum posts
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-Users browse, create, upvote posts and comment via CommunityRepository and Cubits.
+Forum content lives in `community_posts` (+ `comments` subcollection).
 
 ## Current behavior
 
-Implemented in source per files listed in front matter. Runtime behavior depends on Firebase and API configuration.
+Create/list/like/comment flows via `CommunityRepository`. Blocked users filtered
+from views.
 
 ## Current state
 
-**Status:** implemented. **Verification:** verified-from-source.
-
-## Safe to change
-
-Presentation and copy with localization.
-
-## Use caution
-
-Data writes and subscription checks.
+Implemented; verified-from-source.

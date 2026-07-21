@@ -1,45 +1,42 @@
 ---
+id: startup-routing
+type: functionality
+title: Startup routing
 area: app-core
-summary: Decides whether to show welcome video, resume onboarding, paywall, or home based on progress and subscription.
+summary: Chooses WelcomeVideo, onboarding resume, PrePaywall, or MainScaffold from auth, onboarding completion, and paid status.
 status: implemented
 verification: verified-from-source
 user_facing: true
-trigger: App finishes initialization in _MyAppState.
+trigger: After SDKs initialize, MyApp resolves the first screen.
 files: [lib/main.dart, lib/features/onboarding/data/services/onboarding_progress_service.dart]
-reads: [shared_preferences, users]
+reads: []
 writes: []
+config: []
 depends_on: [app-startup, subscription-access-gating]
-related_memory: []
-id: startup-routing
-type: functionality
-title: Startup screen routing
+related_memory: [decision:revenuecat-not-firestore-gating]
+created: 2026-07-21
 updated: 2026-07-21
+tags: []
 ---
 
 ## In one sentence
 
-After init, the app picks welcome, resume, paywall, or home.
+`_checkOnboardingProgress()` picks the first real screen after splash loading.
 
 ## Current behavior
 
-`_determineStartScreen()` and `_getTargetScreenFromProgress()` in `main.dart` read onboarding completion, auth state, subscription status, and `lastOnboardingScreen` to choose the initial widget.
-
-## Step-by-step flow
-
-1. Show loading spinner while determining target.
-2. If onboarding incomplete → resume at saved screen or welcome video.
-3. If complete but unpaid → PrePaywallScreen.
-4. If paid or bypass → MainScaffold.
+While `_isLoading` is true, a spinner scaffold shows. Then routing considers
+local `onboarding_completed`, Firebase user restoration, Firestore
+`onboardingCompleted`, and `SubscriptionService.isPaidSubscriber`. Paid users
+with incomplete onboarding are forced into `MainScaffold` and marked complete.
+Unpaid completed users land on `PrePaywallScreen`. Incomplete unpaid users
+resume via `OnboardingProgressService`.
 
 ## Failure cases
 
-- Subscription check timeout falls back per surrounding try/catch.
-- Missing progress defaults to onboarding start.
+- Auth restoration timing (waits up to ~3s) can still race on slow devices.
+- Debug/TestFlight bypasses can skip paywall paths.
 
-## Safe to change
+## Current state
 
-Loading UI, transition animations.
-
-## Use caution
-
-Routing logic affects every user entry path.
+Implemented; verified-from-source.

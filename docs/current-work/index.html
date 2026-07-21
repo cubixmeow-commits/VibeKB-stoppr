@@ -1,87 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Current work · Stoppr — VibeKB</title>
-  <meta name="description" content="A living explanation of what Stoppr currently does.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/guide.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Current work · Stoppr — VibeKB</title>
+    <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Web fonts are a progressive enhancement only. The stylesheet ships a
+         full system-font fallback stack, so the guide renders correctly with no
+         external CDN — required for offline and locked-down static hosting. -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/guide.css">
 </head>
-<body>
+<body data-mode="static">
 <a class="skip-link" href="#main">Skip to content</a>
+
 <div class="app-shell">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="../index.html">
-        <span class="brand__mark">VibeKB</span>
-        <span class="brand__project">Stoppr</span>
-      </a>
-      <form class="site-search" role="search" action="../search/index.html">
-        <label class="visually-hidden" for="site-search-input">Search guide</label>
-        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
-      </form>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
-    </div>
-  </header>
-  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
-  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
-    <nav class="sidebar-nav" aria-label="Guide sections">
-      <p class="sidebar-nav__label">Primary</p>
-      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="../functionality/index.html">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="../diagrams/index.html">Diagrams</a></li><li><a href="index.html" aria-current="page">Current work</a></li></ul>
-      <p class="sidebar-nav__label">Explore</p>
-      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
-    </nav>
-  </aside>
-  <div class="app-main">
-    <main id="main" class="wrap"><article class="view view-doc">
-<header class="page-head reading-column">
-  <p class="eyebrow">Current work</p>
-  <h1>What AI is changing right now</h1>
-  <p class="lede">The active development objective, its impact, and how far along it is.</p>
-</header>
-<section class="work-summary callout callout--work">
-  <h2>VibeKB diagrams section</h2>
-  <div class="badge-row">
-    <span class="badge badge--ok">completed</span>
-    <span class="badge badge--ok">Verified from source</span>
-  </div>
-  <dl class="rail-dl work-meta">
-    <dt>Objective</dt><dd>Add a thorough Diagrams page at /docs/diagrams/index.html with repository-owned SVG assets and navigation integration.</dd>
-    
-    <dt>Expected files</dt><dd><code class="chip chip--file">docs/diagrams/index.html</code> <code class="chip chip--file">docs/assets/diagrams/*.svg</code> <code class="chip chip--file">docs/assets/css/guide.css</code></dd>
-    <dt>Data impact</dt><dd>None — documentation only; no application data changes.</dd>
-  </dl>
-</section>
-<section class="doc-section content-section"><div class="prose reading-column"><h3>What was asked</h3>
-<p>Add a Diagrams section to the existing VibeKB guide without rebuilding or changing Stoppr application code.</p>
-<h3>Outcome</h3>
-<p>Stoppr application code is unchanged. The guide now includes 19 source-grounded SVG diagrams with plain-language explanations and cross-links from key pages.</p>
-<h3>Completed</h3>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="../index.html">
+                <span class="brand__mark">VibeKB</span>
+                <span class="brand__project">Stoppr</span>
+            </a>
+            <form class="site-search" role="search" action="../search/index.html">
+                <label class="visually-hidden" for="site-search-input">Search guide</label>
+                <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+            </form>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="guide-sidebar"
+                hidden
+            >Menu</button>
+        </div>
+    </header>
+
+    <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+    <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+        <nav class="sidebar-nav" aria-label="Guide sections">
+            <p class="sidebar-nav__label" id="nav-primary-label">Primary</p>
+            <ul class="sidebar-nav__list" aria-labelledby="nav-primary-label">
+                                                        <li>
+                        <a href="../index.html">
+                            Overview                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../functionality/index.html">
+                            Functionality                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../how-it-works/index.html">
+                            Architecture                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../diagrams/index.html">
+                            Diagrams                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../current-work/index.html" aria-current="page">
+                            Current work                        </a>
+                    </li>
+                            </ul>
+
+                            <p class="sidebar-nav__label" id="nav-explore-label">Explore</p>
+                <ul class="sidebar-nav__list sidebar-nav__list--secondary" aria-labelledby="nav-explore-label">
+                                                                    <li>
+                            <a href="../data/index.html">
+                                Data &amp; storage                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../files/index.html">
+                                Files that matter                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../changes/index.html">
+                                Changes                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../why/index.html">
+                                Decisions &amp; rationale                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../handoff/index.html">
+                                AI handoff                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../reference/index.html">
+                                Reference                            </a>
+                        </li>
+                                    </ul>
+                    </nav>
+    </aside>
+
+    <div class="app-main">
+                    <p class="generated-notice" role="note">
+                Generated output — this is a static snapshot rendered from <code>.vibekb/</code>. The
+                <code>.vibekb/</code> content is the source of truth. See <a href="../reference/index.html">Reference</a> for provenance.
+            </p>
+                
+        <main id="main" class="wrap">
+            <article class="view view-doc">
+    <header class="page-head reading-column">
+        <p class="eyebrow">Current work</p>
+        <h1>What AI is changing right now</h1>
+        <p class="lede">The active development objective, its impact, and how far along it is — before, during, and after the change.</p>
+    </header>
+
+            <section class="work-summary callout callout--work">
+            <h2>Current AI work</h2>
+            <div class="badge-row">
+                <span class="badge badge--info">completed</span>                                    <span class="badge badge--ok">Verified from source</span>                            </div>
+            <dl class="rail-dl work-meta">
+                <dt>Objective</dt><dd>Rebootstrap VibeKB for Stoppr from canonical VibeKB main.</dd>                                    <dt>Affected functionality</dt><dd><a class="chip" href="../functionality/app-startup.html">Application startup</a> <a class="chip" href="../functionality/startup-routing.html">Startup routing</a> <a class="chip" href="../functionality/deep-link-handling.html">Deep link handling</a> <a class="chip" href="../functionality/main-navigation.html">Main navigation</a> <a class="chip" href="../functionality/home-widgets.html">Home screen widgets</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/guest-anonymous-access.html">Guest anonymous access</a> <a class="chip" href="../functionality/onboarding-intro.html">Onboarding introduction</a> <a class="chip" href="../functionality/onboarding-questionnaire.html">Onboarding questionnaire</a> <a class="chip" href="../functionality/onboarding-profile-goals.html">Onboarding profile and goals</a> <a class="chip" href="../functionality/onboarding-personalized-analysis.html">Onboarding personalized analysis</a> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a> <a class="chip" href="../functionality/home-dashboard.html">Home dashboard</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a> <a class="chip" href="../functionality/daily-check-in-pledge.html">Daily check-in and pledge</a> <a class="chip" href="../functionality/panic-intervention.html">Panic intervention</a> <a class="chip" href="../functionality/relapse-recovery.html">Relapse recovery flow</a> <a class="chip" href="../functionality/community-forum.html">Community forum</a> <a class="chip" href="../functionality/community-chat.html">Community chat</a> <a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a> <a class="chip" href="../functionality/learn-video-lessons.html">Learn video lessons</a> <a class="chip" href="../functionality/articles-education.html">Articles education</a> <a class="chip" href="../functionality/chatbot-assistant.html">Melinda chatbot assistant</a> <a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a> <a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie nutrition tracking</a> <a class="chip" href="../functionality/recipe-discovery.html">Recipe discovery</a> <a class="chip" href="../functionality/rate-my-plate.html">Rate My Plate</a> <a class="chip" href="../functionality/meditation-breathing.html">Meditation and breathing</a> <a class="chip" href="../functionality/twenty-eight-day-challenge.html">Twenty-eight day challenge</a> <a class="chip" href="../functionality/fasting-tracker.html">Fasting tracker</a> <a class="chip" href="../functionality/notifications.html">Notifications</a> <a class="chip" href="../functionality/analytics-telemetry.html">Analytics and telemetry</a> <a class="chip" href="../functionality/user-profile-settings.html">User profile and settings</a></dd>
+                                                    <dt>Expected files</dt><dd><code class="chip chip--file">.vibekb/</code> <code class="chip chip--file">docs/</code> <code class="chip chip--file">guide/</code> <code class="chip chip--file">tools/</code> <code class="chip chip--file">VibeKBbackup/</code></dd>
+                                <dt>Data impact</dt><dd>none on app runtime data</dd>                <dt>Risks</dt><dd>Documentation drift if placeholders change; secrets leakage in docs.</dd>            </dl>
+        </section>
+
+        <section class="doc-section content-section">
+            <div class="prose reading-column"><h3>Requested outcome</h3>
+<p>Backup existing model/docs, rebuild <code>.vibekb/</code> from current Stoppr source using
+current VibeKB instructions, generate <code>/docs</code>, validate.</p>
+<h3>Verification plan</h3>
 <ul>
-<li>Created 19 SVG diagrams under <code>/docs/assets/diagrams/</code>.</li>
-<li>Published <code>/docs/diagrams/index.html</code> with TOC, explanations, and verification notes.</li>
-<li>Added Diagrams to primary navigation and cross-links from key pages.</li>
-<li>Re-inspected source and <code>.vibekb/</code> records for diagram accuracy.</li>
-<li>Labeled inferred and unverified areas on paywall, quota, and risk diagrams.</li>
-</ul>
-<p>See the <a href="../diagrams/index.html">Diagrams</a> page for the full collection.</p></div></section>
-<nav class="cross-links" aria-label="Related views">
-  <a class="btn" href="../handoff/index.html">AI handoff →</a>
-  <a class="btn" href="../changes/index.html">Completed changes →</a>
-</nav>
-</article></main>
-    <footer class="site-footer">
-      <div class="wrap site-footer__inner">
-        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
-        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
-      </div>
-    </footer>
-  </div>
+<li><code>php tools/validate.php</code></li>
+<li><code>php tools/test-topology.php</code> (adapted to Stoppr topologies)</li>
+<li>Secret scan of <code>/docs</code></li>
+<li>Confirm no application source diffs</li>
+</ul></div>
+        </section>
+    
+    <nav class="cross-links" aria-label="Related views">
+        <a class="btn" href="../handoff/index.html">AI handoff →</a>
+        <a class="btn" href="../changes/index.html">Completed changes →</a>
+    </nav>
+</article>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap site-footer__inner">
+                <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+                <p class="muted">
+                    A living explanation generated from repository-owned content in <code>.vibekb/</code>.
+                    <a href="../index.html">About VibeKB</a>
+                </p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+            </div>
+        </footer>
+    </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <script src="../assets/js/guide.js" defer></script>
 </body>
 </html>

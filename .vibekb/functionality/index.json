@@ -3,12 +3,12 @@
     {
       "id": "app-core",
       "title": "Application core",
-      "description": "Startup, routing, navigation, and deep links."
+      "description": "Startup, routing, navigation, deep links, widgets."
     },
     {
       "id": "authentication",
       "title": "Authentication",
-      "description": "Sign-in, guest access, and auth state."
+      "description": "Sign-in providers and guest access."
     },
     {
       "id": "onboarding",
@@ -18,27 +18,27 @@
     {
       "id": "subscription",
       "title": "Subscription & paywalls",
-      "description": "Superwall, RevenueCat, quotas, and access gating."
+      "description": "Superwall, RevenueCat, quotas, gating."
     },
     {
       "id": "home-wellness",
       "title": "Home & daily wellness",
-      "description": "Dashboard, streak, check-in, pledge, panic."
+      "description": "Dashboard, streak, check-in, pledge, panic, relapse."
     },
     {
       "id": "community",
       "title": "Community & accountability",
-      "description": "Forum, chat, and accountability partners."
+      "description": "Forum, chat, partners."
     },
     {
       "id": "education",
       "title": "Education & content",
-      "description": "Video lessons, articles, and brain rewiring."
+      "description": "Videos, articles, chatbot."
     },
     {
       "id": "nutrition",
       "title": "Nutrition & food",
-      "description": "Food scanning, calorie tracking, and recipes."
+      "description": "Scanning, calories, recipes, Rate My Plate."
     },
     {
       "id": "wellness-tools",
@@ -56,6 +56,7 @@
     "startup-routing",
     "deep-link-handling",
     "main-navigation",
+    "home-widgets",
     "firebase-auth",
     "guest-anonymous-access",
     "onboarding-intro",
@@ -69,16 +70,20 @@
     "sugar-streak-tracking",
     "daily-check-in-pledge",
     "panic-intervention",
+    "relapse-recovery",
     "community-forum",
     "community-chat",
     "accountability-partners",
     "learn-video-lessons",
     "articles-education",
+    "chatbot-assistant",
     "sugar-food-scanning",
     "calorie-nutrition-tracking",
     "recipe-discovery",
+    "rate-my-plate",
     "meditation-breathing",
     "twenty-eight-day-challenge",
+    "fasting-tracker",
     "notifications",
     "analytics-telemetry",
     "user-profile-settings"

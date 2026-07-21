@@ -1,19 +1,20 @@
 ---
 id: quotas-disabled-ab-test
 type: discovery
-title: Feature quotas disabled for A/B testing
-summary: Food scan 50% gate, chatbot quota, and related checks are commented out or bypassed in source.
-changed_model: soft-paywalls-quotas
+title: Feature quotas disabled via local flags
+summary: QUOTA_SYSTEM_ENABLED is hard-coded false on major premium feature screens.
 verification: verified-from-source
-functionality: [soft-paywalls-quotas, sugar-food-scanning]
-files: [lib/features/app/presentation/screens/food_scan/food_scan_screen.dart, "lib/features/app/presentation/screens/chatbot/chatbot_screen.dart"]
+functionality: [soft-paywalls-quotas, learn-video-lessons, chatbot-assistant]
+files: [lib/features/learn/presentation/screens/learn_video_list_screen.dart]
+changed_model: true
 updated: 2026-07-21
 ---
 
 ## Evidence
 
-Comments in `food_scan_screen.dart` and `chatbot_screen.dart` indicate quota enforcement disabled for A/B test. FeatureQuotaService logic still exists but may not be invoked.
+Local `const bool QUOTA_SYSTEM_ENABLED = false` in learn, food scan, Rate My
+Plate, and chatbot screens. FeatureQuotaService still exists.
 
-## Impact
+## Impact on model
 
-Free users may have unlimited access to gated features until A/B concludes and code is re-enabled.
+Soft quota paywalls are `partial`, not fully active behavior.

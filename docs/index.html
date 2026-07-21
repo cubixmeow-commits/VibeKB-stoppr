@@ -1,199 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Overview · Stoppr — VibeKB</title>
-  <meta name="description" content="A living explanation of what Stoppr currently does.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/guide.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Overview · Stoppr — VibeKB</title>
+    <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Web fonts are a progressive enhancement only. The stylesheet ships a
+         full system-font fallback stack, so the guide renders correctly with no
+         external CDN — required for offline and locked-down static hosting. -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/guide.css">
 </head>
-<body>
+<body data-mode="static">
 <a class="skip-link" href="#main">Skip to content</a>
+
 <div class="app-shell">
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="index.html">
-        <span class="brand__mark">VibeKB</span>
-        <span class="brand__project">Stoppr</span>
-      </a>
-      <form class="site-search" role="search" action="search/index.html">
-        <label class="visually-hidden" for="site-search-input">Search guide</label>
-        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
-      </form>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="index.html">
+                <span class="brand__mark">VibeKB</span>
+                <span class="brand__project">Stoppr</span>
+            </a>
+            <form class="site-search" role="search" action="search/index.html">
+                <label class="visually-hidden" for="site-search-input">Search guide</label>
+                <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+            </form>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="guide-sidebar"
+                hidden
+            >Menu</button>
+        </div>
+    </header>
+
+    <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+    <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+        <nav class="sidebar-nav" aria-label="Guide sections">
+            <p class="sidebar-nav__label" id="nav-primary-label">Primary</p>
+            <ul class="sidebar-nav__list" aria-labelledby="nav-primary-label">
+                                                        <li>
+                        <a href="index.html" aria-current="page">
+                            Overview                        </a>
+                    </li>
+                                                        <li>
+                        <a href="functionality/index.html">
+                            Functionality                        </a>
+                    </li>
+                                                        <li>
+                        <a href="how-it-works/index.html">
+                            Architecture                        </a>
+                    </li>
+                                                        <li>
+                        <a href="diagrams/index.html">
+                            Diagrams                        </a>
+                    </li>
+                                                        <li>
+                        <a href="current-work/index.html">
+                            Current work                        </a>
+                    </li>
+                            </ul>
+
+                            <p class="sidebar-nav__label" id="nav-explore-label">Explore</p>
+                <ul class="sidebar-nav__list sidebar-nav__list--secondary" aria-labelledby="nav-explore-label">
+                                                                    <li>
+                            <a href="data/index.html">
+                                Data &amp; storage                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="files/index.html">
+                                Files that matter                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="changes/index.html">
+                                Changes                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="why/index.html">
+                                Decisions &amp; rationale                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="handoff/index.html">
+                                AI handoff                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="reference/index.html">
+                                Reference                            </a>
+                        </li>
+                                    </ul>
+                    </nav>
+    </aside>
+
+    <div class="app-main">
+                    <p class="generated-notice" role="note">
+                Generated output — this is a static snapshot rendered from <code>.vibekb/</code>. The
+                <code>.vibekb/</code> content is the source of truth. See <a href="reference/index.html">Reference</a> for provenance.
+            </p>
+                
+        <main id="main" class="wrap">
+            <article class="view view-overview">
+
+    <header class="page-head reading-column">
+        <p class="eyebrow">Software overview</p>
+        <h1>Stoppr</h1>
+                    <p class="lede">A sugar-reduction companion with streaks, panic interventions, nutrition tools, and premium gating.</p>
+                            <p class="sub"><strong>What it gives you:</strong> Sustained engagement around sugar-free streaks and daily habits, with optional premium access.</p>
+        
+        <aside class="source-notice" aria-label="Example source notice">
+            <p class="source-notice__title">Example snapshot: Stoppr</p>
+            <p class="source-notice__hint">Derived from source · Reverify before editing functionality claims</p>
+            <details class="source-notice__details">
+                <summary>About this example source</summary>
+                <p>
+                    Stoppr is the real application VibeKB is explaining here — it is not bundled into
+                    VibeKB. This model was derived read-only from the source
+                                        and can go stale; re-verify against the source before changing any functionality claim.
+                </p>
+                <p><a class="text-link" href="reference/index.html">See Reference for content model details →</a></p>
+            </details>
+        </aside>
+    </header>
+
+        <section class="snapshot-bar wide-section" aria-label="At a glance">
+        <div class="snapshot-bar__item">
+            <p class="snapshot-bar__label">Tracked functionality</p>
+            <p class="snapshot-bar__value">35 records</p>
+            <p class="snapshot-bar__value snapshot-bar__value--quiet">10 functional areas</p>
+            <p class="badge-row"><span class="badge badge--ok">Implemented · 31</span> <span class="badge badge--warn">Partially implemented · 4</span></p>
+        </div>
+        <div class="snapshot-bar__item">
+            <p class="snapshot-bar__label">Storage</p>
+            <p class="snapshot-bar__text">Firestore collections for shared data; SharedPreferences for fast local state; Firebase Storage for food images; HomeWidget suite for widgets.</p>
+            <p><a class="text-link" href="data/index.html">Data &amp; storage →</a></p>
+        </div>
+        <div class="snapshot-bar__item">
+            <p class="snapshot-bar__label">Source commit analyzed</p>
+            <p class="snapshot-bar__value snapshot-bar__value--quiet">9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9)</p>
+                            <p class="snapshot-bar__text">Last verified against source: 2026-07-21</p>
+                    </div>
+    </section>
+
+    <section class="provenance wide-section" aria-labelledby="provenance-title"><h2 id="provenance-title" class="provenance__title">Provenance &amp; freshness</h2><p class="provenance__disclaimer">This guide is a generated snapshot of the repository at the source commit shown below. Later repository changes may not be reflected until VibeKB is updated and regenerated.</p><p class="provenance__note text-soft">Static snapshot of Stoppr at the commit above. Does not update itself. Re-verify against source before changing claims.</p><dl class="provenance__grid"><div class="provenance__row"><dt>Generation mode</dt><dd>Static snapshot</dd></div><div class="provenance__row"><dt>Source repository</dt><dd><a href="https://github.com/cubixmeow-commits/VibeKB-stoppr" rel="noopener noreferrer">https://github.com/cubixmeow-commits/VibeKB-stoppr</a></dd></div><div class="provenance__row"><dt>Source branch</dt><dd>main</dd></div><div class="provenance__row"><dt>Source commit analyzed</dt><dd><code>9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9)</code></dd></div><div class="provenance__row"><dt>Analysis generated</dt><dd>2026-07-21 22:04 UTC</dd></div><div class="provenance__row"><dt>Verification scope</dt><dd>Source-traced across lib/ for startup, auth, onboarding, subscription/Superwall/RevenueCat, home/streak/panic, community, nutrition, learn, widgets, and platform config. Runtime behavior and store/dashboard configs are not executed; many Superwall placements remain placeholder strings in source.</dd></div><div class="provenance__row"><dt>Last verified against source</dt><dd>2026-07-21</dd></div><div class="provenance__row"><dt>Generated by VibeKB commit</dt><dd><code>9f44315</code> <span class="muted">(cursor/vibekb-rebootstrap-5141)</span></dd></div><div class="provenance__row"><dt>Updates automatically</dt><dd>No — regenerate to refresh</dd></div></dl></section>
+    <section class="content-section reading-column" aria-labelledby="ov-what">
+        <header class="section-intro">
+            <h2 id="ov-what">What this software does</h2>
+        </header>
+                    <p>A Flutter mobile app that helps users reduce sugar consumption through onboarding, habit tracking, education, community, and subscription-gated wellness tools.</p>
+                            <p class="text-soft">A large Flutter client with full onboarding, auth, subscription gating, home wellness loops, community, nutrition AI tools, widgets, and several high-severity configuration placeholders.</p>
+                <p><a class="text-link" href="functionality/index.html">Browse the full functionality index →</a></p>
+    </section>
+
+    <section class="content-section reading-column" aria-labelledby="ov-think">
+        <header class="section-intro">
+            <h2 id="ov-think">How to think about it</h2>
+        </header>
+                    <p>A Flutter client where Firebase holds user data, RevenueCat/Superwall gate premium, and local preferences plus widgets keep daily habits fast.</p>
+                <p><a class="text-link" href="how-it-works/index.html">Read the architecture →</a></p>
+    </section>
+
+    <section class="content-section wide-section" aria-labelledby="ov-areas">
+        <header class="section-intro reading-column">
+            <h2 id="ov-areas">Functional areas</h2>
+            <p class="section-intro__support">35 functionality records across 10 functional areas. Open any area for its records, or browse the full index.</p>
+        </header>
+        <ul class="area-summary-list">
+                                            <li class="area-summary-card">
+                    <div class="area-summary-card__head">
+                        <h3 class="area-summary-card__title">
+                            <a href="functionality/index.html#grp-app-core">Application core</a>
+                        </h3>
+                        <p class="area-summary-card__count">5 records</p>
+                    </div>
+                                            <p class="area-summary-card__desc">Startup, routing, navigation, deep links, widgets.</p>
+                                        <p class="badge-row badge-row--quiet">
+                                                                                    <span class="badge badge--ok">Implemented · 3</span>                                                                                                                <span class="badge badge--warn">Partially implemented · 2</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                    </p>
+                                            <ul class="area-summary-card__samples">
+                                                            <li>
+                                    <a href="functionality/app-startup.html">Application startup</a>
+                                </li>
+                                                            <li>
+                                    <a href="functionality/startup-routing.html">Startup routing</a>
+                                </li>
+                                                    </ul>
+                                        <p class="area-summary-card__action">
+                        <a class="text-link" href="functionality/index.html#grp-app-core">View this area →</a>
+                    </p>
+                </li>
+                                            <li class="area-summary-card">
+                    <div class="area-summary-card__head">
+                        <h3 class="area-summary-card__title">
+                            <a href="functionality/index.html#grp-authentication">Authentication</a>
+                        </h3>
+                        <p class="area-summary-card__count">2 records</p>
+                    </div>
+                                            <p class="area-summary-card__desc">Sign-in providers and guest access.</p>
+                                        <p class="badge-row badge-row--quiet">
+                                                                                    <span class="badge badge--ok">Implemented · 2</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </p>
+                                            <ul class="area-summary-card__samples">
+                                                            <li>
+                                    <a href="functionality/firebase-auth.html">Firebase authentication</a>
+                                </li>
+                                                            <li>
+                                    <a href="functionality/guest-anonymous-access.html">Guest anonymous access</a>
+                                </li>
+                                                    </ul>
+                                        <p class="area-summary-card__action">
+                        <a class="text-link" href="functionality/index.html#grp-authentication">View this area →</a>
+                    </p>
+                </li>
+                                            <li class="area-summary-card">
+                    <div class="area-summary-card__head">
+                        <h3 class="area-summary-card__title">
+                            <a href="functionality/index.html#grp-onboarding">Onboarding</a>
+                        </h3>
+                        <p class="area-summary-card__count">4 records</p>
+                    </div>
+                                            <p class="area-summary-card__desc">New-user funnel from welcome through paywall.</p>
+                                        <p class="badge-row badge-row--quiet">
+                                                                                    <span class="badge badge--ok">Implemented · 4</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </p>
+                                            <ul class="area-summary-card__samples">
+                                                            <li>
+                                    <a href="functionality/onboarding-intro.html">Onboarding introduction</a>
+                                </li>
+                                                            <li>
+                                    <a href="functionality/onboarding-questionnaire.html">Onboarding questionnaire</a>
+                                </li>
+                                                    </ul>
+                                        <p class="area-summary-card__action">
+                        <a class="text-link" href="functionality/index.html#grp-onboarding">View this area →</a>
+                    </p>
+                </li>
+                                            <li class="area-summary-card">
+                    <div class="area-summary-card__head">
+                        <h3 class="area-summary-card__title">
+                            <a href="functionality/index.html#grp-subscription">Subscription &amp; paywalls</a>
+                        </h3>
+                        <p class="area-summary-card__count">3 records</p>
+                    </div>
+                                            <p class="area-summary-card__desc">Superwall, RevenueCat, quotas, gating.</p>
+                                        <p class="badge-row badge-row--quiet">
+                                                                                    <span class="badge badge--ok">Implemented · 1</span>                                                                                                                <span class="badge badge--warn">Partially implemented · 2</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                    </p>
+                                            <ul class="area-summary-card__samples">
+                                                            <li>
+                                    <a href="functionality/main-paywall.html">Main paywall</a>
+                                </li>
+                                                            <li>
+                                    <a href="functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a>
+                                </li>
+                                                    </ul>
+                                        <p class="area-summary-card__action">
+                        <a class="text-link" href="functionality/index.html#grp-subscription">View this area →</a>
+                    </p>
+                </li>
+                                            <li class="area-summary-card">
+                    <div class="area-summary-card__head">
+                        <h3 class="area-summary-card__title">
+                            <a href="functionality/index.html#grp-home-wellness">Home &amp; daily wellness</a>
+                        </h3>
+                        <p class="area-summary-card__count">5 records</p>
+                    </div>
+                                            <p class="area-summary-card__desc">Dashboard, streak, check-in, pledge, panic, relapse.</p>
+                                        <p class="badge-row badge-row--quiet">
+                                                                                    <span class="badge badge--ok">Implemented · 5</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </p>
+                                            <ul class="area-summary-card__samples">
+                                                            <li>
+                                    <a href="functionality/home-dashboard.html">Home dashboard</a>
+                                </li>
+                                                            <li>
+                                    <a href="functionality/sugar-streak-tracking.html">Sugar streak tracking</a>
+                                </li>
+                                                    </ul>
+                                        <p class="area-summary-card__action">
+                        <a class="text-link" href="functionality/index.html#grp-home-wellness">View this area →</a>
+                    </p>
+                </li>
+                                            <li class="area-summary-card">
+                    <div class="area-summary-card__head">
+                        <h3 class="area-summary-card__title">
+                            <a href="functionality/index.html#grp-community">Community &amp; accountability</a>
+                        </h3>
+                        <p class="area-summary-card__count">3 records</p>
+                    </div>
+                                            <p class="area-summary-card__desc">Forum, chat, partners.</p>
+                                        <p class="badge-row badge-row--quiet">
+                                                                                    <span class="badge badge--ok">Implemented · 3</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </p>
+                                            <ul class="area-summary-card__samples">
+                                                            <li>
+                                    <a href="functionality/community-forum.html">Community forum</a>
+                                </li>
+                                                            <li>
+                                    <a href="functionality/community-chat.html">Community chat</a>
+                                </li>
+                                                    </ul>
+                                        <p class="area-summary-card__action">
+                        <a class="text-link" href="functionality/index.html#grp-community">View this area →</a>
+                    </p>
+                </li>
+                                            <li class="area-summary-card">
+                    <div class="area-summary-card__head">
+                        <h3 class="area-summary-card__title">
+                            <a href="functionality/index.html#grp-education">Education &amp; content</a>
+                        </h3>
+                        <p class="area-summary-card__count">3 records</p>
+                    </div>
+                                            <p class="area-summary-card__desc">Videos, articles, chatbot.</p>
+                                        <p class="badge-row badge-row--quiet">
+                                                                                    <span class="badge badge--ok">Implemented · 3</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </p>
+                                            <ul class="area-summary-card__samples">
+                                                            <li>
+                                    <a href="functionality/learn-video-lessons.html">Learn video lessons</a>
+                                </li>
+                                                            <li>
+                                    <a href="functionality/articles-education.html">Articles education</a>
+                                </li>
+                                                    </ul>
+                                        <p class="area-summary-card__action">
+                        <a class="text-link" href="functionality/index.html#grp-education">View this area →</a>
+                    </p>
+                </li>
+                                            <li class="area-summary-card">
+                    <div class="area-summary-card__head">
+                        <h3 class="area-summary-card__title">
+                            <a href="functionality/index.html#grp-nutrition">Nutrition &amp; food</a>
+                        </h3>
+                        <p class="area-summary-card__count">4 records</p>
+                    </div>
+                                            <p class="area-summary-card__desc">Scanning, calories, recipes, Rate My Plate.</p>
+                                        <p class="badge-row badge-row--quiet">
+                                                                                    <span class="badge badge--ok">Implemented · 4</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </p>
+                                            <ul class="area-summary-card__samples">
+                                                            <li>
+                                    <a href="functionality/sugar-food-scanning.html">Sugar food scanning</a>
+                                </li>
+                                                            <li>
+                                    <a href="functionality/calorie-nutrition-tracking.html">Calorie nutrition tracking</a>
+                                </li>
+                                                    </ul>
+                                        <p class="area-summary-card__action">
+                        <a class="text-link" href="functionality/index.html#grp-nutrition">View this area →</a>
+                    </p>
+                </li>
+                                            <li class="area-summary-card">
+                    <div class="area-summary-card__head">
+                        <h3 class="area-summary-card__title">
+                            <a href="functionality/index.html#grp-wellness-tools">Wellness tools</a>
+                        </h3>
+                        <p class="area-summary-card__count">3 records</p>
+                    </div>
+                                            <p class="area-summary-card__desc">Meditation, breathing, challenge, fasting.</p>
+                                        <p class="badge-row badge-row--quiet">
+                                                                                    <span class="badge badge--ok">Implemented · 3</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </p>
+                                            <ul class="area-summary-card__samples">
+                                                            <li>
+                                    <a href="functionality/meditation-breathing.html">Meditation and breathing</a>
+                                </li>
+                                                            <li>
+                                    <a href="functionality/twenty-eight-day-challenge.html">Twenty-eight day challenge</a>
+                                </li>
+                                                    </ul>
+                                        <p class="area-summary-card__action">
+                        <a class="text-link" href="functionality/index.html#grp-wellness-tools">View this area →</a>
+                    </p>
+                </li>
+                                            <li class="area-summary-card">
+                    <div class="area-summary-card__head">
+                        <h3 class="area-summary-card__title">
+                            <a href="functionality/index.html#grp-platform">Platform services</a>
+                        </h3>
+                        <p class="area-summary-card__count">3 records</p>
+                    </div>
+                                            <p class="area-summary-card__desc">Notifications, analytics, settings.</p>
+                                        <p class="badge-row badge-row--quiet">
+                                                                                    <span class="badge badge--ok">Implemented · 3</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </p>
+                                            <ul class="area-summary-card__samples">
+                                                            <li>
+                                    <a href="functionality/notifications.html">Notifications</a>
+                                </li>
+                                                            <li>
+                                    <a href="functionality/analytics-telemetry.html">Analytics and telemetry</a>
+                                </li>
+                                                    </ul>
+                                        <p class="area-summary-card__action">
+                        <a class="text-link" href="functionality/index.html#grp-platform">View this area →</a>
+                    </p>
+                </li>
+                    </ul>
+        <p class="wide-section__footer"><a class="text-link" href="functionality/index.html">Open full functionality index →</a></p>
+    </section>
+
+    <div class="split content-section">
+        <section aria-labelledby="ov-warn" class="callout callout--warn">
+            <h2 id="ov-warn">Active warnings</h2>
+                            <ul class="callout-list">
+                                            <li>
+                            <a href="why/warnings/android-superwall-purchase-controller.html">Android Superwall purchase controller wiring is incomplete</a>
+                            <span class="badge badge--danger">High</span>                        </li>
+                                            <li>
+                            <a href="why/warnings/env-file-mismatch.html">Repository has .env.local but main loads .env</a>
+                            <span class="badge badge--warn">Medium</span>                        </li>
+                                            <li>
+                            <a href="why/warnings/google-oauth-placeholders.html">Google OAuth client ID fallbacks</a>
+                            <span class="badge badge--warn">Medium</span>                        </li>
+                                            <li>
+                            <a href="why/warnings/placeholder-api-keys.html">Placeholder API keys and OAuth client IDs</a>
+                            <span class="badge badge--danger">High</span>                        </li>
+                                            <li>
+                            <a href="why/warnings/superwall-placement-placeholders.html">Superwall placement IDs are placeholders</a>
+                            <span class="badge badge--danger">High</span>                        </li>
+                                            <li>
+                            <a href="why/warnings/widget-app-group-placeholder.html">iOS widget app group ID is a placeholder</a>
+                            <span class="badge badge--warn">Medium</span>                        </li>
+                                    </ul>
+                    </section>
+
+        <section aria-labelledby="ov-work" class="callout callout--work">
+            <h2 id="ov-work">Current AI work</h2>
+                            <p><strong>Current AI work</strong>
+                   <span class="badge badge--info">completed</span></p>
+                <p></p>
+                <p><a class="text-link" href="current-work/index.html">See current work →</a></p>
+                    </section>
     </div>
-  </header>
-  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
-  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
-    <nav class="sidebar-nav" aria-label="Guide sections">
-      <p class="sidebar-nav__label">Primary</p>
-      <ul class="sidebar-nav__list"><li><a href="index.html" aria-current="page">Overview</a></li><li><a href="functionality/index.html">Functionality</a></li><li><a href="how-it-works/index.html">Architecture</a></li><li><a href="diagrams/index.html">Diagrams</a></li><li><a href="current-work/index.html">Current work</a></li></ul>
-      <p class="sidebar-nav__label">Explore</p>
-      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="data/index.html">Data &amp; storage</a></li><li><a href="files/index.html">Files that matter</a></li><li><a href="changes/index.html">Changes</a></li><li><a href="why/index.html">Decisions &amp; rationale</a></li><li><a href="handoff/index.html">AI handoff</a></li><li><a href="reference/index.html">Reference</a></li></ul>
-    </nav>
-  </aside>
-  <div class="app-main">
-    <main id="main" class="wrap"><article class="view view-overview">
-<header class="page-head reading-column">
-  <p class="eyebrow">Software overview</p>
-  <h1>Stoppr</h1>
-  <p class="lede">A sugar-reduction companion with streak tracking, panic interventions, nutrition tools, and subscription-gated premium features.</p>
-</header>
-<section class="snapshot-bar wide-section" aria-label="At a glance">
-  <div class="snapshot-bar__item">
-    <p class="snapshot-bar__label">Tracked functionality</p>
-    <p class="snapshot-bar__value">30 areas</p>
-    <p class="badge-row"><span class="badge badge--ok">Implemented · 28</span> <span class="badge badge--warn">Partially implemented · 2</span></p>
-  </div>
-  <div class="snapshot-bar__item">
-    <p class="snapshot-bar__label">Storage</p>
-    <p class="snapshot-bar__text">Stoppr uses Firestore for cloud user/community/nutrition data, SharedPreferences for local state, and FlutterSecureStorage for install tracking.</p>
-    <p><a class="text-link" href="data/index.html">Data &amp; storage →</a></p>
-  </div>
-  <div class="snapshot-bar__item">
-    <p class="snapshot-bar__label">Last meaningful update</p>
-    <p class="snapshot-bar__value snapshot-bar__value--quiet">2026-07-21</p>
-  </div>
-</section>
-<section class="content-section reading-column" aria-labelledby="ov-what">
-  <header class="section-intro"><h2 id="ov-what">What this software does</h2></header>
-  <p>A Flutter mobile app that helps users reduce sugar consumption through onboarding, habit tracking, education, community support, and premium wellness tools.</p>
-  <p class="text-soft">Stoppr v7.4.2+1 is a feature-rich Flutter app with implemented onboarding, home hub, community, nutrition, and subscription infrastructure — but placeholder Superwall placement IDs and no automated tests.</p>
-  <p><a class="text-link" href="functionality/index.html">Browse the full functionality index →</a></p>
-</section>
-<section class="content-section reading-column" aria-labelledby="ov-think">
-  <header class="section-intro"><h2 id="ov-think">How to think about it</h2></header>
-  <p>Stoppr is a Flutter shell around Firebase user state, local preferences, and subscription-gated feature modules reached through imperative navigation.</p>
-  <p><a class="text-link" href="how-it-works/index.html">Read the architecture →</a> · <a class="text-link" href="diagrams/index.html">View diagrams →</a></p>
-</section>
-<section class="content-section wide-section" aria-labelledby="ov-areas">
-  <header class="section-intro reading-column">
-    <h2 id="ov-areas">Functional areas</h2>
-    <p class="section-intro__support">A compact map of the system. Open any area for its records.</p>
-  </header>
-  <ul class="area-summary-list"><li class="area-summary-card">
-  <div class="area-summary-card__head">
-    <h3 class="area-summary-card__title"><a href="functionality/index.html#app-core">Application core</a></h3>
-    <p class="area-summary-card__count">4 records</p>
-  </div>
-  <p class="area-summary-card__desc">Startup, routing, navigation, and deep links.</p>
-  <p class="badge-row badge-row--quiet"><span class="badge badge--ok">Implemented · 4</span></p>
-  <ul class="area-summary-card__samples"><li><a href="functionality/app-startup.html">Application startup</a></li><li><a href="functionality/startup-routing.html">Startup screen routing</a></li></ul>
-  <p class="area-summary-card__action"><a class="text-link" href="functionality/index.html#app-core">View this area →</a></p>
-</li><li class="area-summary-card">
-  <div class="area-summary-card__head">
-    <h3 class="area-summary-card__title"><a href="functionality/index.html#authentication">Authentication</a></h3>
-    <p class="area-summary-card__count">2 records</p>
-  </div>
-  <p class="area-summary-card__desc">Sign-in, guest access, and auth state.</p>
-  <p class="badge-row badge-row--quiet"><span class="badge badge--ok">Implemented · 2</span></p>
-  <ul class="area-summary-card__samples"><li><a href="functionality/firebase-auth.html">Firebase authentication</a></li><li><a href="functionality/guest-anonymous-access.html">Guest and anonymous access</a></li></ul>
-  <p class="area-summary-card__action"><a class="text-link" href="functionality/index.html#authentication">View this area →</a></p>
-</li><li class="area-summary-card">
-  <div class="area-summary-card__head">
-    <h3 class="area-summary-card__title"><a href="functionality/index.html#onboarding">Onboarding</a></h3>
-    <p class="area-summary-card__count">4 records</p>
-  </div>
-  <p class="area-summary-card__desc">New-user funnel from welcome through paywall.</p>
-  <p class="badge-row badge-row--quiet"><span class="badge badge--ok">Implemented · 4</span></p>
-  <ul class="area-summary-card__samples"><li><a href="functionality/onboarding-intro.html">Onboarding introduction</a></li><li><a href="functionality/onboarding-questionnaire.html">Onboarding questionnaire</a></li></ul>
-  <p class="area-summary-card__action"><a class="text-link" href="functionality/index.html#onboarding">View this area →</a></p>
-</li><li class="area-summary-card">
-  <div class="area-summary-card__head">
-    <h3 class="area-summary-card__title"><a href="functionality/index.html#subscription">Subscription &amp; paywalls</a></h3>
-    <p class="area-summary-card__count">3 records</p>
-  </div>
-  <p class="area-summary-card__desc">Superwall, RevenueCat, quotas, and access gating.</p>
-  <p class="badge-row badge-row--quiet"><span class="badge badge--ok">Implemented · 1</span> <span class="badge badge--warn">Partially implemented · 2</span></p>
-  <ul class="area-summary-card__samples"><li><a href="functionality/main-paywall.html">Main subscription paywall</a></li><li><a href="functionality/soft-paywalls-quotas.html">Soft paywalls and feature quotas</a></li></ul>
-  <p class="area-summary-card__action"><a class="text-link" href="functionality/index.html#subscription">View this area →</a></p>
-</li><li class="area-summary-card">
-  <div class="area-summary-card__head">
-    <h3 class="area-summary-card__title"><a href="functionality/index.html#home-wellness">Home &amp; daily wellness</a></h3>
-    <p class="area-summary-card__count">4 records</p>
-  </div>
-  <p class="area-summary-card__desc">Dashboard, streak, check-in, pledge, panic.</p>
-  <p class="badge-row badge-row--quiet"><span class="badge badge--ok">Implemented · 4</span></p>
-  <ul class="area-summary-card__samples"><li><a href="functionality/home-dashboard.html">Home dashboard</a></li><li><a href="functionality/sugar-streak-tracking.html">Sugar-free streak tracking</a></li></ul>
-  <p class="area-summary-card__action"><a class="text-link" href="functionality/index.html#home-wellness">View this area →</a></p>
-</li><li class="area-summary-card">
-  <div class="area-summary-card__head">
-    <h3 class="area-summary-card__title"><a href="functionality/index.html#community">Community &amp; accountability</a></h3>
-    <p class="area-summary-card__count">3 records</p>
-  </div>
-  <p class="area-summary-card__desc">Forum, chat, and accountability partners.</p>
-  <p class="badge-row badge-row--quiet"><span class="badge badge--ok">Implemented · 3</span></p>
-  <ul class="area-summary-card__samples"><li><a href="functionality/community-forum.html">Community forum posts</a></li><li><a href="functionality/community-chat.html">Official and language chat</a></li></ul>
-  <p class="area-summary-card__action"><a class="text-link" href="functionality/index.html#community">View this area →</a></p>
-</li><li class="area-summary-card">
-  <div class="area-summary-card__head">
-    <h3 class="area-summary-card__title"><a href="functionality/index.html#education">Education &amp; content</a></h3>
-    <p class="area-summary-card__count">2 records</p>
-  </div>
-  <p class="area-summary-card__desc">Video lessons, articles, and brain rewiring.</p>
-  <p class="badge-row badge-row--quiet"><span class="badge badge--ok">Implemented · 2</span></p>
-  <ul class="area-summary-card__samples"><li><a href="functionality/learn-video-lessons.html">Video lesson library</a></li><li><a href="functionality/articles-education.html">Articles and educational content</a></li></ul>
-  <p class="area-summary-card__action"><a class="text-link" href="functionality/index.html#education">View this area →</a></p>
-</li><li class="area-summary-card">
-  <div class="area-summary-card__head">
-    <h3 class="area-summary-card__title"><a href="functionality/index.html#nutrition">Nutrition &amp; food</a></h3>
-    <p class="area-summary-card__count">3 records</p>
-  </div>
-  <p class="area-summary-card__desc">Food scanning, calorie tracking, and recipes.</p>
-  <p class="badge-row badge-row--quiet"><span class="badge badge--ok">Implemented · 3</span></p>
-  <ul class="area-summary-card__samples"><li><a href="functionality/sugar-food-scanning.html">Sugar food scanning</a></li><li><a href="functionality/calorie-nutrition-tracking.html">Calorie and nutrition tracking</a></li></ul>
-  <p class="area-summary-card__action"><a class="text-link" href="functionality/index.html#nutrition">View this area →</a></p>
-</li><li class="area-summary-card">
-  <div class="area-summary-card__head">
-    <h3 class="area-summary-card__title"><a href="functionality/index.html#wellness-tools">Wellness tools</a></h3>
-    <p class="area-summary-card__count">2 records</p>
-  </div>
-  <p class="area-summary-card__desc">Meditation, breathing, challenge, fasting.</p>
-  <p class="badge-row badge-row--quiet"><span class="badge badge--ok">Implemented · 2</span></p>
-  <ul class="area-summary-card__samples"><li><a href="functionality/meditation-breathing.html">Meditation and breathing</a></li><li><a href="functionality/twenty-eight-day-challenge.html">28-day challenge</a></li></ul>
-  <p class="area-summary-card__action"><a class="text-link" href="functionality/index.html#wellness-tools">View this area →</a></p>
-</li><li class="area-summary-card">
-  <div class="area-summary-card__head">
-    <h3 class="area-summary-card__title"><a href="functionality/index.html#platform">Platform services</a></h3>
-    <p class="area-summary-card__count">3 records</p>
-  </div>
-  <p class="area-summary-card__desc">Notifications, analytics, settings.</p>
-  <p class="badge-row badge-row--quiet"><span class="badge badge--ok">Implemented · 3</span></p>
-  <ul class="area-summary-card__samples"><li><a href="functionality/notifications.html">Push and local notifications</a></li><li><a href="functionality/analytics-telemetry.html">Analytics and telemetry</a></li></ul>
-  <p class="area-summary-card__action"><a class="text-link" href="functionality/index.html#platform">View this area →</a></p>
-</li></ul>
-</section>
-<div class="split content-section">
-  <section aria-labelledby="ov-warn" class="callout callout--warn">
-    <h2 id="ov-warn">Active warnings</h2>
-    <ul class="callout-list"><li><a href="why/warnings/google-oauth-placeholders.html">Google OAuth client ID fallbacks</a> <span class="badge badge--warn">Medium</span></li><li><a href="why/warnings/placeholder-api-keys.html">Placeholder API keys and OAuth client IDs</a> <span class="badge badge--danger">High</span></li><li><a href="why/warnings/superwall-placement-placeholders.html">Superwall placement IDs are placeholders in source</a> <span class="badge badge--danger">High</span></li><li><a href="why/warnings/widget-app-group-placeholder.html">iOS home widget app group ID is a placeholder</a> <span class="badge badge--warn">Medium</span></li></ul>
-  </section>
-  <section aria-labelledby="ov-work" class="callout callout--work">
-    <h2 id="ov-work">Current AI work</h2>
-    <p><strong>Integrate VibeKB into Stoppr</strong> <span class="badge badge--ok">completed</span></p><p>Create source-grounded .vibekb model and static guide in /docs.</p><p><a class="text-link" href="current-work/index.html">See current work →</a></p>
-  </section>
+
+    <section class="next-step content-section" aria-labelledby="ov-next">
+        <h2 id="ov-next">Recommended starting point</h2>
+                <p>Start with the functionality index, then read the architecture.</p>
+        <p class="button-row">
+            <a class="btn btn--primary" href="functionality/index.html">Explore functionality</a>
+            <a class="btn" href="handoff/index.html">Read the AI handoff</a>
+        </p>
+    </section>
+</article>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap site-footer__inner">
+                <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+                <p class="muted">
+                    A living explanation generated from repository-owned content in <code>.vibekb/</code>.
+                    <a href="index.html">About VibeKB</a>
+                </p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+            </div>
+        </footer>
+    </div>
 </div>
-<section class="next-step content-section" aria-labelledby="ov-next">
-  <h2 id="ov-next">Recommended starting point</h2>
-  <p>Start with functionality index and warnings; re-verify paywall and subscription flows before changing status claims.</p>
-  <p class="button-row">
-    <a class="btn btn--primary" href="functionality/index.html">Explore functionality</a>
-    <a class="btn" href="handoff/index.html">Read the AI handoff</a>
-  </p>
-</section>
-</article></main>
-    <footer class="site-footer">
-      <div class="wrap site-footer__inner">
-        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
-        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
-      </div>
-    </footer>
-  </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <script src="assets/js/guide.js" defer></script>
 </body>
 </html>

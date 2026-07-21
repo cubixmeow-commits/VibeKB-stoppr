@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "paywall-ui",
+      "title": "Superwall paywall UI",
+      "purpose": "Presents campaigns registered by placement IDs from PrePaywall and feature screens.",
+      "location": "lib/features/onboarding, lib/features/app",
+      "functionality": [
+        "main-paywall",
+        "soft-paywalls-quotas"
+      ],
+      "files": [
+        {
+          "path": "lib/features/onboarding/presentation/screens/pre_paywall.dart",
+          "role": "caller",
+          "reason": "Registers primary gift/standard placements (often placeholders)."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": "Dashboard campaign mapping not verified."
+    },
+    {
+      "id": "purchase-controller",
+      "title": "SuperwallPurchaseController",
+      "purpose": "Receives Superwall purchase/restore requests and executes them via RevenueCat.",
+      "location": "lib/core/superwall",
+      "functionality": [
+        "subscription-access-gating"
+      ],
+      "files": [
+        {
+          "path": "lib/core/superwall/superwall_purchase_controller.dart",
+          "role": "primary implementation",
+          "reason": "Implements PurchaseController purchase/restore and status sync."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "revenuecat",
+      "title": "RevenueCat",
+      "purpose": "Talks to App Store / Play Billing and exposes CustomerInfo entitlements.",
+      "location": "purchases_flutter",
+      "functionality": [
+        "subscription-access-gating"
+      ],
+      "files": [
+        {
+          "path": "lib/main.dart",
+          "role": "entry point",
+          "reason": "Early Purchases.configure using platform API key names."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "access-gate",
+      "title": "SubscriptionService gate",
+      "purpose": "Answers isPaidSubscriber for routing and feature checks.",
+      "location": "lib/core/subscription",
+      "functionality": [
+        "subscription-access-gating",
+        "startup-routing"
+      ],
+      "files": [
+        {
+          "path": "lib/core/subscription/subscription_service.dart",
+          "role": "primary implementation",
+          "reason": "Combines Superwall status and RevenueCat CustomerInfo; ignores Firestore for grants."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "post-purchase",
+      "title": "PostPurchaseHandler",
+      "purpose": "After success, updates user state and navigates to congratulations / main.",
+      "location": "lib/core/subscription",
+      "functionality": [
+        "main-paywall"
+      ],
+      "files": [
+        {
+          "path": "lib/core/subscription/post_purchase_handler.dart",
+          "role": "primary implementation",
+          "reason": "Coordinates post-purchase side effects and navigation."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "ui-to-controller",
+      "from": "paywall-ui",
+      "to": "purchase-controller",
+      "mechanism": "delegates-to",
+      "label": "purchase request",
+      "explanation": "Superwall UI delegates store purchase and restore actions to SuperwallPurchaseController when configured.",
+      "functionality": [
+        "main-paywall"
+      ],
+      "files": [
+        {
+          "path": "lib/core/superwall/superwall_purchase_controller.dart",
+          "role": "callee",
+          "reason": "Implements the PurchaseController callbacks Superwall invokes."
+        }
+      ],
+      "verification": "inferred-from-source",
+      "basis": "iOS configure path passes purchaseController; Android early configure does not, so delegation is platform-dependent.",
+      "uncertainty": "Android path may not attach the controller."
+    },
+    {
+      "id": "controller-to-rc",
+      "from": "purchase-controller",
+      "to": "revenuecat",
+      "mechanism": "calls",
+      "label": "Purchases.*",
+      "explanation": "The controller calls RevenueCat product lookup, purchase, and restore APIs.",
+      "functionality": [
+        "subscription-access-gating"
+      ],
+      "files": [
+        {
+          "path": "lib/core/superwall/superwall_purchase_controller.dart",
+          "role": "caller",
+          "reason": "Invokes Purchases.purchaseStoreProduct / restorePurchases."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    },
+    {
+      "id": "rc-to-gate",
+      "from": "revenuecat",
+      "to": "access-gate",
+      "mechanism": "returns-to",
+      "label": "CustomerInfo",
+      "explanation": "SubscriptionService reads CustomerInfo (and Superwall status) to decide paid access.",
+      "functionality": [
+        "subscription-access-gating"
+      ],
+      "files": [
+        {
+          "path": "lib/core/subscription/subscription_service.dart",
+          "role": "callee",
+          "reason": "isPaidSubscriber inspects entitlements/subscriptions."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    },
+    {
+      "id": "controller-to-post",
+      "from": "purchase-controller",
+      "to": "post-purchase",
+      "mechanism": "emits",
+      "label": "success path",
+      "explanation": "Paywall success handling invokes PostPurchaseHandler to finalize onboarding-side effects.",
+      "functionality": [
+        "main-paywall"
+      ],
+      "files": [
+        {
+          "path": "lib/core/subscription/post_purchase_handler.dart",
+          "role": "callee",
+          "reason": "handlePostPurchase runs after a successful purchase path."
+        }
+      ],
+      "verification": "inferred-from-source",
+      "basis": "PrePaywall calls PostPurchaseHandler on success; controller sync also updates status \u2014 success orchestration spans both.",
+      "uncertainty": "Exact ordering of Firestore writes vs navigation not single-step traced."
+    }
+  ]
+}
