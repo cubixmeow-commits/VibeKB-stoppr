@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Current work · Stoppr — VibeKB</title>
+  <meta name="description" content="A living explanation of what Stoppr currently does.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/guide.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app-shell">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">
+        <span class="brand__mark">VibeKB</span>
+        <span class="brand__project">Stoppr</span>
+      </a>
+      <form class="site-search" role="search" action="../search/index.html">
+        <label class="visually-hidden" for="site-search-input">Search guide</label>
+        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+      </form>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+    <nav class="sidebar-nav" aria-label="Guide sections">
+      <p class="sidebar-nav__label">Primary</p>
+      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="../functionality/index.html">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="index.html" aria-current="page">Current work</a></li></ul>
+      <p class="sidebar-nav__label">Explore</p>
+      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
+    </nav>
+  </aside>
+  <div class="app-main">
+    <main id="main" class="wrap"><article class="view view-doc">
+<header class="page-head reading-column">
+  <p class="eyebrow">Current work</p>
+  <h1>What AI is changing right now</h1>
+  <p class="lede">The active development objective, its impact, and how far along it is.</p>
+</header>
+<section class="work-summary callout callout--work">
+  <h2>Integrate VibeKB into Stoppr</h2>
+  <div class="badge-row">
+    <span class="badge badge--info">in progress</span>
+    <span class="badge badge--ok">Verified from source</span>
+  </div>
+  <dl class="rail-dl work-meta">
+    <dt>Objective</dt><dd>Integrate VibeKB into the Stoppr repository, create a source-grounded living software model, and generate the public static guide in /docs.</dd>
+    
+    <dt>Expected files</dt><dd><code class="chip chip--file">.vibekb/**</code> <code class="chip chip--file">docs/**</code> <code class="chip chip--file">VIBEKB.md</code> <code class="chip chip--file">VIBEKB_MAINTENANCE.md</code></dd>
+    <dt>Data impact</dt><dd>None — documentation only; no application data changes.</dd>
+  </dl>
+</section>
+<section class="doc-section content-section"><div class="prose reading-column"><h3>What was asked</h3>
+<p>Integrate the real VibeKB system, model Stoppr from source, and publish a static guide at <code>/docs/index.html</code> for GitHub Pages.</p>
+<h3>What the software does now</h3>
+<p>Stoppr application code is unchanged. Repository now contains <code>.vibekb/</code> content and generated <code>/docs</code> static site.</p>
+<h3>Progress</h3>
+<ul>
+<li>Inspected lib/, pubspec.yaml, firestore.rules, README.</li>
+<li>Created 30 functionality records across 10 areas.</li>
+<li>Generated static HTML guide with client-side search.</li>
+<li>Added memory records for warnings, decisions, and discoveries.</li>
+</ul>
+<h3>Next steps for future sessions</h3>
+<ul>
+<li>Re-verify functionality after significant app changes.</li>
+<li>Update <code>/docs</code> static HTML when the published guide must reflect model changes.</li>
+<li>Manually test paywall and Firebase flows to upgrade verification states.</li>
+</ul></div></section>
+<nav class="cross-links" aria-label="Related views">
+  <a class="btn" href="../handoff/index.html">AI handoff →</a>
+  <a class="btn" href="../changes/index.html">Completed changes →</a>
+</nav>
+</article></main>
+    <footer class="site-footer">
+      <div class="wrap site-footer__inner">
+        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="../assets/js/guide.js" defer></script>
+</body>
+</html>

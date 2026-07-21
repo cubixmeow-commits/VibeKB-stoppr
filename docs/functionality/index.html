@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Functionality · Stoppr — VibeKB</title>
+  <meta name="description" content="A living explanation of what Stoppr currently does.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/guide.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app-shell">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html">
+        <span class="brand__mark">VibeKB</span>
+        <span class="brand__project">Stoppr</span>
+      </a>
+      <form class="site-search" role="search" action="../search/index.html">
+        <label class="visually-hidden" for="site-search-input">Search guide</label>
+        <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+      </form>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="guide-sidebar" hidden>Menu</button>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+  <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+    <nav class="sidebar-nav" aria-label="Guide sections">
+      <p class="sidebar-nav__label">Primary</p>
+      <ul class="sidebar-nav__list"><li><a href="../index.html">Overview</a></li><li><a href="index.html" aria-current="page">Functionality</a></li><li><a href="../how-it-works/index.html">Architecture</a></li><li><a href="../current-work/index.html">Current work</a></li></ul>
+      <p class="sidebar-nav__label">Explore</p>
+      <ul class="sidebar-nav__list sidebar-nav__list--secondary"><li><a href="../data/index.html">Data &amp; storage</a></li><li><a href="../files/index.html">Files that matter</a></li><li><a href="../changes/index.html">Changes</a></li><li><a href="../why/index.html">Decisions &amp; rationale</a></li><li><a href="../handoff/index.html">AI handoff</a></li><li><a href="../reference/index.html">Reference</a></li></ul>
+    </nav>
+  </aside>
+  <div class="app-main">
+    <main id="main" class="wrap"><article class="view view-func-index">
+<header class="page-head reading-column">
+  <p class="eyebrow">Functionality index</p>
+  <h1>Everything the software does</h1>
+  <p class="lede">Functionality is the primary unit. Each item is something the software does, with its real status and how it was verified.</p>
+</header>
+<form class="filters wide-section" id="functionality-filters">
+  <div class="filters__row">
+    <label>Status<select name="status"><option value="">Any</option><option value="implemented">Implemented</option><option value="partial">Partially implemented</option><option value="planned">Planned</option><option value="experimental">Experimental</option><option value="disabled">Disabled</option><option value="deprecated">Deprecated</option><option value="broken">Broken</option><option value="unknown">Unknown</option><option value="needs-verification">Needs verification</option></select></label>
+    <label>Area<select name="area"><option value="">Any</option><option value="app-core">Application core</option><option value="authentication">Authentication</option><option value="onboarding">Onboarding</option><option value="subscription">Subscription &amp; paywalls</option><option value="home-wellness">Home &amp; daily wellness</option><option value="community">Community &amp; accountability</option><option value="education">Education &amp; content</option><option value="nutrition">Nutrition &amp; food</option><option value="wellness-tools">Wellness tools</option><option value="platform">Platform services</option></select></label>
+    <label>Verification<select name="verification"><option value="">Any</option><option value="verified-by-test">Verified by test</option><option value="verified-manually">Verified manually</option><option value="verified-from-source">Verified from source</option><option value="inferred-from-source">Inferred from source</option><option value="reported-by-developer">Reported by developer</option><option value="not-verified">Not verified</option><option value="verification-failed">Verification failed</option><option value="superseded">Superseded</option><option value="contradicted">Contradicted</option></select></label>
+    <label>Facing<select name="facing"><option value="">Any</option><option value="user">User-facing</option><option value="system">System</option></select></label>
+    <div class="filters__actions"><button type="button" class="btn" id="clear-filters">Clear</button></div>
+  </div>
+</form>
+<section class="group-block wide-section" id="app-core" aria-labelledby="grp-app-core">
+  <header class="section-intro">
+    <h2 id="grp-app-core">Application core</h2>
+    <p class="section-intro__support">Startup, routing, navigation, and deep links.</p>
+  </header>
+  <ul class="record-list"><li class="record-card" data-status="implemented" data-area="app-core" data-verification="verified-from-source" data-facing="system">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="app-startup.html">Application startup</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Initializes Flutter, Firebase, RevenueCat, analytics, notifications, and third-party SDKs before runApp.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User launches the app.</dd></div>
+    <div><dt>Facing</dt><dd>System</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="app-core" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="startup-routing.html">Startup screen routing</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Decides whether to show welcome video, resume onboarding, paywall, or home based on progress and subscription.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>App finishes initialization in _MyAppState.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="app-core" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="deep-link-handling.html">Deep link handling</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Routes payment success, panic, pledge, meditation, and share-invite URIs to the correct screens.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>App receives URI via app_links or AppsFlyer forwarding.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="app-core" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="main-navigation.html">Main tab navigation</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">MainScaffold hosts five tabs: Home, Learn, Rewire Brain, Community, Profile.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User reaches MainScaffold after onboarding or as returning user.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li></ul>
+</section><section class="group-block wide-section" id="authentication" aria-labelledby="grp-authentication">
+  <header class="section-intro">
+    <h2 id="grp-authentication">Authentication</h2>
+    <p class="section-intro__support">Sign-in, guest access, and auth state.</p>
+  </header>
+  <ul class="record-list"><li class="record-card" data-status="implemented" data-area="authentication" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="firebase-auth.html">Firebase authentication</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Google, Apple, and email/password sign-in with AuthCubit state machine and RevenueCat identity sync.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User taps sign-in on onboarding or profile.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="authentication" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="guest-anonymous-access.html">Guest and anonymous access</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Anonymous Firebase users created during onboarding, promos, and some feature flows with 90-day TTL.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User skips auth, accepts promo, or feature requires uid without sign-in.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li></ul>
+</section><section class="group-block wide-section" id="onboarding" aria-labelledby="grp-onboarding">
+  <header class="section-intro">
+    <h2 id="grp-onboarding">Onboarding</h2>
+    <p class="section-intro__support">New-user funnel from welcome through paywall.</p>
+  </header>
+  <ul class="record-list"><li class="record-card" data-status="implemented" data-area="onboarding" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="onboarding-intro.html">Onboarding introduction</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Welcome video and intro pages lead to auth or skip path into questionnaire.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>New user after WelcomeVideoScreen.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="onboarding" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="onboarding-questionnaire.html">Onboarding questionnaire</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">13-question survey collecting consumption habits; answers saved locally and to Firestore.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User enters QuestionnaireScreen during onboarding.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="onboarding" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="onboarding-profile-goals.html">Profile, symptoms, and goals</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Collects demographics, symptoms, sugar pain points, and goals; creates anonymous user if needed.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User completes questionnaire and proceeds through profile screens.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="onboarding" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="onboarding-personalized-analysis.html">Personalized analysis and commitment</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Shows analysis results, future-self letter, vow, ratings screen, and science-backed plan before paywall.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User progresses through post-questionnaire benefit and analysis screens.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li></ul>
+</section><section class="group-block wide-section" id="subscription" aria-labelledby="grp-subscription">
+  <header class="section-intro">
+    <h2 id="grp-subscription">Subscription &amp; paywalls</h2>
+    <p class="section-intro__support">Superwall, RevenueCat, quotas, and access gating.</p>
+  </header>
+  <ul class="record-list"><li class="record-card" data-status="partial" data-area="subscription" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="main-paywall.html">Main subscription paywall</a></h3>
+    <div class="record-card__status"><span class="badge badge--warn">Partially implemented</span></div>
+  </div>
+  <p class="record-card__summary">PrePaywallScreen presents Superwall placements for standard subscription purchase.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User completes onboarding or returns unpaid after onboarding.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="partial" data-area="subscription" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="soft-paywalls-quotas.html">Soft paywalls and feature quotas</a></h3>
+    <div class="record-card__status"><span class="badge badge--warn">Partially implemented</span></div>
+  </div>
+  <p class="record-card__summary">FeatureQuotaService limits free-tier usage; soft paywalls on learn, food scan, chatbot, panic — partially disabled for A/B.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>Free user hits quota threshold on a gated feature.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="subscription" data-verification="verified-from-source" data-facing="system">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="subscription-access-gating.html">Subscription access gating</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">SubscriptionService.isPaidSubscriber checks RevenueCat, Superwall, debug bypasses, and reviewer emails.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>Any premium feature or routing decision checks subscription.</dd></div>
+    <div><dt>Facing</dt><dd>System</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li></ul>
+</section><section class="group-block wide-section" id="home-wellness" aria-labelledby="grp-home-wellness">
+  <header class="section-intro">
+    <h2 id="grp-home-wellness">Home &amp; daily wellness</h2>
+    <p class="section-intro__support">Dashboard, streak, check-in, pledge, panic.</p>
+  </header>
+  <ul class="record-list"><li class="record-card" data-status="implemented" data-area="home-wellness" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="home-dashboard.html">Home dashboard</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Central hub with streak, widgets, panic button, and navigation to all major features.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User opens Home tab (index 0) in MainScaffold.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="home-wellness" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="sugar-streak-tracking.html">Sugar-free streak tracking</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">StreakService maintains a live sugar-free timer synced to SharedPreferences and Firestore for subscribers.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>App launch and home screen display.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="home-wellness" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="daily-check-in-pledge.html">Daily check-in and pledge</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">DailyCheckInWidget and PledgeService handle mood check-in, relapse flow, and 24-hour pledges.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>Home screen overlay or pledge notification.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="home-wellness" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="panic-intervention.html">Panic button intervention</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">PanicFlowManager runs randomized coping tricks ending in sugary-treat education and congratulations.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User taps panic button on home or via deep link stoppr://panic.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li></ul>
+</section><section class="group-block wide-section" id="community" aria-labelledby="grp-community">
+  <header class="section-intro">
+    <h2 id="grp-community">Community &amp; accountability</h2>
+    <p class="section-intro__support">Forum, chat, and accountability partners.</p>
+  </header>
+  <ul class="record-list"><li class="record-card" data-status="implemented" data-area="community" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="community-forum.html">Community forum posts</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Users browse, create, upvote posts and comment via CommunityRepository and Cubits.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User opens Community tab.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="community" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="community-chat.html">Official and language chat</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Per-language chat rooms (en, es, de, zh, ru, fr, sk, cs, it, pl) with real-time messages.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User selects a language chat room from Community screen.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="community" data-verification="inferred-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="accountability-partners.html">Accountability partners</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Matchmaking pool, invite links, and partnership management for subscribed users.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--info">Inferred from source</span></dd></div><div><dt>Trigger</dt><dd>User opens Accountability Partner from home.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li></ul>
+</section><section class="group-block wide-section" id="education" aria-labelledby="grp-education">
+  <header class="section-intro">
+    <h2 id="grp-education">Education &amp; content</h2>
+    <p class="section-intro__support">Video lessons, articles, and brain rewiring.</p>
+  </header>
+  <ul class="record-list"><li class="record-card" data-status="implemented" data-area="education" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="learn-video-lessons.html">Video lesson library</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Eight hardcoded Mux HLS lessons with multilingual subtitles and completion tracking.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User opens Learn tab.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="education" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="articles-education.html">Articles and educational content</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Bundled markdown articles in assets/ with progress tracking; Firestore articles collection unused by app.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User opens Articles from home.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li></ul>
+</section><section class="group-block wide-section" id="nutrition" aria-labelledby="grp-nutrition">
+  <header class="section-intro">
+    <h2 id="grp-nutrition">Nutrition &amp; food</h2>
+    <p class="section-intro__support">Food scanning, calorie tracking, and recipes.</p>
+  </header>
+  <ul class="record-list"><li class="record-card" data-status="implemented" data-area="nutrition" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="sugar-food-scanning.html">Sugar food scanning</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Camera capture analyzed via Groq vision API with multi-slide alternatives presentation.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User opens Food Scan from home.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="nutrition" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="calorie-nutrition-tracking.html">Calorie and nutrition tracking</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Separate nutrition module logs meals to Firestore with Edamam API and onboarding sub-flow.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User opens Calorie Tracker from home.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="nutrition" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="recipe-discovery.html">Recipe discovery</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Edamam-primary recipe search with Spoonacular fallback and Firestore favorites.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User opens Recipes from home.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li></ul>
+</section><section class="group-block wide-section" id="wellness-tools" aria-labelledby="grp-wellness-tools">
+  <header class="section-intro">
+    <h2 id="grp-wellness-tools">Wellness tools</h2>
+    <p class="section-intro__support">Meditation, breathing, challenge, fasting.</p>
+  </header>
+  <ul class="record-list"><li class="record-card" data-status="implemented" data-area="wellness-tools" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="meditation-breathing.html">Meditation and breathing</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Local meditation audio and animated breathing exercises accessible from home and deep links.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User opens Meditation or Breathing from home.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="wellness-tools" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="twenty-eight-day-challenge.html">28-day challenge</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">ChallengeService tracks daily tasks with local and Firestore sync; includes panic button footer.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>User opens 28-Day Challenge from home.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li></ul>
+</section><section class="group-block wide-section" id="platform" aria-labelledby="grp-platform">
+  <header class="section-intro">
+    <h2 id="grp-platform">Platform services</h2>
+    <p class="section-intro__support">Notifications, analytics, settings.</p>
+  </header>
+  <ul class="record-list"><li class="record-card" data-status="implemented" data-area="platform" data-verification="verified-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="notifications.html">Push and local notifications</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">NotificationService schedules FCM and local reminders with subscription-aware types and daily caps.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>App init, user settings, subscription changes, scheduled times.</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="platform" data-verification="verified-from-source" data-facing="system">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="analytics-telemetry.html">Analytics and telemetry</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Mixpanel primary events, AppsFlyer attribution, Facebook purchase events, Crashlytics, screenshot tracking.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--ok">Verified from source</span></dd></div><div><dt>Trigger</dt><dd>Screen views, button taps, purchases, app lifecycle.</dd></div>
+    <div><dt>Facing</dt><dd>System</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li><li class="record-card" data-status="implemented" data-area="platform" data-verification="inferred-from-source" data-facing="user">
+  <div class="record-card__row">
+    <h3 class="record-card__title"><a class="record-card__link" href="user-profile-settings.html">User profile and settings</a></h3>
+    <div class="record-card__status"><span class="badge badge--ok">Implemented</span></div>
+  </div>
+  <p class="record-card__summary">Profile tab for account management, notification prefs, language, sign-out, and account deletion.</p>
+  <dl class="record-card__meta"><div><dt>Verification</dt><dd><span class="badge badge--info">Inferred from source</span></dd></div><div><dt>Trigger</dt><dd>User opens Profile tab (index 4).</dd></div>
+    <div><dt>Facing</dt><dd>User-facing</dd></div>
+    <div><dt>Updated</dt><dd>2026-07-21</dd></div>
+  </dl>
+</li></ul>
+</section>
+<p class="empty-state" id="filter-empty" hidden>No functionality matches these filters.</p>
+</article></main>
+    <footer class="site-footer">
+      <div class="wrap site-footer__inner">
+        <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+        <p class="muted">Generated from repository-owned content in <code>.vibekb/</code>.</p>
+      </div>
+    </footer>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="../assets/js/guide.js" defer></script>
+</body>
+</html>
