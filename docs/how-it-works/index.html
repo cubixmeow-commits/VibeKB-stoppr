@@ -239,12 +239,9 @@ or onboarding screens.</p>
 OpenAI, Groq, AppsFlyer, Edamam, Spoonacular, Google OAuth, Crisp.</p>
 <p>Placeholder strings exist when env vars are missing — app may fail or degrade.</p>
 <h3>VibeKB guide deployment</h3>
-<p>This repository includes a static guide in <code>/docs</code> generated from <code>.vibekb/</code>.
-GitHub Pages can serve it from branch <code>main</code>, folder <code>/docs</code>.</p>
-<p>Regenerate after content changes:</p>
-<p>``<code>bash
-python3 .vibekb/tools/generate_docs.py
-</code>``</p>
+<p>This repository includes a static guide in <code>/docs</code> built from <code>.vibekb/</code>.
+GitHub Pages can serve it from branch <code>main</code>, folder <code>/docs</code>.
+No build step is required to read the guide.</p>
 <h3>CI / testing</h3>
 <p>No automated test suite present in repository. <code>flutter analyze</code> and manual QA
 are the documented verification paths.</p></div>

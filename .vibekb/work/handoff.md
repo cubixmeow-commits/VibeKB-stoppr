@@ -21,7 +21,7 @@ updated: 2026-07-21
 
 - 30 functionality records in 10 groups
 - 6 system documents (mental model through deployment)
-- 31 important files in `important-files.json`
+- 30 important files in `important-files.json`
 - 2 decisions, 2 constraints, 1 assumption, 4 warnings, 4 discoveries, 1 change
 
 ## What remains uncertain
@@ -63,5 +63,5 @@ Firebase, RevenueCat, Superwall, Mixpanel, AppsFlyer, Groq, OpenAI, Edamam, Spoo
 2. Update status, verification, and narrative from source evidence.
 3. Add memory records (warning, discovery, change) for non-obvious findings.
 4. Update `work/current.md` during active AI sessions.
-5. Run `python3 .vibekb/tools/generate_docs.py`.
-6. Confirm Reference view shows zero validation errors.
+5. Update `/docs` static HTML when the published guide must reflect model changes.
+6. Confirm relationships and file path references still resolve.

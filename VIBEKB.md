@@ -1,6 +1,6 @@
 # VibeKB for Stoppr
 
-This repository includes a [VibeKB](https://github.com/cubixmeow-commits/VibeKB) living software model and a static guide generated from it.
+This repository includes a [VibeKB](https://github.com/cubixmeow-commits/VibeKB) living software model and a static guide in `/docs`.
 
 ## Quick links
 
@@ -12,15 +12,7 @@ This repository includes a [VibeKB](https://github.com/cubixmeow-commits/VibeKB)
 
 VibeKB explains what Stoppr **currently does** — organized around functionality (behaviors), not file dumps. Each record includes status, verification level, and source evidence.
 
-## Regenerate the guide
-
-After editing `.vibekb/` content:
-
-```bash
-python3 .vibekb/tools/generate_docs.py
-```
-
-This writes static HTML to `/docs/`. No PHP or build tools required to **read** the guide.
+The `/docs` folder is a static snapshot suitable for GitHub Pages. No PHP, database, or build step is required to read it.
 
 ## GitHub Pages
 

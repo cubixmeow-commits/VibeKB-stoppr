@@ -23,14 +23,9 @@ Placeholder strings exist when env vars are missing — app may fail or degrade.
 
 ## VibeKB guide deployment
 
-This repository includes a static guide in `/docs` generated from `.vibekb/`.
+This repository includes a static guide in `/docs` built from `.vibekb/`.
 GitHub Pages can serve it from branch `main`, folder `/docs`.
-
-Regenerate after content changes:
-
-```bash
-python3 .vibekb/tools/generate_docs.py
-```
+No build step is required to read the guide.
 
 ## CI / testing
 

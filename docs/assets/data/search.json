@@ -420,13 +420,6 @@
     "body": ""
   },
   {
-    "title": ".vibekb/tools/generate_docs.py",
-    "summary": "Static site generator: reads .vibekb content and writes /docs HTML.",
-    "type": "file",
-    "url": "files/index.html#.vibekb/tools/generate_docs.py",
-    "body": ""
-  },
-  {
     "title": "Mental model",
     "summary": "Stoppr is a Flutter shell around Firebase user state, local preferences, and subscription-gated feature modules reached through imperative navigation.",
     "type": "component",
@@ -466,7 +459,7 @@
     "summary": "Stoppr ships as iOS and Android Flutter builds with env-configured API keys; Firebase rules and indexes live in repo root; VibeKB guide hosts statically from /docs.",
     "type": "component",
     "url": "how-it-works/index.html",
-    "body": "## Mobile app deployment\n\n- **Build**: `flutter build apk` / `flutter build ios` (per `CLAUDE.md`).\n- **Config**: Runtime `.env` for API keys; `lib/firebase_options.dart` reads env vars.\n- **Firebase**: `firestore.rules`, `firestore.indexes.json`, `firebase.json.local` in repo.\n- **Version**: `7.4.2+1` in `pubspec.yaml`.\n\n## Environment requirements\n\nDevelopers need configured keys for: Firebase, RevenueCat, Superwall, Mixpanel,\nOpenAI, Groq, AppsFlyer, Edamam, Spoonacular, Google OAuth, Crisp.\n\nPlaceholder strings exist when env vars are missing \u2014 app may fail or degrade.\n\n## VibeKB guide deployment\n\nThis repository includes a static guide in `/docs` generated from `.vibekb/`.\nGitHub Pages can serve it from branch `main`, folder `/docs`.\n\nRegenerate after content changes:\n\n```bash\npython3 .vibekb/tools/generate_docs.py\n```\n\n## CI / testing\n\nNo automated test suite present in repository. `flutter analyze` and manual QA\nare the documented verification paths."
+    "body": "## Mobile app deployment\n\n- **Build**: `flutter build apk` / `flutter build ios` (per `CLAUDE.md`).\n- **Config**: Runtime `.env` for API keys; `lib/firebase_options.dart` reads env vars.\n- **Firebase**: `firestore.rules`, `firestore.indexes.json`, `firebase.json.local` in repo.\n- **Version**: `7.4.2+1` in `pubspec.yaml`.\n\n## Environment requirements\n\nDevelopers need configured keys for: Firebase, RevenueCat, Superwall, Mixpanel,\nOpenAI, Groq, AppsFlyer, Edamam, Spoonacular, Google OAuth, Crisp.\n\nPlaceholder strings exist when env vars are missing \u2014 app may fail or degrade.\n\n## VibeKB guide deployment\n\nThis repository includes a static guide in `/docs` built from `.vibekb/`.\nGitHub Pages can serve it from branch `main`, folder `/docs`.\nNo build step is required to read the guide.\n\n## CI / testing\n\nNo automated test suite present in repository. `flutter analyze` and manual QA\nare the documented verification paths."
   },
   {
     "title": "Imperative navigation instead of GoRouter",

@@ -329,17 +329,6 @@
       "safety": "low-impact",
       "test_after_change": "Open article in multiple languages.",
       "provenance": "verified-from-source"
-    },
-    {
-      "path": ".vibekb/tools/generate_docs.py",
-      "purpose": "Static site generator: reads .vibekb content and writes /docs HTML.",
-      "functionality": [],
-      "runs_when": "Manual or CI invocation after VibeKB content changes.",
-      "depended_on_by": ["docs/ output"],
-      "depends_on": [".vibekb/"],
-      "safety": "generated-or-managed",
-      "test_after_change": "python3 .vibekb/tools/generate_docs.py && open docs/index.html",
-      "provenance": "verified-from-source"
     }
   ]
 }

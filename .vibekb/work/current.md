@@ -25,11 +25,11 @@ Stoppr application code is unchanged. Repository now contains `.vibekb/` content
 
 - Inspected lib/, pubspec.yaml, firestore.rules, README.
 - Created 30 functionality records across 10 areas.
-- Generated static HTML guide with client-side search.
+- Published static HTML guide in `/docs` with client-side search.
 - Added memory records for warnings, decisions, and discoveries.
 
 ## Next steps for future sessions
 
 - Re-verify functionality after significant app changes.
-- Run `python3 .vibekb/tools/generate_docs.py` after editing `.vibekb/`.
+- Update `/docs` HTML if the public guide must change alongside `.vibekb/`.
 - Manually test paywall and Firebase flows to upgrade verification states.

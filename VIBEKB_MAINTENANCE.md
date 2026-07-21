@@ -20,8 +20,8 @@ Update `.vibekb/` when you change behavior that users or developers would notice
    - `inferred-from-source` — strong code evidence, not executed
    - `not-verified` — unknown runtime behavior
 5. **Update** `work/current.md` during active AI work.
-6. **Regenerate:** `python3 .vibekb/tools/generate_docs.py`
-7. **Validate:** open `docs/reference/index.html` — zero errors required.
+6. **Validate** relationships, statuses, and file path references in `.vibekb/`.
+7. **Update `/docs`** static HTML when the published guide must reflect model changes.
 
 ## Record types
 

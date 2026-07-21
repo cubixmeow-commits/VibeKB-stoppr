@@ -14,9 +14,8 @@ change: vibekb-integration
 
 - Cloned VibeKB reference repository for schema and renderer patterns.
 - Inspected Stoppr Flutter codebase (337 Dart files under lib/).
-- Built Python static site generator at `.vibekb/tools/generate_docs.py`.
 - Created 30 functionality records, system docs, memory, and important files index.
-- Generated `/docs` static HTML with search and filters.
+- Published `/docs` static HTML with search and filters.
 
 ## Application code
 
