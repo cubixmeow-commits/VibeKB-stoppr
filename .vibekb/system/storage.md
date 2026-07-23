@@ -3,7 +3,7 @@ id: system-storage
 type: system
 title: Storage
 summary: Firestore collections for shared data; SharedPreferences for fast local state; Firebase Storage for food images; HomeWidget suite for widgets.
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## Stores

@@ -35,9 +35,14 @@ require_once $guideLib . '/Content.php';
 require_once $guideLib . '/Provenance.php';
 require_once $guideLib . '/nav.php';
 require_once $guideLib . '/search.php';
+require_once $guideLib . '/map.php';
 
 $contentRoot = $repoRoot . '/.vibekb';
-$docsRoot = $repoRoot . '/docs';
+// The output directory defaults to /docs but can be redirected with
+// VIBEKB_DOCS_OUT — the drift check (tools/vibekb.php) renders into a temp
+// directory this way to compare against the committed /docs without touching it.
+$docsOut = getenv('VIBEKB_DOCS_OUT');
+$docsRoot = (is_string($docsOut) && $docsOut !== '') ? rtrim($docsOut, '/') : $repoRoot . '/docs';
 
 $content = new Content($contentRoot);
 $content->load();

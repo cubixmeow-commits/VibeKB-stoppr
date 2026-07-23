@@ -1,0 +1,8 @@
+# Deny direct web access to knowledge files (Apache).
+# The PHP engine reads these from the filesystem.
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Deny from all
+</IfModule>

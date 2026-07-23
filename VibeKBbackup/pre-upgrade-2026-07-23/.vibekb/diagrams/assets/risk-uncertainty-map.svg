@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 860 340" role="img" aria-labelledby="ru-title ru-desc">
+  <title id="ru-title">Risk and uncertainty map</title>
+  <desc id="ru-desc">Five verified configuration landmines: Superwall placement placeholders, Android Superwall purchase controller wiring, OAuth and env fallbacks, widget app group placeholder, and disabled quota flags. Two configures edges show how Android wiring and quota flags affect the placement-driven paywall path.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4f5c56"/>
+    </marker>
+    
+    <style>
+      .t { font-family:"Figtree","Segoe UI",sans-serif; fill:#1a2421; }
+      .box { stroke:#b9c6c0; stroke-width:1.5; fill:#e7f4f0; }
+      .gate { fill:#f6ead4; stroke:#7a4210; stroke-width:1.5; }
+      .store { fill:#fffcf7; stroke:#b9c6c0; stroke-width:1.5; }
+      .warn { fill:#f8e4e0; stroke:#8a2f2f; stroke-width:1.5; }
+      .lbl { font-size:12px; font-weight:600; }
+      .sm { font-size:10px; fill:#4f5c56; }
+      .arrow { stroke:#4f5c56; stroke-width:1.6; fill:none; marker-end:url(#arrow); }
+      .arrow-inferred { stroke:#4f5c56; stroke-width:1.6; fill:none; stroke-dasharray:7 5; marker-end:url(#arrow); }
+      .hit { stroke:transparent; stroke-width:16; fill:none; }
+      .title { font-size:18px; font-weight:800; font-family:"Outfit","Figtree",sans-serif; }
+      .elbl { font-size:9px; fill:#4f5c56; }
+    </style>
+  </defs>
+  <rect width="860" height="340" fill="#f4f0e8"/>
+  <text class="t title" x="28" y="36">Risk and uncertainty map</text>
+  <text class="t sm" x="28" y="54">Configuration landmines verified in source. Select a box for the warning and next action.</text>
+
+  <a href="#node-placement-placeholders" xlink:href="#node-placement-placeholders" class="dnode" data-vibekb-node="placement-placeholders">
+    <title>Superwall placement placeholders — open explanation</title>
+    <rect class="warn" x="300" y="100" width="200" height="70" rx="9"/>
+    <text class="t lbl" x="400" y="128" text-anchor="middle">Placement placeholders</text>
+    <text class="t sm" x="400" y="146" text-anchor="middle">INSERT_YOUR_* IDs</text>
+  </a>
+  <a href="#node-android-sw" xlink:href="#node-android-sw" class="dnode" data-vibekb-node="android-sw">
+    <title>Android Superwall wiring — open explanation</title>
+    <rect class="warn" x="40" y="230" width="180" height="70" rx="9"/>
+    <text class="t lbl" x="130" y="258" text-anchor="middle">Android SW wiring</text>
+    <text class="t sm" x="130" y="276" text-anchor="middle">no purchaseController</text>
+  </a>
+  <a href="#node-oauth-fallbacks" xlink:href="#node-oauth-fallbacks" class="dnode" data-vibekb-node="oauth-fallbacks">
+    <title>OAuth / env fallbacks — open explanation</title>
+    <rect class="warn" x="250" y="230" width="170" height="70" rx="9"/>
+    <text class="t lbl" x="335" y="258" text-anchor="middle">OAuth / env fallbacks</text>
+    <text class="t sm" x="335" y="276" text-anchor="middle">.env vs .env.local</text>
+  </a>
+  <a href="#node-widget-group" xlink:href="#node-widget-group" class="dnode" data-vibekb-node="widget-group">
+    <title>Widget app group placeholder — open explanation</title>
+    <rect class="warn" x="450" y="230" width="170" height="70" rx="9"/>
+    <text class="t lbl" x="535" y="258" text-anchor="middle">Widget app group</text>
+    <text class="t sm" x="535" y="276" text-anchor="middle">YOUR_BUNDLE_ID</text>
+  </a>
+  <a href="#node-quota-flags" xlink:href="#node-quota-flags" class="dnode" data-vibekb-node="quota-flags">
+    <title>Disabled quota flags — open explanation</title>
+    <rect class="warn" x="650" y="230" width="170" height="70" rx="9"/>
+    <text class="t lbl" x="735" y="258" text-anchor="middle">Quota flags off</text>
+    <text class="t sm" x="735" y="276" text-anchor="middle">QUOTA_SYSTEM_ENABLED</text>
+  </a>
+
+  <a href="#edge-android-configures-purchases" xlink:href="#edge-android-configures-purchases" class="dedge" data-vibekb-edge="android-configures-purchases">
+    <title>configures purchase path — verified</title>
+    <line class="hit" x1="160" y1="230" x2="340" y2="170"/>
+    <line class="arrow" x1="160" y1="230" x2="340" y2="170"/>
+    <text class="t elbl" x="200" y="190">configures</text>
+  </a>
+  <a href="#edge-quota-configures-soft" xlink:href="#edge-quota-configures-soft" class="dedge" data-vibekb-edge="quota-configures-soft">
+    <title>configures soft paywalls — verified</title>
+    <line class="hit" x1="720" y1="230" x2="480" y2="170"/>
+    <line class="arrow" x1="720" y1="230" x2="480" y2="170"/>
+    <text class="t elbl" x="600" y="190">configures</text>
+  </a>
+
+</svg>

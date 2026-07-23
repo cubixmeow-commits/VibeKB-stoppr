@@ -4,7 +4,7 @@ type: project
 title: Constraints
 summary: Mobile Flutter client, env-driven secrets, GitHub Pages docs deployment for VibeKB, and no application-code changes during documentation work.
 verification: verified-from-source
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## Platform

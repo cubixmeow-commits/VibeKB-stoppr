@@ -8,27 +8,31 @@ status: implemented
 verification: verified-from-source
 user_facing: true
 trigger: User reaches MainScaffold after onboarding/paywall.
-files: [lib/features/app/presentation/screens/main_scaffold.dart, lib/features/app/presentation/widgets/bottom_navigation.dart]
+files: [lib/features/app/presentation/screens/main_scaffold.dart]
 reads: []
 writes: []
 config: []
 depends_on: [startup-routing]
 related_memory: []
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-23
 tags: []
 ---
 
 ## In one sentence
 
-`MainScaffold` is the post-paywall shell with indexed tabs and optional bar hiding.
+`MainScaffold` is the post-paywall shell with indexed tabs and optional bar
+hiding.
 
 ## Current behavior
 
-Stateful scaffold with `initialIndex`, bottom navigation when enabled, and
-lifecycle observers. Marks onboarding complete for authenticated users when
-appropriate.
+Stateful scaffold with `initialIndex` and an **inline** bottom navigation
+(when enabled). Active tabs: Home, Learn Videos, Rewire Brain, Community,
+Profile. Lifecycle observers mark onboarding complete for authenticated users
+when appropriate. The older
+`lib/features/app/presentation/widgets/bottom_navigation.dart` file is not the
+active tab builder.
 
 ## Current state
 
-Implemented; verified-from-source.
+Implemented; verified-from-source (re-checked 2026-07-23).

@@ -108,7 +108,7 @@
     <header class="page-head reading-column">
         <p class="eyebrow">Nutrition</p>
         <h1>Sugar food scanning</h1>
-        <p class="lede">Vision analysis via Groq-compatible endpoint with local image cache and optional Firebase Storage fallback.</p>
+        <p class="lede">Vision analysis via Groq-compatible endpoint with local image cache and optional Firebase Storage fallback; nutrition path uses ApiRateLimitService (not FeatureQuota soft-paywall).</p>
         <div class="badge-row">
             <span class="badge badge--ok">Implemented</span>            <span class="badge badge--ok">Verified from source</span>            <span class="badge badge--info">User-facing</span>        </div>
     </header>
@@ -118,10 +118,15 @@
                             <div class="prose reading-column"><h3>In one sentence</h3>
 <p>Camera/gallery images are analyzed for nutrition estimates then logged.</p>
 <h3>Current behavior</h3>
-<p>Uses <code>GROQ_API_KEY</code>. Quota soft-paywall code present but disabled. Images cached
-locally via <code>LocalFoodImageService</code>.</p>
+<p>Uses <code>GROQ_API_KEY</code>. The nutrition <code>food_scanner_screen</code> path relies on
+<code>ApiRateLimitService</code> rather than the disabled <code>FeatureQuotaService</code> soft
+paywall. A separate sugar-scan UI also exists under
+<code>lib/features/app/presentation/screens/food_scan/</code> (with Superwall
+placeholder placements when quotas/offers fire). Images are cached locally via
+<code>LocalFoodImageService</code>.</p>
 <h3>Current state</h3>
-<p>Implemented; verified-from-source. Runtime accuracy of model output not verified.</p></div>
+<p>Implemented; verified-from-source (re-checked 2026-07-23). Runtime accuracy of
+model output not verified.</p></div>
                     </div>
 
         <aside class="detail-rail" aria-label="Record metadata">
@@ -133,7 +138,7 @@ locally via <code>LocalFoodImageService</code>.</p>
                                             <dt>Verification</dt>
                         <dd><span class="badge badge--ok">Verified from source</span></dd>
                                         <dt>Updated</dt>
-                    <dd>2026-07-21</dd>
+                    <dd>2026-07-23</dd>
                     <dt>Facing</dt>
                     <dd>User-facing</dd>
                 </dl>
@@ -152,7 +157,7 @@ locally via <code>LocalFoodImageService</code>.</p>
 
             <div class="rail-card metadata-group">
                 <h2>Files involved</h2>
-                                    <p><code class="chip chip--file">lib/features/nutrition/presentation/screens/food_scanner_screen.dart</code> <code class="chip chip--file">lib/core/services/local_food_image_service.dart</code></p>
+                                    <p><code class="chip chip--file">lib/features/nutrition/presentation/screens/food_scanner_screen.dart</code> <code class="chip chip--file">lib/features/app/presentation/screens/food_scan/food_scan_screen.dart</code> <code class="chip chip--file">lib/core/services/local_food_image_service.dart</code> <code class="chip chip--file">lib/core/api_rate_limit/api_rate_limit_service.dart</code></p>
                             </div>
 
             <div class="rail-card metadata-group">
@@ -172,7 +177,7 @@ locally via <code>LocalFoodImageService</code>.</p>
             
             <div class="rail-card metadata-group">
                 <h2>Related rationale</h2>
-                                    <p><a class="chip" href="../why/warnings/placeholder-api-keys.html">Placeholder API keys and OAuth client IDs</a></p>
+                                    <p><a class="chip" href="../why/warnings/placeholder-api-keys.html">Placeholder API keys and OAuth client IDs</a> <a class="chip" href="../why/discoveries/quotas-disabled-ab-test.html">Feature quotas disabled via local flags</a></p>
                             </div>
         </aside>
     </div>
@@ -186,7 +191,7 @@ locally via <code>LocalFoodImageService</code>.</p>
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 06:26 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
             </div>
         </footer>
     </div>

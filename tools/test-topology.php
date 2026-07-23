@@ -14,6 +14,9 @@ declare(strict_types=1);
  *   1. loading does not crash (malformed topology is reported, not fatal); and
  *   2. each specific contract violation is surfaced as an issue.
  *
+ * Works in self-hosted VibeKB and in installed target repositories by
+ * discovering a carrier diagram and a known-good topology from the local model.
+ *
  * Exits non-zero if any assertion fails, so it can gate CI.
  *
  * Usage: php tools/test-topology.php
@@ -39,24 +42,63 @@ $copy = static function (string $src, string $dst) use (&$copy): void {
 };
 $copy($repoRoot . '/.vibekb', $tmp);
 
-// Point an existing diagram record at a broken topology file.
-// Target repos ship their own diagram ids; use app-overview (Stoppr /
-// typical integrate) so this contract test is not SousMeow-specific.
-$recordPath = $tmp . '/diagrams/records/app-overview.md';
-$record = (string) file_get_contents($recordPath);
-if ($record === '') {
-    fwrite(STDERR, "FAIL: expected diagrams/records/app-overview.md in .vibekb/\n");
+$recordsDir = $tmp . '/diagrams/records';
+$topologyDir = $tmp . '/diagrams/topology';
+if (!is_dir($recordsDir)) {
+    fwrite(STDERR, "FAIL: no diagrams/records/ in .vibekb — cannot run topology test\n");
     exit(1);
 }
-$record = preg_replace(
-    '/^topology:\s*app-overview\.json$/m',
-    'topology: broken.json',
-    $record,
-    1
-);
-if ($record === null || !str_contains($record, 'topology: broken.json')) {
-    fwrite(STDERR, "FAIL: could not retarget app-overview topology to broken.json\n");
-    exit(1);
+
+/**
+ * Prefer a picture-only diagram (no topology: line) as the malformed carrier.
+ * If every record already has a topology, strip topology from the first record.
+ *
+ * @return array{0:string,1:string} [absolute path, svg basename]
+ */
+$pickCarrier = static function (string $recordsDir): array {
+    $preferred = $recordsDir . '/self-maintenance-loop.md';
+    $candidates = [];
+    foreach (scandir($recordsDir) ?: [] as $entry) {
+        if (!str_ends_with($entry, '.md')) {
+            continue;
+        }
+        $path = $recordsDir . '/' . $entry;
+        $body = (string) file_get_contents($path);
+        if (!preg_match('/^svg:\s*(\S+)/m', $body, $m)) {
+            continue;
+        }
+        $svg = $m[1];
+        $hasTopology = (bool) preg_match('/^topology:\s*\S+/m', $body);
+        if ($path === $preferred || !$hasTopology) {
+            return [$path, $svg];
+        }
+        $candidates[] = [$path, $svg, $hasTopology];
+    }
+    if ($candidates === []) {
+        fwrite(STDERR, "FAIL: no diagram records with an svg: field\n");
+        exit(1);
+    }
+    return [$candidates[0][0], $candidates[0][1]];
+};
+
+[$recordPath, $svgName] = $pickCarrier($recordsDir);
+$carrierId = basename($recordPath, '.md');
+$record = (string) file_get_contents($recordPath);
+// Ensure the carrier points at broken.json (replace or insert topology line).
+if (preg_match('/^topology:\s*\S+/m', $record)) {
+    $record = preg_replace(
+        '/^topology:\s*\S+$/m',
+        'topology: broken.json',
+        $record,
+        1,
+    );
+} else {
+    $record = preg_replace(
+        '/^svg:\s*' . preg_quote($svgName, '/') . '$/m',
+        "svg: {$svgName}\ntopology: broken.json",
+        $record,
+        1,
+    );
 }
 file_put_contents($recordPath, $record);
 
@@ -86,8 +128,8 @@ $broken = <<<'JSON'
   ]
 }
 JSON;
-@mkdir($tmp . '/diagrams/topology', 0775, true);
-file_put_contents($tmp . '/diagrams/topology/broken.json', $broken);
+@mkdir($topologyDir, 0775, true);
+file_put_contents($topologyDir . '/broken.json', $broken);
 
 // Load — must not throw.
 $content = new Content($tmp);
@@ -124,17 +166,54 @@ foreach ($expect as $needle) {
     }
 }
 
-// A well-formed topology from the real model must still resolve here.
-// app-overview is overwritten to broken.json above, so use another diagram.
-$goodId = 'subscription-paywall-flow';
-$rf = $content->resolvedTopology($goodId);
-if ($rf === null || count($rf['nodes']) < 1 || count($rf['edges']) < 1) {
-    echo "  FAIL good topology '{$goodId}' did not resolve as expected\n";
+// Pick a well-formed topology from the real model (not broken.json and
+// not the carrier we deliberately pointed at the malformed fixture).
+$goodId = null;
+$goodNodes = 0;
+$goodEdges = 0;
+foreach (scandir($repoRoot . '/.vibekb/diagrams/topology') ?: [] as $entry) {
+    if (!str_ends_with($entry, '.json') || $entry === 'broken.json') {
+        continue;
+    }
+    $id = basename($entry, '.json');
+    if ($id === $carrierId) {
+        continue;
+    }
+    // Prefer the self-hosted fixture when present.
+    if ($id === 'content-load-flow' || $goodId === null) {
+        $data = json_decode(
+            (string) file_get_contents(
+                $repoRoot . '/.vibekb/diagrams/topology/' . $entry,
+            ),
+            true,
+        );
+        if (!is_array($data)) {
+            continue;
+        }
+        $goodId = $id;
+        $goodNodes = count($data['nodes'] ?? []);
+        $goodEdges = count($data['edges'] ?? []);
+        if ($id === 'content-load-flow') {
+            break;
+        }
+    }
+}
+
+if ($goodId === null) {
+    echo "  FAIL no well-formed topology found in .vibekb/diagrams/topology/\n";
     $failures++;
 } else {
-    $nc = count($rf['nodes']);
-    $ec = count($rf['edges']);
-    echo "  ok   good topology '{$goodId}' resolves ({$nc} nodes, {$ec} edges)\n";
+    $rf = $content->resolvedTopology($goodId);
+    if ($rf === null
+        || count($rf['nodes']) !== $goodNodes
+        || count($rf['edges']) !== $goodEdges
+    ) {
+        echo "  FAIL good topology '{$goodId}' did not resolve as expected\n";
+        $failures++;
+    } else {
+        echo "  ok   good topology '{$goodId}' resolves"
+            . " ({$goodNodes} nodes, {$goodEdges} edges)\n";
+    }
 }
 
 // Clean up.

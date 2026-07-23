@@ -180,6 +180,17 @@ final class Content
         return $this->system[$name] ?? null;
     }
 
+    /**
+     * All loaded system explanation documents, keyed by name. Used where a count
+     * or listing of system docs is needed without hard-coding the doc set.
+     *
+     * @return array<string, array<string,mixed>>
+     */
+    public function systemDocs(): array
+    {
+        return $this->system;
+    }
+
     /** @return array<string, array<string,mixed>> */
     public function allFunctionality(): array
     {

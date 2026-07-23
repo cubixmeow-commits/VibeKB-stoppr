@@ -122,9 +122,10 @@
 SharedPreferences fallback. Learn, food scan, Rate My Plate, and chatbot set
 <code>QUOTA_SYSTEM_ENABLED = false</code>. Contextual placements (ratings, redownload,
 quick actions, home banners) still call Superwall with placeholder or concrete
-IDs. Chatbot separately enforces <code>ApiRateLimitService</code> (20/day).</p>
+IDs. Chatbot (and other AI surfaces) separately enforce
+<code>ApiRateLimitService</code> (20/day) even while feature quotas are off.</p>
 <h3>Current state</h3>
-<p>Partial; verified-from-source.</p></div>
+<p>Partial; verified-from-source (re-checked 2026-07-23).</p></div>
                     </div>
 
         <aside class="detail-rail" aria-label="Record metadata">
@@ -136,7 +137,7 @@ IDs. Chatbot separately enforces <code>ApiRateLimitService</code> (20/day).</p>
                                             <dt>Verification</dt>
                         <dd><span class="badge badge--ok">Verified from source</span></dd>
                                         <dt>Updated</dt>
-                    <dd>2026-07-21</dd>
+                    <dd>2026-07-23</dd>
                     <dt>Facing</dt>
                     <dd>User-facing</dd>
                 </dl>
@@ -155,7 +156,7 @@ IDs. Chatbot separately enforces <code>ApiRateLimitService</code> (20/day).</p>
 
             <div class="rail-card metadata-group">
                 <h2>Files involved</h2>
-                                    <p><code class="chip chip--file">lib/core/usage/feature_quota_service.dart</code> <code class="chip chip--file">lib/features/learn/presentation/screens/learn_video_list_screen.dart</code> <code class="chip chip--file">lib/features/app/presentation/screens/chatbot/chatbot_screen.dart</code> <code class="chip chip--file">lib/features/onboarding/presentation/screens/give_us_ratings_screen.dart</code></p>
+                                    <p><code class="chip chip--file">lib/core/usage/feature_quota_service.dart</code> <code class="chip chip--file">lib/core/api_rate_limit/api_rate_limit_service.dart</code> <code class="chip chip--file">lib/features/learn/presentation/screens/learn_video_list_screen.dart</code> <code class="chip chip--file">lib/features/app/presentation/screens/food_scan/food_scan_screen.dart</code> <code class="chip chip--file">lib/features/app/presentation/screens/food_scan/food_alternatives_screen.dart</code> <code class="chip chip--file">lib/features/app/presentation/screens/rate_my_plate/rate_my_plate_scan_screen.dart</code> <code class="chip chip--file">lib/features/app/presentation/screens/chatbot/chatbot_screen.dart</code> <code class="chip chip--file">lib/features/onboarding/presentation/screens/give_us_ratings_screen.dart</code> <code class="chip chip--file">lib/core/quick_actions/quick_actions_service.dart</code> <code class="chip chip--file">lib/features/app/presentation/screens/home_screen.dart</code></p>
                             </div>
 
             <div class="rail-card metadata-group">
@@ -194,7 +195,7 @@ IDs. Chatbot separately enforces <code>ApiRateLimitService</code> (20/day).</p>
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 06:26 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
             </div>
         </footer>
     </div>

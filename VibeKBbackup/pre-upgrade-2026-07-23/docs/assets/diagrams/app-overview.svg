@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 860 340" role="img" aria-labelledby="ao-title ao-desc">
+  <title id="ao-title">Stoppr application overview</title>
+  <desc id="ao-desc">The Flutter client depends on Firebase for identity and data, on RevenueCat and Superwall for paid access, on local preferences and widgets for daily state, and on external AI or food APIs for scanning, chatbot, and recipes. An inferred edge shows purchase status mirrored into Firestore.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4f5c56"/>
+    </marker>
+    
+    <style>
+      .t { font-family:"Figtree","Segoe UI",sans-serif; fill:#1a2421; }
+      .box { stroke:#b9c6c0; stroke-width:1.5; fill:#e7f4f0; }
+      .gate { fill:#f6ead4; stroke:#7a4210; stroke-width:1.5; }
+      .store { fill:#fffcf7; stroke:#b9c6c0; stroke-width:1.5; }
+      .warn { fill:#f8e4e0; stroke:#8a2f2f; stroke-width:1.5; }
+      .lbl { font-size:12px; font-weight:600; }
+      .sm { font-size:10px; fill:#4f5c56; }
+      .arrow { stroke:#4f5c56; stroke-width:1.6; fill:none; marker-end:url(#arrow); }
+      .arrow-inferred { stroke:#4f5c56; stroke-width:1.6; fill:none; stroke-dasharray:7 5; marker-end:url(#arrow); }
+      .hit { stroke:transparent; stroke-width:16; fill:none; }
+      .title { font-size:18px; font-weight:800; font-family:"Outfit","Figtree",sans-serif; }
+      .elbl { font-size:9px; fill:#4f5c56; }
+    </style>
+  </defs>
+  <rect width="860" height="340" fill="#f4f0e8"/>
+  <text class="t title" x="28" y="36">Stoppr application overview</text>
+  <text class="t sm" x="28" y="54">Solid = verified from source · Dashed = inferred. Select a box or arrow for its explanation.</text>
+
+  <a href="#node-mobile-client" xlink:href="#node-mobile-client" class="dnode" data-vibekb-node="mobile-client">
+    <title>Stoppr mobile client — open explanation</title>
+    <rect class="box" x="320" y="90" width="200" height="64" rx="9"/>
+    <text class="t lbl" x="420" y="116" text-anchor="middle">Stoppr mobile client</text>
+    <text class="t sm" x="420" y="134" text-anchor="middle">Flutter iOS / Android</text>
+  </a>
+
+  <a href="#node-firebase" xlink:href="#node-firebase" class="dnode" data-vibekb-node="firebase">
+    <title>Firebase — open explanation</title>
+    <rect class="store" x="40" y="220" width="160" height="64" rx="9"/>
+    <text class="t lbl" x="120" y="246" text-anchor="middle">Firebase</text>
+    <text class="t sm" x="120" y="264" text-anchor="middle">Auth · Firestore · FCM</text>
+  </a>
+
+  <a href="#node-purchases" xlink:href="#node-purchases" class="dnode" data-vibekb-node="purchases">
+    <title>RevenueCat + Superwall — open explanation</title>
+    <rect class="gate" x="240" y="220" width="180" height="64" rx="9"/>
+    <text class="t lbl" x="330" y="246" text-anchor="middle">RevenueCat + Superwall</text>
+    <text class="t sm" x="330" y="264" text-anchor="middle">Paid access source of truth</text>
+  </a>
+
+  <a href="#node-local-state" xlink:href="#node-local-state" class="dnode" data-vibekb-node="local-state">
+    <title>Local device state — open explanation</title>
+    <rect class="store" x="460" y="220" width="160" height="64" rx="9"/>
+    <text class="t lbl" x="540" y="246" text-anchor="middle">Local device state</text>
+    <text class="t sm" x="540" y="264" text-anchor="middle">Prefs · widgets</text>
+  </a>
+
+  <a href="#node-external-ai" xlink:href="#node-external-ai" class="dnode" data-vibekb-node="external-ai">
+    <title>External AI / food APIs — open explanation</title>
+    <rect class="box" x="660" y="220" width="170" height="64" rx="9"/>
+    <text class="t lbl" x="745" y="246" text-anchor="middle">External AI / food APIs</text>
+    <text class="t sm" x="745" y="264" text-anchor="middle">Groq · OpenAI · recipes</text>
+  </a>
+
+  <a href="#edge-client-to-firebase" xlink:href="#edge-client-to-firebase" class="dedge" data-vibekb-edge="client-to-firebase">
+    <title>depends on Firebase — verified</title>
+    <line class="hit" x1="340" y1="154" x2="150" y2="220"/>
+    <line class="arrow" x1="340" y1="154" x2="150" y2="220"/>
+    <text class="t elbl" x="220" y="178">depends-on</text>
+  </a>
+  <a href="#edge-client-to-purchases" xlink:href="#edge-client-to-purchases" class="dedge" data-vibekb-edge="client-to-purchases">
+    <title>depends on purchases — verified</title>
+    <line class="hit" x1="400" y1="154" x2="330" y2="220"/>
+    <line class="arrow" x1="400" y1="154" x2="330" y2="220"/>
+    <text class="t elbl" x="350" y="180">depends-on</text>
+  </a>
+  <a href="#edge-client-to-local" xlink:href="#edge-client-to-local" class="dedge" data-vibekb-edge="client-to-local">
+    <title>stores in local state — verified</title>
+    <line class="hit" x1="450" y1="154" x2="520" y2="220"/>
+    <line class="arrow" x1="450" y1="154" x2="520" y2="220"/>
+    <text class="t elbl" x="500" y="180">stores-in</text>
+  </a>
+  <a href="#edge-client-to-ai" xlink:href="#edge-client-to-ai" class="dedge" data-vibekb-edge="client-to-ai">
+    <title>sends to external APIs — verified</title>
+    <line class="hit" x1="500" y1="154" x2="720" y2="220"/>
+    <line class="arrow" x1="500" y1="154" x2="720" y2="220"/>
+    <text class="t elbl" x="620" y="178">sends-to</text>
+  </a>
+  <a href="#edge-purchases-to-firebase" xlink:href="#edge-purchases-to-firebase" class="dedge" data-vibekb-edge="purchases-to-firebase">
+    <title>writes mirror fields — inferred</title>
+    <line class="hit" x1="240" y1="252" x2="200" y2="252"/>
+    <line class="arrow-inferred" x1="240" y1="252" x2="200" y2="252"/>
+    <text class="t elbl" x="205" y="244">writes (inferred)</text>
+  </a>
+
+</svg>

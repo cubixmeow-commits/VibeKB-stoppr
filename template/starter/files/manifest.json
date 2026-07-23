@@ -1,0 +1,24 @@
+{
+  "vibekb_version": "1.0",
+  "content_model": "functionality-first",
+  "updated": "{{DATE}}",
+  "self_hosted": false,
+  "example_project": {
+    "name": {{PROJECT_NAME_JSON}},
+    "is_sample": false,
+    "note": "Fresh VibeKB workspace created by the installer. The model has not been built yet — no functionality has been analysed. An AI coding agent builds it by following prompts/INTEGRATE_VIBEKB.md and INITIALIZE.md."
+  },
+  "provenance": {
+    "name": {{PROJECT_NAME_JSON}},
+    "source_repository": "",
+    "source_subpath": "",
+    "source_branch": "",
+    "source_commit": "",
+    "analyzed": "",
+    "verification_scope": "Not yet analysed. This is an empty starter workspace. Fill this in after building the model against a specific commit.",
+    "last_verified": "",
+    "updates_automatically": false,
+    "model_maintenance": "agent-maintained",
+    "freshness_note": "VibeKB does not update this model on its own. An AI agent builds and maintains it by following the workflow in CLAUDE.md and INITIALIZE.md. Until the model is built, this workspace is empty scaffolding only."
+  }
+}

@@ -116,13 +116,17 @@
     <div class="detail-grid">
         <div class="detail-main">
                             <div class="prose reading-column"><h3>In one sentence</h3>
-<p><code>MainScaffold</code> is the post-paywall shell with indexed tabs and optional bar hiding.</p>
+<p><code>MainScaffold</code> is the post-paywall shell with indexed tabs and optional bar
+hiding.</p>
 <h3>Current behavior</h3>
-<p>Stateful scaffold with <code>initialIndex</code>, bottom navigation when enabled, and
-lifecycle observers. Marks onboarding complete for authenticated users when
-appropriate.</p>
+<p>Stateful scaffold with <code>initialIndex</code> and an <strong>inline</strong> bottom navigation
+(when enabled). Active tabs: Home, Learn Videos, Rewire Brain, Community,
+Profile. Lifecycle observers mark onboarding complete for authenticated users
+when appropriate. The older
+<code>lib/features/app/presentation/widgets/bottom_navigation.dart</code> file is not the
+active tab builder.</p>
 <h3>Current state</h3>
-<p>Implemented; verified-from-source.</p></div>
+<p>Implemented; verified-from-source (re-checked 2026-07-23).</p></div>
                     </div>
 
         <aside class="detail-rail" aria-label="Record metadata">
@@ -134,7 +138,7 @@ appropriate.</p>
                                             <dt>Verification</dt>
                         <dd><span class="badge badge--ok">Verified from source</span></dd>
                                         <dt>Updated</dt>
-                    <dd>2026-07-21</dd>
+                    <dd>2026-07-23</dd>
                     <dt>Facing</dt>
                     <dd>User-facing</dd>
                 </dl>
@@ -153,7 +157,7 @@ appropriate.</p>
 
             <div class="rail-card metadata-group">
                 <h2>Files involved</h2>
-                                    <p><code class="chip chip--file">lib/features/app/presentation/screens/main_scaffold.dart</code> <code class="chip chip--file">lib/features/app/presentation/widgets/bottom_navigation.dart</code></p>
+                                    <p><code class="chip chip--file">lib/features/app/presentation/screens/main_scaffold.dart</code></p>
                             </div>
 
             <div class="rail-card metadata-group">
@@ -189,7 +193,7 @@ appropriate.</p>
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 06:26 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
             </div>
         </footer>
     </div>

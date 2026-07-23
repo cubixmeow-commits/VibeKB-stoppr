@@ -4,7 +4,7 @@ type: project
 title: Intent
 summary: Help users reduce sugar habits with daily engagement loops and optional premium tools, without turning the app into a generic health tracker.
 verification: inferred-from-source
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## Why it exists

@@ -1,0 +1,31 @@
+{
+  "groups": [
+    {
+      "id": "whole-app",
+      "title": "Understand the whole app",
+      "description": "Fast visual entry points for Stoppr."
+    },
+    {
+      "id": "product-flows",
+      "title": "Understand the main product flows",
+      "description": "Onboarding, auth, and subscription paths."
+    },
+    {
+      "id": "technical-system",
+      "title": "Understand the technical system",
+      "description": "Where data and entitlements live."
+    },
+    {
+      "id": "uncertainty",
+      "title": "Understand uncertainty",
+      "description": "Configuration landmines and unverified edges."
+    }
+  ],
+  "order": [
+    "app-overview",
+    "onboarding-auth-flow",
+    "subscription-paywall-flow",
+    "persistence-storage-map",
+    "risk-uncertainty-map"
+  ]
+}

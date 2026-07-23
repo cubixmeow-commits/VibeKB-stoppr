@@ -1,0 +1,232 @@
+[
+  {
+    "path": "lib/main.dart",
+    "purpose": "Bootstrap, Superwall/RevenueCat init, startup routing, deep links.",
+    "functionality": [
+      "app-startup",
+      "startup-routing",
+      "deep-link-handling",
+      "main-paywall"
+    ],
+    "runs_when": "Every cold start and for deep-link processing.",
+    "depended_on_by": [
+      "almost all features"
+    ],
+    "depends_on": [
+      "lib/core/config/env_config.dart",
+      "lib/firebase_options.dart"
+    ],
+    "safety": "high-impact",
+    "test_after_change": "Cold start routing for anonymous, free, and paid users; deep links.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/core/config/env_config.dart",
+    "purpose": "Typed accessors for environment variable NAMES (never commit values).",
+    "functionality": [
+      "app-startup",
+      "firebase-auth",
+      "analytics-telemetry"
+    ],
+    "runs_when": "Whenever a service reads configuration.",
+    "depended_on_by": [
+      "auth",
+      "purchases",
+      "AI features"
+    ],
+    "depends_on": [],
+    "safety": "high-impact",
+    "test_after_change": "Missing-key behavior; ensure no secrets are logged.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/core/auth/auth_service.dart",
+    "purpose": "Firebase Auth providers and identity side effects.",
+    "functionality": [
+      "firebase-auth",
+      "guest-anonymous-access"
+    ],
+    "runs_when": "Sign-in, sign-out, auth state changes.",
+    "depended_on_by": [
+      "AuthCubit",
+      "onboarding"
+    ],
+    "depends_on": [
+      "lib/core/config/env_config.dart"
+    ],
+    "safety": "high-impact",
+    "test_after_change": "Google/Apple/email sign-in; RevenueCat logIn.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/core/subscription/subscription_service.dart",
+    "purpose": "Paid-access decisions (Superwall + RevenueCat).",
+    "functionality": [
+      "subscription-access-gating",
+      "startup-routing"
+    ],
+    "runs_when": "Gating checks throughout the app.",
+    "depended_on_by": [
+      "startup",
+      "onboarding completion",
+      "accountability"
+    ],
+    "depends_on": [],
+    "safety": "high-impact",
+    "test_after_change": "Free vs paid routing; bypass accounts.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/core/superwall/superwall_purchase_controller.dart",
+    "purpose": "Maps Superwall purchases to RevenueCat and syncs status.",
+    "functionality": [
+      "main-paywall",
+      "subscription-access-gating"
+    ],
+    "runs_when": "Purchase, restore, status sync.",
+    "depended_on_by": [
+      "PrePaywall",
+      "home banners"
+    ],
+    "depends_on": [
+      "purchases_flutter"
+    ],
+    "safety": "high-impact",
+    "test_after_change": "iOS and Android purchase/restore paths.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/features/onboarding/presentation/screens/pre_paywall.dart",
+    "purpose": "Primary paywall UI and Superwall placement registration.",
+    "functionality": [
+      "main-paywall"
+    ],
+    "runs_when": "End of onboarding / unpaid return.",
+    "depended_on_by": [],
+    "depends_on": [
+      "Superwall",
+      "PostPurchaseHandler"
+    ],
+    "safety": "understand-dependencies-first",
+    "test_after_change": "Placement registration; paid skip; purchase success.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/features/onboarding/data/services/onboarding_progress_service.dart",
+    "purpose": "Resume checkpoints and completion flags.",
+    "functionality": [
+      "onboarding-questionnaire",
+      "startup-routing"
+    ],
+    "runs_when": "Each onboarding screen save and startup resume.",
+    "depended_on_by": [
+      "main.dart routing"
+    ],
+    "depends_on": [
+      "SubscriptionService"
+    ],
+    "safety": "moderate-impact",
+    "test_after_change": "Kill-app resume at multiple screens.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/core/streak/streak_service.dart",
+    "purpose": "Streak persistence and widget sync (placeholder app group).",
+    "functionality": [
+      "sugar-streak-tracking",
+      "home-widgets"
+    ],
+    "runs_when": "Streak updates and widget refreshes.",
+    "depended_on_by": [
+      "home",
+      "relapse",
+      "post-purchase"
+    ],
+    "depends_on": [
+      "home_widget"
+    ],
+    "safety": "moderate-impact",
+    "test_after_change": "Streak increment/reset; iOS widget values.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/features/app/presentation/screens/home_screen.dart",
+    "purpose": "Daily hub UI and soft paywall banners.",
+    "functionality": [
+      "home-dashboard",
+      "soft-paywalls-quotas"
+    ],
+    "runs_when": "Home tab visible.",
+    "depended_on_by": [],
+    "depends_on": [
+      "streak",
+      "subscription"
+    ],
+    "safety": "moderate-impact",
+    "test_after_change": "Banner paywalls; navigation to panic/pledge.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/features/nutrition/data/repositories/nutrition_repository.dart",
+    "purpose": "Nutrition Firestore persistence hub.",
+    "functionality": [
+      "calorie-nutrition-tracking"
+    ],
+    "runs_when": "Food log and goal operations.",
+    "depended_on_by": [
+      "scanner",
+      "dashboard"
+    ],
+    "depends_on": [
+      "Firebase Auth"
+    ],
+    "safety": "moderate-impact",
+    "test_after_change": "Log food; load daily summary.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "lib/features/app/presentation/screens/chatbot/chatbot_screen.dart",
+    "purpose": "Melinda AI assistant with rate limits.",
+    "functionality": [
+      "chatbot-assistant"
+    ],
+    "runs_when": "Chatbot opened.",
+    "depended_on_by": [],
+    "depends_on": [
+      "GROQ_API_KEY",
+      "OPENAI_API_KEY"
+    ],
+    "safety": "understand-dependencies-first",
+    "test_after_change": "Rate limit; text and voice paths.",
+    "provenance": "verified-from-source"
+  },
+  {
+    "path": "firestore.rules",
+    "purpose": "Server-side access rules for Firestore.",
+    "functionality": [
+      "community-forum",
+      "calorie-nutrition-tracking"
+    ],
+    "runs_when": "Every Firestore request.",
+    "depended_on_by": [
+      "all cloud data features"
+    ],
+    "depends_on": [],
+    "safety": "high-impact",
+    "test_after_change": "Rules unit tests / emulator for affected paths.",
+    "provenance": "inferred-from-source"
+  },
+  {
+    "path": "pubspec.yaml",
+    "purpose": "Package identity, version, and dependency set.",
+    "functionality": [
+      "app-startup"
+    ],
+    "runs_when": "Build and dependency resolution.",
+    "depended_on_by": [],
+    "depends_on": [],
+    "safety": "high-impact",
+    "test_after_change": "flutter pub get; smoke build.",
+    "provenance": "verified-from-source"
+  }
+]

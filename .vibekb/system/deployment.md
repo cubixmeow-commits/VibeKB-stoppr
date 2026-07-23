@@ -3,7 +3,7 @@ id: system-deployment
 type: system
 title: Deployment
 summary: Mobile app distributed via stores; VibeKB static guide published from /docs on GitHub Pages.
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## Application

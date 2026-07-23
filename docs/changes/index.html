@@ -127,6 +127,36 @@ static <code>/docs</code> regenerated.</p>
 <h3>Impact</h3>
 <p>Documentation accuracy depends on this analysis commit; app code unchanged.</p></div>
                                     </li>
+                            <li class="change-card">
+                    <div class="change-card__head">
+                        <h2>Upgrade VibeKB runtime and re-analyze Stoppr</h2>
+                        <div class="badge-row">
+                                                        <span class="badge badge--ok">Verified from source</span>                            <span class="muted"></span>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="prose reading-column change-card__body"><h3>What changed</h3>
+<p>Upgraded the Stoppr repository from the prior manually integrated VibeKB
+snapshot (content model dated 2026-07-21, pre-installer) to the current
+VibeKB implementation from <code>cubixmeow-commits/VibeKB</code> tip <code>3b6ba7d</code>:</p>
+<ul>
+<li>Native installer payload (<code>guide/</code>, <code>tools/</code> including <code>vibekb.php</code>,</li>
+</ul>
+<p><code>template/starter/</code>, <code>prompts/</code>, <code>INSTALLER.md</code>, <code>.cursor/rules/vibekb.mdc</code>)</p>
+<ul>
+<li>Fresh Stoppr analysis against commit <code>f01661b</code> (lib/ unchanged since prior</li>
+</ul>
+<p>rebootstrap; claim drift corrected where re-trace found gaps)</p>
+<ul>
+<li>Regenerated Mode B <code>/docs</code></li>
+</ul>
+<h3>Why</h3>
+<p>Owner requested upgrade to the latest VibeKB and a fresh analysis so the
+living model and generated guide match the newest runtime.</p>
+<h3>Backup</h3>
+<p><code>VibeKBbackup/pre-upgrade-2026-07-23/</code> holds the complete prior knowledge,
+docs, config, and generated surfaces for restore.</p></div>
+                                    </li>
                     </ol>
     </article>
         </main>
@@ -138,7 +168,7 @@ static <code>/docs</code> regenerated.</p>
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 06:26 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
             </div>
         </footer>
     </div>

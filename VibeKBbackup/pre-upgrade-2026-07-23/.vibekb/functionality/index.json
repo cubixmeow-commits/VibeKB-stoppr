@@ -1,0 +1,91 @@
+{
+  "groups": [
+    {
+      "id": "app-core",
+      "title": "Application core",
+      "description": "Startup, routing, navigation, deep links, widgets."
+    },
+    {
+      "id": "authentication",
+      "title": "Authentication",
+      "description": "Sign-in providers and guest access."
+    },
+    {
+      "id": "onboarding",
+      "title": "Onboarding",
+      "description": "New-user funnel from welcome through paywall."
+    },
+    {
+      "id": "subscription",
+      "title": "Subscription & paywalls",
+      "description": "Superwall, RevenueCat, quotas, gating."
+    },
+    {
+      "id": "home-wellness",
+      "title": "Home & daily wellness",
+      "description": "Dashboard, streak, check-in, pledge, panic, relapse."
+    },
+    {
+      "id": "community",
+      "title": "Community & accountability",
+      "description": "Forum, chat, partners."
+    },
+    {
+      "id": "education",
+      "title": "Education & content",
+      "description": "Videos, articles, chatbot."
+    },
+    {
+      "id": "nutrition",
+      "title": "Nutrition & food",
+      "description": "Scanning, calories, recipes, Rate My Plate."
+    },
+    {
+      "id": "wellness-tools",
+      "title": "Wellness tools",
+      "description": "Meditation, breathing, challenge, fasting."
+    },
+    {
+      "id": "platform",
+      "title": "Platform services",
+      "description": "Notifications, analytics, settings."
+    }
+  ],
+  "order": [
+    "app-startup",
+    "startup-routing",
+    "deep-link-handling",
+    "main-navigation",
+    "home-widgets",
+    "firebase-auth",
+    "guest-anonymous-access",
+    "onboarding-intro",
+    "onboarding-questionnaire",
+    "onboarding-profile-goals",
+    "onboarding-personalized-analysis",
+    "main-paywall",
+    "soft-paywalls-quotas",
+    "subscription-access-gating",
+    "home-dashboard",
+    "sugar-streak-tracking",
+    "daily-check-in-pledge",
+    "panic-intervention",
+    "relapse-recovery",
+    "community-forum",
+    "community-chat",
+    "accountability-partners",
+    "learn-video-lessons",
+    "articles-education",
+    "chatbot-assistant",
+    "sugar-food-scanning",
+    "calorie-nutrition-tracking",
+    "recipe-discovery",
+    "rate-my-plate",
+    "meditation-breathing",
+    "twenty-eight-day-challenge",
+    "fasting-tracker",
+    "notifications",
+    "analytics-telemetry",
+    "user-profile-settings"
+  ]
+}

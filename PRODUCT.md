@@ -107,6 +107,13 @@ The static snapshot is generated output; `.vibekb/` remains the source of
 truth. None of this changes the promise: it exists to help a vibe coder
 understand what the software is doing right now.
 
+VibeKB is **self-hosted**: the active `.vibekb/` describes VibeKB itself, and a
+repository-owned self-maintenance CLI (`tools/vibekb.php`) helps a coding agent
+run the maintenance lifecycle and detect drift between the code and the model —
+honestly separating what is *detected* mechanically from what an agent must
+*interpret*. Bundled models of other applications live under `examples/` and are
+never the active model.
+
 ## Explainable Diagrams
 
 Diagrams in VibeKB are **explainable**, not decorative. A diagram is a visual

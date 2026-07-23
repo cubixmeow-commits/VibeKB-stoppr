@@ -3,7 +3,7 @@ id: system-components
 type: system
 title: Components
 summary: "Major modules: main bootstrap, auth, onboarding, subscription, features, and native widgets."
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## Major components

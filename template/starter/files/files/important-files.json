@@ -1,0 +1,4 @@
+{
+  "_comment": "Curate the files that matter, each with path, purpose, functionality[], runs_when, depended_on_by[], depends_on[], safety, test_after_change, provenance. See SCHEMA.md. Empty until the agent builds the model.",
+  "files": []
+}

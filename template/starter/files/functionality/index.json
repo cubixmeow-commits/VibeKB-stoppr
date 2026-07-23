@@ -1,0 +1,5 @@
+{
+  "_comment": "Define functional areas as { id, title, description } in groups[], and list functionality record ids in display order in order[]. Do NOT invent functionality — trace it from source. See SCHEMA.md and INITIALIZE.md.",
+  "groups": [],
+  "order": []
+}
