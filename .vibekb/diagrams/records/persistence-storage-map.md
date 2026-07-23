@@ -18,7 +18,7 @@ provenance: "Repository write paths verified; widget native delivery inferred."
 last_verified: 2026-07-21
 uncertainty: "App group placeholder may prevent iOS widget sync."
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## What am I looking at?

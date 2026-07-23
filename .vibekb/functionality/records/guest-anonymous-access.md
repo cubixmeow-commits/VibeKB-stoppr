@@ -15,7 +15,7 @@ config: []
 depends_on: [firebase-auth]
 related_memory: [discovery:anonymous-auth-spread]
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-23
 tags: []
 ---
 

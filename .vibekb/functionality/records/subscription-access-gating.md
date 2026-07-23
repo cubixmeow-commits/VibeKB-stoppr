@@ -15,7 +15,7 @@ config: []
 depends_on: [app-startup]
 related_memory: [decision:revenuecat-not-firestore-gating, warning:android-superwall-purchase-controller]
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-23
 tags: []
 ---
 

@@ -114,23 +114,28 @@
             <div class="badge-row">
                 <span class="badge badge--info">completed</span>                                    <span class="badge badge--ok">Verified from source</span>                            </div>
             <dl class="rail-dl work-meta">
-                <dt>Objective</dt><dd>Migrate Stoppr to VibeKB 0.2.0 safe/consolidated repository layout while preserving the living model and Mode B /docs.</dd>                                                    <dt>Expected files</dt><dd><code class="chip chip--file">.vibekb/</code> <code class="chip chip--file">docs/</code> <code class="chip chip--file">AGENTS.md</code> <code class="chip chip--file">CLAUDE.md</code> <code class="chip chip--file">VIBEKB.md</code> <code class="chip chip--file">VIBEKB_MAINTENANCE.md</code> <code class="chip chip--file">.cursor/rules/vibekb.mdc</code></dd>
-                                <dt>Data impact</dt><dd>none on app runtime data</dd>                <dt>Risks</dt><dd>Upstream topology test is self-hosted-coupled; Mode B /docs preference is a Stoppr local adaptation of the runtime default.</dd>            </dl>
+                <dt>Objective</dt><dd>Completely regenerate the Stoppr VibeKB living model as a clean 0.2.0 analysis and rebuild Mode B /docs from .vibekb with no legacy important-files shape or migration provenance.</dd>                                                    <dt>Expected files</dt><dd><code class="chip chip--file">.vibekb/</code> <code class="chip chip--file">docs/</code> <code class="chip chip--file">VIBEKB.md</code></dd>
+                                <dt>Data impact</dt><dd>none on app runtime data</dd>                <dt>Risks</dt><dd>Model claims remain source-traced only; purchase and Superwall dashboard behaviour stay not-verified at runtime.</dd>            </dl>
         </section>
 
         <section class="doc-section content-section">
             <div class="prose reading-column"><h3>Requested outcome</h3>
 <ol>
-<li>Push VibeKB 0.2.0 safe integration into <code>cubixmeow-commits/VibeKB-stoppr</code>.</li>
-<li>Open a PR into <code>main</code>.</li>
-<li>Do not modify Stoppr application code.</li>
+<li>Delete generated <code>/docs</code> and regenerate from the current 0.2.0 runtime.</li>
+<li>Re-analyze Stoppr against current source; refresh provenance to this commit.</li>
+<li>Emit a fresh <code>.vibekb/files/important-files.json</code> in the 0.2.0</li>
+</ol>
+<p><code>{&quot;files&quot;:[...]}</code> schema so Key Files and Files That Matter are populated.</p>
+<ol>
+<li>Do not modify Stoppr application code under <code>lib/</code>.</li>
 </ol>
 <h3>Verification plan</h3>
 <ul>
-<li><code>vibekb doctor</code></li>
-<li><code>vibekb check</code></li>
+<li><code>php .vibekb/runtime/tools/vibekb.php check</code></li>
 <li><code>php .vibekb/runtime/tools/test-topology.php</code></li>
-<li><code>vibekb generate</code></li>
+<li><code>php .vibekb/runtime/tools/vibekb.php generate</code></li>
+<li>Confirm <code>/docs</code> stats: functionalities, areas, systems, key files &gt; 0</li>
+<li>Confirm Files That Matter lists every curated important file</li>
 <li>Confirm no <code>lib/</code> / app source diffs</li>
 </ul></div>
         </section>
@@ -149,7 +154,7 @@
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 08:36 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 18:28 UTC · source commit 2edc099 (2edc09927b646c833769ab8b4bd6bc00b37882c3) · not auto-updating</p>
             </div>
         </footer>
     </div>

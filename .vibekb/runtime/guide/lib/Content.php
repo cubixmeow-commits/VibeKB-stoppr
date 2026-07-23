@@ -107,7 +107,27 @@ final class Content
         }
 
         $filesData = $this->readJson('files/important-files.json');
-        $this->files = is_array($filesData['files'] ?? null) ? $filesData['files'] : [];
+        // 0.2.0 schema is {"files":[...]}. A bare array is malformed — never
+        // treat it as an empty curated list without reporting an error.
+        if ($filesData !== [] && array_is_list($filesData)) {
+            $this->issues[] = [
+                'level' => 'error',
+                'message' => 'files/important-files.json must use the 0.2.0 '
+                    . 'object shape {"files":[...]}; a bare array was found.',
+            ];
+            $this->files = [];
+        } elseif (!isset($filesData['files']) || !is_array($filesData['files'])) {
+            if ($filesData !== []) {
+                $this->issues[] = [
+                    'level' => 'error',
+                    'message' => 'files/important-files.json is missing a '
+                        . 'required "files" array.',
+                ];
+            }
+            $this->files = [];
+        } else {
+            $this->files = $filesData['files'];
+        }
 
         $this->diagramsIndex = $this->readJson('diagrams/index.json');
         foreach ($this->safeGlob($this->root . '/diagrams/records', '*.md') as $file) {

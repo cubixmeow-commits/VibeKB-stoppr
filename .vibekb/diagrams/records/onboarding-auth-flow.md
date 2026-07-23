@@ -18,7 +18,7 @@ provenance: "Screens and AuthService traced; multi-file Navigator order partiall
 last_verified: 2026-07-21
 uncertainty: "Resume branches and skip paths create alternate orders not fully drawn."
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## What am I looking at?

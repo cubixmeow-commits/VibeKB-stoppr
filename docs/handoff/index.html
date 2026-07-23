@@ -114,32 +114,28 @@
                                     <span class="badge badge--info">Verification: verified from source</span>                                <span class="muted">Updated 2026-07-23</span>
             </div>
             <div class="prose reading-column"><h3>Current functionality state</h3>
-<p>Stoppr at commit <code>f01661b</code> (app <code>7.4.2+1</code>) is a Flutter sugar-habit app with
+<p>Stoppr at commit <code>2edc099</code> (app <code>7.4.2+1</code>) is a Flutter sugar-habit app with
 full onboarding, Firebase auth, Superwall/RevenueCat gating, home wellness
 loops, community, nutrition AI tools, learn content, widgets, and platform
-services. VibeKB runtime is <strong>0.2.0</strong> (CLI tip <code>683df05</code>, installer template
-<code>2.0.0</code>) in the consolidated layout under <code>.vibekb/</code>.</p>
+services. The living model is a <strong>clean VibeKB 0.2.0</strong> analysis (installer
+<code>0.2.0</code>, template <code>2.0.0</code>) under <code>.vibekb/</code>, with Mode B <code>/docs</code> regenerated
+from that model.</p>
 <h3>Completed this session</h3>
 <ul>
-<li>Ran <code>vibekb migrate</code> from the pre-0.2.0 root layout (tip <code>3b6ba7d</code>).</li>
-<li>Runtime / reference / prompts now live under <code>.vibekb/runtime/</code>,</li>
+<li>Deleted previous generated <code>/docs</code> (and did not reuse prior HTML).</li>
+<li>Re-traced Stoppr source under <code>lib/</code> and refreshed project/system/work</li>
 </ul>
-<p><code>.vibekb/reference/</code>, and <code>.vibekb/prompts/</code>.</p>
+<p>records and provenance to commit <code>2edc099</code>.</p>
 <ul>
-<li>Preserved Flutter <code>CLAUDE.md</code> + Stoppr <code>AGENTS.md</code>; VibeKB managed blocks</li>
+<li>Rebuilt <code>.vibekb/files/important-files.json</code> in the canonical 0.2.0</li>
 </ul>
-<p>added; namespaced <code>.cursor/rules/vibekb.mdc</code> refreshed.</p>
+<p><code>{&quot;files&quot;:[...]}</code> shape (31 curated files).</p>
 <ul>
-<li>Removed unmodified root VibeKB docs/runtime leftovers; updated Stoppr</li>
+<li>Taught the loader to error on a bare-array important-files file instead of</li>
 </ul>
-<p>pointers (<code>VIBEKB.md</code>, <code>VIBEKB_MAINTENANCE.md</code>, <code>AGENTS.md</code>).</p>
+<p>silently showing zero Key Files.</p>
 <ul>
-<li>Kept Mode B GitHub Pages at <code>/docs</code> (local runtime preference when</li>
-</ul>
-<p><code>docs/index.html</code> exists).</p>
-<ul>
-<li>Re-adapted topology test to discover local diagram fixtures.</li>
-<li>Regenerated static <code>/docs</code>.</li>
+<li>Regenerated static <code>/docs</code> from the current runtime templates.</li>
 </ul>
 <h3>Still open / landmines</h3>
 <ul>
@@ -150,9 +146,7 @@ services. VibeKB runtime is <strong>0.2.0</strong> (CLI tip <code>683df05</code>
 <li>Quota system disabled flags (<code>QUOTA_SYSTEM_ENABLED = false</code>).</li>
 <li>Incomplete community blocked-user filtering on Cubit stream.</li>
 <li>Unhandled <code>stoppr://accountability</code> deep link from widgets.</li>
-<li>Local adaptations pending upstream: topology carrier discovery; Mode B</li>
 </ul>
-<p><code>/docs</code> default for Pages-hosted target installs.</p>
 <h3>Exact next recommended action</h3>
 <p>Replace Superwall placeholder placement IDs (or confirm dashboard aliases)
 and re-verify a sandbox purchase on <strong>both</strong> iOS and Android, then update
@@ -162,6 +156,15 @@ and re-verify a sandbox purchase on <strong>both</strong> iOS and Android, then 
             <section class="doc-section">
             <h2>Recent work sessions</h2>
             <ul class="why-list">
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3>Clean 0.2.0 Stoppr regeneration</h3>
+                            <div class="badge-row">
+                                <span class="badge badge--ok">Verified from source</span>                                <span class="muted">2026-07-23</span>
+                            </div>
+                        </div>
+                        <p></p>
+                                            </li>
                                     <li class="why-item">
                         <div class="why-item__head">
                             <h3>VibeKB upgrade and fresh Stoppr analysis</h3>
@@ -197,7 +200,7 @@ and re-verify a sandbox purchase on <strong>both</strong> iOS and Android, then 
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 08:36 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 18:28 UTC · source commit 2edc099 (2edc09927b646c833769ab8b4bd6bc00b37882c3) · not auto-updating</p>
             </div>
         </footer>
     </div>

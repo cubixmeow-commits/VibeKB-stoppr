@@ -112,6 +112,36 @@
             <ol class="change-list">
                             <li class="change-card">
                     <div class="change-card__head">
+                        <h2>Clean VibeKB 0.2.0 Stoppr model regeneration</h2>
+                        <div class="badge-row">
+                            <span class="badge badge--info">completed</span>                            <span class="badge badge--ok">Verified from source</span>                            <span class="muted">2026-07-23</span>
+                        </div>
+                    </div>
+                    <p>Regenerated the Stoppr living model and /docs as a clean 0.2.0 analysis with canonical important-files schema and current provenance.</p>
+                    <div class="prose reading-column change-card__body"><h3>Before</h3>
+<ul>
+<li><code>/docs</code> Key Files reported <code>0</code> and Files That Matter was empty because</li>
+</ul>
+<p><code>important-files.json</code> used a bare JSON array from the pre-0.2.0 migration.</p>
+<ul>
+<li>Provenance still pointed at commit <code>f01661b</code> and described a migrate-without-</li>
+</ul>
+<p>re-trace session.</p>
+<h3>After</h3>
+<ul>
+<li>Fresh <code>important-files.json</code> in <code>{&quot;files&quot;:[...]}</code> shape with 31 curated</li>
+</ul>
+<p>files re-verified against source.</p>
+<ul>
+<li>Provenance and work/handoff updated to commit <code>2edc099</code>.</li>
+<li>Loader now errors on a bare-array important-files file.</li>
+<li><code>/docs</code> fully regenerated from <code>.vibekb/</code> via the current runtime.</li>
+</ul>
+<h3>Impact</h3>
+<p>Documentation accuracy only. No Stoppr application code under <code>lib/</code> changed.</p></div>
+                                    </li>
+                            <li class="change-card">
+                    <div class="change-card__head">
                         <h2>VibeKB rebootstrap with Explainable Diagrams</h2>
                         <div class="badge-row">
                                                         <span class="badge badge--ok">Verified from source</span>                            <span class="muted">2026-07-21</span>
@@ -194,7 +224,7 @@ docs, config, and generated surfaces for restore.</p></div>
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 08:36 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 18:28 UTC · source commit 2edc099 (2edc09927b646c833769ab8b4bd6bc00b37882c3) · not auto-updating</p>
             </div>
         </footer>
     </div>

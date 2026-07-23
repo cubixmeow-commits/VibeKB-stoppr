@@ -23,7 +23,8 @@ updated: 2026-07-23
 
 - Public VibeKB guide is the static `/docs` snapshot (GitHub Pages folder
   `/docs`). `.vibekb/` is the source of truth; regenerate with
-  `php tools/generate-static.php`.
+  `php .vibekb/runtime/tools/vibekb.php generate`
+  (or `php .vibekb/runtime/tools/generate-static.php`).
 
 ## Safety
 
