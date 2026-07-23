@@ -1,43 +1,26 @@
-# VibeKB maintenance for Stoppr
+# VibeKB maintenance notes (Stoppr)
 
-Prefer the canonical workflow in [`MAINTENANCE.md`](MAINTENANCE.md). This file
-adds Stoppr-specific notes.
-
-## When to update
-
-Update `.vibekb/` when behavior users or developers would notice changes:
-
-- New screens or flows
-- Subscription or auth changes
-- Firestore schema changes
-- Disabled or experimental features
-- New external integrations
-- Diagram topology / SVG changes
-
-## Workflow
-
-1. Start with `php tools/vibekb.php status`.
-2. Read `work/handoff.md` and `work/current.md`.
-3. Inspect source under `lib/` — not README alone.
-4. Edit records in `.vibekb/`; keep statuses and verification honest.
-5. Update Explainable Diagrams if the picture changed.
-6. Validate and regenerate:
+Stoppr hosts a VibeKB **0.2.0** consolidated install. Prefer the CLI:
 
 ```bash
-php tools/vibekb.php check
-php tools/test-topology.php
-php tools/vibekb.php generate
+vibekb status
+vibekb check
+vibekb generate
+vibekb install --upgrade .
 ```
 
-## Do not
+PHP equivalents:
 
-- Copy SousMeow example content into Stoppr records
-- Expose secrets from `.env` or config
-- Claim manual testing without running the app
-- Modify Stoppr application code as part of VibeKB maintenance
-- Hand-edit generated HTML under `/docs`
+```bash
+php .vibekb/runtime/tools/vibekb.php status
+php .vibekb/runtime/tools/vibekb.php check
+php .vibekb/runtime/tools/vibekb.php generate
+php .vibekb/runtime/tools/test-topology.php
+```
 
-## Schema reference
+Canonical product rules live under `.vibekb/reference/` (`PRODUCT.md`,
+`SCHEMA.md`, `MAINTENANCE.md`, `INSTALLER.md`, `WORKFLOW.md`). Do not recreate
+those files at the repository root.
 
-See [`SCHEMA.md`](SCHEMA.md), [`INSTALLER.md`](INSTALLER.md), and upstream
-[VibeKB](https://github.com/cubixmeow-commits/VibeKB).
+GitHub Pages Mode B continues to publish from `/docs` (not
+`.vibekb/generated/`), because Pages cannot serve a nested `.vibekb/` path.

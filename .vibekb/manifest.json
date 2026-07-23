@@ -19,11 +19,11 @@
     "source_branch": "main",
     "source_commit": "f01661b (f01661be728f471f85987454b1047a5003118738)",
     "analyzed": "2026-07-23",
-    "verification_scope": "Fresh re-analysis after upgrading VibeKB runtime from cubixmeow-commits/VibeKB@3b6ba7d. Source-traced across lib/ for startup, auth, onboarding, subscription/Superwall/RevenueCat, home/streak/panic/relapse, community, nutrition, learn, widgets, and platform config. Runtime store/dashboard purchase flows were not executed. Superwall INSERT_YOUR_* placements, widget app-group placeholder, and disabled quota flags remain present in source.",
+    "verification_scope": "Model claims remain those verified after the 2026-07-23 upgrade from cubixmeow-commits/VibeKB@3b6ba7d. This session migrated the install layout to VibeKB 0.2.0 (tip 683df05) via vibekb migrate without re-tracing every functionality claim. Superwall INSERT_YOUR_* placements, widget app-group placeholder, and disabled quota flags remain present in source.",
     "last_verified": "2026-07-23",
     "updates_automatically": false,
     "model_maintenance": "agent-maintained",
-    "freshness_note": "Static snapshot of Stoppr at the commit above. Does not update itself. Re-verify against source before changing claims. VibeKB runtime refreshed via vibekb install --upgrade from source tip 3b6ba7d."
+    "freshness_note": "Static snapshot of Stoppr at the commit above. Does not update itself. Re-verify against source before changing claims. VibeKB runtime is 0.2.0 consolidated layout (CLI tip 683df05, template 2.0.0) via vibekb migrate."
   },
   "structure": {
     "project": "project/ — identity, intent, current state, constraints",

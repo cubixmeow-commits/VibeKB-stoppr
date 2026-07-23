@@ -15,13 +15,16 @@ git clone https://github.com/cubixmeow-commits/VibeKB.git
 php VibeKB/install.php /path/to/target
 ```
 
-That copies the runtime (`guide/`, `tools/`, `prompts/`, `.cursor/`, and the
-VibeKB docs) and scaffolds a fresh, empty-but-valid `.vibekb/` for you to fill in
-— so you start from valid scaffolding, not a blank directory. (See
-[INSTALLER.md](./INSTALLER.md); a manual copy + `php tools/vibekb.php bootstrap`
-is the appendix alternative.) Then build the `.vibekb/` model following the steps
-below. A project-agnostic prompt that drives this workflow lives at
-[`prompts/INTEGRATE_VIBEKB.md`](./prompts/INTEGRATE_VIBEKB.md).
+That installs the runtime, reference docs, and prompt **entirely under
+`.vibekb/`** (nothing at your repository root) and scaffolds a fresh,
+empty-but-valid model for you to fill in — so you start from valid scaffolding,
+not a blank directory. Everything VibeKB owns is namespaced under `.vibekb/`;
+optional adapters (`.cursor/rules/vibekb.mdc`, an `AGENTS.md`/`CLAUDE.md` managed
+block) are added only when safe. (See [INSTALLER.md](./INSTALLER.md) and
+[docs/REPOSITORY_SAFETY.md](./docs/REPOSITORY_SAFETY.md); a manual copy +
+`php .vibekb/runtime/tools/vibekb.php bootstrap` is the appendix alternative.)
+Then build the model following the steps below. A project-agnostic prompt that
+drives this workflow is installed at `.vibekb/prompts/INTEGRATE_VIBEKB.md`.
 
 > **Never modify the target application's code** to initialize VibeKB, unless
 > the owner explicitly asks. VibeKB reads the app; it does not change it.

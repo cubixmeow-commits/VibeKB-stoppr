@@ -1,0 +1,520 @@
+{
+  "schema_version": 2,
+  "installer_version": "0.2.0",
+  "template_version": "2.0.0",
+  "source_repository": "https://github.com/cubixmeow-commits/VibeKB",
+  "installed_at": "2026-07-23T08:26:19Z",
+  "updated_at": "2026-07-23T08:26:19Z",
+  "files": [
+    {
+      "path": ".cursor/rules/vibekb.mdc",
+      "ownership": "vibekb",
+      "kind": "namespaced",
+      "integration": "cursor",
+      "installed_hash": "sha256:a923735f129bfebb047873bc117d43487c17ec3a89c63aa93cf13c97b6aa8c26",
+      "pre_existing": true,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/prompts/INTEGRATE_VIBEKB.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:75a18498f2a6be4485c521292e6005aa1465dc2e6dbe168d3d61109e23811ef4",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/reference/INITIALIZE.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:2a704d7c710cbf65ef39be2568673f1c730b397f8c9787cd640775a95f9f0ab2",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/reference/INSTALLER.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:659f2f04e0fe782947a2fe8c8bb697d319be244e5616e3037b6c77f29921f3bc",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/reference/MAINTENANCE.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:81b34e5635a0e9cd5bac70af8c97169e0b88cdba3942ff55e0a196fe1afcd09f",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/reference/PRODUCT.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:7aff4c02ba210eeaf6c3f10c271f9baca1c6c2ecc6bf8c7970993df4bbe08fae",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/reference/SCHEMA.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:6bb18784a144d36800bdf96f77383c50626e932abca8af8d3863e7d3033828f9",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/reference/WORKFLOW.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:716e720c31245126e5e27ddae8205f175a9242f497552b22f6f1e2708b4234e7",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/assets/css/guide.css",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:653fd30fd69c5ad55dbab6f3fccf3ed7fdca57a05b728c80a17664dcdb114fd7",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/assets/js/guide.js",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:134a328c57fea812b4e4491b580d0faad0d78a84d996b4620cb11a2109c55ab8",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/index.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:4ba5b220e3f66ba729dd2da822991f72fcc0ddf846bf74356e034a04e8763720",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/lib/Content.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:18d52aea5adc99d120811ad95ffafd2af19f863f2bd0e3d52143a7ee00962f08",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/lib/FrontMatter.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:b2e4a31ad4720870480f2c72b3ed7b7d8657f36bf52cf83290c0c007ebcd1cb3",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/lib/Markdown.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:e2664714a49c4356a33eaf078e17afd2999a9eb7040e3675110fec67f2ce531a",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/lib/Provenance.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:e1d4064dc9eab09b9b0dd2f4771b53a0d466e8eadb9d6d2ce9e7fab0d00d1265",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/lib/UrlStrategy.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:2fe85b8b9798a2293f86227c2336076bbadab9c753f23def073d471b1b6ae378",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/lib/helpers.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:658f4beca8a2f02e4de47255fa3e2588eb8d37807fec48b6a4d2e0946140e194",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/lib/map.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:096feef237b3446adba0cb5bc8358ada2ce9ce856b898a066c29341884f2b469",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/lib/nav.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:e3ee3cd6ffcdbee5f8564da900555534f0658a8fac1f7a13813e4b53ecdfb180",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/lib/search.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:b34202e8cc1129e071b9aa661a6deacf4a837eb30c0b0f5388daf7934f823733",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/lib/workspace.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:f3c55e36cd49bfebecbd96275ba981b570f35456e5b2c76dabe2c08c2d75c305",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/changes.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:4de213bf122f5e21b08ee7e89bb34e273b412aef60512251d4219e9204686545",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/current-work.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:183b3cba1968384d0082da0ae77e1bb1c3f5fa4c5809a7cd73a7b270298605db",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/data.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:2f44a008397910e6e01cec35df868764e5a7dec11e810a735a715a09af8c2358",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/diagrams.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:dae73708d344f84833d7e0388281f92b01548fda984c79949e3dd310ea95d84f",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/files.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:74e1100e7c8a7b75ebd1458661df8494c2ba57d356e31d53ffa799e96a497c13",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/functionality-detail.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:f73760dc1c5ecabca9e3d9eba69c7d6eb74be9a8027e715994feb27abea4c367",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/functionality-index.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:080f8d2aae6391cbe956230b2e7525ea63e8d4f69bdf12cc37defffb76e00f24",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/handoff.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:0a426086f307845c11e0eae32e75ffc6df2248c490458576bdf46cbef238610c",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/how-it-works.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:341b3e83ee0c2daeab715e8b157d51afb85317031f467a807a8f630b891c4879",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/layout.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:fe441a2a979134260241ee008ffdb84bcad549c0add267cc5aaf2770eed6d8c4",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/not-found.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:01f47d8a86711378289bfb0714114246cffd6e2c25a0dcc796c4d261bc502748",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/overview.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:97f889c548f1cd5bc7cdc8a98fc026e6ed2d6851539a3f6396a6dbef849d894d",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/partials/diagram-explain.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:5b05dc6fa36351960f17c28b813bce5ac9cedc8b55a46bc1ab5c589aee4a6c5e",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/partials/functionality-map.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:c390b4e91141de04f50a480a0912b7b25949e93b753b1976e888812a7563644a",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/reference.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:301d7c88797c49d7db7898927d43c01262d94789d0a95fd7ff7cdae5468aad8d",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/search.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:4ad06a941cd818debc60345f25242fe3224fa93bdd6c8f051ad9bf427f79d0ae",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/guide/templates/why.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:e2e074854043d494985b089f8fa55628117f7f97affe407aa7f950a360eb6093",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/.htaccess",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:6a2b192ab34175230a3ef11ab7c9acfe74afbbe2f9397dd4ad821379e7d72dc1",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/diagrams/index.json",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:eb74d5db2f83c59b1410b884bfc246eda47c4827c9066f7e6a7c94b3deda552b",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/files/important-files.json",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:0a258d10500ecd8f3c8bd692fac8568f14ba953a0b63db00971ad8ec6aac8a38",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/functionality/index.json",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:a83d8f9ea834de1ed11734706c99dab4135f27aac8c3db45b01fd7fa0f007ce5",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/manifest.json",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:6e317805f23b49674bc9deef6059e19800f7c09a6872f1ef3748e7cd5faf5352",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/project/constraints.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:d8059a2b91226cb8eba492a504c205e4ea18f5a1032015d148065990c01f7d9b",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/project/current-state.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:f51680fbc5c37680773f7725d9b4fb45ac8b295ed17e58e53d7205b320399d1a",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/project/identity.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:e4bce50243edd5c3f66f0cec0d9330bfef623c471e964c8cc3015542ac73de13",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/project/intent.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:4f1fe811fdc21c235d09b29ab536c3f3ecaeafcd1177e39e5668d8455a0dafee",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/system/components.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:3557da9fd3f3cce46042f5daf0de44d653dfd1e0e169ff4a0ecac865c271e5c8",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/system/data-flow.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:975746fe2005b8a0845332c2ac9b64c764c9cc4d67484775b6feaf01cf1b1209",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/system/deployment.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:2eb793f6c9c60065aee2def05dcf5edc9c21dd3fef1865f1f0f6ed26a17cc896",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/system/mental-model.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:7b59c93d94fdefda84872867107ebc75234b2e16bf70354a83b3ca7beb241df0",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/system/request-flow.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:0e2574ccbb06748b713074671acb68f981cca2e0d31080ddd3468eaeee0f2c74",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/system/storage.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:44fd47e8cebb89a819c701384390045ab22c195d6848635123fbe2d6f74a8105",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/work/current.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:0dadd711ff3c4c612578610bd9d128e10e566ba7f68abaa8200743baed053e94",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/files/work/handoff.md",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:a6a44a56dd37c3f85597721b15803d49a918a7fd86a7b8ad06af7d0adeb75044",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/template/starter/starter.json",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:eb6c04731a8def6c757992fb6dbc0030c1a926593765f79dbe279d2518e2523f",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/tools/generate-static.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:afcdf5836bbacf505ce42aa68e1188c36d1acc8414daa0a303af819ae760aa2d",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/tools/lib/Starter.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:48c67f4d062a9d77672b7aa749d74e65bd77878ab87aee10d7d6fd5764dafe2c",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/tools/test-topology.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:6d65c65f9fafcf14899c3fc63bdfad326051dec374179c3e9e0f2ae04f08da4c",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/tools/validate.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:c369009d88d86f4245c4e4347633b527a5c2ae9c26bdc82be1306b1619d3897e",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": ".vibekb/runtime/tools/vibekb.php",
+      "ownership": "vibekb",
+      "kind": "payload",
+      "installed_hash": "sha256:632785d9b9c9cdcdfc446216e67ee40ca1930f2331f7ba9209319ce886f1b7f7",
+      "pre_existing": false,
+      "whole_file": true
+    },
+    {
+      "path": "AGENTS.md",
+      "ownership": "shared",
+      "kind": "managed-block",
+      "integration": "agents",
+      "block_hash": "sha256:4c4dfb42d1fa87bf3092383ea6344968aab453df67499383b4fdea7f29de3131",
+      "block_version": 1,
+      "pre_existing": true,
+      "whole_file": false
+    },
+    {
+      "path": "CLAUDE.md",
+      "ownership": "shared",
+      "kind": "managed-block",
+      "integration": "claude",
+      "block_hash": "sha256:4c4dfb42d1fa87bf3092383ea6344968aab453df67499383b4fdea7f29de3131",
+      "block_version": 1,
+      "pre_existing": true,
+      "whole_file": false
+    }
+  ],
+  "note": "Written by the native vibekb installer. Records which paths VibeKB owns, which shared files it edited via a managed block, and hashes so upgrades, doctor, migration, and uninstall stay safe. No absolute paths. Do not edit by hand."
+}

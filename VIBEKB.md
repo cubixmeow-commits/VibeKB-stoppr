@@ -1,17 +1,16 @@
 # VibeKB for Stoppr
 
 This repository includes a [VibeKB](https://github.com/cubixmeow-commits/VibeKB)
-living software model and a static guide in `/docs`.
+living software model (0.2.0 safe layout) and a static guide in `/docs`.
 
 ## Quick links
 
 - **Guide entry point:** [`/docs/index.html`](docs/index.html)
 - **Content model:** [`.vibekb/`](.vibekb/)
-- **Maintenance:** [`MAINTENANCE.md`](MAINTENANCE.md) · [`VIBEKB_MAINTENANCE.md`](VIBEKB_MAINTENANCE.md)
-- **Schema / product:** [`SCHEMA.md`](SCHEMA.md) · [`PRODUCT.md`](PRODUCT.md)
-- **Installer:** [`INSTALLER.md`](INSTALLER.md)
-- **Initialize / integrate:** [`INITIALIZE.md`](INITIALIZE.md) ·
-  [`prompts/INTEGRATE_VIBEKB.md`](prompts/INTEGRATE_VIBEKB.md)
+- **Runtime / CLI:** [`.vibekb/runtime/`](.vibekb/runtime/)
+- **Reference docs:** [`.vibekb/reference/`](.vibekb/reference/)
+- **Integrate prompt:** [`.vibekb/prompts/INTEGRATE_VIBEKB.md`](.vibekb/prompts/INTEGRATE_VIBEKB.md)
+- **Cursor rule:** [`.cursor/rules/vibekb.mdc`](.cursor/rules/vibekb.mdc)
 
 ## What VibeKB is
 
@@ -23,25 +22,27 @@ and file states why it exists.
 The `/docs` folder is a **generated** static snapshot for GitHub Pages.
 `.vibekb/` is the source of truth. Do not hand-edit generated HTML.
 
+VibeKB 0.2.0 keeps its runtime, reference docs, and prompts under `.vibekb/`
+and only touches `AGENTS.md` / `CLAUDE.md` via a marked managed block.
+
 ## Regenerate
 
 ```bash
-php tools/vibekb.php check
-php tools/test-topology.php
-php tools/vibekb.php generate
+vibekb check
+php .vibekb/runtime/tools/test-topology.php
+vibekb generate
 ```
-
-(Legacy equivalents: `php tools/validate.php`,
-`php tools/generate-static.php`.)
 
 ## Upgrade
 
 ```bash
-# Install/refresh the vibekb CLI, then:
+# Install/refresh the vibekb CLI (v0.2.0+), then:
 vibekb install --upgrade .
+# From a pre-0.2.0 root layout:
+vibekb migrate .
 ```
 
-Preserves `.vibekb/`. Use `--force` only to reset the model.
+Preserves `.vibekb/` model records. Use `--force` only to reset the model.
 
 ## GitHub Pages
 
@@ -55,10 +56,9 @@ Site URL shape: `https://<owner>.github.io/VibeKB-stoppr/`
 ## Scope
 
 VibeKB documents the Stoppr Flutter app. It does **not** modify application
-code. Allowed documentation surfaces: `.vibekb/`, `guide/`, `tools/`,
-`template/starter/`, `/docs`, `prompts/`, and VibeKB authoring files
-(`PRODUCT.md`, `SCHEMA.md`, `INITIALIZE.md`, `MAINTENANCE.md`,
-`INSTALLER.md`, this file).
+code. Allowed documentation surfaces: `.vibekb/` (model + runtime + reference),
+`/docs` (generated), namespaced adapters (`.cursor/rules/vibekb.mdc`), and the
+managed blocks in `AGENTS.md` / `CLAUDE.md`.
 
 Flutter app agent rules remain in [`CLAUDE.md`](CLAUDE.md). Combined agent
 entry: [`AGENTS.md`](AGENTS.md).

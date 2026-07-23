@@ -2,27 +2,26 @@
 id: work-current
 type: work
 title: Current AI work
-objective: Upgrade Stoppr to latest VibeKB runtime, back up prior knowledge, and re-analyze the living model.
+objective: Migrate Stoppr to VibeKB 0.2.0 safe/consolidated repository layout while preserving the living model and Mode B /docs.
 status: completed
 verification_state: verified-from-source
-affected_functionality: [app-startup, startup-routing, deep-link-handling, main-navigation, home-widgets, firebase-auth, guest-anonymous-access, onboarding-intro, onboarding-questionnaire, onboarding-profile-goals, onboarding-personalized-analysis, main-paywall, soft-paywalls-quotas, subscription-access-gating, home-dashboard, sugar-streak-tracking, daily-check-in-pledge, panic-intervention, relapse-recovery, community-forum, community-chat, accountability-partners, learn-video-lessons, articles-education, chatbot-assistant, sugar-food-scanning, calorie-nutrition-tracking, recipe-discovery, rate-my-plate, meditation-breathing, twenty-eight-day-challenge, fasting-tracker, notifications, analytics-telemetry, user-profile-settings]
-expected_files: [.vibekb/, docs/, guide/, tools/, template/, prompts/, INSTALLER.md, AGENTS.md, VIBEKB.md, VibeKBbackup/pre-upgrade-2026-07-23/]
+affected_functionality: []
+expected_files: [.vibekb/, docs/, AGENTS.md, CLAUDE.md, VIBEKB.md, VIBEKB_MAINTENANCE.md, .cursor/rules/vibekb.mdc]
 data_impact: none on app runtime data
-risks: Documentation drift if placeholders change; secrets leakage in docs; topology test was self-hosted-coupled and needed a project-agnostic adaptation.
+risks: Upstream topology test is self-hosted-coupled; Mode B /docs preference is a Stoppr local adaptation of the runtime default.
 updated: 2026-07-23
 ---
 
 ## Requested outcome
 
-1. Complete backup of existing VibeKB knowledge/docs/config/generated data.
-2. Upgrade runtime from latest `cubixmeow-commits/VibeKB`.
-3. Fresh Stoppr analysis and regenerate `/docs`.
-4. Do not modify Stoppr application code.
+1. Push VibeKB 0.2.0 safe integration into `cubixmeow-commits/VibeKB-stoppr`.
+2. Open a PR into `main`.
+3. Do not modify Stoppr application code.
 
 ## Verification plan
 
-- `php tools/vibekb.php check`
-- `php tools/test-topology.php`
-- `php tools/vibekb.php generate`
+- `vibekb doctor`
+- `vibekb check`
+- `php .vibekb/runtime/tools/test-topology.php`
+- `vibekb generate`
 - Confirm no `lib/` / app source diffs
-- Secret scan of `/docs`

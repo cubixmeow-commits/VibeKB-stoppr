@@ -24,12 +24,18 @@ declare(strict_types=1);
  * index only points at pages that actually exist.
  */
 
-$repoRoot = dirname(__DIR__);
-require_once $repoRoot . '/guide/lib/helpers.php';
-require_once $repoRoot . '/guide/lib/Content.php';
-require_once $repoRoot . '/guide/lib/Provenance.php';
-require_once $repoRoot . '/guide/lib/UrlStrategy.php';
-require_once $repoRoot . '/guide/lib/search.php';
+$runtimeRoot = dirname(__DIR__);
+require_once $runtimeRoot . '/guide/lib/workspace.php';
+require_once $runtimeRoot . '/guide/lib/helpers.php';
+require_once $runtimeRoot . '/guide/lib/Content.php';
+require_once $runtimeRoot . '/guide/lib/Provenance.php';
+require_once $runtimeRoot . '/guide/lib/UrlStrategy.php';
+require_once $runtimeRoot . '/guide/lib/search.php';
+
+// Project root: parent of the located `.vibekb` (equals $runtimeRoot only in the
+// self-hosted layout). Argument paths and the snapshot search index resolve here.
+$contentRootDefault = vibekb_locate_content_root($runtimeRoot) ?? ($runtimeRoot . '/.vibekb');
+$repoRoot = dirname($contentRootDefault);
 
 // Optional first argument: a content root to validate instead of the active
 // .vibekb/ (used to validate bundled example models). Relative paths resolve
