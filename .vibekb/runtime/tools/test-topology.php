@@ -19,12 +19,17 @@ declare(strict_types=1);
  *
  * Exits non-zero if any assertion fails, so it can gate CI.
  *
- * Usage: php tools/test-topology.php
+ * Usage: php .vibekb/runtime/tools/test-topology.php
  */
 
-$repoRoot = dirname(__DIR__);
-require_once $repoRoot . '/guide/lib/helpers.php';
-require_once $repoRoot . '/guide/lib/Content.php';
+$runtimeRoot = dirname(__DIR__);
+require_once $runtimeRoot . '/guide/lib/workspace.php';
+require_once $runtimeRoot . '/guide/lib/helpers.php';
+require_once $runtimeRoot . '/guide/lib/Content.php';
+
+// Content root is the active `.vibekb`; its parent is the project root.
+$contentRoot = vibekb_locate_content_root($runtimeRoot) ?? ($runtimeRoot . '/.vibekb');
+$repoRoot = dirname($contentRoot);
 
 $tmp = sys_get_temp_dir() . '/vibekb-topo-test-' . bin2hex(random_bytes(4));
 
@@ -51,7 +56,8 @@ if (!is_dir($recordsDir)) {
 
 /**
  * Prefer a picture-only diagram (no topology: line) as the malformed carrier.
- * If every record already has a topology, strip topology from the first record.
+ * Prefer self-maintenance-loop when present (self-hosted fixture). If every
+ * record already has a topology, strip topology from the first record.
  *
  * @return array{0:string,1:string} [absolute path, svg basename]
  */

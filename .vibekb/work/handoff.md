@@ -11,18 +11,21 @@ updated: 2026-07-23
 Stoppr at commit `f01661b` (app `7.4.2+1`) is a Flutter sugar-habit app with
 full onboarding, Firebase auth, Superwall/RevenueCat gating, home wellness
 loops, community, nutrition AI tools, learn content, widgets, and platform
-services. VibeKB runtime was upgraded from canonical VibeKB tip `3b6ba7d`
-(installer template `1.0.0` / CLI `vibekb` built from that tip).
+services. VibeKB runtime is **0.2.0** (CLI tip `683df05`, installer template
+`2.0.0`) in the consolidated layout under `.vibekb/`.
 
 ## Completed this session
 
-- Full backup at `VibeKBbackup/pre-upgrade-2026-07-23/`.
-- `vibekb install --upgrade` refreshed guide/tools/prompts/template/docs.
-- Preserved Flutter `CLAUDE.md` + `flutter.mdc`; dual `AGENTS.md` bridge.
-- Fresh source re-analysis; corrected drift on navigation, relapse, forum,
-  food scan, and soft-paywalls records.
-- Adapted `tools/test-topology.php` to discover local diagram fixtures
-  (upstream test assumed VibeKB self-hosted diagram ids).
+- Ran `vibekb migrate` from the pre-0.2.0 root layout (tip `3b6ba7d`).
+- Runtime / reference / prompts now live under `.vibekb/runtime/`,
+  `.vibekb/reference/`, and `.vibekb/prompts/`.
+- Preserved Flutter `CLAUDE.md` + Stoppr `AGENTS.md`; VibeKB managed blocks
+  added; namespaced `.cursor/rules/vibekb.mdc` refreshed.
+- Removed unmodified root VibeKB docs/runtime leftovers; updated Stoppr
+  pointers (`VIBEKB.md`, `VIBEKB_MAINTENANCE.md`, `AGENTS.md`).
+- Kept Mode B GitHub Pages at `/docs` (local runtime preference when
+  `docs/index.html` exists).
+- Re-adapted topology test to discover local diagram fixtures.
 - Regenerated static `/docs`.
 
 ## Still open / landmines
@@ -34,6 +37,8 @@ services. VibeKB runtime was upgraded from canonical VibeKB tip `3b6ba7d`
 - Quota system disabled flags (`QUOTA_SYSTEM_ENABLED = false`).
 - Incomplete community blocked-user filtering on Cubit stream.
 - Unhandled `stoppr://accountability` deep link from widgets.
+- Local adaptations pending upstream: topology carrier discovery; Mode B
+  `/docs` default for Pages-hosted target installs.
 
 ## Exact next recommended action
 

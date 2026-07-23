@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Learn video lessons · Stoppr — VibeKB</title>
+    <title>Migrate Stoppr to VibeKB 0.2.0 safe repository layout · Stoppr — VibeKB</title>
     <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
          full system-font fallback stack, so the guide renders correctly with no
          external CDN — required for offline and locked-down static hosting. -->
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/guide.css">
+    <link rel="stylesheet" href="../../assets/css/guide.css">
 </head>
 <body data-mode="static">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -19,11 +19,11 @@
 <div class="app-shell">
     <header class="site-header">
         <div class="site-header__inner">
-            <a class="brand" href="../index.html">
+            <a class="brand" href="../../index.html">
                 <span class="brand__mark">VibeKB</span>
                 <span class="brand__project">Stoppr</span>
             </a>
-            <form class="site-search" role="search" action="../search/index.html">
+            <form class="site-search" role="search" action="../../search/index.html">
                 <label class="visually-hidden" for="site-search-input">Search guide</label>
                 <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
             </form>
@@ -44,23 +44,23 @@
             <p class="sidebar-nav__label" id="nav-primary-label">Primary</p>
             <ul class="sidebar-nav__list" aria-labelledby="nav-primary-label">
                                                         <li>
-                        <a href="../index.html">
+                        <a href="../../index.html">
                             Overview                        </a>
                     </li>
                                                         <li>
-                        <a href="../functionality/index.html" aria-current="page">
+                        <a href="../../functionality/index.html">
                             Functionality                        </a>
                     </li>
                                                         <li>
-                        <a href="../how-it-works/index.html">
+                        <a href="../../how-it-works/index.html">
                             Architecture                        </a>
                     </li>
                                                         <li>
-                        <a href="../diagrams/index.html">
+                        <a href="../../diagrams/index.html">
                             Diagrams                        </a>
                     </li>
                                                         <li>
-                        <a href="../current-work/index.html">
+                        <a href="../../current-work/index.html">
                             Current work                        </a>
                     </li>
                             </ul>
@@ -68,27 +68,27 @@
                             <p class="sidebar-nav__label" id="nav-explore-label">Explore</p>
                 <ul class="sidebar-nav__list sidebar-nav__list--secondary" aria-labelledby="nav-explore-label">
                                                                     <li>
-                            <a href="../data/index.html">
+                            <a href="../../data/index.html">
                                 Data &amp; storage                            </a>
                         </li>
                                                                     <li>
-                            <a href="../files/index.html">
+                            <a href="../../files/index.html">
                                 Files that matter                            </a>
                         </li>
                                                                     <li>
-                            <a href="../changes/index.html">
+                            <a href="../../changes/index.html">
                                 Changes                            </a>
                         </li>
                                                                     <li>
-                            <a href="../why/index.html">
+                            <a href="../../why/index.html" aria-current="page">
                                 Decisions &amp; rationale                            </a>
                         </li>
                                                                     <li>
-                            <a href="../handoff/index.html">
+                            <a href="../../handoff/index.html">
                                 AI handoff                            </a>
                         </li>
                                                                     <li>
-                            <a href="../reference/index.html">
+                            <a href="../../reference/index.html">
                                 Reference                            </a>
                         </li>
                                     </ul>
@@ -98,86 +98,53 @@
     <div class="app-main">
                     <p class="generated-notice" role="note">
                 Generated output — this is a static snapshot rendered from <code>.vibekb/</code>. The
-                <code>.vibekb/</code> content is the source of truth. See <a href="../reference/index.html">Reference</a> for provenance.
+                <code>.vibekb/</code> content is the source of truth. See <a href="../../reference/index.html">Reference</a> for provenance.
             </p>
                 
         <main id="main" class="wrap">
-            <article class="view view-func-detail">
-    <p class="breadcrumb"><a href="../functionality/index.html">← All functionality</a></p>
-
-    <header class="page-head reading-column">
-        <p class="eyebrow">Education</p>
-        <h1>Learn video lessons</h1>
-        <p class="lede">Hardcoded Mux HLS lesson catalog with local subtitle assets and completion tracked in SharedPreferences.</p>
-        <div class="badge-row">
-            <span class="badge badge--ok">Implemented</span>            <span class="badge badge--ok">Verified from source</span>            <span class="badge badge--info">User-facing</span>        </div>
-    </header>
-
-    <div class="detail-grid">
-        <div class="detail-main">
-                            <div class="prose reading-column"><h3>In one sentence</h3>
-<p>Lessons stream from Mux URLs; quota gating is currently disabled.</p>
-<h3>Current behavior</h3>
-<p><code>LearnVideoCubit</code> holds the lesson list. Player uses <code>video_player</code> with SRT
-assets and Mux subtitle fallback. Soft paywall placement still referenced for
-when quotas are re-enabled.</p>
-<h3>Current state</h3>
-<p>Implemented; verified-from-source.</p></div>
-                    </div>
-
-        <aside class="detail-rail" aria-label="Record metadata">
-            <div class="rail-card metadata-group">
-                <h2>Status</h2>
-                <dl class="rail-dl">
-                    <dt>Status</dt>
-                    <dd><span class="badge badge--ok">Implemented</span></dd>
-                                            <dt>Verification</dt>
-                        <dd><span class="badge badge--ok">Verified from source</span></dd>
-                                        <dt>Updated</dt>
-                    <dd>2026-07-21</dd>
-                    <dt>Facing</dt>
-                    <dd>User-facing</dd>
-                </dl>
-            </div>
-
-                            <div class="rail-card metadata-group">
-                    <h2>Trigger</h2>
-                    <p>User opens Learn videos.</p>
+                <article class="view view-doc">
+        <p class="breadcrumb"><a href="../../why/index.html">← Decisions &amp; rationale</a></p>
+        <header class="page-head reading-column">
+            <p class="eyebrow">Changes</p>
+            <h1>Migrate Stoppr to VibeKB 0.2.0 safe repository layout</h1>
+            <p class="lede"></p>
+            <div class="badge-row">
+                <span class="badge badge--info">completed</span>                                                            </div>
+        </header>
+        <div class="detail-grid">
+            <div class="detail-main"><div class="prose reading-column"><p>Migrated this repository from the pre-0.2.0 root-level VibeKB install (runtime
+at <code>guide/</code> + <code>tools/</code>, reference docs at repo root) to the VibeKB <strong>0.2.0</strong>
+consolidated layout via <code>vibekb migrate</code> from CLI tip <code>683df05</code>.</p>
+<p>What changed:</p>
+<ul>
+<li>VibeKB-owned runtime, reference docs, and prompts live under <code>.vibekb/</code>.</li>
+<li><code>AGENTS.md</code> / <code>CLAUDE.md</code> keep Stoppr-owned content; VibeKB only maintains a</li>
+</ul>
+<p>marked managed block.</p>
+<ul>
+<li><code>.cursor/rules/vibekb.mdc</code> is the namespaced Cursor adapter.</li>
+<li>Unmodified root VibeKB files were removed; Stoppr pointers updated.</li>
+<li>Static snapshot remains at <code>/docs</code> for GitHub Pages Mode B.</li>
+<li>Topology test discovers local diagram fixtures (Stoppr has no</li>
+</ul>
+<p><code>self-maintenance-loop</code> / <code>content-load-flow</code>).</p>
+<p>Stoppr application code under <code>lib/</code> was not modified.</p></div></div>
+            <aside class="detail-rail" aria-label="Connections">
+                <div class="rail-card">
+                    <h2>Affects functionality</h2>
+                    <p><span class="muted">None.</span></p>
                 </div>
-            
-            <div class="rail-card metadata-group">
-                <h2>Data read or written</h2>
-                <p><strong>Reads:</strong> <span class="muted">None.</span></p>
-                <p><strong>Writes:</strong> <span class="muted">None.</span></p>
-                            </div>
-
-            <div class="rail-card metadata-group">
-                <h2>Files involved</h2>
-                                    <p><code class="chip chip--file">lib/features/learn/presentation/cubit/learn_video_cubit.dart</code> <code class="chip chip--file">lib/features/learn/presentation/screens/full_screen_video_player_screen.dart</code> <code class="chip chip--file">lib/features/learn/presentation/screens/learn_video_list_screen.dart</code></p>
-                            </div>
-
-            <div class="rail-card metadata-group">
-                <h2>Dependencies</h2>
-                                    <p><strong>Depends on:</strong> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a></p>
-                                                    <p><strong>Depended on by:</strong> <span class="muted">None.</span></p>
-                            </div>
-
-            
-            <div class="rail-card metadata-group">
-                <h2>Related rationale</h2>
-                                    <p><a class="chip" href="../why/discoveries/quotas-disabled-ab-test.html">Feature quotas disabled via local flags</a></p>
-                            </div>
-        </aside>
-    </div>
-</article>
-        </main>
+                            </aside>
+        </div>
+    </article>
+            </main>
 
         <footer class="site-footer">
             <div class="wrap site-footer__inner">
                 <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
                 <p class="muted">
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
-                    <a href="../index.html">About VibeKB</a>
+                    <a href="../../index.html">About VibeKB</a>
                 </p>
                 <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 08:36 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
             </div>
@@ -185,6 +152,6 @@ when quotas are re-enabled.</p>
     </div>
 </div>
 
-<script src="../assets/js/guide.js" defer></script>
+<script src="../../assets/js/guide.js" defer></script>
 </body>
 </html>

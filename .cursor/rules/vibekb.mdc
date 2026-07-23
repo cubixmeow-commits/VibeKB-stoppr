@@ -1,40 +1,31 @@
 ---
-description: VibeKB — canonical operating rules and maintenance lifecycle for coding agents
+description: VibeKB — understand what this software currently does; maintenance lifecycle for coding agents
 globs:
 alwaysApply: true
 ---
 
-# Working on VibeKB (Cursor)
+# VibeKB (Cursor rule)
 
-The **canonical, repository-owned** workflow lives in `CLAUDE.md`. This rule is a
-pointer so Cursor discovers it automatically — read `CLAUDE.md` for the full
-lifecycle. Do not duplicate the workflow here; if they ever disagree, `CLAUDE.md`
-wins.
+This repository uses **VibeKB** to explain what the software currently does. The
+knowledge base and tooling live under `.vibekb/`. This file is a namespaced
+pointer that VibeKB owns; it does not touch your other Cursor rules.
 
-## Do this every session
+## Every session
 
-- **Start with** `php tools/vibekb.php status` for orientation (provenance,
-  current work, handoff next-action, drift).
-- **VibeKB is self-hosted:** the active `.vibekb/` describes VibeKB itself. Models
-  of other apps under `examples/` are demonstrations, **not** the active model.
-- **The product is locked:** VibeKB explains *what the software is currently
-  doing*, organized around **functionality**. It is not a docs generator, memory
-  archive, code browser, or activity log (see `PRODUCT.md`).
+- **Orient:** `vibekb status` (or `php .vibekb/runtime/tools/vibekb.php status`) —
+  provenance, current work, the handoff's next action, and drift.
+- **The canonical operating rules** live in
+  [`.vibekb/reference/WORKFLOW.md`](../../.vibekb/reference/WORKFLOW.md). Read it
+  before meaningful work; if anything here disagrees, that file wins.
 
-## The lifecycle (from `CLAUDE.md`)
+## The lifecycle
 
 orient → record work (`.vibekb/work/current.md`) → implement → find impact
-(`php tools/vibekb.php affected --since <base>`) → verify honestly → update the
-living model (records, memory, diagrams, provenance) → update the handoff →
-`php tools/vibekb.php check` + `php tools/vibekb.php generate`.
+(`vibekb affected --since <base>`) → verify honestly → update the living model
+(records, memory, diagrams, provenance) → update the handoff → `vibekb check`.
 
 ## Honesty
 
-Distinguish intended / implemented / verified. Never claim `verified-*` you did
-not confirm. Never imply VibeKB auto-updates. Keep the app on PHP 8.2 with no
-build step, no database, and no external/AI API; escape all output.
-
-## Before finishing
-
-`php tools/vibekb.php check` clean, `php tools/test-topology.php` OK, `/docs`
-regenerated, handoff accurate.
+Distinguish intended / implemented / verified behaviour. Never claim a
+`verified-*` state you did not confirm, and never imply VibeKB auto-updates —
+it is agent-maintained. See [`.vibekb/reference/PRODUCT.md`](../../.vibekb/reference/PRODUCT.md).

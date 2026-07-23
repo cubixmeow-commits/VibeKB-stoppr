@@ -34,18 +34,46 @@ declare(strict_types=1);
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-$repoRoot = dirname(__DIR__);
-require_once $repoRoot . '/guide/lib/helpers.php';
-require_once $repoRoot . '/guide/lib/Content.php';
-require_once $repoRoot . '/guide/lib/Provenance.php';
+$runtimeRoot = dirname(__DIR__);
+require_once $runtimeRoot . '/guide/lib/workspace.php';
+require_once $runtimeRoot . '/guide/lib/helpers.php';
+require_once $runtimeRoot . '/guide/lib/Content.php';
+require_once $runtimeRoot . '/guide/lib/Provenance.php';
 require_once __DIR__ . '/lib/Starter.php';
+
+// The project (git) root: parent of the located `.vibekb`. In VibeKB's own
+// self-hosted repo this equals $runtimeRoot; in a consolidated install (runtime
+// under <repo>/.vibekb/runtime) it resolves to <repo>. Downstream code that uses
+// "$repoRoot/.vibekb", "git -C $repoRoot", or "$repoRoot/docs" is correct in both.
+$repoRoot = vibekb_locate_project_root($runtimeRoot);
 
 /** Source areas VibeKB's model describes. A change under one of these is "code";
  * changes to the model (.vibekb/), generated output (docs/), the installable
  * template payload (template/), examples/, and VCS plumbing are not code drift. */
-const VIBEKB_DRIFT_EXCLUDE_PREFIXES = ['.vibekb/', 'docs/', 'template/', 'examples/', '.git/', '.github/', '.cursor/', 'VibeKBbackup/'];
+const VIBEKB_DRIFT_EXCLUDE_PREFIXES = ['.vibekb/', 'docs/', 'template/', 'examples/', '.git/', '.github/', '.cursor/'];
 
 // ---- small utilities ------------------------------------------------------
+
+/**
+ * Where the static snapshot is published by default. Mirrors the logic in
+ * tools/generate-static.php: VibeKB's own self-hosted repo publishes to
+ * <repo>/docs (GitHub Pages); a consolidated install keeps generated output
+ * inside its own namespace at .vibekb/generated so it never collides with a
+ * target repository's own docs/ directory.
+ */
+function vibekb_default_docs_dir(string $repoRoot): string
+{
+    $contentRoot = $repoRoot . '/.vibekb';
+    // Mode B GitHub Pages: if the repository already publishes from /docs,
+    // keep using that path (Pages cannot serve .vibekb/generated/).
+    if (is_file($repoRoot . '/docs/index.html')) {
+        return $repoRoot . '/docs';
+    }
+    $b = @file_get_contents($contentRoot . '/manifest.json');
+    $m = is_string($b) ? json_decode($b, true) : null;
+    $selfHosted = is_array($m) && !empty($m['self_hosted']);
+    return $selfHosted ? $repoRoot . '/docs' : $contentRoot . '/generated';
+}
 
 /** Run a git command in the repo, returning trimmed stdout ('' on failure). */
 function vibekb_git(string $repoRoot, string $args): string
@@ -408,7 +436,7 @@ function vibekb_cmd_check(string $repoRoot, bool $strict): int
 
     // 4. Snapshot sync (detected).
     echo "\n[4] Snapshot sync — /docs vs a fresh render (detected)\n" . str_repeat('-', 60) . "\n";
-    $sync = vibekb_check_snapshot($repoRoot);
+    $sync = vibekb_check_snapshot($repoRoot, $GLOBALS['runtimeRoot']);
     if ($sync['status'] === 'no-docs') {
         echo "  /docs is not present — nothing to compare (run `generate` to publish it).\n";
     } elseif ($sync['status'] === 'error') {
@@ -438,16 +466,16 @@ function vibekb_cmd_check(string $repoRoot, bool $strict): int
  *
  * @return array{status: string, diffs: list<string>, message: string}
  */
-function vibekb_check_snapshot(string $repoRoot): array
+function vibekb_check_snapshot(string $repoRoot, string $runtimeRoot): array
 {
-    $docs = $repoRoot . '/docs';
+    $docs = vibekb_default_docs_dir($repoRoot);
     if (!is_dir($docs) || !is_file($docs . '/index.html')) {
         return ['status' => 'no-docs', 'diffs' => [], 'message' => ''];
     }
     $tmp = sys_get_temp_dir() . '/vibekb-synccheck-' . getmypid() . '-' . mt_rand(1000, 9999);
     putenv('VIBEKB_DOCS_OUT=' . $tmp);
     putenv('VIBEKB_GENERATED=__SYNCCHECK__');
-    $out = @shell_exec('php ' . escapeshellarg($repoRoot . '/tools/generate-static.php') . ' 2>&1');
+    $out = @shell_exec('php ' . escapeshellarg($runtimeRoot . '/tools/generate-static.php') . ' 2>&1');
     putenv('VIBEKB_DOCS_OUT');
     putenv('VIBEKB_GENERATED');
 
@@ -719,10 +747,10 @@ switch ($command) {
         exit(vibekb_cmd_bootstrap($repoRoot, in_array('--dry-run', $rest, true)));
     case 'validate':
         $arg = ($rest[0] ?? '') !== '' ? ' ' . escapeshellarg($rest[0]) : '';
-        passthru('php ' . escapeshellarg($repoRoot . '/tools/validate.php') . $arg, $code);
+        passthru('php ' . escapeshellarg($runtimeRoot . '/tools/validate.php') . $arg, $code);
         exit($code);
     case 'generate':
-        passthru('php ' . escapeshellarg($repoRoot . '/tools/generate-static.php'), $code);
+        passthru('php ' . escapeshellarg($runtimeRoot . '/tools/generate-static.php'), $code);
         exit($code);
     case 'help':
     case '--help':

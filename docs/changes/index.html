@@ -129,6 +129,32 @@ static <code>/docs</code> regenerated.</p>
                                     </li>
                             <li class="change-card">
                     <div class="change-card__head">
+                        <h2>Migrate Stoppr to VibeKB 0.2.0 safe repository layout</h2>
+                        <div class="badge-row">
+                            <span class="badge badge--info">completed</span>                                                        <span class="muted"></span>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="prose reading-column change-card__body"><p>Migrated this repository from the pre-0.2.0 root-level VibeKB install (runtime
+at <code>guide/</code> + <code>tools/</code>, reference docs at repo root) to the VibeKB <strong>0.2.0</strong>
+consolidated layout via <code>vibekb migrate</code> from CLI tip <code>683df05</code>.</p>
+<p>What changed:</p>
+<ul>
+<li>VibeKB-owned runtime, reference docs, and prompts live under <code>.vibekb/</code>.</li>
+<li><code>AGENTS.md</code> / <code>CLAUDE.md</code> keep Stoppr-owned content; VibeKB only maintains a</li>
+</ul>
+<p>marked managed block.</p>
+<ul>
+<li><code>.cursor/rules/vibekb.mdc</code> is the namespaced Cursor adapter.</li>
+<li>Unmodified root VibeKB files were removed; Stoppr pointers updated.</li>
+<li>Static snapshot remains at <code>/docs</code> for GitHub Pages Mode B.</li>
+<li>Topology test discovers local diagram fixtures (Stoppr has no</li>
+</ul>
+<p><code>self-maintenance-loop</code> / <code>content-load-flow</code>).</p>
+<p>Stoppr application code under <code>lib/</code> was not modified.</p></div>
+                                    </li>
+                            <li class="change-card">
+                    <div class="change-card__head">
                         <h2>Upgrade VibeKB runtime and re-analyze Stoppr</h2>
                         <div class="badge-row">
                                                         <span class="badge badge--ok">Verified from source</span>                            <span class="muted"></span>
@@ -168,7 +194,7 @@ docs, config, and generated surfaces for restore.</p></div>
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 06:26 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 08:36 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
             </div>
         </footer>
     </div>

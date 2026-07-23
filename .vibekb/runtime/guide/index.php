@@ -11,6 +11,7 @@ declare(strict_types=1);
  * `../.vibekb/`.
  */
 
+require_once __DIR__ . '/lib/workspace.php';
 require_once __DIR__ . '/lib/helpers.php';
 require_once __DIR__ . '/lib/Content.php';
 require_once __DIR__ . '/lib/Provenance.php';
@@ -33,7 +34,10 @@ if (!headers_sent()) {
 // (e.g. examples/sousmeow/.vibekb) without a second app. The path is confined
 // to a `.vibekb` directory so the override can never point the guide at
 // arbitrary filesystem locations.
-$contentRoot = dirname(__DIR__) . '/.vibekb';
+// Layout-aware: works whether the guide sits at <repo>/guide (self-hosted) or at
+// <repo>/.vibekb/runtime/guide (consolidated install). Both resolve to the same
+// active .vibekb model.
+$contentRoot = vibekb_locate_content_root(dirname(__DIR__)) ?? (dirname(__DIR__) . '/.vibekb');
 $override = getenv('VIBEKB_CONTENT_ROOT');
 if (is_string($override) && $override !== '') {
     $candidate = rtrim($override, '/');

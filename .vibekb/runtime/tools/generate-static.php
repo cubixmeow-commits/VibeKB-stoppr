@@ -27,9 +27,10 @@ declare(strict_types=1);
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-$repoRoot = dirname(__DIR__);
-$guideLib = $repoRoot . '/guide/lib';
+$runtimeRoot = dirname(__DIR__);
+$guideLib = $runtimeRoot . '/guide/lib';
 
+require_once $guideLib . '/workspace.php';
 require_once $guideLib . '/helpers.php';
 require_once $guideLib . '/Content.php';
 require_once $guideLib . '/Provenance.php';
@@ -37,12 +38,31 @@ require_once $guideLib . '/nav.php';
 require_once $guideLib . '/search.php';
 require_once $guideLib . '/map.php';
 
-$contentRoot = $repoRoot . '/.vibekb';
-// The output directory defaults to /docs but can be redirected with
-// VIBEKB_DOCS_OUT — the drift check (tools/vibekb.php) renders into a temp
-// directory this way to compare against the committed /docs without touching it.
+// Layout-aware roots: content root is the active `.vibekb`; the project root is
+// its parent (equal to $runtimeRoot only in the self-hosted layout).
+$contentRoot = vibekb_locate_content_root($runtimeRoot) ?? ($runtimeRoot . '/.vibekb');
+$repoRoot = dirname($contentRoot);
+
+// The output directory defaults to the static snapshot location, but can be
+// redirected with VIBEKB_DOCS_OUT — the drift check (tools/vibekb.php) renders
+// into a temp directory this way to compare without touching the snapshot.
+// Self-hosted VibeKB publishes to <repo>/docs (GitHub Pages); a consolidated
+// install keeps generated output inside its own namespace at .vibekb/generated
+// so it never collides with a target repo's own docs/ directory.
+$selfHosted = (static function (string $cr): bool {
+    $b = @file_get_contents($cr . '/manifest.json');
+    if (!is_string($b)) {
+        return false;
+    }
+    $m = json_decode($b, true);
+    return is_array($m) && !empty($m['self_hosted']);
+})($contentRoot);
+// Mode B GitHub Pages: prefer an existing /docs snapshot when present.
+$defaultDocs = is_file($repoRoot . '/docs/index.html')
+    ? $repoRoot . '/docs'
+    : ($selfHosted ? $repoRoot . '/docs' : $contentRoot . '/generated');
 $docsOut = getenv('VIBEKB_DOCS_OUT');
-$docsRoot = (is_string($docsOut) && $docsOut !== '') ? rtrim($docsOut, '/') : $repoRoot . '/docs';
+$docsRoot = (is_string($docsOut) && $docsOut !== '') ? rtrim($docsOut, '/') : $defaultDocs;
 
 $content = new Content($contentRoot);
 $content->load();
@@ -192,8 +212,11 @@ $ensureDir($docsRoot . '/assets/js');
 $ensureDir($docsRoot . '/assets/data');
 $ensureDir($docsRoot . '/assets/diagrams');
 
-copy($repoRoot . '/guide/assets/css/guide.css', $docsRoot . '/assets/css/guide.css');
-copy($repoRoot . '/guide/assets/js/guide.js', $docsRoot . '/assets/js/guide.js');
+// Assets live next to the runtime (self-hosted: <repo>/guide; consolidated:
+// <repo>/.vibekb/runtime/guide). Never read them from $repoRoot/guide — that
+// path does not exist in a target install and would silently omit CSS/JS.
+copy($runtimeRoot . '/guide/assets/css/guide.css', $docsRoot . '/assets/css/guide.css');
+copy($runtimeRoot . '/guide/assets/js/guide.js', $docsRoot . '/assets/js/guide.js');
 
 foreach (glob($contentRoot . '/diagrams/assets/*.svg') ?: [] as $svg) {
     copy($svg, $docsRoot . '/assets/diagrams/' . basename($svg));
@@ -209,6 +232,7 @@ file_put_contents(
 // GitHub Pages: skip Jekyll so nothing is silently rewritten or ignored.
 file_put_contents($docsRoot . '/.nojekyll', "");
 
-fwrite(STDOUT, "Generated {$count} pages + assets into /docs\n");
+$docsLabel = str_starts_with($docsRoot, $repoRoot . '/') ? substr($docsRoot, strlen($repoRoot) + 1) : $docsRoot;
+fwrite(STDOUT, "Generated {$count} pages + assets into {$docsLabel}\n");
 fwrite(STDOUT, "  mode=static generated={$generatedAt} commit={$generation['generator_commit']} branch={$generation['generator_branch']}\n");
-fwrite(STDOUT, "  entry point: docs/index.html\n");
+fwrite(STDOUT, "  entry point: {$docsLabel}/index.html\n");

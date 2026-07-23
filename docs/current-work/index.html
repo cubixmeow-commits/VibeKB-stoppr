@@ -114,26 +114,24 @@
             <div class="badge-row">
                 <span class="badge badge--info">completed</span>                                    <span class="badge badge--ok">Verified from source</span>                            </div>
             <dl class="rail-dl work-meta">
-                <dt>Objective</dt><dd>Upgrade Stoppr to latest VibeKB runtime, back up prior knowledge, and re-analyze the living model.</dd>                                    <dt>Affected functionality</dt><dd><a class="chip" href="../functionality/app-startup.html">Application startup</a> <a class="chip" href="../functionality/startup-routing.html">Startup routing</a> <a class="chip" href="../functionality/deep-link-handling.html">Deep link handling</a> <a class="chip" href="../functionality/main-navigation.html">Main navigation</a> <a class="chip" href="../functionality/home-widgets.html">Home screen widgets</a> <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a> <a class="chip" href="../functionality/guest-anonymous-access.html">Guest anonymous access</a> <a class="chip" href="../functionality/onboarding-intro.html">Onboarding introduction</a> <a class="chip" href="../functionality/onboarding-questionnaire.html">Onboarding questionnaire</a> <a class="chip" href="../functionality/onboarding-profile-goals.html">Onboarding profile and goals</a> <a class="chip" href="../functionality/onboarding-personalized-analysis.html">Onboarding personalized analysis</a> <a class="chip" href="../functionality/main-paywall.html">Main paywall</a> <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a> <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a> <a class="chip" href="../functionality/home-dashboard.html">Home dashboard</a> <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a> <a class="chip" href="../functionality/daily-check-in-pledge.html">Daily check-in and pledge</a> <a class="chip" href="../functionality/panic-intervention.html">Panic intervention</a> <a class="chip" href="../functionality/relapse-recovery.html">Relapse recovery flow</a> <a class="chip" href="../functionality/community-forum.html">Community forum</a> <a class="chip" href="../functionality/community-chat.html">Community chat</a> <a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a> <a class="chip" href="../functionality/learn-video-lessons.html">Learn video lessons</a> <a class="chip" href="../functionality/articles-education.html">Articles education</a> <a class="chip" href="../functionality/chatbot-assistant.html">Melinda chatbot assistant</a> <a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a> <a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie nutrition tracking</a> <a class="chip" href="../functionality/recipe-discovery.html">Recipe discovery</a> <a class="chip" href="../functionality/rate-my-plate.html">Rate My Plate</a> <a class="chip" href="../functionality/meditation-breathing.html">Meditation and breathing</a> <a class="chip" href="../functionality/twenty-eight-day-challenge.html">Twenty-eight day challenge</a> <a class="chip" href="../functionality/fasting-tracker.html">Fasting tracker</a> <a class="chip" href="../functionality/notifications.html">Notifications</a> <a class="chip" href="../functionality/analytics-telemetry.html">Analytics and telemetry</a> <a class="chip" href="../functionality/user-profile-settings.html">User profile and settings</a></dd>
-                                                    <dt>Expected files</dt><dd><code class="chip chip--file">.vibekb/</code> <code class="chip chip--file">docs/</code> <code class="chip chip--file">guide/</code> <code class="chip chip--file">tools/</code> <code class="chip chip--file">template/</code> <code class="chip chip--file">prompts/</code> <code class="chip chip--file">INSTALLER.md</code> <code class="chip chip--file">AGENTS.md</code> <code class="chip chip--file">VIBEKB.md</code> <code class="chip chip--file">VibeKBbackup/pre-upgrade-2026-07-23/</code></dd>
-                                <dt>Data impact</dt><dd>none on app runtime data</dd>                <dt>Risks</dt><dd>Documentation drift if placeholders change; secrets leakage in docs; topology test was self-hosted-coupled and needed a project-agnostic adaptation.</dd>            </dl>
+                <dt>Objective</dt><dd>Migrate Stoppr to VibeKB 0.2.0 safe/consolidated repository layout while preserving the living model and Mode B /docs.</dd>                                                    <dt>Expected files</dt><dd><code class="chip chip--file">.vibekb/</code> <code class="chip chip--file">docs/</code> <code class="chip chip--file">AGENTS.md</code> <code class="chip chip--file">CLAUDE.md</code> <code class="chip chip--file">VIBEKB.md</code> <code class="chip chip--file">VIBEKB_MAINTENANCE.md</code> <code class="chip chip--file">.cursor/rules/vibekb.mdc</code></dd>
+                                <dt>Data impact</dt><dd>none on app runtime data</dd>                <dt>Risks</dt><dd>Upstream topology test is self-hosted-coupled; Mode B /docs preference is a Stoppr local adaptation of the runtime default.</dd>            </dl>
         </section>
 
         <section class="doc-section content-section">
             <div class="prose reading-column"><h3>Requested outcome</h3>
 <ol>
-<li>Complete backup of existing VibeKB knowledge/docs/config/generated data.</li>
-<li>Upgrade runtime from latest <code>cubixmeow-commits/VibeKB</code>.</li>
-<li>Fresh Stoppr analysis and regenerate <code>/docs</code>.</li>
+<li>Push VibeKB 0.2.0 safe integration into <code>cubixmeow-commits/VibeKB-stoppr</code>.</li>
+<li>Open a PR into <code>main</code>.</li>
 <li>Do not modify Stoppr application code.</li>
 </ol>
 <h3>Verification plan</h3>
 <ul>
-<li><code>php tools/vibekb.php check</code></li>
-<li><code>php tools/test-topology.php</code></li>
-<li><code>php tools/vibekb.php generate</code></li>
+<li><code>vibekb doctor</code></li>
+<li><code>vibekb check</code></li>
+<li><code>php .vibekb/runtime/tools/test-topology.php</code></li>
+<li><code>vibekb generate</code></li>
 <li>Confirm no <code>lib/</code> / app source diffs</li>
-<li>Secret scan of <code>/docs</code></li>
 </ul></div>
         </section>
     
@@ -151,7 +149,7 @@
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 06:26 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 08:36 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
             </div>
         </footer>
     </div>
