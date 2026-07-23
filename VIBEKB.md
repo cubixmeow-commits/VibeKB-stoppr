@@ -9,6 +9,7 @@ living software model and a static guide in `/docs`.
 - **Content model:** [`.vibekb/`](.vibekb/)
 - **Maintenance:** [`MAINTENANCE.md`](MAINTENANCE.md) · [`VIBEKB_MAINTENANCE.md`](VIBEKB_MAINTENANCE.md)
 - **Schema / product:** [`SCHEMA.md`](SCHEMA.md) · [`PRODUCT.md`](PRODUCT.md)
+- **Installer:** [`INSTALLER.md`](INSTALLER.md)
 - **Initialize / integrate:** [`INITIALIZE.md`](INITIALIZE.md) ·
   [`prompts/INTEGRATE_VIBEKB.md`](prompts/INTEGRATE_VIBEKB.md)
 
@@ -25,10 +26,22 @@ The `/docs` folder is a **generated** static snapshot for GitHub Pages.
 ## Regenerate
 
 ```bash
-php tools/validate.php
+php tools/vibekb.php check
 php tools/test-topology.php
-php tools/generate-static.php
+php tools/vibekb.php generate
 ```
+
+(Legacy equivalents: `php tools/validate.php`,
+`php tools/generate-static.php`.)
+
+## Upgrade
+
+```bash
+# Install/refresh the vibekb CLI, then:
+vibekb install --upgrade .
+```
+
+Preserves `.vibekb/`. Use `--force` only to reset the model.
 
 ## GitHub Pages
 
@@ -42,14 +55,19 @@ Site URL shape: `https://<owner>.github.io/VibeKB-stoppr/`
 ## Scope
 
 VibeKB documents the Stoppr Flutter app. It does **not** modify application
-code. Allowed documentation surfaces: `.vibekb/`, `guide/`, `tools/`, `/docs`,
-and VibeKB authoring files (`PRODUCT.md`, `SCHEMA.md`, `INITIALIZE.md`,
-`MAINTENANCE.md`, this file).
+code. Allowed documentation surfaces: `.vibekb/`, `guide/`, `tools/`,
+`template/starter/`, `/docs`, `prompts/`, and VibeKB authoring files
+(`PRODUCT.md`, `SCHEMA.md`, `INITIALIZE.md`, `MAINTENANCE.md`,
+`INSTALLER.md`, this file).
 
-Flutter app agent rules remain in [`CLAUDE.md`](CLAUDE.md). VibeKB agent short
-rules: [`AGENTS.md`](AGENTS.md).
+Flutter app agent rules remain in [`CLAUDE.md`](CLAUDE.md). Combined agent
+entry: [`AGENTS.md`](AGENTS.md).
 
 ## Backup
 
-Before a rebootstrap, existing `.vibekb/` and `docs/` were copied to
-`VibeKBbackup/` (do not modify that backup).
+Complete pre-upgrade backups live under `VibeKBbackup/`:
+
+- `VibeKBbackup/pre-upgrade-2026-07-23/` — full snapshot before the
+  2026-07-23 upgrade (`.vibekb/`, `docs/`, `guide/`, `tools/`, `prompts/`,
+  authoring docs, `.cursor/rules`).
+- Older partial copies may also exist under `VibeKBbackup/` (do not modify).

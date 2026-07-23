@@ -3,7 +3,7 @@ id: system-mental-model
 type: system
 title: Mental model
 summary: A Flutter client where Firebase holds user data, RevenueCat/Superwall gate premium, and local preferences plus widgets keep daily habits fast.
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## Picture this

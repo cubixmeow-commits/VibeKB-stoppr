@@ -111,36 +111,57 @@
 
             <section class="doc-section callout callout--work">
             <div class="badge-row">
-                                    <span class="badge badge--info">Verification: verified from source</span>                                <span class="muted">Updated 2026-07-21</span>
+                                    <span class="badge badge--info">Verification: verified from source</span>                                <span class="muted">Updated 2026-07-23</span>
             </div>
             <div class="prose reading-column"><h3>Current functionality state</h3>
-<p>Stoppr at commit <code>9f44315</code> is a Flutter sugar-habit app with full
-onboarding, Firebase auth, Superwall/RevenueCat gating, home wellness loops,
-community, nutrition AI tools, learn content, widgets, and platform services.</p>
+<p>Stoppr at commit <code>f01661b</code> (app <code>7.4.2+1</code>) is a Flutter sugar-habit app with
+full onboarding, Firebase auth, Superwall/RevenueCat gating, home wellness
+loops, community, nutrition AI tools, learn content, widgets, and platform
+services. VibeKB runtime was upgraded from canonical VibeKB tip <code>3b6ba7d</code>
+(installer template <code>1.0.0</code> / CLI <code>vibekb</code> built from that tip).</p>
 <h3>Completed this session</h3>
 <ul>
-<li>Backed up prior <code>.vibekb/</code> and <code>docs/</code> into <code>VibeKBbackup/</code>.</li>
-<li>Installed current VibeKB <code>guide/</code> + <code>tools/</code> + authoring docs.</li>
-<li>Rebuilt living software model and Explainable Diagrams from source.</li>
+<li>Full backup at <code>VibeKBbackup/pre-upgrade-2026-07-23/</code>.</li>
+<li><code>vibekb install --upgrade</code> refreshed guide/tools/prompts/template/docs.</li>
+<li>Preserved Flutter <code>CLAUDE.md</code> + <code>flutter.mdc</code>; dual <code>AGENTS.md</code> bridge.</li>
+<li>Fresh source re-analysis; corrected drift on navigation, relapse, forum,</li>
+</ul>
+<p>food scan, and soft-paywalls records.</p>
+<ul>
+<li>Adapted <code>tools/test-topology.php</code> to discover local diagram fixtures</li>
+</ul>
+<p>(upstream test assumed VibeKB self-hosted diagram ids).</p>
+<ul>
 <li>Regenerated static <code>/docs</code>.</li>
 </ul>
 <h3>Still open / landmines</h3>
 <ul>
 <li>Superwall <code>INSERT_YOUR_*</code> placements.</li>
-<li>Widget app group placeholder.</li>
+<li>Widget app group placeholder (<code>group.YOUR_BUNDLE_ID.shared</code>).</li>
 <li>Android Superwall purchase controller asymmetry.</li>
 <li><code>.env</code> vs <code>.env.local</code> naming mismatch.</li>
-<li>Quota system disabled flags.</li>
+<li>Quota system disabled flags (<code>QUOTA_SYSTEM_ENABLED = false</code>).</li>
+<li>Incomplete community blocked-user filtering on Cubit stream.</li>
+<li>Unhandled <code>stoppr://accountability</code> deep link from widgets.</li>
 </ul>
 <h3>Exact next recommended action</h3>
-<p>Replace Superwall placeholder placement IDs (or confirm dashboard aliases) and
-re-verify a sandbox purchase on <strong>both</strong> iOS and Android, then update
+<p>Replace Superwall placeholder placement IDs (or confirm dashboard aliases)
+and re-verify a sandbox purchase on <strong>both</strong> iOS and Android, then update
 <code>main-paywall</code> / <code>soft-paywalls-quotas</code> verification and regenerate <code>/docs</code>.</p></div>
         </section>
     
             <section class="doc-section">
             <h2>Recent work sessions</h2>
             <ul class="why-list">
+                                    <li class="why-item">
+                        <div class="why-item__head">
+                            <h3>VibeKB upgrade and fresh Stoppr analysis</h3>
+                            <div class="badge-row">
+                                                                <span class="muted">2026-07-23</span>
+                            </div>
+                        </div>
+                        <p></p>
+                                            </li>
                                     <li class="why-item">
                         <div class="why-item__head">
                             <h3>VibeKB rebootstrap session</h3>
@@ -167,7 +188,7 @@ re-verify a sandbox purchase on <strong>both</strong> iOS and Android, then upda
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 06:26 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
             </div>
         </footer>
     </div>

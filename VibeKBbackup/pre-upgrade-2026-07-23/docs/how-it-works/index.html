@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Architecture · Stoppr — VibeKB</title>
+    <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Web fonts are a progressive enhancement only. The stylesheet ships a
+         full system-font fallback stack, so the guide renders correctly with no
+         external CDN — required for offline and locked-down static hosting. -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/guide.css">
+</head>
+<body data-mode="static">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="app-shell">
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="../index.html">
+                <span class="brand__mark">VibeKB</span>
+                <span class="brand__project">Stoppr</span>
+            </a>
+            <form class="site-search" role="search" action="../search/index.html">
+                <label class="visually-hidden" for="site-search-input">Search guide</label>
+                <input id="site-search-input" name="q" type="search" placeholder="Search guide…" autocomplete="off">
+            </form>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="guide-sidebar"
+                hidden
+            >Menu</button>
+        </div>
+    </header>
+
+    <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+    <aside class="sidebar" id="guide-sidebar" aria-label="Guide navigation">
+        <nav class="sidebar-nav" aria-label="Guide sections">
+            <p class="sidebar-nav__label" id="nav-primary-label">Primary</p>
+            <ul class="sidebar-nav__list" aria-labelledby="nav-primary-label">
+                                                        <li>
+                        <a href="../index.html">
+                            Overview                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../functionality/index.html">
+                            Functionality                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../how-it-works/index.html" aria-current="page">
+                            Architecture                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../diagrams/index.html">
+                            Diagrams                        </a>
+                    </li>
+                                                        <li>
+                        <a href="../current-work/index.html">
+                            Current work                        </a>
+                    </li>
+                            </ul>
+
+                            <p class="sidebar-nav__label" id="nav-explore-label">Explore</p>
+                <ul class="sidebar-nav__list sidebar-nav__list--secondary" aria-labelledby="nav-explore-label">
+                                                                    <li>
+                            <a href="../data/index.html">
+                                Data &amp; storage                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../files/index.html">
+                                Files that matter                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../changes/index.html">
+                                Changes                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../why/index.html">
+                                Decisions &amp; rationale                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../handoff/index.html">
+                                AI handoff                            </a>
+                        </li>
+                                                                    <li>
+                            <a href="../reference/index.html">
+                                Reference                            </a>
+                        </li>
+                                    </ul>
+                    </nav>
+    </aside>
+
+    <div class="app-main">
+                    <p class="generated-notice" role="note">
+                Generated output — this is a static snapshot rendered from <code>.vibekb/</code>. The
+                <code>.vibekb/</code> content is the source of truth. See <a href="../reference/index.html">Reference</a> for provenance.
+            </p>
+                
+        <main id="main" class="wrap">
+            <article class="view view-doc">
+    <header class="page-head reading-column">
+        <p class="eyebrow">Architecture</p>
+        <h1>How the software works</h1>
+        <p class="lede">A paced, system-level explanation — the mental model first, then the parts, the request lifecycle, and how it ships.</p>
+    </header>
+
+                    <section class="doc-section content-section" aria-labelledby="hiw-mental-model">
+            <header class="section-intro reading-column">
+                <h2 id="hiw-mental-model">Mental model</h2>
+            </header>
+            <div class="prose reading-column"><h3>Picture this</h3>
+<p>Stoppr is a phone app. On launch it wakes Firebase and purchase SDKs, figures
+out whether you finished onboarding and whether you are paid, then either
+continues onboarding, shows the paywall, or opens the home hub.</p>
+<p>Daily life happens on Home: streak, pledge, panic. Deeper tools (community,
+learn, nutrition, challenge) hang off navigation. Money questions always go
+through Superwall UI and RevenueCat entitlements — Firestore remembers
+subscription fields but does not decide access.</p></div>
+        </section>
+                    <section class="doc-section content-section" aria-labelledby="hiw-components">
+            <header class="section-intro reading-column">
+                <h2 id="hiw-components">Components</h2>
+            </header>
+            <div class="prose reading-column"><h3>Major components</h3>
+<div class="table-wrap"><table>
+<tr>
+<th>Component</th>
+<th>Role</th>
+<th>Primary path</th>
+</tr>
+<tr>
+<td>Bootstrap</td>
+<td>SDK init + first route</td>
+<td><code>lib/main.dart</code></td>
+</tr>
+<tr>
+<td>Auth</td>
+<td>Firebase identity + AuthCubit</td>
+<td><code>lib/core/auth/</code></td>
+</tr>
+<tr>
+<td>Onboarding</td>
+<td>Funnel + progress service</td>
+<td><code>lib/features/onboarding/</code></td>
+</tr>
+<tr>
+<td>Subscription</td>
+<td>RevenueCat + Superwall</td>
+<td><code>lib/core/subscription/</code>, <code>lib/core/superwall/</code></td>
+</tr>
+<tr>
+<td>Home / panic / pledge</td>
+<td>Daily loop</td>
+<td><code>lib/features/app/</code></td>
+</tr>
+<tr>
+<td>Community / accountability</td>
+<td>Social</td>
+<td><code>lib/features/community/</code>, <code>lib/features/accountability/</code></td>
+</tr>
+<tr>
+<td>Nutrition / recipes</td>
+<td>Food tools</td>
+<td><code>lib/features/nutrition/</code>, <code>lib/features/recipes/</code></td>
+</tr>
+<tr>
+<td>Learn</td>
+<td>Videos + articles</td>
+<td><code>lib/features/learn/</code></td>
+</tr>
+<tr>
+<td>Widgets</td>
+<td>iOS/Android home widgets</td>
+<td><code>ios/StreakWidget/</code>, Android providers</td>
+</tr>
+<tr>
+<td>Config</td>
+<td>Env accessors</td>
+<td><code>lib/core/config/env_config.dart</code></td>
+</tr>
+</table></div></div>
+        </section>
+                    <section class="doc-section content-section" aria-labelledby="hiw-request-flow">
+            <header class="section-intro reading-column">
+                <h2 id="hiw-request-flow">Request and navigation flow</h2>
+            </header>
+            <div class="prose reading-column"><h3>How control moves</h3>
+<p>Stoppr does not use a single declarative router for the whole app. <code>main.dart</code>
+computes an initial widget tree, then screens push/replace via Flutter
+<code>Navigator</code>. Deep links and widget URIs call into <code>_processDeepLink</code> or set
+pending navigation flags.</p>
+<p>Paid checks run at startup, onboarding completion, and feature gates via
+<code>SubscriptionService</code> / <code>AuthCubit</code>.</p></div>
+        </section>
+                    <section class="doc-section content-section" aria-labelledby="hiw-deployment">
+            <header class="section-intro reading-column">
+                <h2 id="hiw-deployment">Deployment</h2>
+            </header>
+            <div class="prose reading-column"><h3>Application</h3>
+<p>Built with Flutter for iOS and Android. Store credentials and Firebase configs
+are supplied outside git via env / ignored platform files; <code>.local</code> templates
+document required keys without secrets.</p>
+<h3>VibeKB documentation</h3>
+<ul>
+<li>Source of truth: <code>.vibekb/</code></li>
+<li>Public site: <code>/docs</code> generated by <code>php tools/generate-static.php</code></li>
+<li>GitHub Pages: Settings → Pages → folder <code>/docs</code></li>
+<li>Entry: <code>docs/index.html</code></li>
+<li>Dynamic <code>guide/</code> is present so the same templates power generation; public</li>
+</ul>
+<p>deployment for this repository remains the static snapshot.</p></div>
+        </section>
+    
+    <nav class="cross-links" aria-label="Related views">
+        <a class="btn" href="../data/index.html">Data &amp; storage →</a>
+        <a class="btn" href="../files/index.html">Files that matter →</a>
+    </nav>
+</article>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap site-footer__inner">
+                <p><strong>VibeKB</strong> — Understand what your software is doing.</p>
+                <p class="muted">
+                    A living explanation generated from repository-owned content in <code>.vibekb/</code>.
+                    <a href="../index.html">About VibeKB</a>
+                </p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="../assets/js/guide.js" defer></script>
+</body>
+</html>

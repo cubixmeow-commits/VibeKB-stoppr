@@ -50,10 +50,10 @@
     },
     {
         "title": "Community forum",
-        "summary": "Firestore-backed posts and nested comments with blocked-user filtering.",
+        "summary": "Firestore-backed posts and nested comments; blocked-user filtering is incomplete on the current Cubit stream path.",
         "type": "functionality",
         "url": "../functionality/community-forum.html",
-        "body": "In one sentence Forum content lives in community posts + comments subcollection . Current behavior Create/list/like/comment flows via CommunityRepository . Blocked users filtered from views. Current state Implemented; verified from source."
+        "body": "In one sentence Forum content lives in community posts + comments subcollection . Current behavior Create/list/like/comment flows via CommunityRepository . Blocked user filtering is not reliably applied by the current CommunityCubit stream path — treat blocked user hiding as incomplete unless re verified after a Cubit/repository change. Current state Implemented; verified from source re checked 2026 07 23 ."
     },
     {
         "title": "Daily check-in and pledge",
@@ -116,7 +116,7 @@
         "summary": "Bottom-tab MainScaffold hosts home and primary feature surfaces with an initialIndex deep-link entry.",
         "type": "functionality",
         "url": "../functionality/main-navigation.html",
-        "body": "In one sentence MainScaffold is the post paywall shell with indexed tabs and optional bar hiding. Current behavior Stateful scaffold with initialIndex , bottom navigation when enabled, and lifecycle observers. Marks onboarding complete for authenticated users when appropriate. Current state Implemented; verified from source."
+        "body": "In one sentence MainScaffold is the post paywall shell with indexed tabs and optional bar hiding. Current behavior Stateful scaffold with initialIndex and an inline bottom navigation when enabled . Active tabs: Home, Learn Videos, Rewire Brain, Community, Profile. Lifecycle observers mark onboarding complete for authenticated users when appropriate. The older lib/features/app/presentation/widgets/bottom navigation.dart file is not the active tab builder. Current state Implemented; verified from source re checked 2026 07 23 ."
     },
     {
         "title": "Main paywall",
@@ -190,17 +190,17 @@
     },
     {
         "title": "Relapse recovery flow",
-        "summary": "Captures relapse reasons and targets, resets streak, and schedules relapse-challenge notifications.",
+        "summary": "Relapse UI collects reason/help chips, resets streak, and may schedule recovery-challenge notifications; detailed reason chips are not fully persisted.",
         "type": "functionality",
         "url": "../functionality/relapse-recovery.html",
-        "body": "In one sentence Relapse flow reframes a setback and resets streak state. Current behavior Screens collect why/help/target/signature; RelapseService persists locally; notifications may be scheduled for a recovery challenge. Current state Implemented; verified from source."
+        "body": "In one sentence Relapse flow reframes a setback and resets streak state. Current behavior Screens collect why/help/target/signature in the UI. Persistence is thinner than the UI suggests: signature/goal day style fields and toast state are kept, while reason/help chips are largely UI local. RelapseService stores relapse timestamps locally. Daily check in can call logRelapse ; the manual relapsed flow path may reset streak without that same service call. Notifications may be scheduled for a recovery challenge. Current state Implemented; verified from source re checked 2026 07 23 . Do not treat chip selections as durable analytics unless re verified."
     },
     {
         "title": "Soft paywalls and quotas",
         "summary": "FeatureQuotaService and contextual Superwall placements exist, but QUOTA_SYSTEM_ENABLED is false on major feature screens.",
         "type": "functionality",
         "url": "../functionality/soft-paywalls-quotas.html",
-        "body": "In one sentence Quota soft paywalls are coded but currently disabled by local feature flags. Current behavior FeatureQuotaService tracks limits in user feature quotas with SharedPreferences fallback. Learn, food scan, Rate My Plate, and chatbot set QUOTA SYSTEM ENABLED = false . Contextual placements ratings, redownload, quick actions, home banners still call Superwall with placeholder or concrete IDs. Chatbot separately enforces ApiRateLimitService 20/day . Current state Partial; verified from source."
+        "body": "In one sentence Quota soft paywalls are coded but currently disabled by local feature flags. Current behavior FeatureQuotaService tracks limits in user feature quotas with SharedPreferences fallback. Learn, food scan, Rate My Plate, and chatbot set QUOTA SYSTEM ENABLED = false . Contextual placements ratings, redownload, quick actions, home banners still call Superwall with placeholder or concrete IDs. Chatbot and other AI surfaces separately enforce ApiRateLimitService 20/day even while feature quotas are off. Current state Partial; verified from source re checked 2026 07 23 ."
     },
     {
         "title": "Startup routing",
@@ -218,10 +218,10 @@
     },
     {
         "title": "Sugar food scanning",
-        "summary": "Vision analysis via Groq-compatible endpoint with local image cache and optional Firebase Storage fallback.",
+        "summary": "Vision analysis via Groq-compatible endpoint with local image cache and optional Firebase Storage fallback; nutrition path uses ApiRateLimitService (not FeatureQuota soft-paywall).",
         "type": "functionality",
         "url": "../functionality/sugar-food-scanning.html",
-        "body": "In one sentence Camera/gallery images are analyzed for nutrition estimates then logged. Current behavior Uses GROQ API KEY . Quota soft paywall code present but disabled. Images cached locally via LocalFoodImageService . Current state Implemented; verified from source. Runtime accuracy of model output not verified."
+        "body": "In one sentence Camera/gallery images are analyzed for nutrition estimates then logged. Current behavior Uses GROQ API KEY . The nutrition food scanner screen path relies on ApiRateLimitService rather than the disabled FeatureQuotaService soft paywall. A separate sugar scan UI also exists under lib/features/app/presentation/screens/food scan/ with Superwall placeholder placements when quotas/offers fire . Images are cached locally via LocalFoodImageService . Current state Implemented; verified from source re checked 2026 07 23 . Runtime accuracy of model output not verified."
     },
     {
         "title": "Sugar streak tracking",
@@ -763,11 +763,25 @@
         "body": "Evidence Local const bool QUOTA SYSTEM ENABLED = false in learn, food scan, Rate My Plate, and chatbot screens. FeatureQuotaService still exists. Impact on model Soft quota paywalls are partial , not fully active behavior."
     },
     {
+        "title": "Topology test must discover local diagram fixtures",
+        "summary": "",
+        "type": "discovery",
+        "url": "../why/discoveries/discovery-topology-test-target-repos.html",
+        "body": "Discovery Upstream tools/test topology.php hard codes VibeKB self hosted diagram ids self maintenance loop , content load flow . Installed target repositories like Stoppr fail that test even when their own topologies are valid. Action taken Adapted the installed copy to discover a carrier diagram and a known good topology from the local .vibekb/diagrams/ set skipping the carrier when asserting the good fixture . Next upstream upgrade may overwrite this file — re apply or contribute the project agnostic fix to VibeKB."
+    },
+    {
         "title": "VibeKB rebootstrap with Explainable Diagrams",
         "summary": "Rebuilt .vibekb from Stoppr source using current VibeKB main tooling and static generator.",
         "type": "change",
         "url": "../why/changes/vibekb-rebootstrap.html",
         "body": "Before Older .vibekb/ and hand oriented /docs without current topology/explainable diagram contract; backed up under VibeKBbackup/ . After Fresh model + guide/ + tools/ from VibeKB commit used for rebootstrap; static /docs regenerated. Impact Documentation accuracy depends on this analysis commit; app code unchanged."
+    },
+    {
+        "title": "Upgrade VibeKB runtime and re-analyze Stoppr",
+        "summary": "",
+        "type": "change",
+        "url": "../why/changes/change-vibekb-upgrade-2026-07-23.html",
+        "body": "What changed Upgraded the Stoppr repository from the prior manually integrated VibeKB snapshot content model dated 2026 07 21, pre installer to the current VibeKB implementation from cubixmeow commits/VibeKB tip 3b6ba7d : Native installer payload guide/ , tools/ including vibekb.php , template/starter/ , prompts/ , INSTALLER.md , .cursor/rules/vibekb.mdc Fresh Stoppr analysis against commit f01661b lib/ unchanged since prior rebootstrap; claim drift corrected where re trace found gaps Regenerated Mode B /docs Why Owner requested upgrade to the latest VibeKB and a fresh analysis so the living model and generated guide match the newest runtime. Backup VibeKBbackup/pre upgrade 2026 07 23/ holds the complete prior knowledge, docs, config, and generated surfaces for restore."
     },
     {
         "title": "Mental model",
@@ -816,13 +830,13 @@
         "summary": "",
         "type": "current work",
         "url": "../current-work/index.html",
-        "body": "Requested outcome Backup existing model/docs, rebuild .vibekb/ from current Stoppr source using current VibeKB instructions, generate /docs , validate. Verification plan php tools/validate.php php tools/test topology.php adapted to Stoppr topologies Secret scan of /docs Confirm no application source diffs"
+        "body": "Requested outcome 1. Complete backup of existing VibeKB knowledge/docs/config/generated data. 2. Upgrade runtime from latest cubixmeow commits/VibeKB . 3. Fresh Stoppr analysis and regenerate /docs . 4. Do not modify Stoppr application code. Verification plan php tools/vibekb.php check php tools/test topology.php php tools/vibekb.php generate Confirm no lib/ / app source diffs Secret scan of /docs"
     },
     {
         "title": "Handoff",
         "summary": "",
         "type": "handoff",
         "url": "../handoff/index.html",
-        "body": "Current functionality state Stoppr at commit 9f44315 is a Flutter sugar habit app with full onboarding, Firebase auth, Superwall/RevenueCat gating, home wellness loops, community, nutrition AI tools, learn content, widgets, and platform services. Completed this session Backed up prior .vibekb/ and docs/ into VibeKBbackup/ . Installed current VibeKB guide/ + tools/ + authoring docs. Rebuilt living software model and Explainable Diagrams from source. Regenerated static /docs . Still open / landmines Superwall INSERT YOUR placements. Widget app group placeholder. Android Superwall purchase controller asymmetry. .env vs .env.local naming mismatch. Quota system disabled flags. Exact next recommended action Replace Superwall placeholder placement IDs or confirm dashboard aliases and re verify a "
+        "body": "Current functionality state Stoppr at commit f01661b app 7.4.2+1 is a Flutter sugar habit app with full onboarding, Firebase auth, Superwall/RevenueCat gating, home wellness loops, community, nutrition AI tools, learn content, widgets, and platform services. VibeKB runtime was upgraded from canonical VibeKB tip 3b6ba7d installer template 1.0.0 / CLI vibekb built from that tip . Completed this session Full backup at VibeKBbackup/pre upgrade 2026 07 23/ . vibekb install upgrade refreshed guide/tools/prompts/template/docs. Preserved Flutter CLAUDE.md + flutter.mdc ; dual AGENTS.md bridge. Fresh source re analysis; corrected drift on navigation, relapse, forum, food scan, and soft paywalls records. Adapted tools/test topology.php to discover local diagram fixtures upstream test assumed VibeKB "
     }
 ]

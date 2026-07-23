@@ -10,7 +10,9 @@ declare(strict_types=1);
  * human-readable report and exits non-zero if there are any errors, so it can
  * gate commits and CI.
  *
- * Usage: php tools/validate.php
+ * Usage:
+ *   php tools/validate.php                         # validate the active .vibekb/
+ *   php tools/validate.php examples/sousmeow/.vibekb   # validate a bundled example
  *
  * Checks (loader): duplicate ids; functionality missing required fields;
  * invalid statuses/verification/safety; unresolved depends_on / related_memory /
@@ -29,9 +31,25 @@ require_once $repoRoot . '/guide/lib/Provenance.php';
 require_once $repoRoot . '/guide/lib/UrlStrategy.php';
 require_once $repoRoot . '/guide/lib/search.php';
 
+// Optional first argument: a content root to validate instead of the active
+// .vibekb/ (used to validate bundled example models). Relative paths resolve
+// against the repository root; the path must end in a `.vibekb` directory.
 $contentRoot = $repoRoot . '/.vibekb';
+$argPath = $argv[1] ?? '';
+if ($argPath !== '') {
+    $candidate = (str_starts_with($argPath, '/') ? $argPath : $repoRoot . '/' . $argPath);
+    $candidate = rtrim($candidate, '/');
+    if (basename($candidate) !== '.vibekb' || !is_dir($candidate)) {
+        fwrite(STDERR, "Not a .vibekb content directory: {$argPath}\n");
+        exit(2);
+    }
+    $contentRoot = $candidate;
+}
+
 $content = new Content($contentRoot);
 $content->load();
+
+echo 'Validating: ' . $contentRoot . "\n";
 
 $errors = [];
 $warnings = [];
@@ -63,8 +81,10 @@ if ($records > 0 && $areas === 0) {
 }
 
 // ---- generated snapshot search index resolves -----------------------------
+// Only meaningful for the active model — /docs is the snapshot of the active
+// .vibekb/, not of a bundled example.
 $searchJson = $repoRoot . '/docs/assets/data/search.json';
-if (is_file($searchJson)) {
+if ($contentRoot === $repoRoot . '/.vibekb' && is_file($searchJson)) {
     $idx = json_decode((string) file_get_contents($searchJson), true);
     if (is_array($idx)) {
         $searchDir = $repoRoot . '/docs/search';

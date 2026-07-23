@@ -3,7 +3,7 @@ id: system-data-flow
 type: system
 title: Data flow
 summary: User actions update SharedPreferences and Firestore; purchases update RevenueCat then mirror fields to Firestore.
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## Paths

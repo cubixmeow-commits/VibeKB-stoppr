@@ -4,12 +4,23 @@ This is the reproducible process for an AI agent to initialize VibeKB in a real
 project and produce a **living software model** that explains what the
 application currently does — honestly separating intended, implemented, and
 verified behaviour. Followed carefully, it reproduces the quality demonstrated
-by the StopPR field test (see `docs/STOPPR_INTEGRATION_AUDIT.md`).
+by the StopPR field test (see `examples/field-tests/STOPPR_INTEGRATION_AUDIT.md`)
+and by VibeKB's own self-hosted model (the active `.vibekb/` in this repository).
 
-Copy `guide/` (the app + renderer), `tools/` (the static generator + the
-validator), `PRODUCT.md`, `CLAUDE.md`/`AGENTS.md`, and `SCHEMA.md` into the
-target repo, then build a fresh `.vibekb/` following the steps below. A
-project-agnostic prompt that drives this workflow lives at
+First install VibeKB with the installer, which prepares the workspace without
+touching or analysing the application's code:
+
+```bash
+git clone https://github.com/cubixmeow-commits/VibeKB.git
+php VibeKB/install.php /path/to/target
+```
+
+That copies the runtime (`guide/`, `tools/`, `prompts/`, `.cursor/`, and the
+VibeKB docs) and scaffolds a fresh, empty-but-valid `.vibekb/` for you to fill in
+— so you start from valid scaffolding, not a blank directory. (See
+[INSTALLER.md](./INSTALLER.md); a manual copy + `php tools/vibekb.php bootstrap`
+is the appendix alternative.) Then build the `.vibekb/` model following the steps
+below. A project-agnostic prompt that drives this workflow lives at
 [`prompts/INTEGRATE_VIBEKB.md`](./prompts/INTEGRATE_VIBEKB.md).
 
 > **Never modify the target application's code** to initialize VibeKB, unless
@@ -77,8 +88,10 @@ verify the chosen output.
        `#edge-<id>` anchors so the diagram is usable without JavaScript.
     7. Quality test: read the visible nodes and edge labels as a sentence — the
        diagram should teach how the software works before any selection.
-13. **Validate the `.vibekb/` model** with `php tools/validate.php` (and
-    `php tools/test-topology.php`). Resolve every error (duplicate ids, missing
+13. **Validate the `.vibekb/` model** with `php tools/vibekb.php check` (which
+    runs validation, broken-reference detection, and — once a snapshot exists —
+    the `/docs` sync check) and `php tools/test-topology.php`. Resolve every error
+    (duplicate ids, missing
     references, invalid statuses/verification states, missing diagram assets,
     diagrams lacking title/description, topology contract violations,
     out-of-vocabulary edge mechanisms, files without reasons, SVG markers that

@@ -1,0 +1,27 @@
+{
+    "_comment": "Canonical VibeKB starter-workspace definition. Language-neutral data read by BOTH the Go installer (embedded) and tools/lib/Starter.php (on disk). dirs[] lists every directory a fresh .vibekb/ must contain (including intentionally-empty ones); files under files/ mirror onto the target .vibekb/ with {{DATE}} and {{PROJECT_NAME_JSON}} substituted. Do not hand-duplicate this into code.",
+    "dirs": [
+        "project",
+        "functionality",
+        "functionality/records",
+        "system",
+        "files",
+        "diagrams",
+        "diagrams/records",
+        "diagrams/assets",
+        "diagrams/topology",
+        "memory",
+        "memory/decisions",
+        "memory/constraints",
+        "memory/assumptions",
+        "memory/warnings",
+        "memory/discoveries",
+        "memory/changes",
+        "work",
+        "work/sessions"
+    ],
+    "tokens": {
+        "{{DATE}}": "YYYY-MM-DD the workspace was created",
+        "{{PROJECT_NAME_JSON}}": "JSON-encoded project name, including surrounding quotes"
+    }
+}

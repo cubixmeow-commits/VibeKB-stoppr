@@ -16,16 +16,17 @@ Update `.vibekb/` when behavior users or developers would notice changes:
 
 ## Workflow
 
-1. Read `work/handoff.md` and `work/current.md`.
-2. Inspect source under `lib/` — not README alone.
-3. Edit records in `.vibekb/`; keep statuses and verification honest.
-4. Update Explainable Diagrams if the picture changed.
-5. Validate and regenerate:
+1. Start with `php tools/vibekb.php status`.
+2. Read `work/handoff.md` and `work/current.md`.
+3. Inspect source under `lib/` — not README alone.
+4. Edit records in `.vibekb/`; keep statuses and verification honest.
+5. Update Explainable Diagrams if the picture changed.
+6. Validate and regenerate:
 
 ```bash
-php tools/validate.php
+php tools/vibekb.php check
 php tools/test-topology.php
-php tools/generate-static.php
+php tools/vibekb.php generate
 ```
 
 ## Do not
@@ -38,5 +39,5 @@ php tools/generate-static.php
 
 ## Schema reference
 
-See [`SCHEMA.md`](SCHEMA.md) and upstream
+See [`SCHEMA.md`](SCHEMA.md), [`INSTALLER.md`](INSTALLER.md), and upstream
 [VibeKB](https://github.com/cubixmeow-commits/VibeKB).

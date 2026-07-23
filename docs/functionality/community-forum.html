@@ -108,7 +108,7 @@
     <header class="page-head reading-column">
         <p class="eyebrow">Community</p>
         <h1>Community forum</h1>
-        <p class="lede">Firestore-backed posts and nested comments with blocked-user filtering.</p>
+        <p class="lede">Firestore-backed posts and nested comments; blocked-user filtering is incomplete on the current Cubit stream path.</p>
         <div class="badge-row">
             <span class="badge badge--ok">Implemented</span>            <span class="badge badge--ok">Verified from source</span>            <span class="badge badge--info">User-facing</span>        </div>
     </header>
@@ -118,10 +118,12 @@
                             <div class="prose reading-column"><h3>In one sentence</h3>
 <p>Forum content lives in <code>community_posts</code> (+ <code>comments</code> subcollection).</p>
 <h3>Current behavior</h3>
-<p>Create/list/like/comment flows via <code>CommunityRepository</code>. Blocked users filtered
-from views.</p>
+<p>Create/list/like/comment flows via <code>CommunityRepository</code>. Blocked-user
+filtering is <strong>not</strong> reliably applied by the current <code>CommunityCubit</code> stream
+path — treat blocked-user hiding as incomplete unless re-verified after a
+Cubit/repository change.</p>
 <h3>Current state</h3>
-<p>Implemented; verified-from-source.</p></div>
+<p>Implemented; verified-from-source (re-checked 2026-07-23).</p></div>
                     </div>
 
         <aside class="detail-rail" aria-label="Record metadata">
@@ -133,7 +135,7 @@ from views.</p>
                                             <dt>Verification</dt>
                         <dd><span class="badge badge--ok">Verified from source</span></dd>
                                         <dt>Updated</dt>
-                    <dd>2026-07-21</dd>
+                    <dd>2026-07-23</dd>
                     <dt>Facing</dt>
                     <dd>User-facing</dd>
                 </dl>
@@ -189,7 +191,7 @@ from views.</p>
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 06:26 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
             </div>
         </footer>
     </div>

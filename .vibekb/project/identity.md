@@ -12,7 +12,7 @@ stack_monetization: Superwall paywalls + RevenueCat purchases
 stack_analytics: Mixpanel, AppsFlyer, Facebook App Events
 source_repository: "https://github.com/cubixmeow-commits/VibeKB-stoppr"
 verification: verified-from-source
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## What the software is

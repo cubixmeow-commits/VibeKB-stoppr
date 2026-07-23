@@ -1,0 +1,5 @@
+{
+  "_comment": "Define diagram groups as { id, title, description } in groups[], and list diagram record ids in display order in order[]. Only add source-grounded, explainable diagrams. See SCHEMA.md and INITIALIZE.md.",
+  "groups": [],
+  "order": []
+}

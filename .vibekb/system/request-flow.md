@@ -3,7 +3,7 @@ id: system-request-flow
 type: system
 title: Request and navigation flow
 summary: Imperative Navigator flows from main bootstrap; deep links inject target screens.
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## How control moves

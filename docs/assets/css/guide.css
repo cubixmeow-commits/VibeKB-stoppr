@@ -1376,3 +1376,299 @@ td code {
 @media (max-width: 640px) {
     .site-search input { width: 40vw; }
 }
+
+/* ============================================================
+   Functionality Map — the guide's first screen
+   A high-level, interactive map of what the software does. Progressive
+   enhancement: the accessible fallback (nested area cards) is styled here too
+   and is shown without JS, on small screens, and in list mode.
+   ============================================================ */
+
+.fmap { margin: 0 0 2.4rem; }
+.fmap__intro { margin-bottom: 1.1rem; }
+.fmap__intro .eyebrow { margin-bottom: 0.35rem; }
+.fmap__lead-note { margin: 0.5rem 0 0; font-size: 0.98rem; }
+
+/* Status colour tokens shared by dots and node accents. */
+.fmap-dot {
+    --dot: var(--unknown-fg);
+    display: inline-block;
+    width: 0.62rem; height: 0.62rem;
+    border-radius: 50%;
+    background: var(--dot);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--dot) 18%, transparent);
+    flex: 0 0 auto;
+}
+[data-status="implemented"] { --dot: #1f9d57; }
+[data-status="planned"] { --dot: #0c7c6c; }
+[data-status="partial"], [data-status="experimental"], [data-status="needs-verification"] { --dot: #c07c1e; }
+[data-status="disabled"], [data-status="deprecated"] { --dot: #7c8a83; }
+[data-status="broken"] { --dot: #c0392b; }
+[data-status="unknown"] { --dot: #8a938c; }
+
+/* ---- Current-context banner ---- */
+.fmap-context {
+    display: flex; align-items: center; gap: 0.7rem;
+    margin: 0 0 1.1rem;
+    padding: 0.7rem 1rem;
+    background: linear-gradient(90deg, var(--accent-soft), var(--accent-soft-2));
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    border-radius: var(--radius);
+}
+.fmap-context__pulse {
+    width: 0.7rem; height: 0.7rem; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent);
+    animation: fmap-pulse 2.2s ease-out infinite;
+    flex: 0 0 auto;
+}
+@keyframes fmap-pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); }
+    70% { box-shadow: 0 0 0 12px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+}
+.fmap-context__body { margin: 0; }
+.fmap-context__label {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 700; color: var(--accent-deep); margin-right: 0.35rem;
+}
+
+/* ---- Live statistics ---- */
+.fmap-stats {
+    list-style: none; margin: 0 0 1.1rem; padding: 0;
+    display: grid; gap: 0.6rem;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.fmap-stat { margin: 0; }
+.fmap-stat__link {
+    display: flex; flex-direction: column; gap: 0.15rem;
+    padding: 0.85rem 0.9rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); text-decoration: none; color: var(--text);
+    box-shadow: var(--shadow);
+    transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+.fmap-stat__link:hover {
+    transform: translateY(-2px); color: var(--text);
+    border-color: var(--border-strong);
+    box-shadow: 0 6px 18px rgba(26, 36, 33, 0.09);
+}
+.fmap-stat__value { font-family: var(--display); font-weight: 800; font-size: 1.55rem; line-height: 1.05; color: var(--accent-deep); }
+.fmap-stat__label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.01em; }
+
+/* ---- Interactive stage ---- */
+.fmap__frame { position: relative; }
+.fmap__hint {
+    display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem;
+    margin: 0 0 0.6rem; font-size: 0.82rem; color: var(--muted);
+}
+.fmap__hint span { display: inline-flex; align-items: center; }
+
+.fmap-stage {
+    position: relative;
+    height: clamp(420px, 62vh, 640px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: var(--shell-bg);
+    background-image:
+        radial-gradient(circle at center, rgba(12, 124, 108, 0.05), transparent 70%),
+        radial-gradient(rgba(26, 36, 33, 0.06) 1px, transparent 1px);
+    background-size: auto, 26px 26px;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.fmap-stage.is-grabbing { cursor: grabbing; }
+
+.fmap-stage__canvas {
+    position: absolute; top: 0; left: 0;
+    width: 2800px; height: 1800px;
+    transform-origin: 0 0;
+    will-change: transform;
+}
+.fmap-edges { position: absolute; top: 0; left: 0; overflow: visible; pointer-events: none; }
+.fmap-edge {
+    fill: none;
+    stroke: var(--border-strong);
+    stroke-width: 1.5;
+    opacity: 0.55;
+}
+.fmap-edge.is-current { stroke: var(--accent); stroke-width: 2.2; opacity: 0.9; }
+
+.fmap-nodes { position: absolute; top: 0; left: 0; }
+
+/* Nodes */
+.fmap-cnode {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex; flex-direction: column; gap: 0.2rem;
+    text-align: left;
+    font: inherit; color: var(--text);
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.6rem 0.75rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: box-shadow 150ms ease, border-color 150ms ease, transform 120ms ease;
+}
+.fmap-cnode:hover { z-index: 5; border-color: var(--accent); box-shadow: 0 8px 24px rgba(26, 36, 33, 0.14); }
+.fmap-cnode:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; z-index: 6; }
+.fmap-cnode.is-selected { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft), 0 8px 24px rgba(26, 36, 33, 0.14); z-index: 5; }
+.fmap-cnode__row { display: flex; align-items: center; gap: 0.45rem; }
+.fmap-cnode__eyebrow { font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; opacity: 0.75; }
+.fmap-cnode__title { font-family: var(--display); font-weight: 700; line-height: 1.2; }
+.fmap-cnode__sub { font-size: 0.78rem; color: var(--muted); line-height: 1.35; }
+.fmap-cnode__badge {
+    align-self: flex-start; margin-top: 0.1rem;
+    font-size: 0.7rem; font-weight: 700; color: var(--accent-deep);
+    background: var(--accent-soft-2); border-radius: 999px; padding: 0.05rem 0.5rem;
+}
+.fmap-cnode__badge--soft { color: var(--muted); background: var(--surface-inset); font-weight: 600; }
+
+.fmap-cnode--app {
+    width: 190px; align-items: center; text-align: center;
+    background: linear-gradient(150deg, var(--accent), var(--accent-deep));
+    border: none; color: #fff;
+    box-shadow: 0 10px 30px rgba(8, 90, 78, 0.32);
+    z-index: 4;
+}
+.fmap-cnode--app .fmap-cnode__title { color: #fff; font-size: 1.15rem; }
+.fmap-cnode--app .fmap-cnode__eyebrow { color: rgba(255,255,255,0.82); }
+.fmap-cnode--app .fmap-cnode__sub { color: rgba(255,255,255,0.9); }
+
+.fmap-cnode--area {
+    width: 200px;
+    border-left: 4px solid var(--dot, var(--accent));
+    --dot: var(--accent);
+}
+.fmap-cnode--area[data-status] { border-left-color: var(--dot); }
+
+.fmap-cnode--leaf { width: 172px; padding: 0.5rem 0.65rem; background: var(--surface); }
+.fmap-cnode--leaf .fmap-cnode__title { font-size: 0.9rem; font-weight: 600; }
+
+.fmap-cnode.is-current {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent), 0 10px 26px rgba(8, 90, 78, 0.22);
+}
+.fmap-cnode.is-current::after {
+    content: "In context";
+    position: absolute; top: -0.7rem; right: -0.4rem;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.04em;
+    color: #fff; background: var(--accent); border-radius: 999px; padding: 0.1rem 0.45rem;
+    box-shadow: var(--shadow);
+}
+
+/* Dim everything else when a context is active so highlighted nodes lead. */
+.fmap--canvas .fmap-nodes.has-context .fmap-cnode:not(.is-current):not(.fmap-cnode--app) { opacity: 0.72; }
+
+.fmap-cnode.is-entering { animation: fmap-pop 260ms cubic-bezier(.22,.61,.36,1) both; }
+@keyframes fmap-pop {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Controls */
+.fmap-stage__controls {
+    position: absolute; right: 12px; bottom: 12px;
+    display: flex; gap: 6px; align-items: center; z-index: 10;
+}
+.fmap-ctrl {
+    min-width: 34px; height: 34px; padding: 0 0.5rem;
+    display: inline-flex; align-items: center; justify-content: center;
+    font: inherit; font-weight: 700; font-size: 0.95rem;
+    color: var(--text); background: rgba(255, 252, 247, 0.95);
+    border: 1px solid var(--border); border-radius: 9px;
+    cursor: pointer; box-shadow: var(--shadow);
+    backdrop-filter: blur(4px);
+}
+.fmap-ctrl:hover { border-color: var(--accent); color: var(--accent-deep); }
+.fmap-ctrl:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.fmap-ctrl--wide { font-size: 0.82rem; font-weight: 600; }
+
+/* Tooltip */
+.fmap-tooltip {
+    position: absolute; z-index: 20; transform: translate(-50%, -100%);
+    max-width: 260px; pointer-events: none;
+    display: flex; flex-direction: column; gap: 0.2rem;
+    padding: 0.55rem 0.7rem;
+    background: #1a2421; color: #f4f0e8;
+    border-radius: 9px; box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+    font-size: 0.8rem; line-height: 1.4;
+}
+.fmap-tooltip strong { font-family: var(--display); font-size: 0.9rem; }
+.fmap-tooltip__meta { color: #b9c6bf; font-size: 0.74rem; }
+.fmap-tooltip__hint { color: #8fb8ac; font-size: 0.7rem; margin-top: 0.15rem; }
+
+/* ---- Fallback / list view (no-JS, mobile, and desktop list mode) ---- */
+.fmap--canvas:not(.fmap--list) .fmap-fallback { display: none; }
+.fmap--canvas:not(.fmap--list) .fmap-stage { display: block; }
+
+.fmap-fallback__intro { margin: 0 0 0.9rem; }
+.fmap-fallback__toggle { margin: 0 0 1rem; }
+
+.fmap-area-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+.fmap-area-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    overflow: hidden;
+}
+.fmap-area-card.is-current { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft), var(--shadow); }
+.fmap-area-card__details { padding: 0; }
+.fmap-area-card__summary {
+    list-style: none; cursor: pointer; padding: 0.9rem 1.1rem;
+    display: flex; flex-direction: column; gap: 0.3rem;
+}
+.fmap-area-card__summary::-webkit-details-marker { display: none; }
+.fmap-area-card__summary:hover { background: var(--surface-interactive); }
+.fmap-area-card__summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.fmap-area-card__head { display: flex; align-items: center; gap: 0.5rem; }
+.fmap-area-card__title { font-family: var(--display); font-weight: 700; font-size: 1.05rem; }
+.fmap-area-card__count {
+    margin-left: auto; font-size: 0.78rem; font-weight: 700; color: var(--accent-deep);
+    background: var(--accent-soft-2); border-radius: 999px; padding: 0.05rem 0.55rem;
+}
+.fmap-area-card__desc { color: var(--muted); font-size: 0.9rem; padding-left: 1.12rem; }
+.fmap-area-card__more { margin: 0.2rem 1.1rem 1rem; }
+
+.fmap-tag {
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.03em;
+    border-radius: 999px; padding: 0.1rem 0.5rem;
+}
+.fmap-tag--current { color: #fff; background: var(--accent); }
+
+.fmap-node-list { list-style: none; margin: 0 1.1rem 0.6rem; padding: 0; display: grid; gap: 0.4rem; }
+.fmap-node { margin: 0; }
+.fmap-node__link {
+    display: flex; flex-direction: column; gap: 0.15rem;
+    padding: 0.6rem 0.75rem; text-decoration: none; color: var(--text);
+    background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-sm);
+    transition: border-color 130ms ease, transform 130ms ease;
+}
+.fmap-node__link:hover { border-color: var(--accent); transform: translateX(2px); color: var(--text); }
+.fmap-node.is-current .fmap-node__link { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.fmap-node__title { display: flex; align-items: center; gap: 0.45rem; font-weight: 600; }
+.fmap-node__summary { color: var(--muted); font-size: 0.85rem; padding-left: 1.07rem; }
+.fmap-node__meta { display: flex; flex-wrap: wrap; gap: 0.35rem 0.8rem; padding-left: 1.07rem; font-size: 0.76rem; color: var(--muted); }
+.fmap-node__open { color: var(--accent-deep); font-weight: 600; }
+
+/* Responsive statistics + hide the stage on small screens (fallback takes over) */
+@media (max-width: 900px) {
+    .fmap-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+    .fmap-stage, .fmap__hint { display: none !important; }
+    .fmap-fallback { display: block !important; }
+}
+@media (max-width: 460px) {
+    .fmap-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fmap-stat__value { font-size: 1.3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fmap-cnode, .fmap-stat__link, .fmap-node__link { transition: none; }
+    .fmap-cnode.is-entering { animation: none; }
+    .fmap-context__pulse { animation: none; }
+}

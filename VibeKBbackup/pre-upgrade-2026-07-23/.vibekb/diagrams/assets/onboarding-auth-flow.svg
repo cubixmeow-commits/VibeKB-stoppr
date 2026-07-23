@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 870 280" role="img" aria-labelledby="oa-title oa-desc">
+  <title id="oa-title">Onboarding and authentication flow</title>
+  <desc id="oa-desc">Users move from welcome screens through auth providers, questionnaire and profile personalization, the Superwall pre-paywall, and into MainScaffold. One dashed edge marks funnel ordering inferred across Navigator calls.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4f5c56"/>
+    </marker>
+    
+    <style>
+      .t { font-family:"Figtree","Segoe UI",sans-serif; fill:#1a2421; }
+      .box { stroke:#b9c6c0; stroke-width:1.5; fill:#e7f4f0; }
+      .gate { fill:#f6ead4; stroke:#7a4210; stroke-width:1.5; }
+      .store { fill:#fffcf7; stroke:#b9c6c0; stroke-width:1.5; }
+      .warn { fill:#f8e4e0; stroke:#8a2f2f; stroke-width:1.5; }
+      .lbl { font-size:12px; font-weight:600; }
+      .sm { font-size:10px; fill:#4f5c56; }
+      .arrow { stroke:#4f5c56; stroke-width:1.6; fill:none; marker-end:url(#arrow); }
+      .arrow-inferred { stroke:#4f5c56; stroke-width:1.6; fill:none; stroke-dasharray:7 5; marker-end:url(#arrow); }
+      .hit { stroke:transparent; stroke-width:16; fill:none; }
+      .title { font-size:18px; font-weight:800; font-family:"Outfit","Figtree",sans-serif; }
+      .elbl { font-size:9px; fill:#4f5c56; }
+    </style>
+  </defs>
+  <rect width="870" height="280" fill="#f4f0e8"/>
+  <text class="t title" x="28" y="36">Onboarding and authentication flow</text>
+  <text class="t sm" x="28" y="54">Solid = verified · Dashed = inferred funnel ordering. Select any element for details.</text>
+
+  <a href="#node-welcome" xlink:href="#node-welcome" class="dnode" data-vibekb-node="welcome">
+    <title>Welcome + early onboarding — open explanation</title>
+    <rect class="box" x="20" y="140" width="140" height="70" rx="9"/>
+    <text class="t lbl" x="90" y="168" text-anchor="middle">Welcome</text>
+    <text class="t sm" x="90" y="186" text-anchor="middle">intro screens</text>
+  </a>
+  <a href="#node-auth-providers" xlink:href="#node-auth-providers" class="dnode" data-vibekb-node="auth-providers">
+    <title>Auth providers — open explanation</title>
+    <rect class="gate" x="190" y="140" width="140" height="70" rx="9"/>
+    <text class="t lbl" x="260" y="168" text-anchor="middle">Auth providers</text>
+    <text class="t sm" x="260" y="186" text-anchor="middle">Google/Apple/email/anon</text>
+  </a>
+  <a href="#node-questionnaire" xlink:href="#node-questionnaire" class="dnode" data-vibekb-node="questionnaire">
+    <title>Questionnaire + profile — open explanation</title>
+    <rect class="box" x="360" y="140" width="150" height="70" rx="9"/>
+    <text class="t lbl" x="435" y="168" text-anchor="middle">Questionnaire</text>
+    <text class="t sm" x="435" y="186" text-anchor="middle">profile · goals · analysis</text>
+  </a>
+  <a href="#node-pre-paywall" xlink:href="#node-pre-paywall" class="dnode" data-vibekb-node="pre-paywall">
+    <title>Pre-paywall — open explanation</title>
+    <rect class="gate" x="540" y="140" width="140" height="70" rx="9"/>
+    <text class="t lbl" x="610" y="168" text-anchor="middle">Pre-paywall</text>
+    <text class="t sm" x="610" y="186" text-anchor="middle">Superwall gate</text>
+  </a>
+  <a href="#node-main-scaffold" xlink:href="#node-main-scaffold" class="dnode" data-vibekb-node="main-scaffold">
+    <title>MainScaffold — open explanation</title>
+    <rect class="box" x="710" y="140" width="140" height="70" rx="9"/>
+    <text class="t lbl" x="780" y="168" text-anchor="middle">MainScaffold</text>
+    <text class="t sm" x="780" y="186" text-anchor="middle">app shell</text>
+  </a>
+
+  <a href="#edge-welcome-to-auth" xlink:href="#edge-welcome-to-auth" class="dedge" data-vibekb-edge="welcome-to-auth">
+    <title>routes to auth — verified</title>
+    <line class="hit" x1="160" y1="175" x2="190" y2="175"/>
+    <line class="arrow" x1="160" y1="175" x2="190" y2="175"/>
+    <text class="t elbl" x="162" y="166">routes-to</text>
+  </a>
+  <a href="#edge-auth-to-questionnaire" xlink:href="#edge-auth-to-questionnaire" class="dedge" data-vibekb-edge="auth-to-questionnaire">
+    <title>routes to questionnaire — inferred</title>
+    <line class="hit" x1="330" y1="175" x2="360" y2="175"/>
+    <line class="arrow-inferred" x1="330" y1="175" x2="360" y2="175"/>
+    <text class="t elbl" x="318" y="166">routes-to (inferred)</text>
+  </a>
+  <a href="#edge-questionnaire-to-paywall" xlink:href="#edge-questionnaire-to-paywall" class="dedge" data-vibekb-edge="questionnaire-to-paywall">
+    <title>routes to paywall — verified</title>
+    <line class="hit" x1="510" y1="175" x2="540" y2="175"/>
+    <line class="arrow" x1="510" y1="175" x2="540" y2="175"/>
+    <text class="t elbl" x="512" y="166">routes-to</text>
+  </a>
+  <a href="#edge-paywall-to-main" xlink:href="#edge-paywall-to-main" class="dedge" data-vibekb-edge="paywall-to-main">
+    <title>routes to main — verified</title>
+    <line class="hit" x1="680" y1="175" x2="710" y2="175"/>
+    <line class="arrow" x1="680" y1="175" x2="710" y2="175"/>
+    <text class="t elbl" x="682" y="166">routes-to</text>
+  </a>
+
+</svg>

@@ -1,0 +1,40 @@
+---
+description: VibeKB — canonical operating rules and maintenance lifecycle for coding agents
+globs:
+alwaysApply: true
+---
+
+# Working on VibeKB (Cursor)
+
+The **canonical, repository-owned** workflow lives in `CLAUDE.md`. This rule is a
+pointer so Cursor discovers it automatically — read `CLAUDE.md` for the full
+lifecycle. Do not duplicate the workflow here; if they ever disagree, `CLAUDE.md`
+wins.
+
+## Do this every session
+
+- **Start with** `php tools/vibekb.php status` for orientation (provenance,
+  current work, handoff next-action, drift).
+- **VibeKB is self-hosted:** the active `.vibekb/` describes VibeKB itself. Models
+  of other apps under `examples/` are demonstrations, **not** the active model.
+- **The product is locked:** VibeKB explains *what the software is currently
+  doing*, organized around **functionality**. It is not a docs generator, memory
+  archive, code browser, or activity log (see `PRODUCT.md`).
+
+## The lifecycle (from `CLAUDE.md`)
+
+orient → record work (`.vibekb/work/current.md`) → implement → find impact
+(`php tools/vibekb.php affected --since <base>`) → verify honestly → update the
+living model (records, memory, diagrams, provenance) → update the handoff →
+`php tools/vibekb.php check` + `php tools/vibekb.php generate`.
+
+## Honesty
+
+Distinguish intended / implemented / verified. Never claim `verified-*` you did
+not confirm. Never imply VibeKB auto-updates. Keep the app on PHP 8.2 with no
+build step, no database, and no external/AI API; escape all output.
+
+## Before finishing
+
+`php tools/vibekb.php check` clean, `php tools/test-topology.php` OK, `/docs`
+regenerated, handoff accurate.

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 320" role="img" aria-labelledby="ps-title ps-desc">
+  <title id="ps-title">Persistence and storage map</title>
+  <desc id="ps-desc">Feature repositories write to Firestore and SharedPreferences, push selected values through the HomeWidget bridge, and may upload food images to Firebase Storage. Dashed edges mark inferred native widget delivery and upload branching.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4f5c56"/>
+    </marker>
+    
+    <style>
+      .t { font-family:"Figtree","Segoe UI",sans-serif; fill:#1a2421; }
+      .box { stroke:#b9c6c0; stroke-width:1.5; fill:#e7f4f0; }
+      .gate { fill:#f6ead4; stroke:#7a4210; stroke-width:1.5; }
+      .store { fill:#fffcf7; stroke:#b9c6c0; stroke-width:1.5; }
+      .warn { fill:#f8e4e0; stroke:#8a2f2f; stroke-width:1.5; }
+      .lbl { font-size:12px; font-weight:600; }
+      .sm { font-size:10px; fill:#4f5c56; }
+      .arrow { stroke:#4f5c56; stroke-width:1.6; fill:none; marker-end:url(#arrow); }
+      .arrow-inferred { stroke:#4f5c56; stroke-width:1.6; fill:none; stroke-dasharray:7 5; marker-end:url(#arrow); }
+      .hit { stroke:transparent; stroke-width:16; fill:none; }
+      .title { font-size:18px; font-weight:800; font-family:"Outfit","Figtree",sans-serif; }
+      .elbl { font-size:9px; fill:#4f5c56; }
+    </style>
+  </defs>
+  <rect width="800" height="320" fill="#f4f0e8"/>
+  <text class="t title" x="28" y="36">Persistence and storage map</text>
+  <text class="t sm" x="28" y="54">Where Stoppr keeps state. Dashed = inferred native/widget delivery details.</text>
+
+  <a href="#node-features" xlink:href="#node-features" class="dnode" data-vibekb-node="features">
+    <title>Feature repositories — open explanation</title>
+    <rect class="box" x="320" y="80" width="180" height="64" rx="9"/>
+    <text class="t lbl" x="410" y="106" text-anchor="middle">Feature repositories</text>
+    <text class="t sm" x="410" y="124" text-anchor="middle">domain writers</text>
+  </a>
+  <a href="#node-firestore" xlink:href="#node-firestore" class="dnode" data-vibekb-node="firestore">
+    <title>Cloud Firestore — open explanation</title>
+    <rect class="store" x="40" y="220" width="150" height="64" rx="9"/>
+    <text class="t lbl" x="115" y="246" text-anchor="middle">Cloud Firestore</text>
+    <text class="t sm" x="115" y="264" text-anchor="middle">users · community</text>
+  </a>
+  <a href="#node-prefs" xlink:href="#node-prefs" class="dnode" data-vibekb-node="prefs">
+    <title>SharedPreferences — open explanation</title>
+    <rect class="store" x="230" y="220" width="150" height="64" rx="9"/>
+    <text class="t lbl" x="305" y="246" text-anchor="middle">SharedPreferences</text>
+    <text class="t sm" x="305" y="264" text-anchor="middle">resume · streak · fast</text>
+  </a>
+  <a href="#node-widgets-bridge" xlink:href="#node-widgets-bridge" class="dnode" data-vibekb-node="widgets-bridge">
+    <title>HomeWidget bridge — open explanation</title>
+    <rect class="box" x="420" y="220" width="150" height="64" rx="9"/>
+    <text class="t lbl" x="495" y="246" text-anchor="middle">HomeWidget bridge</text>
+    <text class="t sm" x="495" y="264" text-anchor="middle">iOS / Android widgets</text>
+  </a>
+  <a href="#node-storage-bucket" xlink:href="#node-storage-bucket" class="dnode" data-vibekb-node="storage-bucket">
+    <title>Firebase Storage — open explanation</title>
+    <rect class="store" x="610" y="220" width="150" height="64" rx="9"/>
+    <text class="t lbl" x="685" y="246" text-anchor="middle">Firebase Storage</text>
+    <text class="t sm" x="685" y="264" text-anchor="middle">food images</text>
+  </a>
+
+  <a href="#edge-features-to-firestore" xlink:href="#edge-features-to-firestore" class="dedge" data-vibekb-edge="features-to-firestore">
+    <title>writes Firestore — verified</title>
+    <line class="hit" x1="340" y1="144" x2="140" y2="220"/>
+    <line class="arrow" x1="340" y1="144" x2="140" y2="220"/>
+    <text class="t elbl" x="200" y="170">writes</text>
+  </a>
+  <a href="#edge-features-to-prefs" xlink:href="#edge-features-to-prefs" class="dedge" data-vibekb-edge="features-to-prefs">
+    <title>stores in prefs — verified</title>
+    <line class="hit" x1="390" y1="144" x2="305" y2="220"/>
+    <line class="arrow" x1="390" y1="144" x2="305" y2="220"/>
+    <text class="t elbl" x="320" y="170">stores-in</text>
+  </a>
+  <a href="#edge-prefs-to-widgets" xlink:href="#edge-prefs-to-widgets" class="dedge" data-vibekb-edge="prefs-to-widgets">
+    <title>sends to widgets — inferred</title>
+    <line class="hit" x1="380" y1="252" x2="420" y2="252"/>
+    <line class="arrow-inferred" x1="380" y1="252" x2="420" y2="252"/>
+    <text class="t elbl" x="378" y="244">sends-to (inferred)</text>
+  </a>
+  <a href="#edge-features-to-bucket" xlink:href="#edge-features-to-bucket" class="dedge" data-vibekb-edge="features-to-bucket">
+    <title>writes storage — inferred</title>
+    <line class="hit" x1="480" y1="144" x2="680" y2="220"/>
+    <line class="arrow-inferred" x1="480" y1="144" x2="680" y2="220"/>
+    <text class="t elbl" x="590" y="160">writes (inferred)</text>
+  </a>
+
+</svg>

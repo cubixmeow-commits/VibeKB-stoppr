@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "welcome",
+      "title": "Welcome + early onboarding",
+      "purpose": "Plays welcome video and early intro screens that offer auth or skip.",
+      "location": "lib/features/onboarding/presentation/screens",
+      "functionality": [
+        "onboarding-intro"
+      ],
+      "files": [
+        {
+          "path": "lib/features/onboarding/presentation/screens/welcome_video_screen.dart",
+          "role": "entry point",
+          "reason": "First visible onboarding surface after splash routing."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "auth-providers",
+      "title": "Auth providers",
+      "purpose": "Google, Apple, email, or anonymous Firebase sign-in creating an AppUser.",
+      "location": "lib/core/auth",
+      "functionality": [
+        "firebase-auth",
+        "guest-anonymous-access"
+      ],
+      "files": [
+        {
+          "path": "lib/core/auth/auth_service.dart",
+          "role": "primary implementation",
+          "reason": "Implements provider sign-in methods and auth state listener."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "questionnaire",
+      "title": "Questionnaire + profile",
+      "purpose": "Collects questionnaire answers, profile, symptoms, goals, and nutrition setup with resume checkpoints.",
+      "location": "lib/features/onboarding",
+      "functionality": [
+        "onboarding-questionnaire",
+        "onboarding-profile-goals",
+        "onboarding-personalized-analysis"
+      ],
+      "files": [
+        {
+          "path": "lib/features/onboarding/data/services/onboarding_progress_service.dart",
+          "role": "primary implementation",
+          "reason": "Persists and restores the current onboarding screen."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "pre-paywall",
+      "title": "Pre-paywall",
+      "purpose": "Final commercial gate before MainScaffold for unpaid users.",
+      "location": "lib/features/onboarding/presentation/screens",
+      "functionality": [
+        "main-paywall"
+      ],
+      "files": [
+        {
+          "path": "lib/features/onboarding/presentation/screens/pre_paywall.dart",
+          "role": "primary implementation",
+          "reason": "Registers Superwall placements and handles purchase success."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    },
+    {
+      "id": "main-scaffold",
+      "title": "MainScaffold",
+      "purpose": "Post-onboarding app shell with bottom navigation.",
+      "location": "lib/features/app/presentation/screens",
+      "functionality": [
+        "main-navigation"
+      ],
+      "files": [
+        {
+          "path": "lib/features/app/presentation/screens/main_scaffold.dart",
+          "role": "primary implementation",
+          "reason": "Hosts the signed-in / paid user experience."
+        }
+      ],
+      "verification": "verified-from-source",
+      "uncertainty": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "welcome-to-auth",
+      "from": "welcome",
+      "to": "auth-providers",
+      "mechanism": "routes-to",
+      "label": "auth or skip",
+      "explanation": "Early onboarding screens route the user into Google/Apple/email sign-in or allow skipping toward later anonymous creation.",
+      "functionality": [
+        "onboarding-intro",
+        "firebase-auth"
+      ],
+      "files": [
+        {
+          "path": "lib/features/onboarding/presentation/screens/onboarding_page.dart",
+          "role": "caller",
+          "reason": "Invokes AuthCubit Google/Apple sign-in handlers."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    },
+    {
+      "id": "auth-to-questionnaire",
+      "from": "auth-providers",
+      "to": "questionnaire",
+      "mechanism": "routes-to",
+      "label": "continue funnel",
+      "explanation": "After identity exists (or skip), navigation continues into questionnaire, profile, and personalization screens.",
+      "functionality": [
+        "onboarding-questionnaire"
+      ],
+      "files": [
+        {
+          "path": "lib/features/onboarding/presentation/screens/questionnaire_screen.dart",
+          "role": "primary implementation",
+          "reason": "Collects and persists questionnaire answers."
+        }
+      ],
+      "verification": "inferred-from-source",
+      "basis": "Order derived from Navigator calls across onboarding screens rather than one central route table.",
+      "uncertainty": "Exact branch when questionnaire answers are missing uses a shorter path."
+    },
+    {
+      "id": "questionnaire-to-paywall",
+      "from": "questionnaire",
+      "to": "pre-paywall",
+      "mechanism": "routes-to",
+      "label": "funnel end",
+      "explanation": "Completed personalization and benefits screens navigate to PrePaywallScreen.",
+      "functionality": [
+        "main-paywall"
+      ],
+      "files": [
+        {
+          "path": "lib/features/onboarding/presentation/screens/pre_paywall.dart",
+          "role": "callee",
+          "reason": "Receives users at the commercial gate."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    },
+    {
+      "id": "paywall-to-main",
+      "from": "pre-paywall",
+      "to": "main-scaffold",
+      "mechanism": "routes-to",
+      "label": "after purchase/skip-paid",
+      "explanation": "Successful purchase handling or an already-paid check navigates to MainScaffold.",
+      "functionality": [
+        "main-paywall",
+        "main-navigation"
+      ],
+      "files": [
+        {
+          "path": "lib/core/subscription/post_purchase_handler.dart",
+          "role": "caller",
+          "reason": "Runs post-purchase updates then navigates onward."
+        }
+      ],
+      "verification": "verified-from-source",
+      "basis": "",
+      "uncertainty": ""
+    }
+  ]
+}

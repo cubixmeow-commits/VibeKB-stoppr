@@ -4,12 +4,12 @@ type: project
 title: Current state
 summary: A large Flutter client with full onboarding, auth, subscription gating, home wellness loops, community, nutrition AI tools, widgets, and several high-severity configuration placeholders.
 verification: verified-from-source
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## What it currently does
 
-Implemented surfaces (source-traced):
+Implemented surfaces (source-traced at commit `f01661b`):
 
 - Cold-start SDK bootstrap and auth-aware routing in `lib/main.dart`.
 - Google / Apple / email / anonymous authentication.
@@ -24,6 +24,8 @@ Implemented surfaces (source-traced):
 - Local + push notifications; Mixpanel / AppsFlyer analytics.
 - iOS WidgetKit and Android AppWidget providers bridged via `home_widget`.
 
+Navigation is imperative (`Navigator` / named routes), not GoRouter.
+
 ## Partial / risky
 
 - Most Superwall `registerPlacement` calls still use `INSERT_YOUR_*` IDs.
@@ -33,6 +35,10 @@ Implemented surfaces (source-traced):
 - Widget app group id is still `group.YOUR_BUNDLE_ID.shared`.
 - Google OAuth fallbacks are placeholder client IDs when env is missing.
 - Only `.env.local` is present in the tree; `main()` loads `.env`.
+- Relapse reason/help chips are largely UI-local (not fully persisted).
+- Community blocked-user filtering is incomplete on the Cubit stream path.
+- `stoppr://accountability` is emitted by widgets but not handled in Dart
+  startup routing.
 
 ## Not verified at runtime
 

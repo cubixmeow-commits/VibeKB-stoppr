@@ -62,7 +62,8 @@ workflow in `INITIALIZE.md`.
 6. Write `work/current.md` and `work/handoff.md` with an explicit next action.
 7. Set the `provenance` block in `manifest.json`: source repository, branch,
    **commit analyzed**, verification scope, last verified.
-8. **Validate:** run `php tools/validate.php` (and `php tools/test-topology.php`)
+8. **Validate:** run `php tools/vibekb.php check` (validation + broken-reference
+   detection + `/docs` sync) and `php tools/test-topology.php`
    and resolve every error, including topology contract violations,
    out-of-vocabulary mechanisms, files without reasons, and SVG markers that do
    not map to the topology.

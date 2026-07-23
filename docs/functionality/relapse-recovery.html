@@ -108,7 +108,7 @@
     <header class="page-head reading-column">
         <p class="eyebrow">Home wellness</p>
         <h1>Relapse recovery flow</h1>
-        <p class="lede">Captures relapse reasons and targets, resets streak, and schedules relapse-challenge notifications.</p>
+        <p class="lede">Relapse UI collects reason/help chips, resets streak, and may schedule recovery-challenge notifications; detailed reason chips are not fully persisted.</p>
         <div class="badge-row">
             <span class="badge badge--ok">Implemented</span>            <span class="badge badge--ok">Verified from source</span>            <span class="badge badge--info">User-facing</span>        </div>
     </header>
@@ -118,10 +118,15 @@
                             <div class="prose reading-column"><h3>In one sentence</h3>
 <p>Relapse flow reframes a setback and resets streak state.</p>
 <h3>Current behavior</h3>
-<p>Screens collect why/help/target/signature; <code>RelapseService</code> persists locally;
-notifications may be scheduled for a recovery challenge.</p>
+<p>Screens collect why/help/target/signature in the UI. Persistence is thinner
+than the UI suggests: signature/goal-day style fields and toast state are
+kept, while reason/help chips are largely UI-local.
+<code>RelapseService</code> stores relapse timestamps locally. Daily check-in can call
+<code>logRelapse()</code>; the manual relapsed-flow path may reset streak without that
+same service call. Notifications may be scheduled for a recovery challenge.</p>
 <h3>Current state</h3>
-<p>Implemented; verified-from-source.</p></div>
+<p>Implemented; verified-from-source (re-checked 2026-07-23). Do not treat
+chip selections as durable analytics unless re-verified.</p></div>
                     </div>
 
         <aside class="detail-rail" aria-label="Record metadata">
@@ -133,7 +138,7 @@ notifications may be scheduled for a recovery challenge.</p>
                                             <dt>Verification</dt>
                         <dd><span class="badge badge--ok">Verified from source</span></dd>
                                         <dt>Updated</dt>
-                    <dd>2026-07-21</dd>
+                    <dd>2026-07-23</dd>
                     <dt>Facing</dt>
                     <dd>User-facing</dd>
                 </dl>
@@ -178,7 +183,7 @@ notifications may be scheduled for a recovery challenge.</p>
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-21 22:04 UTC · source commit 9f44315 (9f44315096ff7ecd67f853818aaffef76242e7e9) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 06:26 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
             </div>
         </footer>
     </div>
