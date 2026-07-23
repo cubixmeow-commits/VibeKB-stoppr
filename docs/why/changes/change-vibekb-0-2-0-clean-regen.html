@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Upgrade VibeKB runtime and re-analyze Stoppr · Stoppr — VibeKB</title>
+    <title>Clean VibeKB 0.2.0 Stoppr model regeneration · Stoppr — VibeKB</title>
     <meta name="description" content="A living explanation of what Stoppr currently does, how it works, what AI is changing, and why.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,38 +106,39 @@
         <p class="breadcrumb"><a href="../../why/index.html">← Decisions &amp; rationale</a></p>
         <header class="page-head reading-column">
             <p class="eyebrow">Changes</p>
-            <h1>Upgrade VibeKB runtime and re-analyze Stoppr</h1>
-            <p class="lede"></p>
+            <h1>Clean VibeKB 0.2.0 Stoppr model regeneration</h1>
+            <p class="lede">Regenerated the Stoppr living model and /docs as a clean 0.2.0 analysis with canonical important-files schema and current provenance.</p>
             <div class="badge-row">
-                                                                <span class="badge badge--ok">Verified from source</span>            </div>
+                <span class="badge badge--info">completed</span>                                                <span class="badge badge--ok">Verified from source</span>            </div>
         </header>
         <div class="detail-grid">
-            <div class="detail-main"><div class="prose reading-column"><h3>What changed</h3>
-<p>Upgraded the Stoppr repository from the prior manually integrated VibeKB
-snapshot (content model dated 2026-07-21, pre-installer) to the current
-VibeKB implementation from <code>cubixmeow-commits/VibeKB</code> tip <code>3b6ba7d</code>:</p>
+            <div class="detail-main"><div class="prose reading-column"><h3>Before</h3>
 <ul>
-<li>Native installer payload (<code>guide/</code>, <code>tools/</code> including <code>vibekb.php</code>,</li>
+<li><code>/docs</code> Key Files reported <code>0</code> and Files That Matter was empty because</li>
 </ul>
-<p><code>template/starter/</code>, <code>prompts/</code>, <code>INSTALLER.md</code>, <code>.cursor/rules/vibekb.mdc</code>)</p>
+<p><code>important-files.json</code> used a bare JSON array from the pre-0.2.0 migration.</p>
 <ul>
-<li>Fresh Stoppr analysis against commit <code>f01661b</code> (lib/ unchanged since prior</li>
+<li>Provenance still pointed at commit <code>f01661b</code> and described a migrate-without-</li>
 </ul>
-<p>rebootstrap; claim drift corrected where re-trace found gaps)</p>
+<p>re-trace session.</p>
+<h3>After</h3>
 <ul>
-<li>Regenerated Mode B <code>/docs</code></li>
+<li>Fresh <code>important-files.json</code> in <code>{&quot;files&quot;:[...]}</code> shape with 31 curated</li>
 </ul>
-<h3>Why</h3>
-<p>Owner requested upgrade to the latest VibeKB and a fresh analysis so the
-living model and generated guide match the newest runtime.</p>
-<h3>Backup</h3>
-<p><code>VibeKBbackup/pre-upgrade-2026-07-23/</code> holds the complete prior knowledge,
-docs, config, and generated surfaces for restore.</p></div></div>
+<p>files re-verified against source.</p>
+<ul>
+<li>Provenance and work/handoff updated to commit <code>2edc099</code>.</li>
+<li>Loader now errors on a bare-array important-files file.</li>
+<li><code>/docs</code> fully regenerated from <code>.vibekb/</code> via the current runtime.</li>
+</ul>
+<h3>Impact</h3>
+<p>Documentation accuracy only. No Stoppr application code under <code>lib/</code> changed.</p></div></div>
             <aside class="detail-rail" aria-label="Connections">
                 <div class="rail-card">
                     <h2>Affects functionality</h2>
                     <p><span class="muted">None.</span></p>
                 </div>
+                                    <div class="rail-card"><h2>Files</h2><p><code class="chip chip--file">.vibekb/manifest.json</code> <code class="chip chip--file">.vibekb/files/important-files.json</code> <code class="chip chip--file">.vibekb/work/current.md</code> <code class="chip chip--file">.vibekb/work/handoff.md</code> <code class="chip chip--file">docs/</code></p></div>
                             </aside>
         </div>
     </article>

@@ -1,8 +1,8 @@
 {
-  "vibekb_version": "1.0",
+  "vibekb_version": "0.2.0",
   "content_model": "functionality-first",
   "updated": "2026-07-23",
-  "installer_version": "1.0.0",
+  "installer_version": "0.2.0",
   "self_hosted": false,
   "project": {
     "name": "Stoppr",
@@ -17,13 +17,13 @@
     "source_repository": "https://github.com/cubixmeow-commits/VibeKB-stoppr",
     "source_subpath": "",
     "source_branch": "main",
-    "source_commit": "f01661b (f01661be728f471f85987454b1047a5003118738)",
+    "source_commit": "2edc099 (2edc09927b646c833769ab8b4bd6bc00b37882c3)",
     "analyzed": "2026-07-23",
-    "verification_scope": "Model claims remain those verified after the 2026-07-23 upgrade from cubixmeow-commits/VibeKB@3b6ba7d. This session migrated the install layout to VibeKB 0.2.0 (tip 683df05) via vibekb migrate without re-tracing every functionality claim. Superwall INSERT_YOUR_* placements, widget app-group placeholder, and disabled quota flags remain present in source.",
+    "verification_scope": "Clean VibeKB 0.2.0 re-analysis of Stoppr from source under lib/, pubspec.yaml, firestore.rules, and platform manifests. Claims are verified-from-source or inferred-from-source only; no store/sandbox purchase or Superwall dashboard campaigns were executed. Superwall INSERT_YOUR_* placements, widget app-group placeholder, Google OAuth placeholder fallbacks, disabled QUOTA_SYSTEM_ENABLED flags, and .env vs .env.local mismatch remain present in source.",
     "last_verified": "2026-07-23",
     "updates_automatically": false,
     "model_maintenance": "agent-maintained",
-    "freshness_note": "Static snapshot of Stoppr at the commit above. Does not update itself. Re-verify against source before changing claims. VibeKB runtime is 0.2.0 consolidated layout (CLI tip 683df05, template 2.0.0) via vibekb migrate."
+    "freshness_note": "Static snapshot of Stoppr at the commit above under the VibeKB 0.2.0 consolidated layout (installer 0.2.0, template 2.0.0). Does not update itself. Re-verify against source before changing claims."
   },
   "structure": {
     "project": "project/ — identity, intent, current state, constraints",

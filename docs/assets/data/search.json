@@ -770,6 +770,13 @@
         "body": "Discovery Upstream tools/test topology.php hard codes VibeKB self hosted diagram ids self maintenance loop , content load flow . Installed target repositories like Stoppr fail that test even when their own topologies are valid. Action taken Adapted the installed copy to discover a carrier diagram and a known good topology from the local .vibekb/diagrams/ set skipping the carrier when asserting the good fixture . Next upstream upgrade may overwrite this file — re apply or contribute the project agnostic fix to VibeKB."
     },
     {
+        "title": "Clean VibeKB 0.2.0 Stoppr model regeneration",
+        "summary": "Regenerated the Stoppr living model and /docs as a clean 0.2.0 analysis with canonical important-files schema and current provenance.",
+        "type": "change",
+        "url": "../why/changes/change-vibekb-0-2-0-clean-regen.html",
+        "body": "Before /docs Key Files reported 0 and Files That Matter was empty because important files.json used a bare JSON array from the pre 0.2.0 migration. Provenance still pointed at commit f01661b and described a migrate without re trace session. After Fresh important files.json in {\"files\": ... } shape with 31 curated files re verified against source. Provenance and work/handoff updated to commit 2edc099 . Loader now errors on a bare array important files file. /docs fully regenerated from .vibekb/ via the current runtime. Impact Documentation accuracy only. No Stoppr application code under lib/ changed."
+    },
+    {
         "title": "Migrate Stoppr to VibeKB 0.2.0 safe repository layout",
         "summary": "",
         "type": "change",
@@ -789,6 +796,223 @@
         "type": "change",
         "url": "../why/changes/change-vibekb-upgrade-2026-07-23.html",
         "body": "What changed Upgraded the Stoppr repository from the prior manually integrated VibeKB snapshot content model dated 2026 07 21, pre installer to the current VibeKB implementation from cubixmeow commits/VibeKB tip 3b6ba7d : Native installer payload guide/ , tools/ including vibekb.php , template/starter/ , prompts/ , INSTALLER.md , .cursor/rules/vibekb.mdc Fresh Stoppr analysis against commit f01661b lib/ unchanged since prior rebootstrap; claim drift corrected where re trace found gaps Regenerated Mode B /docs Why Owner requested upgrade to the latest VibeKB and a fresh analysis so the living model and generated guide match the newest runtime. Backup VibeKBbackup/pre upgrade 2026 07 23/ holds the complete prior knowledge, docs, config, and generated surfaces for restore."
+    },
+    {
+        "title": "lib/main.dart",
+        "summary": "Cold-start bootstrap: dotenv, RevenueCat, Firebase, analytics, notifications, Superwall, deep links, and startup routing into onboarding, paywall, or MainScaffold.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/firebase_options.dart",
+        "summary": "Env-backed DefaultFirebaseOptions for Android/iOS only; missing keys assert at startup.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/config/env_config.dart",
+        "summary": "Typed accessors for environment variable NAMES used by Firebase, purchases, AI, and analytics. Never commit values.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/auth/auth_service.dart",
+        "summary": "Firebase Auth (Google, Apple, email) plus RevenueCat/Mixpanel identity sync and users/{uid} profile writes. Google OAuth fallbacks are placeholders when env is missing.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/repositories/user_repository.dart",
+        "summary": "Central Firestore user document hub for profile, streak mirrors, subscription fields, and related user subcollections.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/subscription/subscription_service.dart",
+        "summary": "Paid-access decisions from Superwall subscription status and RevenueCat CustomerInfo. Firestore subscription fields are not the entitlement source of truth.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/superwall/superwall_purchase_controller.dart",
+        "summary": "Maps Superwall purchase/restore actions to RevenueCat and syncs subscription status back to Superwall.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/usage/feature_quota_service.dart",
+        "summary": "Soft-paywall quota counters and Firestore user_feature_quotas helpers. Call sites often gate behind QUOTA_SYSTEM_ENABLED = false.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/onboarding/presentation/screens/pre_paywall.dart",
+        "summary": "Primary paywall UI and Superwall placement registration. Many placement IDs remain INSERT_YOUR_* placeholders.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/onboarding/data/services/onboarding_progress_service.dart",
+        "summary": "SharedPreferences + Firestore resume checkpoints and onboarding_completed for startup routing.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/app/presentation/screens/main_scaffold.dart",
+        "summary": "Bottom-tab shell hosting Home, Learn, Rewire, Community, and Profile with initialIndex deep-link entry.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/app/presentation/screens/home_screen.dart",
+        "summary": "Daily hub UI: streak, pledge, panic entry, banners, and soft Superwall triggers.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/streak/streak_service.dart",
+        "summary": "Streak persistence (SharedPreferences + Firestore) and home_widget sync. iOS app group id is still group.YOUR_BUNDLE_ID.shared.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/pledges/pledge_service.dart",
+        "summary": "Daily pledge/check-in persistence under users/{uid}/pledges.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/app/services/panic_flow_manager.dart",
+        "summary": "Guided multi-step panic intervention orchestration used from Home and deep links.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/relapse/relapse_service.dart",
+        "summary": "Relapse recovery helpers that can reset streak state after a failed check-in.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/community/data/repositories/community_repository.dart",
+        "summary": "Community posts/comments Firestore repository for the forum surface.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/accountability/data/repositories/accountability_repository.dart",
+        "summary": "Accountability partnerships and matching pool persistence.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/learn/presentation/cubit/learn_video_cubit.dart",
+        "summary": "Hardcoded Mux HLS lesson catalog, subtitle assets, and local completion tracking.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/app/presentation/screens/chatbot/chatbot_screen.dart",
+        "summary": "Melinda CBT assistant using Groq chat/transcription and OpenAI speech, with daily API interaction limits.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/app/presentation/screens/food_scan/food_scan_screen.dart",
+        "summary": "Sugar/food vision scan UI with Groq-compatible analysis and disabled feature-quota soft paywall.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/nutrition/data/repositories/nutrition_repository.dart",
+        "summary": "Nutrition Firestore hub for food_logs, daily_summaries, goals, body metrics, and workouts.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/recipes/data/repositories/recipe_repository.dart",
+        "summary": "Recipe search via Edamam with Spoonacular fallback and OpenAI-assisted detail paths.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/app/presentation/screens/rate_my_plate/rate_my_plate_scan_screen.dart",
+        "summary": "Rate My Plate camera/scoring flow with Groq vision and disabled quota soft paywall.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/app/presentation/screens/meditation_screen.dart",
+        "summary": "In-app meditation UI also reachable via stoppr://meditation.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/challenge/challenge_service.dart",
+        "summary": "Twenty-eight day challenge progression in SharedPreferences and users/{uid}/challenges.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/features/fasting/data/repositories/fasting_repository.dart",
+        "summary": "Local-only fasting logs and active timer cache in SharedPreferences.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/notifications/notification_service.dart",
+        "summary": "Local notifications and FCM preference storage; some payloads map to placeholder Superwall placements.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "lib/core/analytics/mixpanel_service.dart",
+        "summary": "Primary product analytics wrapper around Mixpanel.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "firestore.rules",
+        "summary": "Server-side Firestore access rules for users, community, accountability, and related collections.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
+    },
+    {
+        "title": "pubspec.yaml",
+        "summary": "Package identity (stoppr 7.4.2+1), SDK constraint, and dependency set.",
+        "type": "file",
+        "url": "../files/index.html",
+        "body": ""
     },
     {
         "title": "Mental model",
@@ -830,20 +1054,20 @@
         "summary": "Mobile app distributed via stores; VibeKB static guide published from /docs on GitHub Pages.",
         "type": "architecture",
         "url": "../how-it-works/index.html",
-        "body": "Application Built with Flutter for iOS and Android. Store credentials and Firebase configs are supplied outside git via env / ignored platform files; .local templates document required keys without secrets. VibeKB documentation Source of truth: .vibekb/ Public site: /docs generated by php tools/generate static.php GitHub Pages: Settings → Pages → folder /docs Entry: docs/index.html Dynamic guide/ is present so the same templates power generation; public deployment for this repository remains the static snapshot."
+        "body": "Application Built with Flutter for iOS and Android. Store credentials and Firebase configs are supplied outside git via env / ignored platform files; .local templates document required keys without secrets. VibeKB documentation Source of truth: .vibekb/ Runtime / templates: .vibekb/runtime/ Public site: /docs generated by php .vibekb/runtime/tools/vibekb.php generate GitHub Pages: Settings → Pages → folder /docs Entry: docs/index.html The guide templates under .vibekb/runtime/guide/ power generation; public deployment for this repository remains the static snapshot."
     },
     {
         "title": "Current AI work",
         "summary": "",
         "type": "current work",
         "url": "../current-work/index.html",
-        "body": "Requested outcome 1. Push VibeKB 0.2.0 safe integration into cubixmeow commits/VibeKB stoppr . 2. Open a PR into main . 3. Do not modify Stoppr application code. Verification plan vibekb doctor vibekb check php .vibekb/runtime/tools/test topology.php vibekb generate Confirm no lib/ / app source diffs"
+        "body": "Requested outcome 1. Delete generated /docs and regenerate from the current 0.2.0 runtime. 2. Re analyze Stoppr against current source; refresh provenance to this commit. 3. Emit a fresh .vibekb/files/important files.json in the 0.2.0 {\"files\": ... } schema so Key Files and Files That Matter are populated. 4. Do not modify Stoppr application code under lib/ . Verification plan php .vibekb/runtime/tools/vibekb.php check php .vibekb/runtime/tools/test topology.php php .vibekb/runtime/tools/vibekb.php generate Confirm /docs stats: functionalities, areas, systems, key files 0 Confirm Files That Matter lists every curated important file Confirm no lib/ / app source diffs"
     },
     {
         "title": "Handoff",
         "summary": "",
         "type": "handoff",
         "url": "../handoff/index.html",
-        "body": "Current functionality state Stoppr at commit f01661b app 7.4.2+1 is a Flutter sugar habit app with full onboarding, Firebase auth, Superwall/RevenueCat gating, home wellness loops, community, nutrition AI tools, learn content, widgets, and platform services. VibeKB runtime is 0.2.0 CLI tip 683df05 , installer template 2.0.0 in the consolidated layout under .vibekb/ . Completed this session Ran vibekb migrate from the pre 0.2.0 root layout tip 3b6ba7d . Runtime / reference / prompts now live under .vibekb/runtime/ , .vibekb/reference/ , and .vibekb/prompts/ . Preserved Flutter CLAUDE.md + Stoppr AGENTS.md ; VibeKB managed blocks added; namespaced .cursor/rules/vibekb.mdc refreshed. Removed unmodified root VibeKB docs/runtime leftovers; updated Stoppr pointers VIBEKB.md , VIBEKB MAINTENANCE."
+        "body": "Current functionality state Stoppr at commit 2edc099 app 7.4.2+1 is a Flutter sugar habit app with full onboarding, Firebase auth, Superwall/RevenueCat gating, home wellness loops, community, nutrition AI tools, learn content, widgets, and platform services. The living model is a clean VibeKB 0.2.0 analysis installer 0.2.0 , template 2.0.0 under .vibekb/ , with Mode B /docs regenerated from that model. Completed this session Deleted previous generated /docs and did not reuse prior HTML . Re traced Stoppr source under lib/ and refreshed project/system/work records and provenance to commit 2edc099 . Rebuilt .vibekb/files/important files.json in the canonical 0.2.0 {\"files\": ... } shape 31 curated files . Taught the loader to error on a bare array important files file instead of silently show"
     }
 ]

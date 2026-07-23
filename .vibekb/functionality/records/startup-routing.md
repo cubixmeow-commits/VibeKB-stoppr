@@ -15,7 +15,7 @@ config: []
 depends_on: [app-startup, subscription-access-gating]
 related_memory: [decision:revenuecat-not-firestore-gating]
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-23
 tags: []
 ---
 

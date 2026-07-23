@@ -8,25 +8,23 @@ updated: 2026-07-23
 
 ## Current functionality state
 
-Stoppr at commit `f01661b` (app `7.4.2+1`) is a Flutter sugar-habit app with
+Stoppr at commit `2edc099` (app `7.4.2+1`) is a Flutter sugar-habit app with
 full onboarding, Firebase auth, Superwall/RevenueCat gating, home wellness
 loops, community, nutrition AI tools, learn content, widgets, and platform
-services. VibeKB runtime is **0.2.0** (CLI tip `683df05`, installer template
-`2.0.0`) in the consolidated layout under `.vibekb/`.
+services. The living model is a **clean VibeKB 0.2.0** analysis (installer
+`0.2.0`, template `2.0.0`) under `.vibekb/`, with Mode B `/docs` regenerated
+from that model.
 
 ## Completed this session
 
-- Ran `vibekb migrate` from the pre-0.2.0 root layout (tip `3b6ba7d`).
-- Runtime / reference / prompts now live under `.vibekb/runtime/`,
-  `.vibekb/reference/`, and `.vibekb/prompts/`.
-- Preserved Flutter `CLAUDE.md` + Stoppr `AGENTS.md`; VibeKB managed blocks
-  added; namespaced `.cursor/rules/vibekb.mdc` refreshed.
-- Removed unmodified root VibeKB docs/runtime leftovers; updated Stoppr
-  pointers (`VIBEKB.md`, `VIBEKB_MAINTENANCE.md`, `AGENTS.md`).
-- Kept Mode B GitHub Pages at `/docs` (local runtime preference when
-  `docs/index.html` exists).
-- Re-adapted topology test to discover local diagram fixtures.
-- Regenerated static `/docs`.
+- Deleted previous generated `/docs` (and did not reuse prior HTML).
+- Re-traced Stoppr source under `lib/` and refreshed project/system/work
+  records and provenance to commit `2edc099`.
+- Rebuilt `.vibekb/files/important-files.json` in the canonical 0.2.0
+  `{"files":[...]}` shape (31 curated files).
+- Taught the loader to error on a bare-array important-files file instead of
+  silently showing zero Key Files.
+- Regenerated static `/docs` from the current runtime templates.
 
 ## Still open / landmines
 
@@ -37,8 +35,6 @@ services. VibeKB runtime is **0.2.0** (CLI tip `683df05`, installer template
 - Quota system disabled flags (`QUOTA_SYSTEM_ENABLED = false`).
 - Incomplete community blocked-user filtering on Cubit stream.
 - Unhandled `stoppr://accountability` deep link from widgets.
-- Local adaptations pending upstream: topology carrier discovery; Mode B
-  `/docs` default for Pages-hosted target installs.
 
 ## Exact next recommended action
 

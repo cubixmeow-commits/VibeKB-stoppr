@@ -18,7 +18,7 @@ provenance: "Traced lib/main.dart, auth, subscription, streak, and env_config ag
 last_verified: 2026-07-21
 uncertainty: "Firestore mirror field completeness after purchase is inferred; store dashboard config not verified."
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## What am I looking at?

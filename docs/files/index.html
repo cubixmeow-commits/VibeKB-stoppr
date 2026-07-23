@@ -109,7 +109,574 @@
         <p class="lede">A curated list — not the whole repository. Each file says what it does, when it runs, and how safe it is to change.</p>
     </header>
 
-            <p class="empty-state">No important files recorded.</p>
+            <div class="file-list">
+                            <section class="file-card" id="lib/main.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/main.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--danger">High impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Cold-start bootstrap: dotenv, RevenueCat, Firebase, analytics, notifications, Superwall, deep links, and startup routing into onboarding, paywall, or MainScaffold.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Every cold start and when AppLinks or notification payloads arrive.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/app-startup.html">Application startup</a>
+                                                                                                                                                <a class="chip" href="../functionality/startup-routing.html">Startup routing</a>
+                                                                                                                                                <a class="chip" href="../functionality/deep-link-handling.html">Deep link handling</a>
+                                                                                                                                                <a class="chip" href="../functionality/main-paywall.html">Main paywall</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/core/config/env_config.dart</code> <code class="chip chip--file">lib/firebase_options.dart</code> <code class="chip chip--file">lib/core/subscription/subscription_service.dart</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                almost all features                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Cold start for anonymous, free, and paid users; deep links; notification open paths.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/firebase_options.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/firebase_options.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--danger">High impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Env-backed DefaultFirebaseOptions for Android/iOS only; missing keys assert at startup.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Firebase.initializeApp during bootstrap.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/app-startup.html">Application startup</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/core/config/env_config.dart</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                lib/main.dart                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Cold start with complete Firebase env names present.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/config/env_config.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/config/env_config.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--danger">High impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Typed accessors for environment variable NAMES used by Firebase, purchases, AI, and analytics. Never commit values.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Whenever a service reads configuration.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/app-startup.html">Application startup</a>
+                                                                                                                                                <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a>
+                                                                                                                                                <a class="chip" href="../functionality/analytics-telemetry.html">Analytics and telemetry</a>
+                                                                                                                                                <a class="chip" href="../functionality/chatbot-assistant.html">Melinda chatbot assistant</a>
+                                                                                                                                                <a class="chip" href="../functionality/recipe-discovery.html">Recipe discovery</a>
+                                                                                                </dd></div>
+                                                                                                    <div><dt>Depended on by</dt><dd>
+                                auth; purchases; AI features; analytics                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Missing-key behavior; ensure no secrets are logged.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/auth/auth_service.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/auth/auth_service.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--danger">High impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Firebase Auth (Google, Apple, email) plus RevenueCat/Mixpanel identity sync and users/{uid} profile writes. Google OAuth fallbacks are placeholders when env is missing.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Sign-in, sign-out, and auth state changes.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a>
+                                                                                                                                                <a class="chip" href="../functionality/guest-anonymous-access.html">Guest anonymous access</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/core/config/env_config.dart</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                AuthCubit; onboarding; community                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Google/Apple/email sign-in; anonymous upgrade; RevenueCat logIn.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/repositories/user_repository.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/repositories/user_repository.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--danger">High impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Central Firestore user document hub for profile, streak mirrors, subscription fields, and related user subcollections.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Profile reads/writes and many feature repositories.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/user-profile-settings.html">User profile and settings</a>
+                                                                                                                                                <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a>
+                                                                                                                                                <a class="chip" href="../functionality/firebase-auth.html">Firebase authentication</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">Firebase Auth</code> <code class="chip chip--file">Cloud Firestore</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                home; settings; streak; onboarding                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Profile edit; streak mirror; auth user document creation.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/subscription/subscription_service.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/subscription/subscription_service.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--danger">High impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Paid-access decisions from Superwall subscription status and RevenueCat CustomerInfo. Firestore subscription fields are not the entitlement source of truth.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Gating checks throughout the app and at startup routing.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a>
+                                                                                                                                                <a class="chip" href="../functionality/startup-routing.html">Startup routing</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">Superwall</code> <code class="chip chip--file">RevenueCat</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                startup; onboarding completion; accountability; home banners                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Free vs paid routing; bypass accounts; restore purchases.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/superwall/superwall_purchase_controller.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/superwall/superwall_purchase_controller.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--danger">High impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Maps Superwall purchase/restore actions to RevenueCat and syncs subscription status back to Superwall.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Purchase, restore, and status sync.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/main-paywall.html">Main paywall</a>
+                                                                                                                                                <a class="chip" href="../functionality/subscription-access-gating.html">Subscription access gating</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">purchases_flutter</code> <code class="chip chip--file">superwallkit_flutter</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                PrePaywall; home banners                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>iOS and Android purchase/restore paths with a real purchase controller attached.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/usage/feature_quota_service.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/usage/feature_quota_service.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Soft-paywall quota counters and Firestore user_feature_quotas helpers. Call sites often gate behind QUOTA_SYSTEM_ENABLED = false.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Feature entry points that check free usage limits.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">Cloud Firestore</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                learn videos; food scan; rate my plate; chatbot                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Toggle QUOTA_SYSTEM_ENABLED and confirm limits plus Superwall placements.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/onboarding/presentation/screens/pre_paywall.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/onboarding/presentation/screens/pre_paywall.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--warn">Understand dependencies first</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Primary paywall UI and Superwall placement registration. Many placement IDs remain INSERT_YOUR_* placeholders.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>End of onboarding or unpaid return to paywall.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/main-paywall.html">Main paywall</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/core/superwall/superwall_purchase_controller.dart</code> <code class="chip chip--file">lib/core/subscription/post_purchase_handler.dart</code></dd></div>
+                                                                                                    <div><dt>Test after change</dt><dd>Placement registration; paid skip; purchase success; gift/standard placements.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/onboarding/data/services/onboarding_progress_service.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/onboarding/data/services/onboarding_progress_service.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">SharedPreferences + Firestore resume checkpoints and onboarding_completed for startup routing.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Each onboarding screen save and cold-start resume.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/onboarding-questionnaire.html">Onboarding questionnaire</a>
+                                                                                                                                                <a class="chip" href="../functionality/onboarding-profile-goals.html">Onboarding profile and goals</a>
+                                                                                                                                                <a class="chip" href="../functionality/startup-routing.html">Startup routing</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/core/subscription/subscription_service.dart</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                lib/main.dart routing                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Kill-app resume at multiple onboarding screens; completion flag.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/app/presentation/screens/main_scaffold.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/app/presentation/screens/main_scaffold.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Bottom-tab shell hosting Home, Learn, Rewire, Community, and Profile with initialIndex deep-link entry.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>After paid/onboarding routing reaches the main app.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/main-navigation.html">Main navigation</a>
+                                                                                                                                                <a class="chip" href="../functionality/home-dashboard.html">Home dashboard</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/features/app/presentation/screens/home_screen.dart</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                deep links targeting tabs                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Tab switching; initialIndex from deep links.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/app/presentation/screens/home_screen.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/app/presentation/screens/home_screen.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Daily hub UI: streak, pledge, panic entry, banners, and soft Superwall triggers.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Home tab visible.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/home-dashboard.html">Home dashboard</a>
+                                                                                                                                                <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a>
+                                                                                                                                                <a class="chip" href="../functionality/daily-check-in-pledge.html">Daily check-in and pledge</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/core/streak/streak_service.dart</code> <code class="chip chip--file">lib/core/subscription/subscription_service.dart</code> <code class="chip chip--file">lib/core/pledges/pledge_service.dart</code></dd></div>
+                                                                                                    <div><dt>Test after change</dt><dd>Banner paywalls; navigation to panic/pledge; streak display.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/streak/streak_service.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/streak/streak_service.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Streak persistence (SharedPreferences + Firestore) and home_widget sync. iOS app group id is still group.YOUR_BUNDLE_ID.shared.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Streak updates, relapse resets, and widget refreshes.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a>
+                                                                                                                                                <a class="chip" href="../functionality/home-widgets.html">Home screen widgets</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">home_widget</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                home; relapse; post-purchase                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Streak increment/reset; iOS/Android widget values with a real app group.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/pledges/pledge_service.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/pledges/pledge_service.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Daily pledge/check-in persistence under users/{uid}/pledges.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>User completes or updates a daily pledge.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/daily-check-in-pledge.html">Daily check-in and pledge</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">Cloud Firestore</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                home dashboard                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Create pledge success/failure; streak interaction.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/app/services/panic_flow_manager.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/app/services/panic_flow_manager.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Guided multi-step panic intervention orchestration used from Home and deep links.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>User opens panic flow or stoppr://panic.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/panic-intervention.html">Panic intervention</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/features/panic/presentation/breathing_exercise_panic_screen.dart</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                home; deep-link-handling                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Complete panic steps; deep link entry.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/relapse/relapse_service.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/relapse/relapse_service.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Relapse recovery helpers that can reset streak state after a failed check-in.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>User indicates relapse / failed pledge.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/relapse-recovery.html">Relapse recovery flow</a>
+                                                                                                                                                <a class="chip" href="../functionality/sugar-streak-tracking.html">Sugar streak tracking</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">lib/core/streak/streak_service.dart</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                daily-check-in-pledge                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Relapse path resets streak and recovers UI state.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/community/data/repositories/community_repository.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/community/data/repositories/community_repository.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Community posts/comments Firestore repository for the forum surface.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Community tab loads or user posts/comments.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/community-forum.html">Community forum</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">Cloud Firestore</code> <code class="chip chip--file">Firebase Auth</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                community Cubits                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Create post/comment; blocked-user filtering path.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/accountability/data/repositories/accountability_repository.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/accountability/data/repositories/accountability_repository.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Accountability partnerships and matching pool persistence.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Partner invite, accept, or pool matching flows.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">Cloud Firestore</code> <code class="chip chip--file">lib/core/subscription/subscription_service.dart</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                accountability UI; widgets                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Invite/accept partnership; pool entry; paid gating.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/learn/presentation/cubit/learn_video_cubit.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/learn/presentation/cubit/learn_video_cubit.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Hardcoded Mux HLS lesson catalog, subtitle assets, and local completion tracking.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Learn video list/player opens.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/learn-video-lessons.html">Learn video lessons</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">SharedPreferences</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                learn UI                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Play lesson; completion persistence; quota flag path.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/app/presentation/screens/chatbot/chatbot_screen.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/app/presentation/screens/chatbot/chatbot_screen.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--warn">Understand dependencies first</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Melinda CBT assistant using Groq chat/transcription and OpenAI speech, with daily API interaction limits.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Chatbot screen opened.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/chatbot-assistant.html">Melinda chatbot assistant</a>
+                                                                                                                                                <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">GROQ_API_KEY</code> <code class="chip chip--file">OPENAI_API_KEY</code> <code class="chip chip--file">lib/core/api_rate_limit/api_rate_limit_service.dart</code></dd></div>
+                                                                                                    <div><dt>Test after change</dt><dd>Text and voice paths; daily rate limit; soft-paywall flag.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/app/presentation/screens/food_scan/food_scan_screen.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/app/presentation/screens/food_scan/food_scan_screen.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--warn">Understand dependencies first</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Sugar/food vision scan UI with Groq-compatible analysis and disabled feature-quota soft paywall.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>User opens food scan.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/sugar-food-scanning.html">Sugar food scanning</a>
+                                                                                                                                                <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">GROQ_API_KEY</code> <code class="chip chip--file">lib/core/usage/feature_quota_service.dart</code></dd></div>
+                                                                                                    <div><dt>Test after change</dt><dd>Scan a plate photo; quota disabled vs enabled; Superwall placement id.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/nutrition/data/repositories/nutrition_repository.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/nutrition/data/repositories/nutrition_repository.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Nutrition Firestore hub for food_logs, daily_summaries, goals, body metrics, and workouts.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Food log and nutrition goal operations.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie nutrition tracking</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">Firebase Auth</code> <code class="chip chip--file">Cloud Firestore</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                scanner; nutrition dashboard                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Log food; load daily summary; update goals.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/recipes/data/repositories/recipe_repository.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/recipes/data/repositories/recipe_repository.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--warn">Understand dependencies first</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Recipe search via Edamam with Spoonacular fallback and OpenAI-assisted detail paths.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Recipe search or detail fetch.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/recipe-discovery.html">Recipe discovery</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">EDAMAM_API_KEY</code> <code class="chip chip--file">EDAMAM_APP_ID</code> <code class="chip chip--file">SPOONACULAR_API_KEY</code> <code class="chip chip--file">OPENAI_API_KEY</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                recipes UI                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Search recipes; fallback path; favorite save.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/app/presentation/screens/rate_my_plate/rate_my_plate_scan_screen.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/app/presentation/screens/rate_my_plate/rate_my_plate_scan_screen.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--warn">Understand dependencies first</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Rate My Plate camera/scoring flow with Groq vision and disabled quota soft paywall.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>User opens Rate My Plate.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/rate-my-plate.html">Rate My Plate</a>
+                                                                                                                                                <a class="chip" href="../functionality/soft-paywalls-quotas.html">Soft paywalls and quotas</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">GROQ_API_KEY</code> <code class="chip chip--file">lib/core/usage/feature_quota_service.dart</code></dd></div>
+                                                                                                    <div><dt>Test after change</dt><dd>Score a plate; quota flag; Superwall placement id.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/app/presentation/screens/meditation_screen.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/app/presentation/screens/meditation_screen.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--ok">Low impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">In-app meditation UI also reachable via stoppr://meditation.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Meditation opened from Home or deep link.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/meditation-breathing.html">Meditation and breathing</a>
+                                                                                                </dd></div>
+                                                                                                    <div><dt>Depended on by</dt><dd>
+                                deep-link-handling                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Open from Home and stoppr://meditation.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/challenge/challenge_service.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/challenge/challenge_service.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Twenty-eight day challenge progression in SharedPreferences and users/{uid}/challenges.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Challenge day/task updates.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/twenty-eight-day-challenge.html">Twenty-eight day challenge</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">Cloud Firestore</code> <code class="chip chip--file">SharedPreferences</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                challenge UI                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Advance a challenge day; task completion persistence.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/features/fasting/data/repositories/fasting_repository.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/features/fasting/data/repositories/fasting_repository.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--ok">Low impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Local-only fasting logs and active timer cache in SharedPreferences.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Fasting start/stop or history load.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/fasting-tracker.html">Fasting tracker</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">SharedPreferences</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                fasting UI                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Start/stop fast; history survives restart.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/notifications/notification_service.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/notifications/notification_service.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Local notifications and FCM preference storage; some payloads map to placeholder Superwall placements.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Scheduling, preference changes, and notification open handling.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/notifications.html">Notifications</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">Firebase Messaging</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                lib/main.dart; settings                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Schedule local notification; open payload routing; preference toggles.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="lib/core/analytics/mixpanel_service.dart">
+                    <div class="file-card__head">
+                        <h2><code>lib/core/analytics/mixpanel_service.dart</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--info">Moderate impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Primary product analytics wrapper around Mixpanel.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>App events and identity sync after auth.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/analytics-telemetry.html">Analytics and telemetry</a>
+                                                                                                </dd></div>
+                                                                            <div><dt>Depends on</dt><dd><code class="chip chip--file">MIXPANEL_API_KEY</code></dd></div>
+                                                                            <div><dt>Depended on by</dt><dd>
+                                many feature screens                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Event fires after key actions; identify after login.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="firestore.rules">
+                    <div class="file-card__head">
+                        <h2><code>firestore.rules</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--danger">High impact</span>                                                            <span class="badge badge--info">Inferred from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Server-side Firestore access rules for users, community, accountability, and related collections.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Every Firestore request.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/community-forum.html">Community forum</a>
+                                                                                                                                                <a class="chip" href="../functionality/calorie-nutrition-tracking.html">Calorie nutrition tracking</a>
+                                                                                                                                                <a class="chip" href="../functionality/accountability-partners.html">Accountability partners</a>
+                                                                                                </dd></div>
+                                                                                                    <div><dt>Depended on by</dt><dd>
+                                all cloud data features                            </dd></div>
+                                                                            <div><dt>Test after change</dt><dd>Rules unit tests / emulator for affected paths.</dd></div>
+                                            </dl>
+                </section>
+                            <section class="file-card" id="pubspec.yaml">
+                    <div class="file-card__head">
+                        <h2><code>pubspec.yaml</code></h2>
+                        <div class="file-card__badges">
+                            <span class="badge badge--danger">High impact</span>                                                            <span class="badge badge--ok">Verified from source</span>                                                    </div>
+                    </div>
+                    <p class="file-card__purpose">Package identity (stoppr 7.4.2+1), SDK constraint, and dependency set.</p>
+                    <dl class="file-card__meta">
+                                                    <div><dt>Runs when</dt><dd>Build and dependency resolution.</dd></div>
+                                                                            <div><dt>Implements</dt><dd>
+                                                                                                            <a class="chip" href="../functionality/app-startup.html">Application startup</a>
+                                                                                                </dd></div>
+                                                                                                                            <div><dt>Test after change</dt><dd>flutter pub get; smoke build.</dd></div>
+                                            </dl>
+                </section>
+                    </div>
     </article>
         </main>
 
@@ -120,7 +687,7 @@
                     A living explanation generated from repository-owned content in <code>.vibekb/</code>.
                     <a href="../index.html">About VibeKB</a>
                 </p>
-                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 08:36 UTC · source commit f01661b (f01661be728f471f85987454b1047a5003118738) · not auto-updating</p>
+                <p class="muted site-footer__provenance">Static snapshot · generated 2026-07-23 18:28 UTC · source commit 2edc099 (2edc09927b646c833769ab8b4bd6bc00b37882c3) · not auto-updating</p>
             </div>
         </footer>
     </div>

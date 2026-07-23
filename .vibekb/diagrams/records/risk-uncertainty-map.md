@@ -18,7 +18,7 @@ provenance: "Each landmine grepped and file-traced in source."
 last_verified: 2026-07-21
 uncertainty: "Runtime severity depends on private env and dashboard config not in git."
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-23
 ---
 
 ## What am I looking at?

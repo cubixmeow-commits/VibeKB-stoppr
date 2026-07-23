@@ -9,7 +9,7 @@ updated: 2026-07-23
 
 ## What it currently does
 
-Implemented surfaces (source-traced at commit `f01661b`):
+Implemented surfaces (source-traced at commit `2edc099`):
 
 - Cold-start SDK bootstrap and auth-aware routing in `lib/main.dart`.
 - Google / Apple / email / anonymous authentication.
