@@ -150,7 +150,7 @@
           '<button class="auth-btn" data-act="next" type="button"><img src="' + A +
           '/images/svg/google.svg" alt="" height="18"> Continue with Google</button>' +
           '<button class="auth-btn" data-act="next" type="button"> Continue with Email</button>' +
-          '<button class="skip-link" data-act="skip-dialog" type="button">Skip for now</button>' +
+          '<button class="skip-link" data-act="skip-dialog" type="button" style="margin-bottom:24px">Skip for now</button>' +
           "</div></div>" + skipDialogHtml();
       case "radar":
       case "weeks":
@@ -284,7 +284,7 @@
       var icon = opt[2] ? '<img src="' + A + "/images/svg/" + opt[2] + '" alt="" height="18" style="margin-right:6px">' : "";
       html += '<button class="option' + (on ? " selected" : "") + '" data-act="opt" data-q="' +
         q.id + '" data-i="' + i + '" data-multi="' + (q.multi ? "1" : "0") + '" type="button">' +
-        '<span class="num">' + (i + 1) + "</span><span class="label">' + icon + esc(opt[0]) +
+        '<span class="num">' + (i + 1) + '</span><span class="label">' + icon + esc(opt[0]) +
         "</span></button>";
       if (on && !q.acquisition) {
         html += '<div class="help">' + esc(opt[1]) + "</div>";
@@ -729,8 +729,8 @@
     var list = screens();
     if (i < 0) i = 0;
     if (i >= list.length) i = list.length - 1;
+    if (i !== state.index) state.dialog = null;
     state.index = i;
-    state.dialog = null;
     var s = list[i];
     $("screen-root").innerHTML = renderKind(s);
     explain(s);

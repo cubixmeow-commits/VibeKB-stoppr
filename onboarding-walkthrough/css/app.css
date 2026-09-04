@@ -783,7 +783,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  z-index: 8;
+  z-index: 20;
 }
 .dialog {
   background: #fff;
